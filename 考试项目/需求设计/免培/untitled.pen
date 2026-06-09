@@ -1,0 +1,4228 @@
+{
+  "version": "2.13",
+  "children": [
+    {
+      "type": "frame",
+      "id": "HEcpe",
+      "x": 0,
+      "y": 0,
+      "name": "移动端-考生约考类型选择-新增免培入口",
+      "clip": true,
+      "width": 414,
+      "height": 896,
+      "fill": "#F5F7FB",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "slF9g",
+          "name": "状态栏",
+          "width": "fill_container",
+          "height": 44,
+          "fill": "#FFFFFF",
+          "padding": [
+            0,
+            28
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "XgODh",
+              "name": "时间",
+              "fill": "#000000",
+              "content": "08:48",
+              "fontFamily": "Inter",
+              "fontSize": 17,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "jwSWJ",
+              "name": "系统图标",
+              "width": 100,
+              "height": 22,
+              "gap": 6,
+              "justifyContent": "end",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "iiNBL",
+                  "name": "信号",
+                  "fill": "#111111",
+                  "content": "▮▮",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "vev8H",
+                  "name": "网络",
+                  "fill": "#111111",
+                  "content": "◒",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "GO9Ds",
+                  "name": "电量",
+                  "width": 34,
+                  "height": 18,
+                  "fill": "#111111",
+                  "cornerRadius": 5,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oO5NM",
+                      "name": "电量文字",
+                      "fill": "#FFFFFF",
+                      "content": "71",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "hisQQ",
+          "name": "小程序顶部栏",
+          "width": "fill_container",
+          "height": 48,
+          "fill": "#FFFFFF",
+          "padding": [
+            0,
+            20
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Xi7AI",
+              "name": "顶栏左侧",
+              "width": 160,
+              "height": "fill_container",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dmDAK",
+                  "name": "返回箭头",
+                  "fill": "#2E3238",
+                  "content": "‹",
+                  "fontFamily": "Inter",
+                  "fontSize": 38,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "PRcCr",
+                  "name": "小程序标题",
+                  "fill": "#111111",
+                  "content": "三项人员",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "eKgbO",
+              "name": "小程序右侧胶囊",
+              "width": 104,
+              "height": 30,
+              "fill": "#FFFFFF",
+              "cornerRadius": 16,
+              "stroke": "#E8EAF0",
+              "strokeWidth": 1,
+              "justifyContent": "space_around",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "vi1h6",
+                  "name": "星标",
+                  "fill": "#333333",
+                  "content": "☆",
+                  "fontFamily": "Inter",
+                  "fontSize": 22,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "aQRAI",
+                  "name": "更多",
+                  "fill": "#333333",
+                  "content": "•••",
+                  "fontFamily": "Inter",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "ellipse",
+                  "id": "TV5xY",
+                  "name": "圆点按钮",
+                  "fill": "#FFFFFF",
+                  "width": 22,
+                  "height": 22,
+                  "stroke": "#333333",
+                  "strokeWidth": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "F3tI8",
+          "name": "页面标题栏",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "#F2F3F7",
+          "stroke": "#DADDE5",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "iCOdV",
+              "layoutPosition": "absolute",
+              "x": 18,
+              "y": 8,
+              "name": "二级返回",
+              "fill": "#000000",
+              "content": "‹",
+              "fontFamily": "Inter",
+              "fontSize": 38,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "lh4O8",
+              "name": "页面标题",
+              "fill": "#30333A",
+              "content": "考生约考类型选择",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 18,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "TwJfE",
+          "name": "类型选择内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": "#F5F7FB",
+          "layout": "vertical",
+          "gap": 26,
+          "padding": [
+            36,
+            13,
+            24,
+            13
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "A97BWl",
+              "name": "省内考生约考卡片",
+              "width": "fill_container",
+              "height": 96,
+              "fill": "#EFF5FF",
+              "cornerRadius": 5,
+              "padding": [
+                0,
+                28,
+                0,
+                40
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "VnnfN",
+                  "name": "省内考生约考卡片文字区",
+                  "width": 260,
+                  "height": 58,
+                  "layout": "vertical",
+                  "gap": 10,
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "gN8ix",
+                      "name": "省内考生约考卡片标题",
+                      "fill": "#2A5EE8",
+                      "content": "省内考生约考",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qf2A9",
+                      "name": "省内考生约考卡片说明",
+                      "fill": "#2A5EE8",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "适用于省内常住或工作的考生",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "Inp8B",
+                  "name": "省内考生约考卡片箭头",
+                  "fill": "#6FA0F8",
+                  "content": "›",
+                  "fontFamily": "Inter",
+                  "fontSize": 38,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "MjZ81",
+              "name": "省外考生约考卡片",
+              "width": "fill_container",
+              "height": 96,
+              "fill": "#FFF9EE",
+              "cornerRadius": 5,
+              "padding": [
+                0,
+                28,
+                0,
+                40
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "oF56N",
+                  "name": "省外考生约考卡片文字区",
+                  "width": 260,
+                  "height": 58,
+                  "layout": "vertical",
+                  "gap": 10,
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Aam8G",
+                      "name": "省外考生约考卡片标题",
+                      "fill": "#C5521A",
+                      "content": "省外考生约考",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jcYUF",
+                      "name": "省外考生约考卡片说明",
+                      "fill": "#C5521A",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "适用于省外户籍或跨省工作的考生",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "sR0o9",
+                  "name": "省外考生约考卡片箭头",
+                  "fill": "#F28C3B",
+                  "content": "›",
+                  "fontFamily": "Inter",
+                  "fontSize": 38,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Ub3BD",
+              "name": "免培训考生约考卡片",
+              "width": "fill_container",
+              "height": 96,
+              "fill": "#F0FFF6",
+              "cornerRadius": 5,
+              "padding": [
+                0,
+                28,
+                0,
+                40
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "BZEps",
+                  "name": "免培训考生约考卡片文字区",
+                  "width": 260,
+                  "height": 58,
+                  "layout": "vertical",
+                  "gap": 10,
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "w20Ti",
+                      "name": "免培训考生约考卡片标题",
+                      "fill": "#16A05A",
+                      "content": "免培训考生约考",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VRzCJ",
+                      "name": "免培训考生约考卡片说明",
+                      "fill": "#16A05A",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "适用于符合免培训条件并需提交证明的考生",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "SnBZk",
+                  "name": "免培训考生约考卡片箭头",
+                  "fill": "#4CC77D",
+                  "content": "›",
+                  "fontFamily": "Inter",
+                  "fontSize": 38,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "IJEnT",
+              "name": "入口提示",
+              "fill": "#7A8495",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "点击“免培训考生约考”进入免培训申请表单，填写考生信息并上传证明材料。",
+              "lineHeight": 1.45,
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "hE7r8",
+      "x": 0,
+      "y": 0,
+      "name": "移动端-免培训申请-第一步选择免培训类型",
+      "width": "fit_content(0)",
+      "height": "fit_content(0)"
+    },
+    {
+      "type": "frame",
+      "id": "mL157",
+      "x": 494,
+      "y": 0,
+      "name": "移动端-免培训申请-第一步选择免培训类型",
+      "clip": true,
+      "width": 414,
+      "height": 844,
+      "fill": "#F5F7FB",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "UwXgL",
+          "name": "第一步状态栏",
+          "width": "fill_container",
+          "height": 44,
+          "fill": "#FFFFFF",
+          "padding": [
+            0,
+            28
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "famah",
+              "name": "第一步时间",
+              "fill": "#000000",
+              "content": "08:48",
+              "fontFamily": "Inter",
+              "fontSize": 17,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "QHbvi",
+              "name": "第一步系统图标",
+              "width": 100,
+              "height": 22,
+              "gap": 6,
+              "justifyContent": "end",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mMcTD",
+                  "name": "第一步信号",
+                  "fill": "#111111",
+                  "content": "▮▮",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "uxoft",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "PvnMF",
+                  "name": "第一步电量",
+                  "width": 34,
+                  "height": 18,
+                  "fill": "#111111",
+                  "cornerRadius": 5,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XpxVb",
+                      "name": "第一步电量文字",
+                      "fill": "#FFFFFF",
+                      "content": "71",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "PsExx",
+          "name": "第一步小程序顶部栏",
+          "width": "fill_container",
+          "height": 48,
+          "fill": "#FFFFFF",
+          "padding": [
+            0,
+            20
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "y25MU",
+              "name": "第一步顶栏左侧",
+              "width": 160,
+              "height": "fill_container",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Xa9p7",
+                  "name": "第一步返回箭头",
+                  "fill": "#2E3238",
+                  "content": "‹",
+                  "fontFamily": "Inter",
+                  "fontSize": 38,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "dQvlp",
+                  "name": "第一步小程序标题",
+                  "fill": "#111111",
+                  "content": "三项人员",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "QUlg6",
+              "name": "第一步右侧胶囊",
+              "width": 104,
+              "height": 30,
+              "fill": "#FFFFFF",
+              "cornerRadius": 16,
+              "stroke": "#E8EAF0",
+              "strokeWidth": 1,
+              "justifyContent": "space_around",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "uqoyn",
+                  "name": "第一步星标",
+                  "fill": "#333333",
+                  "content": "☆",
+                  "fontFamily": "Inter",
+                  "fontSize": 22,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "V9Yte1",
+                  "name": "第一步更多",
+                  "fill": "#333333",
+                  "content": "•••",
+                  "fontFamily": "Inter",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "ellipse",
+                  "id": "KD0js",
+                  "name": "第一步圆点按钮",
+                  "fill": "#FFFFFF",
+                  "width": 22,
+                  "height": 22,
+                  "stroke": "#333333",
+                  "strokeWidth": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "gg2Df",
+          "name": "第一步标题栏",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "#F2F3F7",
+          "stroke": "#DADDE5",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "YnLAO",
+              "layoutPosition": "absolute",
+              "x": 18,
+              "y": 8,
+              "name": "第一步二级返回",
+              "fill": "#000000",
+              "content": "‹",
+              "fontFamily": "Inter",
+              "fontSize": 38,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "VNuB3",
+              "name": "第一步页面标题",
+              "fill": "#30333A",
+              "content": "免培训约考申请",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 18,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZN3bu",
+          "name": "第一步内容",
+          "width": "fill_container",
+          "height": 696,
+          "fill": "#F5F7FB",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            18,
+            16,
+            22,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "nRXuS",
+              "name": "第一步进度",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 10,
+              "stroke": "#E8EDF3",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "TgdYK",
+                  "name": "第一步进度顶部",
+                  "width": "fill_container",
+                  "height": 24,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UW175",
+                      "name": "当前步骤",
+                      "fill": "#2E5CF6",
+                      "content": "第一步",
+                      "fontFamily": "Geist Mono",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "UcLcw",
+                      "name": "步骤说明",
+                      "fill": "#303842",
+                      "content": "选择免培训类型",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "W8s9t",
+                  "name": "第一步进度条底",
+                  "width": "fill_container",
+                  "height": 8,
+                  "fill": "#E8EEF5",
+                  "cornerRadius": 4,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "WWSMP",
+                      "x": 0,
+                      "y": 0,
+                      "name": "第一步进度条完成",
+                      "fill": "#2E5CF6",
+                      "width": 176,
+                      "height": 8
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vZuMu",
+                  "name": "第一步标签",
+                  "width": "fill_container",
+                  "height": 22,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "DNyUm",
+                      "name": "步骤标签一",
+                      "fill": "#222831",
+                      "content": "1 免培训类型",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "xhbIO",
+                      "name": "步骤标签二",
+                      "fill": "#8D97A7",
+                      "content": "2 填写申请资料",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nYBWe",
+              "name": "免培训类型选择区",
+              "width": "fill_container",
+              "fill": "#FFFFFF",
+              "cornerRadius": 10,
+              "stroke": "#E8EDF3",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "rJ5pN",
+                  "name": "类型选择标题区",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KxpGW",
+                      "name": "类型选择标题",
+                      "fill": "#20242A",
+                      "content": "请选择免培训类型",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "PqxOT",
+                      "name": "类型选择说明",
+                      "fill": "#697386",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "根据本人符合的免培训条件选择一种类型，下一步将补充对应证明材料。",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "m3Semg",
+                  "name": "免培训类型选项列表",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Y2fkc",
+                      "name": "类型-学历或专业条件",
+                      "width": "fill_container",
+                      "fill": "#F0F4FF",
+                      "cornerRadius": 9,
+                      "stroke": "#2E5CF6",
+                      "strokeWidth": 2,
+                      "gap": 12,
+                      "padding": 14,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "x4eglj",
+                          "name": "学历或专业条件单选",
+                          "fill": "#2E5CF6",
+                          "width": 22,
+                          "height": 22,
+                          "stroke": "#2E5CF6",
+                          "strokeWidth": 2
+                        },
+                        {
+                          "type": "frame",
+                          "id": "F3mwxh",
+                          "name": "学历或专业条件文字",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "OFH2O",
+                              "name": "学历或专业条件标题",
+                              "fill": "#20242A",
+                              "content": "学历或专业条件",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 15,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "X4Dxmh",
+                              "name": "学历或专业条件说明",
+                              "fill": "#697386",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "符合学历、专业或课程相关免培训条件。",
+                              "lineHeight": 1.35,
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UWWxW",
+                      "name": "类型-既有证书或资质",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 9,
+                      "stroke": "#DDE5EF",
+                      "strokeWidth": 1,
+                      "gap": 12,
+                      "padding": 14,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "cKAXH",
+                          "name": "既有证书或资质单选",
+                          "fill": "#FFFFFF",
+                          "width": 22,
+                          "height": 22,
+                          "stroke": "#C9D3E1",
+                          "strokeWidth": 2
+                        },
+                        {
+                          "type": "frame",
+                          "id": "rTtYM",
+                          "name": "既有证书或资质文字",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "OvuZI",
+                              "name": "既有证书或资质标题",
+                              "fill": "#20242A",
+                              "content": "既有证书或资质",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 15,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "bXTql",
+                              "name": "既有证书或资质说明",
+                              "fill": "#697386",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "已持有相关证书、资格或可证明的同类资质。",
+                              "lineHeight": 1.35,
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rrN5C",
+                      "name": "类型-工作经历条件",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 9,
+                      "stroke": "#DDE5EF",
+                      "strokeWidth": 1,
+                      "gap": 12,
+                      "padding": 14,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "VwS32",
+                          "name": "工作经历条件单选",
+                          "fill": "#FFFFFF",
+                          "width": 22,
+                          "height": 22,
+                          "stroke": "#C9D3E1",
+                          "strokeWidth": 2
+                        },
+                        {
+                          "type": "frame",
+                          "id": "lTUDu",
+                          "name": "工作经历条件文字",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ihsdx",
+                              "name": "工作经历条件标题",
+                              "fill": "#20242A",
+                              "content": "工作经历条件",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 15,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "wtzjC",
+                              "name": "工作经历条件说明",
+                              "fill": "#697386",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "符合规定年限的相关岗位工作经历。",
+                              "lineHeight": 1.35,
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dCPXL",
+              "name": "第一步底部下一步操作区",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "justifyContent": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "k7DrFl",
+                  "name": "下一步主按钮",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "#2E5CF6",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "RgMpr",
+                      "name": "下一步按钮文字",
+                      "fill": "#FFFFFF",
+                      "content": "下一步",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ogT4y",
+      "x": 988,
+      "y": 0,
+      "name": "移动端-免培训申请-第二步填写申请资料",
+      "clip": true,
+      "width": 414,
+      "height": 3340,
+      "fill": "#F5F7FB",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "N99PF",
+          "name": "第二步状态栏",
+          "width": "fill_container",
+          "height": 44,
+          "fill": "#FFFFFF",
+          "padding": [
+            0,
+            28
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "wkIdy",
+              "name": "第二步时间",
+              "fill": "#000000",
+              "content": "08:48",
+              "fontFamily": "Inter",
+              "fontSize": 17,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "XAh4O",
+              "name": "第二步系统图标",
+              "width": 100,
+              "height": 22,
+              "gap": 6,
+              "justifyContent": "end",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "EAOGK",
+                  "name": "第二步信号",
+                  "fill": "#111111",
+                  "content": "▮▮",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "QIgr9",
+                  "name": "第二步网络",
+                  "fill": "#111111",
+                  "content": "◒",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "n2HGZR",
+                  "name": "第二步电量",
+                  "width": 34,
+                  "height": 18,
+                  "fill": "#111111",
+                  "cornerRadius": 5,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Eg4aH",
+                      "name": "第二步电量文字",
+                      "fill": "#FFFFFF",
+                      "content": "71",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "noRXh",
+          "name": "第二步小程序顶部栏",
+          "width": "fill_container",
+          "height": 48,
+          "fill": "#FFFFFF",
+          "padding": [
+            0,
+            20
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "p0BCR",
+              "name": "第二步顶栏左侧",
+              "width": 160,
+              "height": "fill_container",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "E0RYU",
+                  "name": "第二步返回箭头",
+                  "fill": "#2E3238",
+                  "content": "‹",
+                  "fontFamily": "Inter",
+                  "fontSize": 38,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "wQjyv",
+                  "name": "第二步小程序标题",
+                  "fill": "#111111",
+                  "content": "三项人员",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "QQXwH",
+              "name": "第二步右侧胶囊",
+              "width": 104,
+              "height": 30,
+              "fill": "#FFFFFF",
+              "cornerRadius": 16,
+              "stroke": "#E8EAF0",
+              "strokeWidth": 1,
+              "justifyContent": "space_around",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Z8b1l",
+                  "name": "第二步星标",
+                  "fill": "#333333",
+                  "content": "☆",
+                  "fontFamily": "Inter",
+                  "fontSize": 22,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "SPgMj",
+                  "name": "第二步更多",
+                  "fill": "#333333",
+                  "content": "•••",
+                  "fontFamily": "Inter",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "ellipse",
+                  "id": "xTtl5",
+                  "name": "第二步圆点按钮",
+                  "fill": "#FFFFFF",
+                  "width": 22,
+                  "height": 22,
+                  "stroke": "#333333",
+                  "strokeWidth": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "o5Yivw",
+          "name": "第二步标题栏",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "#F2F3F7",
+          "stroke": "#DADDE5",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "FDcRB",
+              "layoutPosition": "absolute",
+              "x": 18,
+              "y": 8,
+              "name": "第二步二级返回",
+              "fill": "#000000",
+              "content": "‹",
+              "fontFamily": "Inter",
+              "fontSize": 38,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "I66HlI",
+              "name": "第二步页面标题",
+              "fill": "#30333A",
+              "content": "免培训约考申请",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 18,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "qqYJ0",
+          "name": "第二步内容",
+          "width": "fill_container",
+          "height": 3192,
+          "fill": "#F5F7FB",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": [
+            12,
+            13,
+            20,
+            13
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "F0UaOi",
+              "name": "第二步进度",
+              "width": "fill_container",
+              "height": 110,
+              "fill": "#FFFFFF",
+              "cornerRadius": 10,
+              "stroke": "#E8EDF3",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "cvcJj",
+                  "name": "第二步进度顶部",
+                  "width": "fill_container",
+                  "height": 24,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "w8sEr",
+                      "name": "第二步当前步骤",
+                      "fill": "#1877F2",
+                      "content": "第二步 / 共两步",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rzFnM",
+                      "name": "第二步说明",
+                      "fill": "#697386",
+                      "content": "填写申请资料",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "D0QlMW",
+                  "name": "第二步进度条底",
+                  "width": "fill_container",
+                  "height": 8,
+                  "fill": "#E8EEF5",
+                  "cornerRadius": 4,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "GU8mw",
+                      "x": 0,
+                      "y": 0,
+                      "name": "第二步进度条完成",
+                      "fill": "#1877F2",
+                      "width": 348,
+                      "height": 8
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "n2a1e",
+                  "name": "第二步标签",
+                  "width": "fill_container",
+                  "height": 22,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "A1P3Dj",
+                      "name": "第二步标签一",
+                      "fill": "#8A94A6",
+                      "content": "1 免培训类型",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "euom0",
+                      "name": "第二步标签二",
+                      "fill": "#30333A",
+                      "content": "2 填写申请资料",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vwl6l",
+              "name": "第二步已选类型",
+              "width": "fill_container",
+              "height": 68,
+              "fill": "#F0FFF6",
+              "cornerRadius": 8,
+              "stroke": "#B8E9CA",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 5,
+              "padding": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sVB5u",
+                  "name": "第二步已选类型标题",
+                  "fill": "#168C4E",
+                  "content": "已选择免培训类型",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 13,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "y0ENSy",
+                  "name": "第二步已选类型内容",
+                  "fill": "#416A52",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "学历或专业条件，可返回上一步修改。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "MTEPW",
+              "name": "第二步剩余字段填写区",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "CHKFN",
+                  "name": "人员类型字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "p8tRZp",
+                      "name": "人员类型标签",
+                      "fill": "#D9412F",
+                      "content": "* 人员类型",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "BjIC4",
+                      "name": "人员类型输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RZ7NJ",
+                          "name": "人员类型占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择人员类型",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t7CdWl",
+                          "name": "人员类型箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "v3k3f",
+                  "name": "作业类别字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rcZP6",
+                      "name": "作业类别标签",
+                      "fill": "#D9412F",
+                      "content": "* 作业类别",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "p36uZH",
+                      "name": "作业类别输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "W2OO4q",
+                          "name": "作业类别占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择作业类别",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "UjdFd",
+                          "name": "作业类别箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lZKJq",
+                  "name": "操作项目字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ArJN1",
+                      "name": "操作项目标签",
+                      "fill": "#4B5563",
+                      "content": "操作项目",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mD1A9",
+                      "name": "操作项目输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "e5ca5",
+                          "name": "操作项目占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择操作项目",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "y2lYQ2",
+                          "name": "操作项目箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EkMcU",
+                  "name": "考试类型字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KvpA9",
+                      "name": "考试类型标签",
+                      "fill": "#D9412F",
+                      "content": "* 考试类型",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HGUOK",
+                      "name": "考试类型输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tLzsT",
+                          "name": "考试类型占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择考试类型",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "VBUcx",
+                          "name": "考试类型箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "YgAVK",
+                  "name": "考试中心字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XhNUq",
+                      "name": "考试中心标签",
+                      "fill": "#D9412F",
+                      "content": "* 考试中心",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tYVUt",
+                      "name": "考试中心输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ohyKW",
+                          "name": "考试中心占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择考试中心",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ICteB",
+                          "name": "考试中心箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "CNQJl",
+                  "name": "证件类型字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "V3BzHj",
+                      "name": "证件类型标签",
+                      "fill": "#D9412F",
+                      "content": "* 证件类型",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "B4eMw",
+                      "name": "证件类型输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t7maVv",
+                          "name": "证件类型占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择证件类型",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ncCKc",
+                          "name": "证件类型箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "oTcg7",
+                  "name": "证件号码字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "cemgm",
+                      "name": "证件号码标签",
+                      "fill": "#D9412F",
+                      "content": "* 证件号码",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "JKzj1",
+                      "name": "证件号码输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ANoI3",
+                          "name": "证件号码占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入证件号码",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "a99Yqq",
+                  "name": "出生日期字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ceVzW",
+                      "name": "出生日期标签",
+                      "fill": "#D9412F",
+                      "content": "* 出生日期",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vnWIm",
+                      "name": "出生日期输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "QNSKJ",
+                          "name": "出生日期占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择出生日期",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "aKMhw",
+                          "name": "出生日期箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Ypwpl",
+                  "name": "性别字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oEsSL",
+                      "name": "性别标签",
+                      "fill": "#D9412F",
+                      "content": "* 性别",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WEWDt",
+                      "name": "性别输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "XMuAQ",
+                          "name": "性别占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择性别",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ubY4F",
+                          "name": "性别箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "d93Rx",
+                  "name": "姓名字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dVoSq",
+                      "name": "姓名标签",
+                      "fill": "#D9412F",
+                      "content": "* 姓名",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "iLv4E",
+                      "name": "姓名输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "X1wSA",
+                          "name": "姓名占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入姓名",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "i21qYB",
+                  "name": "民族字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "TXXgl",
+                      "name": "民族标签",
+                      "fill": "#4B5563",
+                      "content": "民族",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "nUapz",
+                      "name": "民族输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "mWcjA",
+                          "name": "民族占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择民族",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "paviy",
+                          "name": "民族箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "F4Hb3u",
+                  "name": "政治面貌字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "cF4m1",
+                      "name": "政治面貌标签",
+                      "fill": "#4B5563",
+                      "content": "政治面貌",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "maULC",
+                      "name": "政治面貌输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "C32kM",
+                          "name": "政治面貌占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择政治面貌",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "rpzLN",
+                          "name": "政治面貌箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "u1XtnL",
+                  "name": "最高学历字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qQZxs",
+                      "name": "最高学历标签",
+                      "fill": "#D9412F",
+                      "content": "* 最高学历",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "l80nET",
+                      "name": "最高学历输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "S7lMAE",
+                          "name": "最高学历占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择最高学历",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "SPJLL",
+                          "name": "最高学历箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "u1hkL",
+                  "name": "毕业院校字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "z3zPBA",
+                      "name": "毕业院校标签",
+                      "fill": "#4B5563",
+                      "content": "毕业院校",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "SfhuK",
+                      "name": "毕业院校输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "QUg0J",
+                          "name": "毕业院校占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入毕业院校",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "AdfJs",
+                  "name": "所学专业字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "wtjtF",
+                      "name": "所学专业标签",
+                      "fill": "#4B5563",
+                      "content": "所学专业",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "KpMcK",
+                      "name": "所学专业输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tuMpf",
+                          "name": "所学专业占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入所学专业",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "dducs",
+                  "name": "工作单位字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "PsYyM",
+                      "name": "工作单位标签",
+                      "fill": "#4B5563",
+                      "content": "工作单位",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "I2hatL",
+                      "name": "工作单位输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tV2ko",
+                          "name": "工作单位占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入工作单位",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "iqhJ8",
+                  "name": "工作单位统一社会信用代码字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "F2YFo",
+                      "name": "工作单位统一社会信用代码标签",
+                      "fill": "#4B5563",
+                      "content": "工作单位统一社会信用代码",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "e9s53l",
+                      "name": "工作单位统一社会信用代码输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "H1Wnk3",
+                          "name": "工作单位统一社会信用代码占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入统一社会信用代码",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EI5CK",
+                  "name": "工作单位性质字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XNFGk",
+                      "name": "工作单位性质标签",
+                      "fill": "#4B5563",
+                      "content": "工作单位性质",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "OfuW3",
+                      "name": "工作单位性质输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bpOl8",
+                          "name": "工作单位性质占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择工作单位性质",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "H5iCYU",
+                          "name": "工作单位性质箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "L1XOKn",
+                  "name": "工作部门字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "fGgu0",
+                      "name": "工作部门标签",
+                      "fill": "#4B5563",
+                      "content": "工作部门",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jANTF",
+                      "name": "工作部门输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "n3br80",
+                          "name": "工作部门占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入工作部门",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "gATWP",
+                  "name": "参加工作时间字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "IyVsE",
+                      "name": "参加工作时间标签",
+                      "fill": "#4B5563",
+                      "content": "参加工作时间",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "sgWMV",
+                      "name": "参加工作时间输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "L2N2L",
+                          "name": "参加工作时间占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择参加工作时间",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "FApMP",
+                          "name": "参加工作时间箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "R2Jcc",
+                  "name": "职务字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "p4LjF",
+                      "name": "职务标签",
+                      "fill": "#D9412F",
+                      "content": "* 职务",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "lJgg2",
+                      "name": "职务输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "HB2PW",
+                          "name": "职务占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入职务",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "o8BAp",
+                  "name": "职称或技能等级字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AXh8B",
+                      "name": "职称或技能等级标签",
+                      "fill": "#D9412F",
+                      "content": "* 职称或技能等级",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "r2HTQU",
+                      "name": "职称或技能等级输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bJsEE",
+                          "name": "职称或技能等级占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择职称或技能等级",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "u71bu",
+                          "name": "职称或技能等级箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wdgnj",
+                  "name": "固定电话字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jblkP",
+                      "name": "固定电话标签",
+                      "fill": "#4B5563",
+                      "content": "固定电话",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "wMJgW",
+                      "name": "固定电话输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "oActk",
+                          "name": "固定电话占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入固定电话",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zLyW6",
+                  "name": "移动电话字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "JAUjI",
+                      "name": "移动电话标签",
+                      "fill": "#D9412F",
+                      "content": "* 移动电话",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "MxB57",
+                      "name": "移动电话输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ZhCYJ",
+                          "name": "移动电话占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入移动电话",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vPzB1",
+                  "name": "通讯地址字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lvf6b",
+                      "name": "通讯地址标签",
+                      "fill": "#4B5563",
+                      "content": "通讯地址",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "U7ZXu",
+                      "name": "通讯地址输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Q6X72m",
+                          "name": "通讯地址占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入通讯地址",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "dt69p",
+                  "name": "邮政编码字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "TAQ41",
+                      "name": "邮政编码标签",
+                      "fill": "#4B5563",
+                      "content": "邮政编码",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "opDHS",
+                      "name": "邮政编码输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "NHNO1",
+                          "name": "邮政编码占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入邮政编码",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DpgIE",
+                  "name": "是否查询期间报名字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "e9HuGE",
+                      "name": "是否查询期间报名标签",
+                      "fill": "#4B5563",
+                      "content": "是否查询期间报名",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "M0HIk9",
+                      "name": "是否查询期间报名输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "wGwSD",
+                          "name": "是否查询期间报名占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择：是 / 否",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "MPepe",
+                          "name": "是否查询期间报名箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "RD5tS",
+                  "name": "是否免培训字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vH14S",
+                      "name": "是否免培训标签",
+                      "fill": "#D9412F",
+                      "content": "* 是否免培训",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "eTYRg",
+                      "name": "是否免培训输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zlq14",
+                          "name": "是否免培训占位",
+                          "fill": "#A7B0BE",
+                          "content": "已默认：是",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Xjvv1",
+                          "name": "是否免培训箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "T6UlHx",
+                  "name": "职业类型字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "uTg2U",
+                      "name": "职业类型标签",
+                      "fill": "#D9412F",
+                      "content": "* 职业类型",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "JNGRh",
+                      "name": "职业类型输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pjDqp",
+                          "name": "职业类型占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择职业类型",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ucswQ",
+                          "name": "职业类型箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "UCx92",
+                  "name": "特作复审类型字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "WmA7A",
+                      "name": "特作复审类型标签",
+                      "fill": "#4B5563",
+                      "content": "特作复审类型",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "IXbCK",
+                      "name": "特作复审类型输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "KFjlu",
+                          "name": "特作复审类型占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择特作复审类型",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "FWo2U",
+                          "name": "特作复审类型箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "c63Ab",
+                  "name": "证书申请方式字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "x72jn",
+                      "name": "证书申请方式标签",
+                      "fill": "#4B5563",
+                      "content": "证书申请方式",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "KyGqY",
+                      "name": "证书申请方式输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MqGDk",
+                          "name": "证书申请方式占位",
+                          "fill": "#A7B0BE",
+                          "content": "请选择证书申请方式",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ILg9C",
+                          "name": "证书申请方式箭头",
+                          "fill": "#B4BECF",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lgwV4",
+                  "name": "备注字段",
+                  "width": "fill_container",
+                  "height": 55,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "N3afV7",
+                      "name": "备注标签",
+                      "fill": "#4B5563",
+                      "content": "备注",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "B7aHTi",
+                      "name": "备注输入框",
+                      "width": "fill_container",
+                      "height": 32,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 5,
+                      "stroke": "#E8EDF3",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Qghmt",
+                          "name": "备注占位",
+                          "fill": "#A7B0BE",
+                          "content": "请输入备注",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Pkv8N",
+              "name": "第二步附件上传区",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "DSuRa",
+                  "name": "学员照片上传项",
+                  "width": "fill_container",
+                  "height": 112,
+                  "layout": "vertical",
+                  "gap": 5,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bg3wP",
+                      "name": "学员照片标题",
+                      "fill": "#D9412F",
+                      "content": "* 学员照片",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jOODE",
+                      "name": "学员照片上传框",
+                      "width": 88,
+                      "height": 88,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 6,
+                      "stroke": "#D7DEE9",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 7,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "k7ifva",
+                          "name": "学员照片加号",
+                          "fill": "#9DA8B8",
+                          "content": "+",
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "EghvG",
+                          "name": "学员照片上传文字",
+                          "fill": "#7B8797",
+                          "content": "上传图片",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Cvkcy",
+                  "name": "身份证正面上传项",
+                  "width": "fill_container",
+                  "height": 112,
+                  "layout": "vertical",
+                  "gap": 5,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "X9Igf",
+                      "name": "身份证正面标题",
+                      "fill": "#D9412F",
+                      "content": "* 身份证正面",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dxQaC",
+                      "name": "身份证正面上传框",
+                      "width": 88,
+                      "height": 88,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 6,
+                      "stroke": "#D7DEE9",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 7,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "E5mkwy",
+                          "name": "身份证正面加号",
+                          "fill": "#9DA8B8",
+                          "content": "+",
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "gfNiQ",
+                          "name": "身份证正面上传文字",
+                          "fill": "#7B8797",
+                          "content": "上传图片",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "VHLcc",
+                  "name": "身份证反面上传项",
+                  "width": "fill_container",
+                  "height": 112,
+                  "layout": "vertical",
+                  "gap": 5,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "maSax",
+                      "name": "身份证反面标题",
+                      "fill": "#D9412F",
+                      "content": "* 身份证反面",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vvmyj",
+                      "name": "身份证反面上传框",
+                      "width": 88,
+                      "height": 88,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 6,
+                      "stroke": "#D7DEE9",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 7,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "w2xZ1",
+                          "name": "身份证反面加号",
+                          "fill": "#9DA8B8",
+                          "content": "+",
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "OeM3w",
+                          "name": "身份证反面上传文字",
+                          "fill": "#7B8797",
+                          "content": "上传图片",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "o09ZVb",
+                  "name": "特种作业操作证上传项",
+                  "width": "fill_container",
+                  "height": 112,
+                  "layout": "vertical",
+                  "gap": 5,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CXu8L",
+                      "name": "特种作业操作证标题",
+                      "fill": "#D9412F",
+                      "content": "* 特种作业操作证",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HTr8x",
+                      "name": "特种作业操作证上传框",
+                      "width": 88,
+                      "height": 88,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 6,
+                      "stroke": "#D7DEE9",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 7,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "wa2L0",
+                          "name": "特种作业操作证加号",
+                          "fill": "#9DA8B8",
+                          "content": "+",
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "eOySQ",
+                          "name": "特种作业操作证上传文字",
+                          "fill": "#7B8797",
+                          "content": "上传图片",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zWfWE",
+              "name": "第二步个人承诺书",
+              "width": "fill_container",
+              "height": 210,
+              "fill": "#FFFFFF",
+              "cornerRadius": 10,
+              "stroke": "#E8EDF3",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "AFHgF",
+                  "name": "第二步承诺书标题行",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "I2EKW",
+                      "name": "第二步承诺书图标",
+                      "fill": "#FF8A00",
+                      "width": 15,
+                      "height": 15
+                    },
+                    {
+                      "type": "text",
+                      "id": "O8pe4",
+                      "name": "第二步承诺书标题",
+                      "fill": "#20242A",
+                      "content": "个人健康与信息真实性承诺书",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wj9Sx",
+                  "name": "个人健康承诺段落",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UMMS7",
+                      "name": "个人健康承诺标题",
+                      "fill": "#20242A",
+                      "content": "个人健康承诺",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "L4UAE",
+                      "name": "个人健康承诺正文",
+                      "fill": "#4B5563",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "本人无妨碍从事相应特种作业的器质性心脏病、癫痫病、眩晕症、精神病以及其他妨碍作业安全操作的疾病和生理缺陷。",
+                      "lineHeight": 1.35,
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "PVc4V",
+                  "name": "个人信息真实性承诺段落",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "a7u0h",
+                      "name": "个人信息真实性承诺标题",
+                      "fill": "#20242A",
+                      "content": "个人信息真实性承诺",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "V8oIE4",
+                      "name": "个人信息真实性承诺正文",
+                      "fill": "#4B5563",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "本人保证提交的报名信息真实、准确、完整、有效，所提供的证明材料真实有效。因信息不实造成的后果由本人承担。",
+                      "lineHeight": 1.35,
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "E3zvQf",
+              "name": "第二步协议确认区",
+              "width": "fill_container",
+              "height": 62,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "y3rJIr",
+                  "name": "第二步协议确认项",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "I4Yty",
+                      "name": "第二步协议勾选框",
+                      "fill": "#1877F2",
+                      "width": 14,
+                      "height": 14
+                    },
+                    {
+                      "type": "text",
+                      "id": "zX8Jd",
+                      "name": "第二步协议文字",
+                      "fill": "#2D6EDB",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "我已阅读并知晓上述《个人健康承诺书》内容，并承诺身体状况符合要求。",
+                      "lineHeight": 1.25,
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wiefV",
+                  "name": "第二步协议确认项",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "PRErc",
+                      "name": "第二步协议勾选框",
+                      "fill": "#1877F2",
+                      "width": 14,
+                      "height": 14
+                    },
+                    {
+                      "type": "text",
+                      "id": "b3ZFYU",
+                      "name": "第二步协议文字",
+                      "fill": "#2D6EDB",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "我保证所提交的所有电子及纸质材料均为真实有效，且无任何隐瞒。",
+                      "lineHeight": 1.25,
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "WMnhU",
+              "name": "第二步底部操作区",
+              "width": "fill_container",
+              "height": 102,
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "x4fLD",
+                  "name": "上一步按钮",
+                  "width": "fill_container",
+                  "height": 44,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "stroke": "#D9E2EF",
+                  "strokeWidth": 1,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NIr9W",
+                      "name": "上一步按钮文字",
+                      "fill": "#4B5563",
+                      "content": "上一步",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wNU1z",
+                  "name": "提交申请按钮",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "#1877F2",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Y7N0S",
+                      "name": "提交申请按钮文字",
+                      "fill": "#FFFFFF",
+                      "content": "提交申请",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "themes": {
+    "Mode": [
+      "Light",
+      "Dark"
+    ]
+  },
+  "variables": {
+    "--sidebar": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E7E8E5"
+        },
+        {
+          "value": "#18181b",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#18181b"
+        },
+        {
+          "value": "#18181b",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-primary-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#fafafa"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#ffffff1a",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-accent": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2a2a30",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-accent-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#18181b"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-ring": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#71717a"
+        },
+        {
+          "value": "#71717a",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--background": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#111111",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--card": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFF"
+        },
+        {
+          "value": "#1A1A1A",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--card-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--popover": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFF"
+        },
+        {
+          "value": "#1A1A1A",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--popover-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--primary": {
+      "type": "color",
+      "value": "#2E5CF6"
+    },
+    "--primary-foreground": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "--secondary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E7E8E5"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--secondary-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--muted": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--muted-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#B8B9B6",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--accent": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#111111",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--accent-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#F2F3F0",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--destructive": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#D93C15"
+        },
+        {
+          "value": "#FF5C33",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--input": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--ring": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#666666",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "--black": {
+      "type": "color",
+      "value": "#000000"
+    },
+    "--font-primary": {
+      "type": "string",
+      "value": "JetBrains Mono"
+    },
+    "--font-secondary": {
+      "type": "string",
+      "value": "Geist"
+    },
+    "--radius-none": {
+      "type": "number",
+      "value": 0
+    },
+    "--radius-pill": {
+      "type": "number",
+      "value": 999
+    },
+    "--color-success": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#DFE6E1"
+        },
+        {
+          "value": "#222924",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-success-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#004D1A"
+        },
+        {
+          "value": "#B6FFCE",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-warning": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E9E3D8"
+        },
+        {
+          "value": "#291C0F",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-warning-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#804200"
+        },
+        {
+          "value": "#FF8400",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-error": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E5DCDA"
+        },
+        {
+          "value": "#24100B",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-error-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#8C1C00"
+        },
+        {
+          "value": "#FF5C33",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-info": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#DFDFE6"
+        },
+        {
+          "value": "#222229",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-info-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#000066"
+        },
+        {
+          "value": "#B2B2FF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--radius-m": {
+      "type": "number",
+      "value": 16
+    }
+  }
+}

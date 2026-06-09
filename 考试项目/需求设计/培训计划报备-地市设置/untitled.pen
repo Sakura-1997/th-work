@@ -3,17 +3,6 @@
   "children": [
     {
       "type": "frame",
-      "id": "Y3fypr",
-      "x": 0,
-      "y": 0,
-      "name": "Welcome to Pencil",
-      "clip": true,
-      "width": 1000,
-      "height": 1458,
-      "layout": "none"
-    },
-    {
-      "type": "frame",
       "id": "G3c7n",
       "x": 1080,
       "y": 0,
@@ -564,35 +553,35 @@
           "height": 1014,
           "fill": "#ffffff",
           "layout": "vertical",
-          "gap": 16,
+          "gap": 6,
           "children": [
             {
               "type": "frame",
-              "id": "iAUr7",
-              "name": "约考锁定机制",
+              "id": "uPhDy",
+              "name": "开班人数设置",
               "width": "fill_container",
               "fill": "#ffffff",
               "layout": "vertical",
-              "gap": 24,
+              "gap": 12,
               "padding": [
-                42,
+                18,
                 24,
-                20,
+                12,
                 24
               ],
               "children": [
                 {
                   "type": "frame",
-                  "id": "iaGi2",
-                  "name": "约考锁定机制标题组",
+                  "id": "z94xm",
+                  "name": "开班人数设置标题组",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 18,
+                  "gap": 10,
                   "children": [
                     {
                       "type": "frame",
-                      "id": "un0xp",
-                      "name": "约考锁定机制标题行",
+                      "id": "BW0Ib",
+                      "name": "开班人数设置标题行",
                       "width": "fill_container",
                       "gap": 8,
                       "alignItems": "center",
@@ -600,18 +589,18 @@
                         {
                           "type": "rectangle",
                           "cornerRadius": 3,
-                          "id": "FrSmD",
-                          "name": "约考锁定机制蓝色标记",
+                          "id": "MvmDR",
+                          "name": "开班人数设置蓝色标记",
                           "fill": "#2d7df6",
                           "width": 6,
                           "height": 24
                         },
                         {
                           "type": "text",
-                          "id": "bwdq2",
-                          "name": "约考锁定机制",
+                          "id": "lwVCR",
+                          "name": "开班人数设置标题",
                           "fill": "#243044",
-                          "content": "约考锁定机制",
+                          "content": "开班人数设置",
                           "fontFamily": "Noto Sans SC",
                           "fontSize": 20,
                           "fontWeight": "700"
@@ -620,755 +609,13 @@
                     },
                     {
                       "type": "text",
-                      "id": "CORLH",
-                      "name": "约考锁定机制说明",
+                      "id": "S74bvI",
+                      "name": "开班人数设置说明",
                       "fill": "#34445c",
-                      "content": "设置取消考试后的冷却锁定期限。每个等级的锁定机制可独立启用或停用。",
+                      "content": "配置开班人数提醒与人数上限，帮助机构按报名规模安排开班。",
                       "fontFamily": "Noto Sans SC",
                       "fontSize": 14,
                       "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "LE430",
-                  "name": "首次取消锁定周期",
-                  "width": "fill_container",
-                  "height": 80,
-                  "fill": "#f8f9fb",
-                  "cornerRadius": 6,
-                  "effect": {
-                    "type": "shadow",
-                    "shadowType": "outer",
-                    "color": "#e5e7eb66",
-                    "offset": {
-                      "x": 0,
-                      "y": 4
-                    },
-                    "blur": 12
-                  },
-                  "padding": [
-                    0,
-                    16
-                  ],
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "uyd4k",
-                      "name": "首次取消锁定周期左侧",
-                      "gap": 16,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "LR21k",
-                          "name": "首次取消锁定周期图标底",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#dcebff",
-                          "cornerRadius": 4,
-                          "layout": "none",
-                          "children": [
-                            {
-                              "type": "icon",
-                              "id": "s3WcsG",
-                              "x": 12,
-                              "y": 12,
-                              "name": "首次取消锁定周期图标",
-                              "width": 24,
-                              "height": 24,
-                              "icon": "hourglass",
-                              "library": "lucide",
-                              "fill": "#2f7df6"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "t1WqA0",
-                          "name": "首次取消锁定周期文案",
-                          "layout": "vertical",
-                          "gap": 8,
-                          "children": [
-                            {
-                              "type": "frame",
-                              "id": "qKOje",
-                              "name": "首次取消锁定周期名称与开关",
-                              "gap": 12,
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "plU0B",
-                                  "name": "首次取消锁定周期名称",
-                                  "fill": "#243044",
-                                  "content": "首次取消锁定周期",
-                                  "fontFamily": "Noto Sans SC",
-                                  "fontSize": 18,
-                                  "fontWeight": "700"
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "Hexey",
-                                  "name": "首次取消锁定周期开关",
-                                  "width": 28,
-                                  "height": 16,
-                                  "fill": "#1677ff",
-                                  "cornerRadius": 8,
-                                  "layout": "none",
-                                  "children": [
-                                    {
-                                      "type": "ellipse",
-                                      "id": "mSNuI",
-                                      "x": 14,
-                                      "y": 2,
-                                      "name": "首次取消锁定周期开关圆点",
-                                      "fill": "#ffffff",
-                                      "width": 12,
-                                      "height": 12
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "text",
-                              "id": "T0gk7x",
-                              "name": "首次取消锁定周期描述",
-                              "fill": "#34445c",
-                              "content": "考生在首次取消已约考的考试计划后，系统将暂停其预约权限。",
-                              "fontFamily": "Noto Sans SC",
-                              "fontSize": 14,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "L0MsM",
-                      "name": "首次取消锁定周期输入区",
-                      "gap": 8,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "VobzS",
-                          "name": "首次取消锁定周期输入框",
-                          "width": 80,
-                          "height": 32,
-                          "fill": "#ffffff",
-                          "cornerRadius": 4,
-                          "stroke": "#d7dbe2",
-                          "strokeWidth": 1,
-                          "padding": [
-                            0,
-                            12
-                          ],
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "ZBtUt",
-                              "name": "首次取消锁定周期输入值",
-                              "fill": "#374151",
-                              "content": "2",
-                              "fontFamily": "Noto Sans SC",
-                              "fontSize": 14,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "JwWat",
-                          "name": "首次取消锁定周期单位",
-                          "fill": "#374151",
-                          "content": "周",
-                          "fontFamily": "Noto Sans SC",
-                          "fontSize": 16,
-                          "fontWeight": "700"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "h35UW5",
-                  "name": "多次取消锁定周期",
-                  "width": "fill_container",
-                  "height": 80,
-                  "fill": "#f8f9fb",
-                  "cornerRadius": 6,
-                  "effect": {
-                    "type": "shadow",
-                    "shadowType": "outer",
-                    "color": "#e5e7eb66",
-                    "offset": {
-                      "x": 0,
-                      "y": 4
-                    },
-                    "blur": 12
-                  },
-                  "padding": [
-                    0,
-                    16
-                  ],
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "TMYKx",
-                      "name": "多次取消锁定周期左侧",
-                      "gap": 16,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "nCjlH",
-                          "name": "多次取消锁定周期图标底",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#dcebff",
-                          "cornerRadius": 4,
-                          "layout": "none",
-                          "children": [
-                            {
-                              "type": "icon",
-                              "id": "hYREJ",
-                              "x": 12,
-                              "y": 12,
-                              "name": "多次取消锁定周期图标",
-                              "width": 24,
-                              "height": 24,
-                              "icon": "refresh-cw",
-                              "library": "lucide",
-                              "fill": "#2f7df6"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "F8pEjo",
-                          "name": "多次取消锁定周期文案",
-                          "layout": "vertical",
-                          "gap": 8,
-                          "children": [
-                            {
-                              "type": "frame",
-                              "id": "DBbIS",
-                              "name": "多次取消锁定周期名称与开关",
-                              "gap": 12,
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "q02iq",
-                                  "name": "多次取消锁定周期名称",
-                                  "fill": "#243044",
-                                  "content": "多次取消锁定周期",
-                                  "fontFamily": "Noto Sans SC",
-                                  "fontSize": 18,
-                                  "fontWeight": "700"
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "WOetX",
-                                  "name": "多次取消锁定周期开关",
-                                  "width": 28,
-                                  "height": 16,
-                                  "fill": "#1677ff",
-                                  "cornerRadius": 8,
-                                  "layout": "none",
-                                  "children": [
-                                    {
-                                      "type": "ellipse",
-                                      "id": "Vmyp7",
-                                      "x": 14,
-                                      "y": 2,
-                                      "name": "多次取消锁定周期开关圆点",
-                                      "fill": "#ffffff",
-                                      "width": 12,
-                                      "height": 12
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "text",
-                              "id": "ympZl",
-                              "name": "多次取消锁定周期描述",
-                              "fill": "#34445c",
-                              "content": "当考生连续取消次数累计大于 1 次时，系统采取更严格的锁定期限（单位：月）。",
-                              "fontFamily": "Noto Sans SC",
-                              "fontSize": 14,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "o1EuF",
-                      "name": "多次取消锁定周期输入区",
-                      "gap": 8,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "m2hT6",
-                          "name": "多次取消锁定周期输入框",
-                          "width": 80,
-                          "height": 32,
-                          "fill": "#ffffff",
-                          "cornerRadius": 4,
-                          "stroke": "#d7dbe2",
-                          "strokeWidth": 1,
-                          "padding": [
-                            0,
-                            12
-                          ],
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "wJsfK",
-                              "name": "多次取消锁定周期输入值",
-                              "fill": "#374151",
-                              "content": "2",
-                              "fontFamily": "Noto Sans SC",
-                              "fontSize": 14,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "T4E7kX",
-                          "name": "多次取消锁定周期单位",
-                          "fill": "#374151",
-                          "content": "月",
-                          "fontFamily": "Noto Sans SC",
-                          "fontSize": 16,
-                          "fontWeight": "700"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "rectangle",
-              "id": "ig9cs",
-              "name": "分隔条一",
-              "fill": "#f3f3f3",
-              "width": "fill_container",
-              "height": 16
-            },
-            {
-              "type": "frame",
-              "id": "K1i0Dg",
-              "name": "考试费用设置",
-              "width": "fill_container",
-              "fill": "#ffffff",
-              "layout": "vertical",
-              "gap": 24,
-              "padding": [
-                42,
-                24,
-                20,
-                24
-              ],
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "H8YOAD",
-                  "name": "考试费用设置标题组",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 18,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "sQva5",
-                      "name": "考试费用设置标题行",
-                      "width": "fill_container",
-                      "gap": 8,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "cornerRadius": 3,
-                          "id": "FqrVv",
-                          "name": "考试费用设置蓝色标记",
-                          "fill": "#2d7df6",
-                          "width": 6,
-                          "height": 24
-                        },
-                        {
-                          "type": "text",
-                          "id": "ECbG6",
-                          "name": "考试费用设置",
-                          "fill": "#243044",
-                          "content": "考试费用设置",
-                          "fontFamily": "Noto Sans SC",
-                          "fontSize": 20,
-                          "fontWeight": "700"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "m9ZMHI",
-                      "name": "考试费用设置说明",
-                      "fill": "#34445c",
-                      "content": "配置理论与实操的报考费用，停用某项费用即代表该科目免费除豁免考费。",
-                      "fontFamily": "Noto Sans SC",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "v3hYqj",
-                  "name": "理论考试费用",
-                  "width": "fill_container",
-                  "height": 80,
-                  "fill": "#f8f9fb",
-                  "cornerRadius": 6,
-                  "effect": {
-                    "type": "shadow",
-                    "shadowType": "outer",
-                    "color": "#e5e7eb66",
-                    "offset": {
-                      "x": 0,
-                      "y": 4
-                    },
-                    "blur": 12
-                  },
-                  "padding": [
-                    0,
-                    16
-                  ],
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "sHWCe",
-                      "name": "理论考试费用左侧",
-                      "gap": 16,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "Nslby",
-                          "name": "理论考试费用图标底",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#dcebff",
-                          "cornerRadius": 4,
-                          "layout": "none",
-                          "children": [
-                            {
-                              "type": "icon",
-                              "id": "xxYC3",
-                              "x": 12,
-                              "y": 12,
-                              "name": "理论考试费用图标",
-                              "width": 24,
-                              "height": 24,
-                              "icon": "file-text",
-                              "library": "lucide",
-                              "fill": "#2f7df6"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "e0goa",
-                          "name": "理论考试费用文案",
-                          "layout": "vertical",
-                          "gap": 8,
-                          "children": [
-                            {
-                              "type": "frame",
-                              "id": "e0FEuS",
-                              "name": "理论考试费用名称与开关",
-                              "gap": 12,
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "t1o9JL",
-                                  "name": "理论考试费用名称",
-                                  "fill": "#243044",
-                                  "content": "理论考试费用",
-                                  "fontFamily": "Noto Sans SC",
-                                  "fontSize": 18,
-                                  "fontWeight": "700"
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "yZLQL",
-                                  "name": "理论考试费用开关",
-                                  "width": 28,
-                                  "height": 16,
-                                  "fill": "#1677ff",
-                                  "cornerRadius": 8,
-                                  "layout": "none",
-                                  "children": [
-                                    {
-                                      "type": "ellipse",
-                                      "id": "oVeoS",
-                                      "x": 14,
-                                      "y": 2,
-                                      "name": "理论考试费用开关圆点",
-                                      "fill": "#ffffff",
-                                      "width": 12,
-                                      "height": 12
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "text",
-                              "id": "j27mq",
-                              "name": "理论考试费用描述",
-                              "fill": "#34445c",
-                              "content": "设置每位考生参加理论考试需缴纳的标准费用。",
-                              "fontFamily": "Noto Sans SC",
-                              "fontSize": 14,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "C3QlF",
-                      "name": "理论考试费用输入区",
-                      "gap": 8,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "NI5Kz",
-                          "name": "理论考试费用输入框",
-                          "width": 80,
-                          "height": 32,
-                          "fill": "#ffffff",
-                          "cornerRadius": 4,
-                          "stroke": "#d7dbe2",
-                          "strokeWidth": 1,
-                          "padding": [
-                            0,
-                            12
-                          ],
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "Ac1Pv",
-                              "name": "理论考试费用输入值",
-                              "fill": "#374151",
-                              "content": "1",
-                              "fontFamily": "Noto Sans SC",
-                              "fontSize": 14,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "c8Iti0",
-                          "name": "理论考试费用单位",
-                          "fill": "#374151",
-                          "content": "分",
-                          "fontFamily": "Noto Sans SC",
-                          "fontSize": 16,
-                          "fontWeight": "700"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "k1zud",
-                  "name": "实操考试费用",
-                  "width": "fill_container",
-                  "height": 80,
-                  "fill": "#f8f9fb",
-                  "cornerRadius": 6,
-                  "effect": {
-                    "type": "shadow",
-                    "shadowType": "outer",
-                    "color": "#e5e7eb66",
-                    "offset": {
-                      "x": 0,
-                      "y": 4
-                    },
-                    "blur": 12
-                  },
-                  "padding": [
-                    0,
-                    16
-                  ],
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "hl45g",
-                      "name": "实操考试费用左侧",
-                      "gap": 16,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "uovLx",
-                          "name": "实操考试费用图标底",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#dcebff",
-                          "cornerRadius": 4,
-                          "layout": "none",
-                          "children": [
-                            {
-                              "type": "icon",
-                              "id": "q7oTJ",
-                              "x": 12,
-                              "y": 12,
-                              "name": "实操考试费用图标",
-                              "width": 24,
-                              "height": 24,
-                              "icon": "wrench",
-                              "library": "lucide",
-                              "fill": "#2f7df6"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "rvu3f",
-                          "name": "实操考试费用文案",
-                          "layout": "vertical",
-                          "gap": 8,
-                          "children": [
-                            {
-                              "type": "frame",
-                              "id": "X6p7dJ",
-                              "name": "实操考试费用名称与开关",
-                              "gap": 12,
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "GvUy9",
-                                  "name": "实操考试费用名称",
-                                  "fill": "#243044",
-                                  "content": "实操考试费用",
-                                  "fontFamily": "Noto Sans SC",
-                                  "fontSize": 18,
-                                  "fontWeight": "700"
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "MSEN0",
-                                  "name": "实操考试费用开关",
-                                  "width": 28,
-                                  "height": 16,
-                                  "fill": "#1677ff",
-                                  "cornerRadius": 8,
-                                  "layout": "none",
-                                  "children": [
-                                    {
-                                      "type": "ellipse",
-                                      "id": "jBgKJ",
-                                      "x": 14,
-                                      "y": 2,
-                                      "name": "实操考试费用开关圆点",
-                                      "fill": "#ffffff",
-                                      "width": 12,
-                                      "height": 12
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "text",
-                              "id": "csAVm",
-                              "name": "实操考试费用描述",
-                              "fill": "#34445c",
-                              "content": "设置每位考生参加实操考试需缴纳的标准费用。",
-                              "fontFamily": "Noto Sans SC",
-                              "fontSize": 14,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "c2ekim",
-                      "name": "实操考试费用输入区",
-                      "gap": 8,
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "tSMuZ",
-                          "name": "实操考试费用输入框",
-                          "width": 80,
-                          "height": 32,
-                          "fill": "#ffffff",
-                          "cornerRadius": 4,
-                          "stroke": "#d7dbe2",
-                          "strokeWidth": 1,
-                          "padding": [
-                            0,
-                            12
-                          ],
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "RAEDZ",
-                              "name": "实操考试费用输入值",
-                              "fill": "#374151",
-                              "content": "1",
-                              "fontFamily": "Noto Sans SC",
-                              "fontSize": 14,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "nbcqq",
-                          "name": "实操考试费用单位",
-                          "fill": "#374151",
-                          "content": "分",
-                          "fontFamily": "Noto Sans SC",
-                          "fontSize": 16,
-                          "fontWeight": "700"
-                        }
-                      ]
                     }
                   ]
                 },
@@ -1538,78 +785,171 @@
                       ]
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "type": "rectangle",
-              "id": "xCWsf",
-              "name": "分隔条二",
-              "fill": "#f3f3f3",
-              "width": "fill_container",
-              "height": 16
-            },
-            {
-              "type": "frame",
-              "id": "OGJfl",
-              "name": "理论考试资格时间限定",
-              "width": "fill_container",
-              "fill": "#ffffff",
-              "layout": "vertical",
-              "gap": 24,
-              "padding": [
-                42,
-                24,
-                20,
-                24
-              ],
-              "children": [
+                },
                 {
                   "type": "frame",
-                  "id": "qfOCI",
-                  "name": "理论考试资格时间限定标题组",
+                  "id": "o81ZHz",
+                  "name": "开班人数阈值上限",
                   "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 18,
+                  "height": 80,
+                  "fill": "#f8f9fb",
+                  "cornerRadius": 6,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#e5e7eb66",
+                    "offset": {
+                      "x": 0,
+                      "y": 4
+                    },
+                    "blur": 12
+                  },
+                  "padding": [
+                    0,
+                    16
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
                   "children": [
                     {
                       "type": "frame",
-                      "id": "AhQlc",
-                      "name": "理论考试资格时间限定标题行",
-                      "width": "fill_container",
-                      "gap": 8,
+                      "id": "PAhk8",
+                      "name": "开班人数阈值上限左侧",
+                      "gap": 16,
                       "alignItems": "center",
                       "children": [
                         {
-                          "type": "rectangle",
-                          "cornerRadius": 3,
-                          "id": "otRbS",
-                          "name": "理论考试资格时间限定蓝色标记",
-                          "fill": "#2d7df6",
-                          "width": 6,
-                          "height": 24
+                          "type": "frame",
+                          "id": "XYAKf",
+                          "name": "开班人数阈值上限图标底",
+                          "width": 48,
+                          "height": 48,
+                          "fill": "#dcebff",
+                          "cornerRadius": 4,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "i7uG5p",
+                              "x": 12,
+                              "y": 12,
+                              "name": "开班人数阈值上限图标",
+                              "width": 24,
+                              "height": 24,
+                              "icon": "user-check",
+                              "library": "lucide",
+                              "fill": "#2f7df6"
+                            }
+                          ]
                         },
                         {
-                          "type": "text",
-                          "id": "s3tFk",
-                          "name": "理论考试资格时间限定",
-                          "fill": "#243044",
-                          "content": "理论考试资格时间限定",
-                          "fontFamily": "Noto Sans SC",
-                          "fontSize": 20,
-                          "fontWeight": "700"
+                          "type": "frame",
+                          "id": "ps1zV",
+                          "name": "开班人数阈值上限文案",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "iHFdx",
+                              "name": "开班人数阈值上限名称与开关",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "qRQp1",
+                                  "name": "开班人数阈值上限名称",
+                                  "fill": "#243044",
+                                  "content": "开班人数阈值上限",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 18,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "usgxo",
+                                  "name": "开班人数阈值上限开关",
+                                  "width": 28,
+                                  "height": 16,
+                                  "fill": "#1677ff",
+                                  "cornerRadius": 8,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "rzmfq",
+                                      "x": 14,
+                                      "y": 2,
+                                      "name": "开班人数阈值上限开关圆点",
+                                      "fill": "#ffffff",
+                                      "width": 12,
+                                      "height": 12
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "LBP04",
+                              "name": "开班人数阈值上限描述",
+                              "fill": "#34445c",
+                              "content": "当报名人数达到上限后，系统限制继续报名或提示调整班级容量。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         }
                       ]
                     },
                     {
-                      "type": "text",
-                      "id": "IFWNK",
-                      "name": "理论考试资格时间限定说明",
-                      "fill": "#34445c",
-                      "content": "设置理论考试资格有效期，超过限定时间后需重新确认资格。",
-                      "fontFamily": "Noto Sans SC",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
+                      "type": "frame",
+                      "id": "fpMqD",
+                      "name": "开班人数阈值上限输入区",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "kvpRd",
+                          "name": "开班人数阈值上限输入框",
+                          "width": 80,
+                          "height": 32,
+                          "fill": "#ffffff",
+                          "cornerRadius": 4,
+                          "stroke": "#d7dbe2",
+                          "strokeWidth": 1,
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "a2UXR",
+                              "name": "开班人数阈值上限输入值",
+                              "fill": "#374151",
+                              "content": "50",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "avvbH",
+                          "name": "开班人数阈值上限单位",
+                          "fill": "#374151",
+                          "content": "人",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1698,17 +1038,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "rectangle",
-          "cornerRadius": 4,
-          "id": "HIKQI",
-          "x": 1895,
-          "y": 67,
-          "name": "右侧滚动条",
-          "fill": "#8c8c8c",
-          "width": 7,
-          "height": 394
         }
       ]
     }
