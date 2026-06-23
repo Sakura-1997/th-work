@@ -1,0 +1,4602 @@
+{
+  "version": "2.13",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Frame",
+      "clip": true,
+      "width": 800,
+      "height": 600,
+      "fill": "#FFFFFF",
+      "layout": "none"
+    },
+    {
+      "type": "frame",
+      "id": "FB8dK",
+      "x": 880,
+      "y": 1040,
+      "name": "底部综合明细数据表 - 优化补充",
+      "clip": true,
+      "width": 1440,
+      "height": 250,
+      "fill": "#0B2038",
+      "stroke": "#1E5676",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 10,
+      "padding": 12,
+      "children": [
+        {
+          "type": "frame",
+          "id": "NeDAz",
+          "name": "表格标题栏",
+          "width": "fill_container",
+          "height": 34,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "XUbiL",
+              "name": "标题组",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "xD9h0",
+                  "name": "标题强调线",
+                  "fill": "#28D8FF",
+                  "width": 4,
+                  "height": 18
+                },
+                {
+                  "type": "text",
+                  "id": "KK0Vb",
+                  "name": "标题",
+                  "fill": "$text",
+                  "content": "综合明细数据排行",
+                  "fontFamily": "$font-heading",
+                  "fontSize": 18,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "n8NpA",
+              "name": "数据口径",
+              "fill": "$muted",
+              "content": "按地市、机构、业务类型汇总 / 2026-01-01 至 2026-06-23",
+              "fontFamily": "$font-body",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "l3fxZ",
+          "name": "综合明细表",
+          "width": "fill_container",
+          "height": 184,
+          "stroke": "#1E5676",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "vseMA",
+              "name": "表头行",
+              "width": "fill_container",
+              "height": 36,
+              "fill": "#102A46",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Ix2IV",
+                  "name": "地市",
+                  "width": 110,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "N8sFZ0",
+                      "name": "地市文本",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "地市",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lYxvz",
+                  "name": "培训机构",
+                  "width": 270,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dshEx",
+                      "name": "培训机构文本",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "培训机构",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "YpGCF",
+                  "name": "业务类型",
+                  "width": 130,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AoGHE",
+                      "name": "业务类型文本",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "业务类型",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "X7kaW",
+                  "name": "缴费金额",
+                  "width": 140,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ayr6i",
+                      "name": "缴费金额文本",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "缴费金额",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "w8c0X",
+                  "name": "报名/审批",
+                  "width": 140,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GUrqb",
+                      "name": "报名/审批文本",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "报名/审批",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "AOySG",
+                  "name": "考试人数",
+                  "width": 130,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AHA5y",
+                      "name": "考试人数文本",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "考试人数",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vTC9L",
+                  "name": "合格率",
+                  "width": 120,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "azyrW",
+                      "name": "合格率文本",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "合格率",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "h0TBp",
+                  "name": "风险提示",
+                  "width": 260,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rmW9l",
+                      "name": "风险提示文本",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "风险提示",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jPWQ9",
+              "name": "数据行 1",
+              "width": "fill_container",
+              "height": 36,
+              "fill": "#071A2E",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "zAzEt",
+                  "name": "地市",
+                  "width": 110,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "o5mKEO",
+                      "name": "地市文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "南昌",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Weir4",
+                  "name": "培训机构",
+                  "width": 270,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Ea99i",
+                      "name": "培训机构文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "江西安培职业培训学校",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "x8OuDB",
+                  "name": "业务类型",
+                  "width": 130,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QjM2X",
+                      "name": "业务类型文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "安管",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "bLMIh",
+                  "name": "缴费金额",
+                  "width": 140,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "FNBxt",
+                      "name": "缴费金额文本",
+                      "fill": "$cyan",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "486.2 万元",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nFFH2",
+                  "name": "报名/审批",
+                  "width": 140,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "MD6UR",
+                      "name": "报名/审批文本",
+                      "fill": "$cyan",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "5,286 件",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "gcyV6",
+                  "name": "考试人数",
+                  "width": 130,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Rdv0h",
+                      "name": "考试人数文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "4,918 人",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "jMXr5",
+                  "name": "合格率",
+                  "width": 120,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pSUwd",
+                      "name": "合格率文本",
+                      "fill": "$green",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "94.2%",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "TiDo9",
+                  "name": "风险提示",
+                  "width": 260,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "neWvu",
+                      "name": "风险提示文本",
+                      "fill": "$orange",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "异地考试流向上饶 326 人",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "VUlob",
+              "name": "数据行 2",
+              "width": "fill_container",
+              "height": 36,
+              "fill": "#0A2036",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "cIvI8",
+                  "name": "地市",
+                  "width": 110,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "g5PMD",
+                      "name": "地市文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "赣州",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "euC5J",
+                  "name": "培训机构",
+                  "width": 270,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "X9RTS",
+                      "name": "培训机构文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "赣州安全技术学校",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KccJ7",
+                  "name": "业务类型",
+                  "width": 130,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "R13uB",
+                      "name": "业务类型文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "特种",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "I4l9o",
+                  "name": "缴费金额",
+                  "width": 140,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bEXyQ",
+                      "name": "缴费金额文本",
+                      "fill": "$cyan",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "402.8 万元",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nETXe",
+                  "name": "报名/审批",
+                  "width": 140,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "gvqCs",
+                      "name": "报名/审批文本",
+                      "fill": "$cyan",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "4,106 件",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "T635g",
+                  "name": "考试人数",
+                  "width": 130,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "R5Vcx",
+                      "name": "考试人数文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "3,764 人",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "a03oas",
+                  "name": "合格率",
+                  "width": 120,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "b5sm7e",
+                      "name": "合格率文本",
+                      "fill": "$orange",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "76.4%",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OEt5a",
+                  "name": "风险提示",
+                  "width": 260,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "I3tDjY",
+                      "name": "风险提示文本",
+                      "fill": "$red",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "合格率低于全省均值 17.8%",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "OuMF9",
+              "name": "数据行 3",
+              "width": "fill_container",
+              "height": 36,
+              "fill": "#071A2E",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gythY",
+                  "name": "地市",
+                  "width": 110,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "x0bqDs",
+                      "name": "地市文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "上饶",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Yl7Kd",
+                  "name": "培训机构",
+                  "width": 270,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oGIjr",
+                      "name": "培训机构文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "上饶安全生产培训中心",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XrSog",
+                  "name": "业务类型",
+                  "width": 130,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qw6lG",
+                      "name": "业务类型文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "特种",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "xbA5c",
+                  "name": "缴费金额",
+                  "width": 140,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "k5pB5I",
+                      "name": "缴费金额文本",
+                      "fill": "$cyan",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "358.6 万元",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "m6mYhq",
+                  "name": "报名/审批",
+                  "width": 140,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AqP0h",
+                      "name": "报名/审批文本",
+                      "fill": "$cyan",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "3,918 件",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "N3Pko",
+                  "name": "考试人数",
+                  "width": 130,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "C2kVa",
+                      "name": "考试人数文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "3,206 人",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "y59Fo",
+                  "name": "合格率",
+                  "width": 120,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "k9vYDb",
+                      "name": "合格率文本",
+                      "fill": "$orange",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "79.8%",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "QHdsD",
+                  "name": "风险提示",
+                  "width": 260,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KOB7X",
+                      "name": "风险提示文本",
+                      "fill": "$red",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "审批不通过率 9.6% 偏高",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "rDG7g",
+              "name": "数据行 4",
+              "width": "fill_container",
+              "height": 36,
+              "fill": "#0A2036",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "F90YhG",
+                  "name": "地市",
+                  "width": 110,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GFWu1",
+                      "name": "地市文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "九江",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "X5eXLe",
+                  "name": "培训机构",
+                  "width": 270,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CPwct",
+                      "name": "培训机构文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "九江应急培训中心",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "K6mnGB",
+                  "name": "业务类型",
+                  "width": 130,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "x2VhQe",
+                      "name": "业务类型文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "安管",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "v0WgKK",
+                  "name": "缴费金额",
+                  "width": 140,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "IhyhM",
+                      "name": "缴费金额文本",
+                      "fill": "$cyan",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "296.4 万元",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tH8UY",
+                  "name": "报名/审批",
+                  "width": 140,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Nt20k",
+                      "name": "报名/审批文本",
+                      "fill": "$cyan",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "2,846 件",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Shbqs",
+                  "name": "考试人数",
+                  "width": 130,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Sdgji",
+                      "name": "考试人数文本",
+                      "fill": "$text",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "2,514 人",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "F6yXp",
+                  "name": "合格率",
+                  "width": 120,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ffZ1g",
+                      "name": "合格率文本",
+                      "fill": "$green",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "88.7%",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "GOt2R",
+                  "name": "风险提示",
+                  "width": 260,
+                  "height": "fill_container",
+                  "stroke": "#1E5676",
+                  "strokeWidth": {
+                    "right": 1
+                  },
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "k6V83s",
+                      "name": "风险提示文本",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "异地考试流向宜春 168 人",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "k0StlL",
+      "x": 880,
+      "y": 792,
+      "name": "总览核心指标区",
+      "clip": true,
+      "width": 1440,
+      "fill": "$panel",
+      "stroke": "$line",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 10,
+      "padding": 12,
+      "children": [
+        {
+          "type": "frame",
+          "id": "YfHTP",
+          "name": "指标区标题栏",
+          "width": "fill_container",
+          "height": 30,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "rTDyt",
+              "name": "标题与状态",
+              "height": "fill_container",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 1,
+                  "id": "JJqDw",
+                  "name": "标题强调线",
+                  "fill": "$cyan",
+                  "width": 4,
+                  "height": 20
+                },
+                {
+                  "type": "text",
+                  "id": "C5YrS",
+                  "name": "标题",
+                  "fill": "$text",
+                  "content": "总览核心指标",
+                  "fontFamily": "$font-heading",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "HmwZa",
+                  "name": "实时状态",
+                  "fill": "#0E3248",
+                  "cornerRadius": 2,
+                  "stroke": "#1E6F91",
+                  "strokeWidth": 1,
+                  "gap": 5,
+                  "padding": [
+                    4,
+                    8
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "zVvUU",
+                      "name": "在线点",
+                      "fill": "$green",
+                      "width": 6,
+                      "height": 6
+                    },
+                    {
+                      "type": "text",
+                      "id": "COlVj",
+                      "name": "状态文字",
+                      "fill": "$green",
+                      "content": "实时监管",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Wakoc",
+              "name": "数据时间",
+              "height": "fill_container",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "yLEGd",
+                  "name": "同步标签",
+                  "fill": "$muted",
+                  "content": "数据同步",
+                  "fontFamily": "$font-body",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "aUfGw",
+                  "name": "同步时间",
+                  "fill": "$cyan",
+                  "content": "2026-06-23 14:30",
+                  "fontFamily": "$font-data",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "lbXDh",
+          "name": "六项核心指标矩阵",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "sIXMb",
+              "name": "指标矩阵第一行",
+              "width": "fill_container",
+              "height": 72,
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "o77oTm",
+                  "name": "学员缴费数据卡",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 90,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#102A46",
+                        "position": 0
+                      },
+                      {
+                        "color": "#081827",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 3,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "gap": 10,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "AVx9o",
+                      "name": "学员缴费数据色带",
+                      "width": 5,
+                      "height": "fill_container",
+                      "fill": "$cyan",
+                      "cornerRadius": 1,
+                      "layout": "vertical"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EcpBB",
+                      "name": "学员缴费数据数据层级",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "yKuqR",
+                          "name": "学员缴费数据标签行",
+                          "width": "fill_container",
+                          "height": 18,
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Udj1U",
+                              "name": "学员缴费数据名称",
+                              "fill": "$text",
+                              "content": "学员缴费数据",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "sgIjy",
+                              "name": "学员缴费数据趋势",
+                              "fill": "$cyan",
+                              "content": "较昨日 +12.6%",
+                              "fontFamily": "$font-data",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "t2Tgob",
+                          "name": "学员缴费数据主数值行",
+                          "width": "fill_container",
+                          "height": 34,
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "N0J3c8",
+                              "name": "学员缴费数据主数值",
+                              "fill": "$text",
+                              "content": "￥8,426.7万",
+                              "fontFamily": "$font-data",
+                              "fontSize": 22,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "wqkPN",
+                          "name": "学员缴费数据辅助说明",
+                          "fill": "$muted",
+                          "content": "缴费学员 42,918人",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "L42q7",
+                  "name": "安管和特种人数卡",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 90,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#102A46",
+                        "position": 0
+                      },
+                      {
+                        "color": "#081827",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 3,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "gap": 10,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "eGRAn",
+                      "name": "安管和特种人数色带",
+                      "width": 5,
+                      "height": "fill_container",
+                      "fill": "$green",
+                      "cornerRadius": 1,
+                      "layout": "vertical"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kZD6B",
+                      "name": "安管和特种人数数据层级",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "PTgaP",
+                          "name": "安管和特种人数标签行",
+                          "width": "fill_container",
+                          "height": 18,
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "K6lkD8",
+                              "name": "安管和特种人数名称",
+                              "fill": "$text",
+                              "content": "安管和特种人数",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "S3Doiu",
+                              "name": "安管和特种人数趋势",
+                              "fill": "$green",
+                              "content": "持证覆盖 91.8%",
+                              "fontFamily": "$font-data",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "NQhZz",
+                          "name": "安管和特种人数主数值行",
+                          "width": "fill_container",
+                          "height": 34,
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "n8cDc",
+                              "name": "安管和特种人数主数值",
+                              "fill": "$text",
+                              "content": "18,736人",
+                              "fontFamily": "$font-data",
+                              "fontSize": 22,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "MJRG1",
+                          "name": "安管和特种人数辅助说明",
+                          "fill": "$muted",
+                          "content": "安管 12,084 · 特种 6,652",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "a66222",
+                  "name": "培训机构合格率卡",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 90,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#102A46",
+                        "position": 0
+                      },
+                      {
+                        "color": "#081827",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 3,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "gap": 10,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "vO5dh",
+                      "name": "培训机构合格率色带",
+                      "width": 5,
+                      "height": "fill_container",
+                      "fill": "$orange",
+                      "cornerRadius": 1,
+                      "layout": "vertical"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LPJKA",
+                      "name": "培训机构合格率数据层级",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "g5YQh",
+                          "name": "培训机构合格率标签行",
+                          "width": "fill_container",
+                          "height": 18,
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "fBeIt",
+                              "name": "培训机构合格率名称",
+                              "fill": "$text",
+                              "content": "培训机构合格率",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "ix5sO",
+                              "name": "培训机构合格率趋势",
+                              "fill": "$orange",
+                              "content": "环比 +2.1pct",
+                              "fontFamily": "$font-data",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "sawT6",
+                          "name": "培训机构合格率主数值行",
+                          "width": "fill_container",
+                          "height": 34,
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "S3x147",
+                              "name": "培训机构合格率主数值",
+                              "fill": "$text",
+                              "content": "96.4%",
+                              "fontFamily": "$font-data",
+                              "fontSize": 22,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "IaI7o",
+                          "name": "培训机构合格率辅助说明",
+                          "fill": "$muted",
+                          "content": "达标机构 318/330",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "gJj4t",
+              "name": "指标矩阵第二行",
+              "width": "fill_container",
+              "height": 72,
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "wzTol",
+                  "name": "地市资格审批卡",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 90,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#102A46",
+                        "position": 0
+                      },
+                      {
+                        "color": "#081827",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 3,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "gap": 10,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "wj8wW",
+                      "name": "地市资格审批色带",
+                      "width": 5,
+                      "height": "fill_container",
+                      "fill": "$blue",
+                      "cornerRadius": 1,
+                      "layout": "vertical"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "g9oZL",
+                      "name": "地市资格审批数据层级",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "m0YhPT",
+                          "name": "地市资格审批标签行",
+                          "width": "fill_container",
+                          "height": 18,
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "iwdzf",
+                              "name": "地市资格审批名称",
+                              "fill": "$text",
+                              "content": "地市资格审批",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "iTWMI",
+                              "name": "地市资格审批趋势",
+                              "fill": "$blue",
+                              "content": "待办压降 18.3%",
+                              "fontFamily": "$font-data",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "E5hMbi",
+                          "name": "地市资格审批主数值行",
+                          "width": "fill_container",
+                          "height": 34,
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "gHeos",
+                              "name": "地市资格审批主数值",
+                              "fill": "$text",
+                              "content": "1,284件",
+                              "fontFamily": "$font-data",
+                              "fontSize": 22,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "MDIg4",
+                          "name": "地市资格审批辅助说明",
+                          "fill": "$muted",
+                          "content": "平均办结 1.6日",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "A7eQDz",
+                  "name": "培训机构异地考试卡",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 90,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#102A46",
+                        "position": 0
+                      },
+                      {
+                        "color": "#081827",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 3,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "gap": 10,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bhIXp",
+                      "name": "培训机构异地考试色带",
+                      "width": 5,
+                      "height": "fill_container",
+                      "fill": "$red",
+                      "cornerRadius": 1,
+                      "layout": "vertical"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ocbto",
+                      "name": "培训机构异地考试数据层级",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "VQEN8",
+                          "name": "培训机构异地考试标签行",
+                          "width": "fill_container",
+                          "height": 18,
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "wk1hq",
+                              "name": "培训机构异地考试名称",
+                              "fill": "$text",
+                              "content": "培训机构异地考试",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "wfePN",
+                              "name": "培训机构异地考试趋势",
+                              "fill": "$red",
+                              "content": "风险预警 9起",
+                              "fontFamily": "$font-data",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "z1YaFl",
+                          "name": "培训机构异地考试主数值行",
+                          "width": "fill_container",
+                          "height": 34,
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "uk8mB",
+                              "name": "培训机构异地考试主数值",
+                              "fill": "$text",
+                              "content": "326场",
+                              "fontFamily": "$font-data",
+                              "fontSize": 22,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "Zg1Yv",
+                          "name": "培训机构异地考试辅助说明",
+                          "fill": "$muted",
+                          "content": "跨市参考 8,942人",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "U1y3Iv",
+                  "name": "考评员统计数据卡",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 90,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#102A46",
+                        "position": 0
+                      },
+                      {
+                        "color": "#081827",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 3,
+                  "stroke": "$line",
+                  "strokeWidth": 1,
+                  "gap": 10,
+                  "padding": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "utd7J",
+                      "name": "考评员统计数据色带",
+                      "width": 5,
+                      "height": "fill_container",
+                      "fill": "$cyan",
+                      "cornerRadius": 1,
+                      "layout": "vertical"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WhHpt",
+                      "name": "考评员统计数据数据层级",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "VIbV4",
+                          "name": "考评员统计数据标签行",
+                          "width": "fill_container",
+                          "height": 18,
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "uC5rv",
+                              "name": "考评员统计数据名称",
+                              "fill": "$text",
+                              "content": "考评员统计数据",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "qadSg",
+                              "name": "考评员统计数据趋势",
+                              "fill": "$cyan",
+                              "content": "在线排班 684人",
+                              "fontFamily": "$font-data",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "dh5ZK",
+                          "name": "考评员统计数据主数值行",
+                          "width": "fill_container",
+                          "height": 34,
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "yAPS1",
+                              "name": "考评员统计数据主数值",
+                              "fill": "$text",
+                              "content": "2,148人",
+                              "fontFamily": "$font-data",
+                              "fontSize": 22,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "AK5UV",
+                          "name": "考评员统计数据辅助说明",
+                          "fill": "$muted",
+                          "content": "本月考评 17,506人次",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "i9NOSU",
+      "x": 880,
+      "y": 0,
+      "name": "顶部标题与筛选区",
+      "clip": true,
+      "width": 1440,
+      "height": 190,
+      "fill": {
+        "type": "gradient",
+        "gradientType": "linear",
+        "enabled": true,
+        "rotation": 180,
+        "size": {
+          "height": 1
+        },
+        "colors": [
+          {
+            "color": "#07111F",
+            "position": 0
+          },
+          {
+            "color": "#081A2D",
+            "position": 0.58
+          },
+          {
+            "color": "#030914",
+            "position": 1
+          }
+        ]
+      },
+      "layout": "vertical",
+      "gap": 14,
+      "padding": [
+        18,
+        22
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "ZLPVS",
+          "name": "标题主栏",
+          "width": "fill_container",
+          "height": 82,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 90,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#0E2B4A",
+                "position": 0
+              },
+              {
+                "color": "#07111F",
+                "position": 0.62
+              },
+              {
+                "color": "#061526",
+                "position": 1
+              }
+            ]
+          },
+          "stroke": "#1E5676",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "padding": [
+            14,
+            20
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "bapL4",
+              "name": "品牌标题组",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ZHxkq",
+                  "name": "品牌标识",
+                  "width": 50,
+                  "height": 50,
+                  "fill": "#08253F",
+                  "cornerRadius": 4,
+                  "stroke": "#38DDF8",
+                  "strokeWidth": 1,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 1,
+                      "id": "v6sBu",
+                      "x": 8,
+                      "y": 8,
+                      "name": "标识光柱",
+                      "fill": "#28D8FF",
+                      "width": 8,
+                      "height": 34
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 1,
+                      "id": "a34z6t",
+                      "x": 21,
+                      "y": 12,
+                      "name": "标识中轴",
+                      "fill": "#3488FF",
+                      "width": 8,
+                      "height": 26
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 1,
+                      "id": "s1FOE",
+                      "x": 34,
+                      "y": 18,
+                      "name": "标识基座",
+                      "fill": "#34E6A2",
+                      "width": 8,
+                      "height": 20
+                    },
+                    {
+                      "type": "path",
+                      "id": "UcxKr",
+                      "x": 8,
+                      "y": 8,
+                      "name": "标识折线",
+                      "geometry": "M2 26l11-9 9 4 11-13",
+                      "viewBox": [
+                        0,
+                        0,
+                        34,
+                        34
+                      ],
+                      "fill": "#FFFFFF00",
+                      "width": 34,
+                      "height": 34,
+                      "stroke": "#F2FAFF",
+                      "strokeWidth": 2,
+                      "strokeLinejoin": "round",
+                      "strokeLinecap": "round"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "I1Ml1",
+                  "name": "标题文字组",
+                  "width": 760,
+                  "layout": "vertical",
+                  "gap": 5,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "c2xa6c",
+                      "name": "系统名称",
+                      "fill": "$text",
+                      "content": "培训考试监管驾驶舱",
+                      "lineHeight": 1.08,
+                      "fontFamily": "$font-heading",
+                      "fontSize": 29,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "dRc2S",
+                      "name": "标题说明",
+                      "fill": "$muted",
+                      "content": "驾培考试数据联动监管 - 培训、考试、审批、异地流向一屏统览",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HDfrn",
+              "name": "状态更新时间",
+              "width": 360,
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "RTG1Z",
+                  "name": "运行状态",
+                  "fill": "#092D35",
+                  "cornerRadius": 3,
+                  "stroke": "#28D8FF",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": [
+                    6,
+                    10
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "N2S6L",
+                      "name": "在线状态点",
+                      "fill": "#34E6A2",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "N4lJGa",
+                      "name": "状态文字",
+                      "fill": "#DFFBFF",
+                      "content": "监管数据在线",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "J0mGzJ",
+                  "name": "更新时间",
+                  "fill": "$cyan",
+                  "content": "更新时间 2026-06-23 09:30",
+                  "fontFamily": "$font-data",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "VQOOl",
+          "name": "筛选工具栏",
+          "width": "fill_container",
+          "height": 58,
+          "fill": "#0B2038",
+          "cornerRadius": 4,
+          "stroke": "#1E5676",
+          "strokeWidth": 1,
+          "gap": 14,
+          "padding": [
+            7,
+            14
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "OfLlM",
+              "name": "筛选区标签",
+              "width": 210,
+              "layout": "vertical",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "DtTD8",
+                  "name": "筛选区标题",
+                  "fill": "$text",
+                  "content": "监管筛选",
+                  "fontFamily": "$font-heading",
+                  "fontSize": 16,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "HEgcN",
+                  "name": "筛选区说明",
+                  "fill": "$muted",
+                  "content": "按地市与日期范围聚合统计",
+                  "fontFamily": "$font-body",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "C9PZ0",
+              "name": "地市筛选",
+              "width": 330,
+              "height": 44,
+              "fill": "#071827",
+              "cornerRadius": 3,
+              "stroke": "#1E5676",
+              "strokeWidth": 1,
+              "gap": 10,
+              "padding": [
+                0,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "H1bJs",
+                  "name": "地市图标",
+                  "fill": "#28D8FF",
+                  "content": "市",
+                  "fontFamily": "$font-heading",
+                  "fontSize": 14,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "frame",
+                  "id": "sO6r9",
+                  "name": "地市文本",
+                  "width": 248,
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KI7oF",
+                      "name": "地市标签",
+                      "fill": "$muted",
+                      "content": "地市",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XSK4J",
+                      "name": "地市当前值",
+                      "fill": "$text",
+                      "content": "全部地市",
+                      "fontFamily": "$font-heading",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "pNifc",
+                  "name": "地市下拉",
+                  "fill": "#8DB6D5",
+                  "content": "v",
+                  "fontFamily": "$font-heading",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YXoRL",
+              "name": "日期范围筛选",
+              "width": 420,
+              "height": 44,
+              "fill": "#071827",
+              "cornerRadius": 3,
+              "stroke": "#1E5676",
+              "strokeWidth": 1,
+              "gap": 10,
+              "padding": [
+                0,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "RIl66",
+                  "name": "日期图标",
+                  "fill": "#28D8FF",
+                  "content": "日",
+                  "fontFamily": "$font-heading",
+                  "fontSize": 14,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "frame",
+                  "id": "RB7ZH",
+                  "name": "日期文本",
+                  "width": 338,
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sPNHG",
+                      "name": "日期标签",
+                      "fill": "$muted",
+                      "content": "日期范围",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "r5Ly1",
+                      "name": "日期当前值",
+                      "fill": "$text",
+                      "content": "2026-06-01 至 2026-06-23",
+                      "fontFamily": "$font-data",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "JCdzu",
+                  "name": "日期下拉",
+                  "fill": "#8DB6D5",
+                  "content": "v",
+                  "fontFamily": "$font-heading",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "aVamz",
+              "name": "查询按钮",
+              "width": 118,
+              "height": 44,
+              "fill": "#0E68B8",
+              "cornerRadius": 3,
+              "stroke": "#38DDF8",
+              "strokeWidth": 1,
+              "gap": 8,
+              "padding": [
+                0,
+                18
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "iDIpU",
+                  "name": "查询图标",
+                  "fill": "#F2FAFF",
+                  "content": "查",
+                  "fontFamily": "$font-heading",
+                  "fontSize": 14,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "OfLHK",
+                  "name": "查询文字",
+                  "fill": "#F2FAFF",
+                  "content": "查询",
+                  "fontFamily": "$font-heading",
+                  "fontSize": 14,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HSFoA",
+              "name": "筛选状态摘要",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "S1AVOE",
+                  "name": "统计口径",
+                  "fill": "$muted",
+                  "content": "统计口径",
+                  "fontFamily": "$font-body",
+                  "fontSize": 11,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "TQNB1",
+                  "name": "口径说明",
+                  "fill": "#DFFBFF",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "实时汇总考试、培训、审批与异地考试数据",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "B4ygR",
+      "x": 880,
+      "y": 246,
+      "name": "专题分析主体区 - 最终可视版",
+      "clip": true,
+      "width": 1440,
+      "height": 520,
+      "fill": "#07111F",
+      "stroke": "#1E5676",
+      "strokeWidth": 1,
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "MBzWU",
+          "x": 12,
+          "y": 12,
+          "name": "缴费与人数分析面板",
+          "fill": "#0B2038",
+          "width": 420,
+          "height": 496,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "dQ9Ad",
+          "x": 24,
+          "y": 24,
+          "name": "缴费与人数分析强调线",
+          "fill": "#28D8FF",
+          "width": 4,
+          "height": 18,
+          "stroke": "#28D8FF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "wUYP9",
+          "x": 36,
+          "y": 21,
+          "name": "缴费与人数分析标题",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 372,
+          "content": "缴费与人数分析",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "UJcIL",
+          "x": 30,
+          "y": 58,
+          "name": "缴费标题",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 180,
+          "content": "学员缴费数据对比",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "fb4SL",
+          "x": 30,
+          "y": 88,
+          "name": "安管标签",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 48,
+          "content": "安管",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "yFAW6",
+          "x": 86,
+          "y": 93,
+          "name": "安管轨道",
+          "fill": "#102A46",
+          "width": 230,
+          "height": 8,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "kVvAK",
+          "x": 86,
+          "y": 93,
+          "name": "安管条",
+          "fill": "#28D8FF",
+          "width": 170,
+          "height": 8,
+          "stroke": "#28D8FF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "vEk8c",
+          "x": 326,
+          "y": 86,
+          "name": "安管值",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 82,
+          "content": "486.2万",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "Mx7BH",
+          "x": 30,
+          "y": 118,
+          "name": "特种标签",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 48,
+          "content": "特种",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "oW25e",
+          "x": 86,
+          "y": 123,
+          "name": "特种轨道",
+          "fill": "#102A46",
+          "width": 230,
+          "height": 8,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "aAkdE",
+          "x": 86,
+          "y": 123,
+          "name": "特种条",
+          "fill": "#FFB84D",
+          "width": 220,
+          "height": 8,
+          "stroke": "#FFB84D",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "qkmTV",
+          "x": 326,
+          "y": 116,
+          "name": "特种值",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 82,
+          "content": "682.4万",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "L3t2A",
+          "x": 30,
+          "y": 148,
+          "name": "补考标签",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 48,
+          "content": "补考",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "RXfzf",
+          "x": 86,
+          "y": 153,
+          "name": "补考轨道",
+          "fill": "#102A46",
+          "width": 230,
+          "height": 8,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "iA1uV",
+          "x": 86,
+          "y": 153,
+          "name": "补考条",
+          "fill": "#34E6A2",
+          "width": 66,
+          "height": 8,
+          "stroke": "#34E6A2",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "gtAQ0",
+          "x": 326,
+          "y": 146,
+          "name": "补考值",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 82,
+          "content": "117.8万",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "h8Y9zp",
+          "x": 30,
+          "y": 198,
+          "name": "占比标题",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 220,
+          "content": "安管 / 特种报名人数占比",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "i9trYI",
+          "x": 30,
+          "y": 228,
+          "name": "占比轨道",
+          "fill": "#102A46",
+          "width": 384,
+          "height": 14,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "O5gTX",
+          "x": 30,
+          "y": 228,
+          "name": "安管占比",
+          "fill": "#28D8FF",
+          "width": 238,
+          "height": 14,
+          "stroke": "#28D8FF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "qUlpb",
+          "x": 268,
+          "y": 228,
+          "name": "特种占比",
+          "fill": "#FFB84D",
+          "width": 146,
+          "height": 14,
+          "stroke": "#FFB84D",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "od2ur",
+          "x": 30,
+          "y": 254,
+          "name": "安管图例",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 170,
+          "content": "安管 36.9% / 18,642人",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "We5GA",
+          "x": 218,
+          "y": 254,
+          "name": "特种图例",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 180,
+          "content": "特种 63.1% / 31,856人",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "XkqcL",
+          "x": 30,
+          "y": 310,
+          "name": "流程标题",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 220,
+          "content": "报名 / 培训 / 考试 / 发证",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "ztGvl",
+          "x": 30,
+          "y": 344,
+          "name": "流程行344",
+          "fill": "#071A2E",
+          "width": 384,
+          "height": 28,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "sao3x",
+          "x": 38,
+          "y": 349,
+          "name": "a344",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 74,
+          "content": "报名",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "wXBBs",
+          "x": 122,
+          "y": 349,
+          "name": "b344",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 82,
+          "content": "50,498",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "nHa61",
+          "x": 216,
+          "y": 349,
+          "name": "c344",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 88,
+          "content": "培训 46,050",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "n0sP27",
+          "x": 314,
+          "y": 349,
+          "name": "d344",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 82,
+          "content": "发证 37,424",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "BepZg",
+          "x": 30,
+          "y": 380,
+          "name": "流程行380",
+          "fill": "#071A2E",
+          "width": 384,
+          "height": 28,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "YzX3r",
+          "x": 38,
+          "y": 385,
+          "name": "a380",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 74,
+          "content": "安管",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "X720y",
+          "x": 122,
+          "y": 385,
+          "name": "b380",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 82,
+          "content": "18,642",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "F5UwtV",
+          "x": 216,
+          "y": 385,
+          "name": "c380",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 88,
+          "content": "16,936",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "atJMC",
+          "x": 314,
+          "y": 385,
+          "name": "d380",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 82,
+          "content": "13,906",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "rsCPJ",
+          "x": 30,
+          "y": 416,
+          "name": "流程行416",
+          "fill": "#071A2E",
+          "width": 384,
+          "height": 28,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "Df6Lf",
+          "x": 38,
+          "y": 421,
+          "name": "a416",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 74,
+          "content": "特种",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "XMEcX",
+          "x": 122,
+          "y": 421,
+          "name": "b416",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 82,
+          "content": "31,856",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "oSAgP",
+          "x": 216,
+          "y": 421,
+          "name": "c416",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 88,
+          "content": "29,114",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "sIbkT",
+          "x": 314,
+          "y": 421,
+          "name": "d416",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 82,
+          "content": "23,518",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "N7d0d",
+          "x": 30,
+          "y": 452,
+          "name": "流程行452",
+          "fill": "#071A2E",
+          "width": 384,
+          "height": 28,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "Qd7V4",
+          "x": 38,
+          "y": 457,
+          "name": "a452",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 74,
+          "content": "预警",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "ovoDj",
+          "x": 122,
+          "y": 457,
+          "name": "b452",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 82,
+          "content": "退费 86",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "qHXsa",
+          "x": 216,
+          "y": 457,
+          "name": "c452",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 88,
+          "content": "补考 1,284",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "IGwjW",
+          "x": 314,
+          "y": 457,
+          "name": "d452",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 82,
+          "content": "延期 312",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "pMLO3",
+          "x": 446,
+          "y": 12,
+          "name": "机构合格率与审批分析面板",
+          "fill": "#0B2038",
+          "width": 608,
+          "height": 496,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "gpEYZ",
+          "x": 458,
+          "y": 24,
+          "name": "机构合格率与审批分析强调线",
+          "fill": "#28D8FF",
+          "width": 4,
+          "height": 18,
+          "stroke": "#28D8FF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "eYu7z",
+          "x": 470,
+          "y": 21,
+          "name": "机构合格率与审批分析标题",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 560,
+          "content": "机构合格率与审批分析",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "WWskY",
+          "x": 468,
+          "y": 58,
+          "name": "机构均值",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 120,
+          "content": "机构均值 91.8%",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "Rgo3G",
+          "x": 668,
+          "y": 58,
+          "name": "审批总量",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 120,
+          "content": "审批总量 2,486",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "K4MiU",
+          "x": 868,
+          "y": 58,
+          "name": "不通过率",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 120,
+          "content": "不通过率 7.4%",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "isUHK",
+          "x": 468,
+          "y": 106,
+          "name": "排行标题",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 200,
+          "content": "培训机构合格率排行",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "DotAw",
+          "x": 468,
+          "y": 138,
+          "name": "江西安培职业培训学校名",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 160,
+          "content": "江西安培职业培训学校",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "Ek6Rx",
+          "x": 636,
+          "y": 143,
+          "name": "江西安培职业培训学校轨道",
+          "fill": "#102A46",
+          "width": 280,
+          "height": 8,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "fuKW4",
+          "x": 636,
+          "y": 143,
+          "name": "江西安培职业培训学校条",
+          "fill": "#34E6A2",
+          "width": 260,
+          "height": 8,
+          "stroke": "#34E6A2",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "hwgj6",
+          "x": 930,
+          "y": 137,
+          "name": "江西安培职业培训学校率",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 50,
+          "content": "94.2%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "bq87g",
+          "x": 468,
+          "y": 168,
+          "name": "南昌应急培训中心名",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 160,
+          "content": "南昌应急培训中心",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "GQ6PE",
+          "x": 636,
+          "y": 173,
+          "name": "南昌应急培训中心轨道",
+          "fill": "#102A46",
+          "width": 280,
+          "height": 8,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "MPltf",
+          "x": 636,
+          "y": 173,
+          "name": "南昌应急培训中心条",
+          "fill": "#34E6A2",
+          "width": 242,
+          "height": 8,
+          "stroke": "#34E6A2",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "urvh1",
+          "x": 930,
+          "y": 167,
+          "name": "南昌应急培训中心率",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 50,
+          "content": "91.6%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "Nx43t",
+          "x": 468,
+          "y": 198,
+          "name": "九江安全生产培训中心名",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 160,
+          "content": "九江安全生产培训中心",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "c1Fbf",
+          "x": 636,
+          "y": 203,
+          "name": "九江安全生产培训中心轨道",
+          "fill": "#102A46",
+          "width": 280,
+          "height": 8,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "TJIFI",
+          "x": 636,
+          "y": 203,
+          "name": "九江安全生产培训中心条",
+          "fill": "#28D8FF",
+          "width": 224,
+          "height": 8,
+          "stroke": "#28D8FF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "inIaV",
+          "x": 930,
+          "y": 197,
+          "name": "九江安全生产培训中心率",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 50,
+          "content": "88.7%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "LkhQF",
+          "x": 468,
+          "y": 228,
+          "name": "上饶安全生产培训中心名",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 160,
+          "content": "上饶安全生产培训中心",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "p55zjo",
+          "x": 636,
+          "y": 233,
+          "name": "上饶安全生产培训中心轨道",
+          "fill": "#102A46",
+          "width": 280,
+          "height": 8,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "zCgEy",
+          "x": 636,
+          "y": 233,
+          "name": "上饶安全生产培训中心条",
+          "fill": "#FFB84D",
+          "width": 196,
+          "height": 8,
+          "stroke": "#FFB84D",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "ji9cu",
+          "x": 930,
+          "y": 227,
+          "name": "上饶安全生产培训中心率",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 50,
+          "content": "79.8%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "pNjAl",
+          "x": 468,
+          "y": 258,
+          "name": "赣州安全技术学校名",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 160,
+          "content": "赣州安全技术学校",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "id": "bAmgV",
+          "x": 636,
+          "y": 263,
+          "name": "赣州安全技术学校轨道",
+          "fill": "#102A46",
+          "width": 280,
+          "height": 8,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "U1UfYl",
+          "x": 636,
+          "y": 263,
+          "name": "赣州安全技术学校条",
+          "fill": "#FF5D73",
+          "width": 184,
+          "height": 8,
+          "stroke": "#FF5D73",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "jvMzN",
+          "x": 930,
+          "y": 257,
+          "name": "赣州安全技术学校率",
+          "fill": "#FF5D73",
+          "textGrowth": "fixed-width",
+          "width": 50,
+          "content": "76.4%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "ZVtOQ",
+          "x": 468,
+          "y": 318,
+          "name": "审批标题",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 240,
+          "content": "地市资格审批数量 / 不通过率",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "moS63",
+          "x": 468,
+          "y": 350,
+          "name": "审批行350",
+          "fill": "#102A46",
+          "width": 520,
+          "height": 26,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "iSftc",
+          "x": 478,
+          "y": 356,
+          "name": "t1350",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "地市",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "Y3yKh",
+          "x": 570,
+          "y": 356,
+          "name": "t2350",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "审批",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "b878u",
+          "x": 662,
+          "y": 356,
+          "name": "t3350",
+          "fill": "#FF5D73",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "不通过",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "hkVUH",
+          "x": 754,
+          "y": 356,
+          "name": "t4350",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "通过率",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "Dlyng",
+          "x": 846,
+          "y": 356,
+          "name": "t5350",
+          "fill": "#FF5D73",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "不通过率",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "SlXoq",
+          "x": 468,
+          "y": 382,
+          "name": "审批行382",
+          "fill": "#071827",
+          "width": 520,
+          "height": 26,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "tJ3bv",
+          "x": 478,
+          "y": 388,
+          "name": "t1382",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "南昌",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "c8mOd",
+          "x": 570,
+          "y": 388,
+          "name": "t2382",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "5,286",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "uJs9t",
+          "x": 662,
+          "y": 388,
+          "name": "t3382",
+          "fill": "#FF5D73",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "285",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "c45aSK",
+          "x": 754,
+          "y": 388,
+          "name": "t4382",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "94.6%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "c9bUJd",
+          "x": 846,
+          "y": 388,
+          "name": "t5382",
+          "fill": "#FF5D73",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "5.4%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "rectangle",
+          "id": "s12N9",
+          "x": 468,
+          "y": 414,
+          "name": "审批行414",
+          "fill": "#071827",
+          "width": 520,
+          "height": 26,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "BH78C",
+          "x": 478,
+          "y": 420,
+          "name": "t1414",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "赣州",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "TYUE2",
+          "x": 570,
+          "y": 420,
+          "name": "t2414",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "4,106",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "ampyH",
+          "x": 662,
+          "y": 420,
+          "name": "t3414",
+          "fill": "#FF5D73",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "197",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "zwmx0",
+          "x": 754,
+          "y": 420,
+          "name": "t4414",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "95.2%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "nv9no",
+          "x": 846,
+          "y": 420,
+          "name": "t5414",
+          "fill": "#FF5D73",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "4.8%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "rectangle",
+          "id": "IYtl9",
+          "x": 468,
+          "y": 446,
+          "name": "审批行446",
+          "fill": "#071827",
+          "width": 520,
+          "height": 26,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "LpTMf",
+          "x": 478,
+          "y": 452,
+          "name": "t1446",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "上饶",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "K5Izvc",
+          "x": 570,
+          "y": 452,
+          "name": "t2446",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "3,918",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "DdINc",
+          "x": 662,
+          "y": 452,
+          "name": "t3446",
+          "fill": "#FF5D73",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "376",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "xruT1",
+          "x": 754,
+          "y": 452,
+          "name": "t4446",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "90.4%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "XiHkL",
+          "x": 846,
+          "y": 452,
+          "name": "t5446",
+          "fill": "#FF5D73",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "9.6%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "rectangle",
+          "id": "V6LRUU",
+          "x": 468,
+          "y": 478,
+          "name": "审批行478",
+          "fill": "#071827",
+          "width": 520,
+          "height": 26,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "SULos",
+          "x": 478,
+          "y": 484,
+          "name": "t1478",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "九江",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "RsWPA",
+          "x": 570,
+          "y": 484,
+          "name": "t2478",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "2,846",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "grWKg",
+          "x": 662,
+          "y": 484,
+          "name": "t3478",
+          "fill": "#FF5D73",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "176",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "zoLRg",
+          "x": 754,
+          "y": 484,
+          "name": "t4478",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 80,
+          "content": "93.8%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "ZtYLr",
+          "x": 846,
+          "y": 484,
+          "name": "t5478",
+          "fill": "#FF5D73",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "6.2%",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "rectangle",
+          "id": "G5imjS",
+          "x": 1068,
+          "y": 12,
+          "name": "异地考试与考评员分析面板",
+          "fill": "#0B2038",
+          "width": 360,
+          "height": 496,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "uz4Lb",
+          "x": 1080,
+          "y": 24,
+          "name": "异地考试与考评员分析强调线",
+          "fill": "#28D8FF",
+          "width": 4,
+          "height": 18,
+          "stroke": "#28D8FF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "h4Up5",
+          "x": 1092,
+          "y": 21,
+          "name": "异地考试与考评员分析标题",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 312,
+          "content": "异地考试与考评员分析",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "n6F2B",
+          "x": 1090,
+          "y": 58,
+          "name": "异地标题",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 160,
+          "content": "培训机构异地考试",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "HBPle",
+          "x": 1090,
+          "y": 88,
+          "name": "流向88",
+          "fill": "#071A2E",
+          "width": 316,
+          "height": 48,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "JctxU",
+          "x": 1100,
+          "y": 103,
+          "name": "from88",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 50,
+          "content": "南昌",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "qpNvy",
+          "x": 1160,
+          "y": 100,
+          "name": "arr88",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 24,
+          "content": "→",
+          "fontFamily": "Inter",
+          "fontSize": 20,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "yDmAS",
+          "x": 1194,
+          "y": 103,
+          "name": "to88",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 50,
+          "content": "上饶",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "YNHAy",
+          "x": 1328,
+          "y": 103,
+          "name": "cnt88",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 66,
+          "content": "326 人",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "iBYqq",
+          "x": 1090,
+          "y": 144,
+          "name": "流向144",
+          "fill": "#071A2E",
+          "width": 316,
+          "height": 48,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "Ffw8x",
+          "x": 1100,
+          "y": 159,
+          "name": "from144",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 50,
+          "content": "赣州",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "N81IN",
+          "x": 1160,
+          "y": 156,
+          "name": "arr144",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 24,
+          "content": "→",
+          "fontFamily": "Inter",
+          "fontSize": 20,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "q9yWJf",
+          "x": 1194,
+          "y": 159,
+          "name": "to144",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 50,
+          "content": "南昌",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "LHFZv",
+          "x": 1328,
+          "y": 159,
+          "name": "cnt144",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 66,
+          "content": "214 人",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "NCCaW",
+          "x": 1090,
+          "y": 200,
+          "name": "流向200",
+          "fill": "#071A2E",
+          "width": 316,
+          "height": 48,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "m1X4Dr",
+          "x": 1100,
+          "y": 215,
+          "name": "from200",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 50,
+          "content": "九江",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "ffZFn",
+          "x": 1160,
+          "y": 212,
+          "name": "arr200",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 24,
+          "content": "→",
+          "fontFamily": "Inter",
+          "fontSize": 20,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "FWbvp",
+          "x": 1194,
+          "y": 215,
+          "name": "to200",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 50,
+          "content": "宜春",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "fEzVG",
+          "x": 1328,
+          "y": 215,
+          "name": "cnt200",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 66,
+          "content": "168 人",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "GCRpQ",
+          "x": 1090,
+          "y": 286,
+          "name": "考评标题",
+          "fill": "#F2FAFF",
+          "textGrowth": "fixed-width",
+          "width": 160,
+          "content": "考评员统计数据",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "ljLEC",
+          "x": 1090,
+          "y": 322,
+          "name": "考评人数卡",
+          "fill": "#071A2E",
+          "width": 150,
+          "height": 72,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "AgAWz",
+          "x": 1100,
+          "y": 332,
+          "name": "考评人数标签",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "考评人数",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "ShJA9",
+          "x": 1100,
+          "y": 354,
+          "name": "考评人数值",
+          "fill": "#28D8FF",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "8,734",
+          "fontFamily": "Inter",
+          "fontSize": 20,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "aepS3",
+          "x": 1256,
+          "y": 322,
+          "name": "总平均分卡",
+          "fill": "#071A2E",
+          "width": 150,
+          "height": 72,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "TYjmY",
+          "x": 1266,
+          "y": 332,
+          "name": "总平均分标签",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "总平均分",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "wSHhU",
+          "x": 1266,
+          "y": 354,
+          "name": "总平均分值",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "86.7",
+          "fontFamily": "Inter",
+          "fontSize": 20,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "lmbN1",
+          "x": 1090,
+          "y": 412,
+          "name": "单场均分卡",
+          "fill": "#071A2E",
+          "width": 150,
+          "height": 72,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "NQjIo",
+          "x": 1100,
+          "y": 422,
+          "name": "单场均分标签",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "单场均分",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "W2pqn",
+          "x": 1100,
+          "y": 444,
+          "name": "单场均分值",
+          "fill": "#FFB84D",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "88.2",
+          "fontFamily": "Inter",
+          "fontSize": 20,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "hLowe",
+          "x": 1256,
+          "y": 412,
+          "name": "通过率卡",
+          "fill": "#071A2E",
+          "width": 150,
+          "height": 72,
+          "stroke": "#1E5676",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "id": "zEkJM",
+          "x": 1266,
+          "y": 422,
+          "name": "通过率标签",
+          "fill": "#8DB6D5",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "通过率",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "X4dP7L",
+          "x": 1266,
+          "y": 444,
+          "name": "通过率值",
+          "fill": "#34E6A2",
+          "textGrowth": "fixed-width",
+          "width": 90,
+          "content": "91.2%",
+          "fontFamily": "Inter",
+          "fontSize": 20,
+          "fontWeight": "800"
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "bg": {
+      "type": "color",
+      "value": "#07111F"
+    },
+    "bg-deep": {
+      "type": "color",
+      "value": "#030914"
+    },
+    "blue": {
+      "type": "color",
+      "value": "#3488FF"
+    },
+    "cyan": {
+      "type": "color",
+      "value": "#28D8FF"
+    },
+    "font-body": {
+      "type": "string",
+      "value": "Inter"
+    },
+    "font-data": {
+      "type": "string",
+      "value": "IBM Plex Mono"
+    },
+    "font-heading": {
+      "type": "string",
+      "value": "Geist"
+    },
+    "green": {
+      "type": "color",
+      "value": "#34E6A2"
+    },
+    "line": {
+      "type": "color",
+      "value": "#1E5676"
+    },
+    "line-bright": {
+      "type": "color",
+      "value": "#38DDF8"
+    },
+    "muted": {
+      "type": "color",
+      "value": "#8DB6D5"
+    },
+    "orange": {
+      "type": "color",
+      "value": "#FFB84D"
+    },
+    "panel": {
+      "type": "color",
+      "value": "#0B2038"
+    },
+    "panel-soft": {
+      "type": "color",
+      "value": "#102A46"
+    },
+    "red": {
+      "type": "color",
+      "value": "#FF5D73"
+    },
+    "text": {
+      "type": "color",
+      "value": "#F2FAFF"
+    }
+  }
+}
