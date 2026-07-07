@@ -1,0 +1,49 @@
+CREATE TABLE `tr_classroom` (
+  `id` bigint NOT NULL COMMENT '主键ID',
+  `institution_id` bigint NOT NULL COMMENT '培训机构ID',
+  `classroom_name` varchar(100) NOT NULL COMMENT '教室名称',
+  `classroom_address` varchar(255) DEFAULT NULL COMMENT '教室地址',
+  `capacity` int DEFAULT NULL COMMENT '教室容量',
+  `classroom_type` tinyint NOT NULL COMMENT '教室类型：1理论教室，2实操教室，3其他',
+  `status` tinyint NOT NULL DEFAULT 1 COMMENT '使用状态：1启用，0停用',
+  `remark` varchar(500) DEFAULT '' COMMENT '备注',
+  `tenant_id` bigint NOT NULL DEFAULT 1 COMMENT '租户ID',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `del_flag` char(1) NOT NULL DEFAULT '0' COMMENT '删除标志：0正常，1删除',
+  PRIMARY KEY (`id`)
+) COMMENT='培训机构教室表';
+
+CREATE TABLE `tr_attendance_device` (
+  `id` bigint NOT NULL COMMENT '主键ID',
+  `institution_id` bigint NOT NULL COMMENT '培训机构ID',
+  `device_name` varchar(100) NOT NULL COMMENT '设备名称',
+  `device_ip` varchar(64) NOT NULL COMMENT '设备IP',
+  `device_secret` varchar(255) DEFAULT NULL COMMENT '设备密钥',
+  `access_source` tinyint NOT NULL COMMENT '接入来源：1大华平台，2手工维护',
+  `status` tinyint NOT NULL DEFAULT 1 COMMENT '设备状态：1启用，0停用',
+  `remark` varchar(500) DEFAULT '' COMMENT '备注',
+  `tenant_id` bigint NOT NULL DEFAULT 1 COMMENT '租户ID',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `del_flag` char(1) NOT NULL DEFAULT '0' COMMENT '删除标志：0正常，1删除',
+  PRIMARY KEY (`id`)
+) COMMENT='考勤设备表';
+
+CREATE TABLE `tr_attendance_device_deploy` (
+  `id` bigint NOT NULL COMMENT '主键ID',
+  `institution_id` bigint NOT NULL COMMENT '培训机构ID',
+  `classroom_id` bigint NOT NULL COMMENT '教室ID',
+  `device_id` bigint NOT NULL COMMENT '考勤设备ID',
+  `effective_time` datetime NOT NULL COMMENT '生效时间',
+  `expire_time` datetime DEFAULT NULL COMMENT '失效时间',
+  `status` tinyint NOT NULL DEFAULT 1 COMMENT '部署状态：1有效，0已终止',
+  `deploy_reason` varchar(255) DEFAULT NULL COMMENT '部署说明',
+  `terminate_reason` varchar(255) DEFAULT NULL COMMENT '终止说明',
+  `remark` varchar(500) DEFAULT '' COMMENT '备注',
+  `tenant_id` bigint NOT NULL DEFAULT 1 COMMENT '租户ID',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `del_flag` char(1) NOT NULL DEFAULT '0' COMMENT '删除标志：0正常，1删除',
+  PRIMARY KEY (`id`)
+) COMMENT='考勤设备部署关系表';

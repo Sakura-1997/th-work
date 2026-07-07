@@ -1,0 +1,14 @@
+172.16.157.184   tellhow   Ai@tellhow2026   账号：root  密码：Ai@tellhow2025
+172.16.157.184ssl证书目录   /home/tellhow/spx/app/openresty/conf/ssl
+前端nginx spx-openresty
+监管机构部署目录    /home/tellhow/spx/jgjg/regulatory-agency
+监管机构app部署目录 /home/tellhow/spx/app/openresty/www/speapp/dist
+
+
+
+自建ssl证书
+openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
+-keyout /home/tellhow/spx/backend/deploy/ssl/server.key \
+-out /home/tellhow/spx/backend/deploy/ssl/server.crt \
+-subj "/CN=172.16.157.184" \
+-addext "subjectAltName=IP:172.16.157.184"

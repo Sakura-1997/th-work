@@ -1,0 +1,1308 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>考试档案管理 - 列表台账原型</title>
+  <style>
+    :root {
+      --bg: #eef2f5;
+      --paper: #ffffff;
+      --ink: #17212b;
+      --muted: #66717f;
+      --line: #dbe3ea;
+      --line-strong: #c8d3dc;
+      --nav: #10263a;
+      --nav-soft: #193953;
+      --blue: #1769aa;
+      --blue-soft: #e7f1f9;
+      --teal: #167764;
+      --teal-soft: #e5f4f0;
+      --amber: #9a6200;
+      --amber-soft: #fff5df;
+      --red: #b42318;
+      --red-soft: #fff0ee;
+      --green: #1f7a4f;
+      --green-soft: #e9f6ee;
+      --gray-soft: #f4f6f8;
+      --shadow: 0 12px 30px rgba(27, 42, 56, 0.1);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 232px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      background: var(--nav);
+      color: #c9d6e2;
+      padding: 18px 12px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    .brand {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: var(--teal);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .menu-title {
+      color: #8193a7;
+      font-size: 12px;
+      padding: 18px 10px 8px;
+    }
+
+    .menu-item {
+      height: 40px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 12px;
+      margin-bottom: 4px;
+      color: #c9d6e2;
+    }
+
+    .menu-item.active {
+      background: var(--nav-soft);
+      color: #fff;
+      font-weight: 700;
+      box-shadow: inset 3px 0 0 #31b89d;
+    }
+
+    .menu-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.14);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .main {
+      min-width: 0;
+    }
+
+    .topbar {
+      height: 58px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .breadcrumb {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--teal-soft);
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .page {
+      padding: 16px;
+    }
+
+    .panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 24px;
+      border-radius: 4px;
+      padding: 2px 8px;
+      border: 1px solid transparent;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .badge.green {
+      color: var(--green);
+      background: var(--green-soft);
+      border-color: #b8dec7;
+    }
+
+    .badge.blue {
+      color: var(--blue);
+      background: var(--blue-soft);
+      border-color: #bdd8ec;
+    }
+
+    .badge.amber {
+      color: var(--amber);
+      background: var(--amber-soft);
+      border-color: #f0d28b;
+    }
+
+    .badge.red {
+      color: var(--red);
+      background: var(--red-soft);
+      border-color: #f0c5bf;
+    }
+
+    .badge.gray {
+      color: #5f6c7a;
+      background: var(--gray-soft);
+      border-color: #dde4ea;
+    }
+
+    .btn {
+      min-height: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 5px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn.primary {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #fff;
+    }
+
+    .btn.blue {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    .btn.ghost {
+      color: var(--blue);
+      border-color: #c7ddec;
+      background: #f7fbff;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 5px;
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .query-panel {
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .query-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(180px, 1fr));
+      gap: 10px 12px;
+      align-items: end;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .field label {
+      color: #344254;
+      font-size: 13px;
+    }
+
+    .control {
+      height: 34px;
+      width: 100%;
+      border: 1px solid var(--line-strong);
+      border-radius: 5px;
+      background: #fff;
+      padding: 0 10px;
+      color: #2b3744;
+      min-width: 0;
+    }
+
+    .panel {
+      overflow: hidden;
+    }
+
+    .panel-head {
+      min-height: 48px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      padding: 0 14px;
+    }
+
+    .panel-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .panel-title::before {
+      content: "";
+      width: 4px;
+      height: 16px;
+      background: var(--teal);
+      border-radius: 3px;
+    }
+
+    .table-wrap {
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 1360px;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th,
+    td {
+      padding: 11px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #f5f8fa;
+      color: #2d3b4d;
+      font-weight: 700;
+    }
+
+    tbody tr:hover {
+      background: #fbfdfd;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .checkbox {
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      display: inline-block;
+      background: #fff;
+    }
+
+    .link {
+      color: var(--blue);
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .ops {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .table-btn {
+      height: 28px;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 9px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .table-btn.archive {
+      color: var(--teal);
+      background: var(--teal-soft);
+      border-color: #b7dcd2;
+    }
+
+    .table-btn.unarchive {
+      color: #5f6c7a;
+      background: var(--gray-soft);
+      border-color: #dde4ea;
+    }
+
+    .table-btn.view {
+      color: var(--blue);
+      background: var(--blue-soft);
+      border-color: #bdd8ec;
+    }
+
+    .pager {
+      min-height: 48px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 0 14px;
+      color: var(--muted);
+    }
+
+    .modal-mask {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 22, 32, 0.42);
+      z-index: 20;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-mask.open {
+      display: flex;
+    }
+
+    .archive-modal {
+      width: min(1080px, 96vw);
+      max-height: 88vh;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 24px 70px rgba(10, 22, 32, 0.28);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .person-modal {
+      width: min(900px, 94vw);
+      max-height: 86vh;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 24px 70px rgba(10, 22, 32, 0.3);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .document-modal {
+      width: min(920px, 94vw);
+      max-height: 86vh;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 24px 70px rgba(10, 22, 32, 0.3);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .modal-head {
+      min-height: 58px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-title {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .modal-body {
+      padding: 14px 16px 18px;
+      overflow: auto;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .detail-cell {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 10px;
+      background: #fbfcfd;
+      min-width: 0;
+    }
+
+    .detail-cell span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .detail-cell b {
+      display: block;
+      margin-top: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfd;
+      padding: 8px 10px 0;
+      overflow-x: auto;
+    }
+
+    .tab-button {
+      height: 38px;
+      border: 0;
+      border-bottom: 3px solid transparent;
+      background: transparent;
+      padding: 0 14px;
+      cursor: pointer;
+      color: #435266;
+      white-space: nowrap;
+    }
+
+    .tab-button.active {
+      color: var(--teal);
+      border-bottom-color: var(--teal);
+      font-weight: 700;
+    }
+
+    .tab-panel {
+      display: none;
+      padding: 14px 0 0;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .doc-card {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 12px;
+      background: #fff;
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .doc-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 7px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .doc-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .doc-desc {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .package-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .package-card {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fbfcfd;
+      padding: 12px;
+    }
+
+    .package-card span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .package-card b {
+      display: block;
+      margin-top: 6px;
+      font-size: 18px;
+    }
+
+    .notice {
+      border: 1px solid #bdd8ec;
+      background: #f7fbff;
+      color: #29475f;
+      border-radius: 7px;
+      padding: 10px 12px;
+      line-height: 1.65;
+    }
+
+    .section-title {
+      margin: 16px 0 10px;
+      font-weight: 700;
+      color: #223247;
+    }
+
+    .material-preview {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fafb;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .preview-box {
+      min-height: 140px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 8px;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+      padding: 18px;
+      margin-top: 10px;
+    }
+
+    .document-layout {
+      display: grid;
+      gap: 12px;
+    }
+
+    .document-preview {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      min-height: 330px;
+      padding: 18px;
+      color: #263445;
+      line-height: 1.75;
+    }
+
+    .document-preview h3 {
+      margin: 0 0 14px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .document-preview p {
+      margin: 8px 0;
+    }
+
+    .document-preview table {
+      min-width: 0;
+      table-layout: auto;
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .document-preview th,
+    .document-preview td {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      line-height: 1.55;
+    }
+
+    .document-preview th {
+      background: #f6f9f9;
+    }
+
+    @media (max-width: 1180px) {
+      .query-grid,
+      .detail-grid,
+      .package-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .page {
+        padding: 10px;
+      }
+
+      .topbar {
+        padding: 0 12px;
+      }
+
+      .query-grid,
+      .detail-grid,
+      .doc-grid,
+      .package-list {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-head,
+      .pager {
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .doc-card {
+        grid-template-columns: 34px minmax(0, 1fr);
+      }
+
+      .doc-card .link {
+        grid-column: 2;
+      }
+
+      .document-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">档</span><span>智慧培训考试</span></div>
+      <div class="menu-title">监管业务</div>
+      <div class="menu-item"><span class="menu-icon">计</span><span>考试计划管理</span></div>
+      <div class="menu-item active"><span class="menu-icon">档</span><span>考试档案管理</span></div>
+      <div class="menu-item"><span class="menu-icon">员</span><span>考务人员管理</span></div>
+      <div class="menu-item"><span class="menu-icon">证</span><span>证书信息查询</span></div>
+      <div class="menu-title">查询统计</div>
+      <div class="menu-item"><span class="menu-icon">学</span><span>学员档案管理</span></div>
+      <div class="menu-item"><span class="menu-icon">统</span><span>档案统计分析</span></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="breadcrumb">监管机构 / 考试档案管理 / 归档台账</div>
+        <div class="top-actions">
+          <button class="icon-btn" title="刷新">↻</button>
+          <button class="icon-btn" title="导出">⇩</button>
+          <span class="avatar">管</span>
+        </div>
+      </header>
+
+      <section class="page">
+        <section class="panel query-panel">
+          <div class="query-grid">
+            <div class="field">
+              <label>考试计划名称</label>
+              <input class="control" value="高压电工" aria-label="考试计划名称">
+            </div>
+            <div class="field">
+              <label>考生姓名/身份证号</label>
+              <input class="control" placeholder="支持个人档案查询" aria-label="考生姓名或身份证号">
+            </div>
+            <div class="field">
+              <label>操作项目</label>
+              <select class="control" aria-label="操作项目">
+                <option>全部</option>
+                <option>高压电工作业</option>
+                <option>低压电工作业</option>
+                <option>熔化焊接与热切割作业</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>考试类型</label>
+              <select class="control" aria-label="考试类型">
+                <option>全部</option>
+                <option>理论</option>
+                <option>实操</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>归档状态</label>
+              <select class="control" aria-label="归档状态">
+                <option>全部</option>
+                <option>已归档</option>
+                <option>未归档</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>考试日期</label>
+              <input class="control" value="2026-06-01 至 2026-06-30" aria-label="考试日期">
+            </div>
+            <div class="top-actions">
+              <button class="btn primary">查询</button>
+              <button class="btn">重置</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div class="top-actions">
+              <button class="btn primary">批量档案归档</button>
+              <span class="panel-title">考试归档管理 / 考试计划归档列表</span>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:42px;"><span class="checkbox"></span></th>
+                  <th style="width:70px;">序号</th>
+                  <th style="width:220px;">考试计划</th>
+                  <th style="width:150px;">操作项目</th>
+                  <th style="width:110px;">考试类型</th>
+                  <th style="width:150px;">考试时间</th>
+                  <th style="width:170px;">考试点名称</th>
+                  <th style="width:120px;">考生人数</th>
+                  <th style="width:150px;">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="checkbox"></span></td>
+                  <td>1</td>
+                  <td><span class="link" data-open-modal>2026年6月高压电工理论第2批</span></td>
+                  <td>高压电工作业</td>
+                  <td>理论</td>
+                  <td>2026-06-16 14:30</td>
+                  <td>南昌高新区理论考试点</td>
+                  <td>48</td>
+                  <td><span class="ops"><span class="link" data-open-modal>档案详情查看</span></span></td>
+                </tr>
+                <tr>
+                  <td><span class="checkbox"></span></td>
+                  <td>2</td>
+                  <td><span class="link" data-open-modal>2026年6月低压电工实操第1批</span></td>
+                  <td>低压电工作业</td>
+                  <td>实操</td>
+                  <td>2026-06-18 09:00</td>
+                  <td>南昌安全生产实操考试点</td>
+                  <td>36</td>
+                  <td><span class="ops"><span class="link" data-open-modal>档案详情查看</span></span></td>
+                </tr>
+                <tr>
+                  <td><span class="checkbox"></span></td>
+                  <td>3</td>
+                  <td><span class="link" data-open-modal>2026年6月熔化焊接理论第3批</span></td>
+                  <td>熔化焊接与热切割作业</td>
+                  <td>理论</td>
+                  <td>2026-06-20 10:00</td>
+                  <td>九江安全生产考试点</td>
+                  <td>52</td>
+                  <td><span class="ops"><span class="link" data-open-modal>档案详情查看</span></span></td>
+                </tr>
+                <tr>
+                  <td><span class="checkbox"></span></td>
+                  <td>4</td>
+                  <td><span class="link" data-open-modal>2026年6月高压电工补考第1批</span></td>
+                  <td>高压电工作业</td>
+                  <td>理论</td>
+                  <td>2026-06-22 15:00</td>
+                  <td>省考试中心机房一</td>
+                  <td>21</td>
+                  <td><span class="ops"><span class="link" data-open-modal>档案详情查看</span></span></td>
+                </tr>
+                <tr>
+                  <td><span class="checkbox"></span></td>
+                  <td>5</td>
+                  <td><span class="link" data-open-modal>2026年6月低压电工理论第4批</span></td>
+                  <td>低压电工作业</td>
+                  <td>理论</td>
+                  <td>2026-06-25 14:00</td>
+                  <td>赣州安全生产考试点</td>
+                  <td>44</td>
+                  <td><span class="ops"><span class="link" data-open-modal>档案详情查看</span></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pager">
+            <span>共 128 条记录，当前显示 1-5 条</span>
+            <div class="top-actions">
+              <button class="btn">上一页</button>
+              <button class="btn primary">1</button>
+              <button class="btn">2</button>
+              <button class="btn">下一页</button>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-mask" id="archive-modal" role="dialog" aria-modal="true" aria-labelledby="archive-modal-title">
+    <section class="archive-modal" aria-label="考试计划档案详情">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title" id="archive-modal-title">2026年6月高压电工理论第2批</div>
+          <div class="doc-desc">档案归档以“考试计划”为基本单位，确保每次考试活动的资料集中、完整。</div>
+        </div>
+        <div class="top-actions">
+          <button class="btn" data-close-modal>关闭</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-cell"><span>考试计划</span><b>2026年6月高压电工理论第2批</b></div>
+          <div class="detail-cell"><span>考试点名称</span><b>南昌高新区理论考试点</b></div>
+          <div class="detail-cell"><span>考试时间与地点</span><b>2026-06-16 14:30 / 机房二</b></div>
+          <div class="detail-cell"><span>计划内考生</span><b>48 人</b></div>
+          <div class="detail-cell"><span>监考员</span><b>王某某、刘某某</b></div>
+          <div class="detail-cell"><span>考评员</span><b>陈某某</b></div>
+          <div class="detail-cell"><span>巡考员</span><b>赵某某</b></div>
+          <div class="detail-cell"><span>审批信息</span><b>省考试中心审核通过</b></div>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="档案内容视图">
+          <button class="tab-button active" data-tab="training" role="tab">培训档案汇总</button>
+          <button class="tab-button" data-tab="exam" role="tab">考试档案</button>
+          <button class="tab-button" data-tab="candidates" role="tab">考生档案列表</button>
+        </div>
+
+        <div class="tab-panel active" data-panel="training" role="tabpanel">
+          <div class="table-wrap">
+            <table style="min-width: 960px;">
+              <thead>
+                <tr>
+                  <th>培训档案资料</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>课程表</td><td><button type="button" class="table-btn view" data-doc="training-schedule">查看</button></td></tr>
+                <tr><td>学时证明</td><td><button type="button" class="table-btn view" data-doc="training-hours">查看</button></td></tr>
+                <tr><td>考核申请表</td><td><button type="button" class="table-btn view" data-doc="assessment-application">查看</button></td></tr>
+                <tr><td>学历证明</td><td><button type="button" class="table-btn view" data-doc="education-proof">查看</button></td></tr>
+                <tr><td>考勤与打卡记录</td><td><button type="button" class="table-btn view" data-doc="attendance-record">查看</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="notice">培训档案汇总展示本考试计划下全部考生的培训过程资料覆盖情况；具体到个人时，从“考生档案列表”进入该考生的一人一档。</div>
+        </div>
+
+        <div class="tab-panel" data-panel="exam" role="tabpanel">
+          <div class="table-wrap">
+            <table style="min-width: 960px;">
+              <thead>
+                <tr>
+                  <th>资料类型</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>考试成绩单</td><td><span class="link" data-doc="exam-score">资料预览</span></td></tr>
+                <tr><td>监考员记录</td><td><span class="link" data-doc="invigilator-record">资料预览</span></td></tr>
+                <tr><td>考评员记录</td><td><span class="link" data-doc="assessor-record">资料预览</span></td></tr>
+                <tr><td>巡考员记录</td><td><span class="link" data-doc="inspection-record">资料预览</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="candidates" role="tabpanel">
+          <div class="top-actions" style="margin-bottom: 10px;">
+            <button class="btn primary">批量归档</button>
+          </div>
+          <div class="table-wrap">
+            <table style="min-width: 1080px;">
+              <thead>
+                <tr>
+                  <th>考生姓名</th>
+                  <th>身份证号</th>
+                  <th>操作项目</th>
+                  <th>考试档案</th>
+                  <th>考试成绩</th>
+                  <th>个人档案状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>张某某</td><td>360102********1234</td><td>高压电工作业</td><td><span class="badge green">完整</span></td><td>88 / 合格</td><td><span class="badge green">已归档</span></td><td><span class="ops"><button type="button" class="table-btn archive">归档</button><button type="button" class="table-btn unarchive">取消归档</button><button type="button" class="table-btn view" data-open-person-modal>查看</button><button type="button" class="table-btn">导出</button></span></td></tr>
+                <tr><td>李某某</td><td>360103********0816</td><td>高压电工作业</td><td><span class="badge green">完整</span></td><td>82 / 合格</td><td><span class="badge gray">未归档</span></td><td><span class="ops"><button type="button" class="table-btn archive">归档</button><button type="button" class="table-btn unarchive">取消归档</button><button type="button" class="table-btn view" data-open-person-modal>查看</button><button type="button" class="table-btn">导出</button></span></td></tr>
+                <tr><td>王某某</td><td>360104********5621</td><td>高压电工作业</td><td><span class="badge green">完整</span></td><td>91 / 合格</td><td><span class="badge green">已归档</span></td><td><span class="ops"><button type="button" class="table-btn archive">归档</button><button type="button" class="table-btn unarchive">取消归档</button><button type="button" class="table-btn view" data-open-person-modal>查看</button><button type="button" class="table-btn">导出</button></span></td></tr>
+                <tr><td>陈某某</td><td>360111********7742</td><td>高压电工作业</td><td><span class="badge green">完整</span></td><td>79 / 合格</td><td><span class="badge gray">未归档</span></td><td><span class="ops"><button type="button" class="table-btn archive">归档</button><button type="button" class="table-btn unarchive">取消归档</button><button type="button" class="table-btn view" data-open-person-modal>查看</button><button type="button" class="table-btn">导出</button></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="notice">一人一档必须先定位到具体考生后查看、归档、取消归档或导出。</div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-mask" id="person-modal" role="dialog" aria-modal="true" aria-labelledby="person-modal-title">
+    <section class="person-modal" aria-label="个人考试档案详情">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title" id="person-modal-title">张某某 / 高压电工作业 / 一人一档</div>
+          <div class="doc-desc">个人档案以考生为中心，聚合其历史培训、考试、证书与本次考试计划关联资料。</div>
+        </div>
+        <div class="top-actions">
+          <button class="btn primary">导出张某某个人档案包</button>
+          <button class="btn" data-close-person-modal>关闭</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-cell"><span>考生姓名</span><b>张某某</b></div>
+          <div class="detail-cell"><span>身份证号</span><b>360102********1234</b></div>
+          <div class="detail-cell"><span>本次考试计划</span><b>2026年6月高压电工理论第2批</b></div>
+          <div class="detail-cell"><span>个人档案状态</span><b>已归档，可导出</b></div>
+        </div>
+
+        <div class="section-title">个人档案资料</div>
+        <div class="table-wrap">
+          <table style="min-width: 860px;">
+            <thead>
+              <tr>
+                <th>资料类型</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>课程表</td><td><button type="button" class="table-btn view" data-doc="personal-schedule">查看</button></td></tr>
+              <tr><td>学时证明</td><td><button type="button" class="table-btn view" data-doc="personal-hours">查看</button></td></tr>
+              <tr><td>考核申请表</td><td><button type="button" class="table-btn view" data-doc="personal-application">查看</button></td></tr>
+              <tr><td>考勤记录</td><td><button type="button" class="table-btn view" data-doc="personal-attendance">查看</button></td></tr>
+              <tr><td>考试成绩单</td><td><button type="button" class="table-btn view" data-doc="personal-score">查看</button></td></tr>
+              <tr><td>考试签到记录</td><td><button type="button" class="table-btn view" data-doc="personal-checkin">查看</button></td></tr>
+              <tr><td>证书</td><td><button type="button" class="table-btn view" data-doc="personal-certificate">查看</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice">此处导出的是张某某个人维度的标准化电子文件包，不包含同一考试计划下其他考生的个人档案。</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-mask" id="document-modal" role="dialog" aria-modal="true" aria-labelledby="document-modal-title">
+    <section class="document-modal" aria-label="档案资料查看">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title" id="document-modal-title">档案资料查看</div>
+          <div class="doc-desc" id="document-modal-desc">查看档案资料的关键字段、来源与电子件预览。</div>
+        </div>
+        <div class="top-actions">
+          <button class="btn" data-close-document-modal>关闭</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="document-layout">
+          <div class="document-preview" id="document-preview"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const modal = document.getElementById('archive-modal');
+    const personModal = document.getElementById('person-modal');
+    const documentModal = document.getElementById('document-modal');
+    const documentTitle = document.getElementById('document-modal-title');
+    const documentDesc = document.getElementById('document-modal-desc');
+    const documentPreview = document.getElementById('document-preview');
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    const documentData = {
+      'training-schedule': {
+        title: '培训档案汇总 / 课程表',
+        desc: '本考试计划下全部考生关联培训课程安排。',
+        meta: [['资料范围', '考试计划汇总'], ['培训计划', '高压电工作业初训班'], ['课程数量', '6 门'], ['授课周期', '2026-06-01 至 2026-06-12']],
+        preview: '<h3>课程表</h3><table class="record-table"><thead><tr><th>课程名称</th><th>上课时间</th><th>授课教师</th><th>培训地点</th></tr></thead><tbody><tr><td>安全生产法律法规</td><td>2026-06-01 09:00-12:00</td><td>周某某</td><td>培训教室 301</td></tr><tr><td>高压电工基础</td><td>2026-06-03 09:00-16:00</td><td>刘某某</td><td>实训楼 2 号教室</td></tr><tr><td>事故案例分析</td><td>2026-06-08 14:00-17:00</td><td>陈某某</td><td>培训教室 201</td></tr></tbody></table>'
+      },
+      'training-hours': {
+        title: '培训档案汇总 / 学时证明',
+        desc: '按考试计划汇总全部考生学时证明生成情况。',
+        meta: [['资料范围', '考试计划汇总'], ['应生成', '48 份'], ['已生成', '48 份'], ['学时口径', '按考生汇总']],
+        preview: '<h3>学时证明列表</h3><table class="record-table"><thead><tr><th>考生姓名</th><th>身份证号</th><th>学时</th><th>证明编号</th><th>培训机构</th></tr></thead><tbody><tr><td>张某某</td><td>360102********1234</td><td>72</td><td>PXZS-202606-0001</td><td>江西示例安全培训中心</td></tr><tr><td>李某某</td><td>360103********0816</td><td>72</td><td>PXZS-202606-0002</td><td>江西示例安全培训中心</td></tr><tr><td>王某某</td><td>360104********5621</td><td>72</td><td>PXZS-202606-0003</td><td>江西示例安全培训中心</td></tr></tbody></table>'
+      },
+      'assessment-application': {
+        title: '培训档案汇总 / 考核申请表',
+        desc: '考试资格申请材料与考试计划关联情况。',
+        meta: [['资料范围', '考试计划汇总'], ['申请人数', '48 人'], ['审核结果', '48 人通过'], ['关联考试计划', '2026年6月高压电工理论第2批']],
+        preview: '<h3>考核申请表</h3><table class="record-table"><thead><tr><th>考生姓名</th><th>身份证号</th><th>操作项目</th><th>申请类型</th><th>培训机构意见</th><th>审批结果</th><th>审批时间</th></tr></thead><tbody><tr><td>张某某</td><td>360102********1234</td><td>高压电工作业</td><td>初训</td><td>同意申报考核</td><td>通过</td><td>2026-06-13 10:12</td></tr><tr><td>李某某</td><td>360103********0816</td><td>高压电工作业</td><td>初训</td><td>同意申报考核</td><td>通过</td><td>2026-06-13 10:16</td></tr><tr><td>王某某</td><td>360104********5621</td><td>高压电工作业</td><td>初训</td><td>同意申报考核</td><td>通过</td><td>2026-06-13 10:21</td></tr></tbody></table>'
+      },
+      'education-proof': {
+        title: '培训档案汇总 / 学历证明',
+        desc: '考生学历证明材料归集情况。',
+        meta: [['资料范围', '考试计划汇总'], ['已收集', '48 份'], ['核验方式', '人工核验'], ['异常材料', '0 份']],
+        preview: '<h3>学历证明列表</h3><table class="record-table"><thead><tr><th>考生姓名</th><th>身份证号</th><th>学历材料</th><th>学历层次</th><th>核验结果</th></tr></thead><tbody><tr><td>张某某</td><td>360102********1234</td><td>毕业证复印件</td><td>高中</td><td>通过</td></tr><tr><td>李某某</td><td>360103********0816</td><td>学历承诺书</td><td>中专</td><td>通过</td></tr><tr><td>王某某</td><td>360104********5621</td><td>毕业证复印件</td><td>大专</td><td>通过</td></tr></tbody></table>'
+      },
+      'attendance-record': {
+        title: '培训档案汇总 / 考勤与打卡记录',
+        desc: '培训过程考勤、打卡和异常处理汇总。',
+        meta: [['资料范围', '考试计划汇总'], ['考勤批次', '12 次'], ['正常打卡', '568 条'], ['异常处理', '4 条已审批']],
+        preview: '<h3>考勤与打卡记录</h3><table class="record-table"><thead><tr><th>考生姓名</th><th>应打卡</th><th>正常打卡</th><th>异常次数</th><th>处理结果</th><th>最近打卡时间</th></tr></thead><tbody><tr><td>张某某</td><td>12</td><td>12</td><td>0</td><td>正常</td><td>2026-06-12 17:31</td></tr><tr><td>李某某</td><td>12</td><td>11</td><td>1</td><td>迟到审批通过</td><td>2026-06-12 17:28</td></tr><tr><td>王某某</td><td>12</td><td>12</td><td>0</td><td>正常</td><td>2026-06-12 17:34</td></tr></tbody></table>'
+      },
+      'exam-score': {
+        title: '考试档案 / 考试成绩单',
+        desc: '本考试计划成绩发布与汇总记录。',
+        meta: [['成绩发布人', '李某'], ['合格人数', '46 人'], ['缺考人数', '0 人'], ['发布时间', '2026-06-16 18:10']],
+        preview: '<h3>考试成绩单</h3><table class="record-table"><thead><tr><th>考生姓名</th><th>准考证号</th><th>考试科目</th><th>成绩</th><th>结果</th><th>发布时间</th></tr></thead><tbody><tr><td>张某某</td><td>GDDG20260616001</td><td>高压电工作业理论</td><td>88</td><td>合格</td><td>2026-06-16 18:10</td></tr><tr><td>李某某</td><td>GDDG20260616002</td><td>高压电工作业理论</td><td>82</td><td>合格</td><td>2026-06-16 18:10</td></tr><tr><td>陈某某</td><td>GDDG20260616004</td><td>高压电工作业理论</td><td>79</td><td>合格</td><td>2026-06-16 18:10</td></tr></tbody></table>'
+      },
+      'invigilator-record': {
+        title: '考试档案 / 监考员记录',
+        desc: '监考员姓名、签到时间和签名状态记录。',
+        meta: [['监考员', '王某某、刘某某'], ['记录口径', '按人员'], ['签到时间', '2026-06-16 13:45'], ['签名状态', '已签名']],
+        preview: '<h3>监考员记录</h3><table class="record-table"><thead><tr><th>监考员</th><th>签到时间</th><th>签名状态</th></tr></thead><tbody><tr><td>王某某</td><td>2026-06-16 13:45</td><td>已签名</td></tr><tr><td>刘某某</td><td>2026-06-16 13:46</td><td>已签名</td></tr></tbody></table>'
+      },
+      'assessor-record': {
+        title: '考试档案 / 考评员记录',
+        desc: '考评员姓名和考评时间记录。',
+        meta: [['考评员', '陈某某、邓某某'], ['记录口径', '按人员'], ['时间字段', '考评时间']],
+        preview: '<h3>考评员记录</h3><table class="record-table"><thead><tr><th>考评员</th><th>考评时间</th></tr></thead><tbody><tr><td>陈某某</td><td>2026-06-16 13:50</td></tr><tr><td>邓某某</td><td>2026-06-16 13:55</td></tr></tbody></table>'
+      },
+      'inspection-record': {
+        title: '考试档案 / 巡考员记录',
+        desc: '巡考员姓名和巡考时间记录。',
+        meta: [['巡考员', '赵某某、黄某某'], ['记录口径', '按人员'], ['时间字段', '巡考时间']],
+        preview: '<h3>巡考员记录</h3><table class="record-table"><thead><tr><th>巡考员</th><th>巡考时间</th></tr></thead><tbody><tr><td>赵某某</td><td>2026-06-16 14:20</td></tr><tr><td>黄某某</td><td>2026-06-16 15:05</td></tr></tbody></table>'
+      },
+      'personal-schedule': {
+        title: '张某某 / 课程表',
+        desc: '个人培训课程安排。',
+        meta: [['考生', '张某某'], ['作业项目', '高压电工作业'], ['培训班级', '高压电工初训 6 月班'], ['课程状态', '已完成']],
+        preview: '<h3>个人课程表</h3><table class="record-table"><thead><tr><th>课程名称</th><th>上课时间</th><th>学时</th><th>签到结果</th><th>授课教师</th></tr></thead><tbody><tr><td>安全生产法律法规</td><td>2026-06-01 09:00-12:00</td><td>4</td><td>正常</td><td>周某某</td></tr><tr><td>高压电工基础</td><td>2026-06-03 09:00-16:00</td><td>8</td><td>正常</td><td>刘某某</td></tr><tr><td>事故案例分析</td><td>2026-06-08 14:00-17:00</td><td>4</td><td>正常</td><td>陈某某</td></tr></tbody></table>'
+      },
+      'personal-hours': {
+        title: '张某某 / 学时证明',
+        desc: '个人培训学时证明。',
+        meta: [['考生', '张某某'], ['累计学时', '72 学时'], ['证明编号', 'PXZS-202606-0001'], ['签章状态', '已签章']],
+        preview: '<h3>学时证明</h3><table class="record-table"><thead><tr><th>学习日期</th><th>课程名称</th><th>学习方式</th><th>获得学时</th><th>记录状态</th></tr></thead><tbody><tr><td>2026-06-01</td><td>安全生产法律法规</td><td>线下面授</td><td>4</td><td>已确认</td></tr><tr><td>2026-06-03</td><td>高压电工基础</td><td>线下面授</td><td>8</td><td>已确认</td></tr><tr><td>2026-06-10</td><td>线上复习课程</td><td>线上学习</td><td>6</td><td>已确认</td></tr></tbody></table>'
+      },
+      'personal-application': {
+        title: '张某某 / 考核申请表',
+        desc: '个人考试资格申请表。',
+        meta: [['考生', '张某某'], ['申请项目', '高压电工作业'], ['申请类型', '初训'], ['审核结论', '通过']],
+        preview: '<h3>考核申请表</h3><table class="record-table"><thead><tr><th>考生姓名</th><th>身份证号</th><th>操作项目</th><th>申请类型</th><th>培训机构意见</th><th>审批结果</th><th>审批时间</th></tr></thead><tbody><tr><td>张某某</td><td>360102********1234</td><td>高压电工作业</td><td>初训</td><td>同意申报考核</td><td>通过</td><td>2026-06-13 10:12</td></tr></tbody></table>'
+      },
+      'personal-attendance': {
+        title: '张某某 / 考勤记录',
+        desc: '个人培训考勤与打卡记录。',
+        meta: [['考生', '张某某'], ['应打卡', '12 次'], ['正常打卡', '12 次'], ['异常记录', '0 条']],
+        preview: '<h3>考勤记录</h3><table class="record-table"><thead><tr><th>培训日期</th><th>签到时间</th><th>签退时间</th><th>打卡方式</th><th>考勤结果</th></tr></thead><tbody><tr><td>2026-06-01</td><td>08:54</td><td>12:03</td><td>人脸识别</td><td>正常</td></tr><tr><td>2026-06-03</td><td>08:49</td><td>16:06</td><td>人脸识别</td><td>正常</td></tr><tr><td>2026-06-08</td><td>13:53</td><td>17:04</td><td>人脸识别</td><td>正常</td></tr></tbody></table>'
+      },
+      'personal-score': {
+        title: '张某某 / 考试成绩单',
+        desc: '个人考试成绩记录。',
+        meta: [['考生', '张某某'], ['考试科目', '高压电工作业理论'], ['考试成绩', '88 分'], ['考试结果', '合格']],
+        preview: '<h3>考试成绩单</h3><table class="record-table"><thead><tr><th>考试科目</th><th>考试时间</th><th>考试地点</th><th>成绩</th><th>结果</th><th>发布人</th></tr></thead><tbody><tr><td>高压电工作业理论</td><td>2026-06-16 14:30</td><td>南昌高新区理论考试点</td><td>88</td><td>合格</td><td>李某</td></tr></tbody></table>'
+      },
+      'personal-checkin': {
+        title: '张某某 / 考试签到记录',
+        desc: '个人考试现场签到记录。',
+        meta: [['考生', '张某某'], ['签到时间', '2026-06-16 14:02'], ['签到方式', '人脸识别'], ['核验结果', '通过']],
+        preview: '<h3>考试签到记录</h3><table class="record-table"><thead><tr><th>签到时间</th><th>签到方式</th><th>核验项目</th><th>核验结果</th></tr></thead><tbody><tr><td>2026-06-16 14:02</td><td>人脸识别</td><td>身份证、人脸、准考信息</td><td>通过</td></tr></tbody></table>'
+      },
+      'personal-certificate': {
+        title: '张某某 / 证书',
+        desc: '个人证书记录。',
+        meta: [['考生', '张某某'], ['证书类型', '高压电工作业操作证'], ['证书状态', '待签发'], ['关联考试', '2026年6月高压电工理论第2批']],
+        preview: '<h3>证书记录</h3><p>张某某考试结果合格，证书进入待签发流程。</p><p>证书签发后将自动纳入个人档案电子文件包。</p>'
+      }
+    };
+
+    function openArchiveModal() {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeArchiveModal() {
+      modal.classList.remove('open');
+      personModal.classList.remove('open');
+      documentModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function openPersonModal() {
+      personModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePersonModal() {
+      personModal.classList.remove('open');
+      documentModal.classList.remove('open');
+      document.body.style.overflow = modal.classList.contains('open') ? 'hidden' : '';
+    }
+
+    function openDocumentModal(docKey) {
+      const doc = documentData[docKey];
+      if (!doc) {
+        return;
+      }
+      documentTitle.textContent = doc.title;
+      documentDesc.textContent = doc.desc;
+      documentPreview.innerHTML = doc.preview;
+      documentModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDocumentModal() {
+      documentModal.classList.remove('open');
+      document.body.style.overflow = (modal.classList.contains('open') || personModal.classList.contains('open')) ? 'hidden' : '';
+    }
+
+    function activateTab(tabName) {
+      tabButtons.forEach((button) => {
+        button.classList.toggle('active', button.dataset.tab === tabName);
+      });
+      tabPanels.forEach((panel) => {
+        panel.classList.toggle('active', panel.dataset.panel === tabName);
+      });
+    }
+
+    document.querySelectorAll('[data-open-modal]').forEach((trigger) => {
+      trigger.addEventListener('click', openArchiveModal);
+    });
+
+    document.querySelectorAll('[data-close-modal]').forEach((trigger) => {
+      trigger.addEventListener('click', closeArchiveModal);
+    });
+
+    document.querySelectorAll('[data-open-person-modal]').forEach((trigger) => {
+      trigger.addEventListener('click', openPersonModal);
+    });
+
+    document.querySelectorAll('[data-close-person-modal]').forEach((trigger) => {
+      trigger.addEventListener('click', closePersonModal);
+    });
+
+    document.querySelectorAll('[data-doc]').forEach((trigger) => {
+      trigger.addEventListener('click', () => openDocumentModal(trigger.dataset.doc));
+    });
+
+    document.querySelectorAll('[data-close-document-modal]').forEach((trigger) => {
+      trigger.addEventListener('click', closeDocumentModal);
+    });
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => activateTab(button.dataset.tab));
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeArchiveModal();
+      }
+    });
+
+    personModal.addEventListener('click', (event) => {
+      if (event.target === personModal) {
+        closePersonModal();
+      }
+    });
+
+    documentModal.addEventListener('click', (event) => {
+      if (event.target === documentModal) {
+        closeDocumentModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && documentModal.classList.contains('open')) {
+        closeDocumentModal();
+      } else if (event.key === 'Escape' && personModal.classList.contains('open')) {
+        closePersonModal();
+      } else if (event.key === 'Escape' && modal.classList.contains('open')) {
+        closeArchiveModal();
+      }
+    });
+  </script>
+</body>
+</html>

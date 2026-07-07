@@ -1,0 +1,1729 @@
+{
+  "version": "2.14",
+  "children": [
+    {
+      "type": "frame",
+      "id": "dQrhu",
+      "x": 0,
+      "y": 0,
+      "name": "Component / Status Tag",
+      "reusable": true,
+      "fill": "#ECFDF5",
+      "cornerRadius": 4,
+      "stroke": "#A7F3D0",
+      "strokeWidth": 1,
+      "gap": 7,
+      "padding": [
+        5,
+        10
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "kLVa4",
+          "name": "Status Dot",
+          "fill": "$success",
+          "width": 7,
+          "height": 7
+        },
+        {
+          "type": "text",
+          "id": "vmxiI",
+          "name": "Status Label",
+          "fill": "#047857",
+          "content": "待上传",
+          "fontFamily": "$font-ui",
+          "fontSize": 12,
+          "fontWeight": "700"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "fRhnn",
+      "x": 180,
+      "y": 0,
+      "name": "Component / Primary Button",
+      "reusable": true,
+      "fill": "$primary",
+      "cornerRadius": 4,
+      "gap": 8,
+      "padding": [
+        10,
+        16
+      ],
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "icon",
+          "id": "z6Cv1s",
+          "name": "Button Icon",
+          "width": 16,
+          "height": 16,
+          "icon": "upload",
+          "library": "lucide",
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "id": "m8KicN",
+          "name": "Button Label",
+          "fill": "#FFFFFF",
+          "content": "上传签章",
+          "fontFamily": "$font-ui",
+          "fontSize": 14,
+          "fontWeight": "700"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Ng1yF",
+      "x": 400,
+      "y": 0,
+      "name": "Component / Ghost Button",
+      "reusable": true,
+      "fill": "#FFFFFF",
+      "cornerRadius": 4,
+      "stroke": "$border-strong",
+      "strokeWidth": 1,
+      "gap": 8,
+      "padding": [
+        9,
+        14
+      ],
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "icon",
+          "id": "W9uCr5",
+          "name": "Button Icon",
+          "width": 16,
+          "height": 16,
+          "icon": "rotate-ccw",
+          "library": "lucide",
+          "fill": "$text-secondary"
+        },
+        {
+          "type": "text",
+          "id": "Dcknv",
+          "name": "Button Label",
+          "fill": "$text-primary",
+          "content": "清空重选",
+          "fontFamily": "$font-ui",
+          "fontSize": 14,
+          "fontWeight": "600"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "PitPc",
+      "x": 620,
+      "y": 0,
+      "name": "Component / Readonly Field",
+      "reusable": true,
+      "width": 260,
+      "layout": "vertical",
+      "gap": 7,
+      "children": [
+        {
+          "type": "text",
+          "id": "npWKM",
+          "name": "Field Label",
+          "fill": "$text-secondary",
+          "content": "字段名称",
+          "fontFamily": "$font-ui",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "JjaT3",
+          "name": "Field Value Box",
+          "width": "fill_container",
+          "fill": "$surface-muted",
+          "cornerRadius": 4,
+          "stroke": "$border",
+          "strokeWidth": 1,
+          "padding": [
+            10,
+            12
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "TbPHo",
+              "name": "Field Value",
+              "fill": "$text-primary",
+              "content": "字段内容",
+              "fontFamily": "$font-ui",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "b2uFEf",
+      "x": 0,
+      "y": 90,
+      "name": "Component / Rule Item",
+      "reusable": true,
+      "width": 300,
+      "gap": 10,
+      "children": [
+        {
+          "type": "frame",
+          "id": "GHK94",
+          "name": "Rule Icon Wrap",
+          "width": 22,
+          "height": 22,
+          "fill": "#EFF6FF",
+          "cornerRadius": 11,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "EuB4F",
+              "name": "Rule Icon",
+              "width": 14,
+              "height": 14,
+              "icon": "check",
+              "library": "lucide",
+              "fill": "$primary"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "pDtRe",
+          "name": "Rule Text",
+          "fill": "$text-primary",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "支持 JPG、JPEG、PNG 格式，优先使用透明底 PNG。",
+          "lineHeight": 1.45,
+          "fontFamily": "$font-ui",
+          "fontSize": 13,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "e4dbVT",
+      "x": 360,
+      "y": 90,
+      "name": "Component / Nav Item",
+      "reusable": true,
+      "width": 196,
+      "cornerRadius": 4,
+      "gap": 10,
+      "padding": [
+        10,
+        12
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "icon",
+          "id": "AiiaV",
+          "name": "Nav Icon",
+          "width": 18,
+          "height": 18,
+          "icon": "file-check",
+          "library": "lucide",
+          "fill": "$text-secondary"
+        },
+        {
+          "type": "text",
+          "id": "LDiNK",
+          "name": "Nav Label",
+          "fill": "#D1D5DB",
+          "content": "资料维护",
+          "fontFamily": "$font-ui",
+          "fontSize": 14,
+          "fontWeight": "600"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "sEjb3",
+      "x": 0,
+      "y": 220,
+      "name": "培训机构签章上传 / 后台管理页面",
+      "clip": true,
+      "width": 1440,
+      "height": 980,
+      "fill": "$surface-page",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Y6hjf",
+          "name": "左侧导航",
+          "width": 244,
+          "height": "fill_container",
+          "fill": "$surface-dark",
+          "layout": "vertical",
+          "gap": 18,
+          "padding": [
+            22,
+            18
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "IGiqT",
+              "name": "系统品牌",
+              "width": "fill_container",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "LgECf",
+                  "name": "品牌标识",
+                  "width": 34,
+                  "height": 34,
+                  "fill": "$primary",
+                  "cornerRadius": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "RUxt8",
+                      "name": "品牌图标",
+                      "width": 20,
+                      "height": 20,
+                      "icon": "graduation-cap",
+                      "library": "lucide",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "GbWRi",
+                  "name": "品牌文字",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NkVXv",
+                      "name": "系统名称",
+                      "fill": "#FFFFFF",
+                      "content": "培训机构管理平台",
+                      "fontFamily": "$font-ui",
+                      "fontSize": 15,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "D8TfR",
+                      "name": "系统说明",
+                      "fill": "#94A3B8",
+                      "content": "Organization Console",
+                      "fontFamily": "$font-ui",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "q7jmIh",
+              "name": "导航菜单",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "children": [
+                {
+                  "id": "L3FQT",
+                  "type": "ref",
+                  "ref": "e4dbVT",
+                  "name": "导航 / 工作台",
+                  "width": "fill_container",
+                  "fill": "#0F172A",
+                  "descendants": {
+                    "AiiaV": {
+                      "icon": "layout-dashboard",
+                      "fill": "#94A3B8"
+                    },
+                    "LDiNK": {
+                      "content": "工作台",
+                      "fill": "#CBD5E1"
+                    }
+                  }
+                },
+                {
+                  "id": "q31bPh",
+                  "type": "ref",
+                  "ref": "e4dbVT",
+                  "name": "导航 / 机构档案",
+                  "width": "fill_container",
+                  "fill": "#0F172A",
+                  "descendants": {
+                    "AiiaV": {
+                      "icon": "building-2",
+                      "fill": "#94A3B8"
+                    },
+                    "LDiNK": {
+                      "content": "机构档案",
+                      "fill": "#CBD5E1"
+                    }
+                  }
+                },
+                {
+                  "id": "nnBPz",
+                  "type": "ref",
+                  "ref": "e4dbVT",
+                  "name": "导航 / 资料维护",
+                  "width": "fill_container",
+                  "fill": "#1E293B",
+                  "descendants": {
+                    "AiiaV": {
+                      "icon": "file-check",
+                      "fill": "#60A5FA"
+                    },
+                    "LDiNK": {
+                      "content": "资料维护",
+                      "fill": "#FFFFFF"
+                    }
+                  }
+                },
+                {
+                  "id": "zdhId",
+                  "type": "ref",
+                  "ref": "e4dbVT",
+                  "name": "导航 / 审核进度",
+                  "width": "fill_container",
+                  "fill": "#0F172A",
+                  "descendants": {
+                    "AiiaV": {
+                      "icon": "badge-check",
+                      "fill": "#94A3B8"
+                    },
+                    "LDiNK": {
+                      "content": "审核进度",
+                      "fill": "#CBD5E1"
+                    }
+                  }
+                },
+                {
+                  "id": "yYwOC",
+                  "type": "ref",
+                  "ref": "e4dbVT",
+                  "name": "导航 / 业务归档",
+                  "width": "fill_container",
+                  "fill": "#0F172A",
+                  "descendants": {
+                    "AiiaV": {
+                      "icon": "archive",
+                      "fill": "#94A3B8"
+                    },
+                    "LDiNK": {
+                      "content": "业务归档",
+                      "fill": "#CBD5E1"
+                    }
+                  }
+                },
+                {
+                  "id": "bJcGM",
+                  "type": "ref",
+                  "ref": "e4dbVT",
+                  "name": "导航 / 系统设置",
+                  "width": "fill_container",
+                  "fill": "#0F172A",
+                  "descendants": {
+                    "AiiaV": {
+                      "icon": "settings",
+                      "fill": "#94A3B8"
+                    },
+                    "LDiNK": {
+                      "content": "系统设置",
+                      "fill": "#CBD5E1"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "qiqd9",
+              "name": "导航弹性间距",
+              "width": "fill_container",
+              "height": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "CuxIl",
+              "name": "当前用户",
+              "width": "fill_container",
+              "fill": "#111827",
+              "cornerRadius": 4,
+              "stroke": "#334155",
+              "strokeWidth": 1,
+              "gap": 10,
+              "padding": [
+                12,
+                10
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "af2j2",
+                  "name": "用户头像",
+                  "width": 34,
+                  "height": 34,
+                  "fill": "#334155",
+                  "cornerRadius": 17,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kNfCT",
+                      "name": "用户简称",
+                      "fill": "#FFFFFF",
+                      "content": "管",
+                      "fontFamily": "$font-ui",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "n7yEz",
+                  "name": "用户信息",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UyHcF",
+                      "name": "用户名",
+                      "fill": "#FFFFFF",
+                      "content": "机构管理员",
+                      "fontFamily": "$font-ui",
+                      "fontSize": 13,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "h3Jvaa",
+                      "name": "角色",
+                      "fill": "#94A3B8",
+                      "content": "江西示例职业培训学校",
+                      "fontFamily": "$font-ui",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "d5IErj",
+          "name": "内容区域",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "m0z0z",
+              "name": "顶部工具栏",
+              "width": "fill_container",
+              "height": 72,
+              "fill": "$surface-panel",
+              "stroke": "$border",
+              "strokeWidth": {
+                "bottom": 1
+              },
+              "padding": [
+                0,
+                28
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "bxvda",
+                  "name": "面包屑与标题",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "i7EGp",
+                      "name": "面包屑",
+                      "fill": "$text-secondary",
+                      "content": "资料维护 / 签章图片上传",
+                      "fontFamily": "$font-ui",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jcvJG",
+                      "name": "页面标题",
+                      "fill": "$text-primary",
+                      "content": "培训机构签章上传",
+                      "fontFamily": "$font-ui",
+                      "fontSize": 22,
+                      "fontWeight": "800"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "N6JDA",
+              "name": "主工作区",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 18,
+              "padding": [
+                24,
+                28,
+                28,
+                28
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "si89v",
+                  "name": "任务摘要栏",
+                  "width": "fill_container",
+                  "height": 96,
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bG47Z",
+                      "name": "摘要 / 当前机构",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$surface-panel",
+                      "cornerRadius": 4,
+                      "stroke": "$border",
+                      "strokeWidth": 1,
+                      "gap": 12,
+                      "padding": [
+                        16,
+                        18
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "jSh7X",
+                          "name": "摘要图标容器",
+                          "width": 38,
+                          "height": 38,
+                          "fill": "#EFF6FF",
+                          "cornerRadius": 4,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "VmsBl",
+                              "name": "摘要图标",
+                              "width": 19,
+                              "height": 19,
+                              "icon": "building-2",
+                              "library": "lucide",
+                              "fill": "$primary"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "xRgsG",
+                          "name": "摘要文本",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 5,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "UqQFq",
+                              "name": "摘要标签",
+                              "fill": "$text-secondary",
+                              "content": "当前机构",
+                              "fontFamily": "$font-ui",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Ci6VO",
+                              "name": "摘要值",
+                              "fill": "$text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "江西示例职业培训学校",
+                              "fontFamily": "$font-ui",
+                              "fontSize": 15,
+                              "fontWeight": "800"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "KKiEQ",
+                      "name": "摘要 / 签章状态",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$surface-panel",
+                      "cornerRadius": 4,
+                      "stroke": "$border",
+                      "strokeWidth": 1,
+                      "gap": 12,
+                      "padding": [
+                        16,
+                        18
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "RiViz",
+                          "name": "摘要图标容器",
+                          "width": 38,
+                          "height": 38,
+                          "fill": "#EFF6FF",
+                          "cornerRadius": 4,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "iqENf",
+                              "name": "摘要图标",
+                              "width": 19,
+                              "height": 19,
+                              "icon": "circle-alert",
+                              "library": "lucide",
+                              "fill": "$primary"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "B5jfoY",
+                          "name": "摘要文本",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 5,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "zRP8R",
+                              "name": "摘要标签",
+                              "fill": "$text-secondary",
+                              "content": "签章状态",
+                              "fontFamily": "$font-ui",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "m8WSME",
+                              "name": "摘要值",
+                              "fill": "$text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "未提交",
+                              "fontFamily": "$font-ui",
+                              "fontSize": 15,
+                              "fontWeight": "800"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WzgvF",
+                      "name": "摘要 / 材料用途",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$surface-panel",
+                      "cornerRadius": 4,
+                      "stroke": "$border",
+                      "strokeWidth": 1,
+                      "gap": 12,
+                      "padding": [
+                        16,
+                        18
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "r0mBXB",
+                          "name": "摘要图标容器",
+                          "width": 38,
+                          "height": 38,
+                          "fill": "#EFF6FF",
+                          "cornerRadius": 4,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "T1DDyy",
+                              "name": "摘要图标",
+                              "width": 19,
+                              "height": 19,
+                              "icon": "file-stack",
+                              "library": "lucide",
+                              "fill": "$primary"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "exbak",
+                          "name": "摘要文本",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 5,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "v1O0vw",
+                              "name": "摘要标签",
+                              "fill": "$text-secondary",
+                              "content": "材料用途",
+                              "fontFamily": "$font-ui",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "QDlnI",
+                              "name": "摘要值",
+                              "fill": "$text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "报名、审核、归档",
+                              "fontFamily": "$font-ui",
+                              "fontSize": 15,
+                              "fontWeight": "800"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "YHWA4",
+                      "name": "摘要 / 最后更新",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$surface-panel",
+                      "cornerRadius": 4,
+                      "stroke": "$border",
+                      "strokeWidth": 1,
+                      "gap": 12,
+                      "padding": [
+                        16,
+                        18
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "WHg9O",
+                          "name": "摘要图标容器",
+                          "width": 38,
+                          "height": 38,
+                          "fill": "#EFF6FF",
+                          "cornerRadius": 4,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "O9P92N",
+                              "name": "摘要图标",
+                              "width": 19,
+                              "height": 19,
+                              "icon": "clock-3",
+                              "library": "lucide",
+                              "fill": "$primary"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "xGSJT",
+                          "name": "摘要文本",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 5,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "CHgmK",
+                              "name": "摘要标签",
+                              "fill": "$text-secondary",
+                              "content": "最后更新",
+                              "fontFamily": "$font-ui",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "f6GI0D",
+                              "name": "摘要值",
+                              "fill": "$text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "--",
+                              "fontFamily": "$font-ui",
+                              "fontSize": 15,
+                              "fontWeight": "800"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "G9CAjN",
+                  "name": "上传与确认工作区",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "gap": 18,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "FhpmR",
+                      "name": "签章上传主面板",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$surface-panel",
+                      "cornerRadius": 4,
+                      "stroke": "$border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 20,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ijxg0",
+                          "name": "上传面板标题栏",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "X51xO5",
+                              "name": "上传标题文本",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 5,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Z1ich",
+                                  "name": "上传标题",
+                                  "fill": "$text-primary",
+                                  "content": "上传签章图片",
+                                  "fontFamily": "$font-ui",
+                                  "fontSize": 18,
+                                  "fontWeight": "800"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "PcXtf",
+                                  "name": "上传说明",
+                                  "fill": "$text-secondary",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "用于考试报名材料、审核材料、结业证明和业务归档中的机构签章展示。",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "$font-ui",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "p703A7",
+                              "type": "ref",
+                              "ref": "Ng1yF",
+                              "name": "清空重选按钮",
+                              "descendants": {
+                                "W9uCr5": {
+                                  "icon": "rotate-ccw"
+                                },
+                                "Dcknv": {
+                                  "content": "清空重选"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "oW8wQ",
+                          "name": "上传区域行",
+                          "width": "fill_container",
+                          "height": 310,
+                          "gap": 18,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "zgEXn",
+                              "name": "签章拖拽上传区",
+                              "width": "fill_container",
+                              "height": "fill_container",
+                              "fill": "#F8FBFF",
+                              "cornerRadius": 4,
+                              "stroke": "#93C5FD",
+                              "strokeWidth": 2,
+                              "strokeAlignment": "inner",
+                              "layout": "vertical",
+                              "gap": 14,
+                              "padding": 28,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "ftF52",
+                                  "name": "签章占位印章",
+                                  "rotation": -8,
+                                  "width": 94,
+                                  "height": 94,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 47,
+                                  "stroke": "#DC2626",
+                                  "strokeWidth": 3,
+                                  "layout": "vertical",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "qy3Up",
+                                      "name": "印章文字",
+                                      "fill": "#DC2626",
+                                      "content": "机构签章",
+                                      "fontFamily": "$font-ui",
+                                      "fontSize": 18,
+                                      "fontWeight": "900"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "dMcp6",
+                                  "name": "拖拽标题",
+                                  "fill": "$text-primary",
+                                  "content": "点击选择或拖拽签章图片",
+                                  "fontFamily": "$font-ui",
+                                  "fontSize": 20,
+                                  "fontWeight": "800"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "o4Psq",
+                                  "name": "拖拽说明",
+                                  "fill": "$text-secondary",
+                                  "textGrowth": "fixed-width",
+                                  "width": 420,
+                                  "content": "建议上传透明底 PNG，确保签章边缘清晰、无裁切、无水印遮挡。",
+                                  "lineHeight": 1.55,
+                                  "textAlign": "center",
+                                  "fontFamily": "$font-ui",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "id": "OupSn",
+                                  "type": "ref",
+                                  "ref": "fRhnn",
+                                  "name": "选择图片按钮",
+                                  "descendants": {
+                                    "z6Cv1s": {
+                                      "icon": "upload"
+                                    },
+                                    "m8KicN": {
+                                      "content": "选择图片"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "hOx7W",
+                              "name": "上传要求",
+                              "width": 310,
+                              "height": "fill_container",
+                              "fill": "$surface-muted",
+                              "cornerRadius": 4,
+                              "stroke": "$border",
+                              "strokeWidth": 1,
+                              "layout": "vertical",
+                              "gap": 12,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "YJhug",
+                                  "name": "上传要求标题",
+                                  "fill": "$text-primary",
+                                  "content": "上传要求",
+                                  "fontFamily": "$font-ui",
+                                  "fontSize": 15,
+                                  "fontWeight": "800"
+                                },
+                                {
+                                  "id": "KR2m0",
+                                  "type": "ref",
+                                  "ref": "b2uFEf",
+                                  "name": "要求 / 支持 JPG、J",
+                                  "width": "fill_container",
+                                  "descendants": {
+                                    "pDtRe": {
+                                      "content": "支持 JPG、JPEG、PNG 格式，优先使用透明底 PNG。"
+                                    }
+                                  }
+                                },
+                                {
+                                  "id": "I1cl4O",
+                                  "type": "ref",
+                                  "ref": "b2uFEf",
+                                  "name": "要求 / 单个文件建议不超",
+                                  "width": "fill_container",
+                                  "descendants": {
+                                    "pDtRe": {
+                                      "content": "单个文件建议不超过 2MB，长宽不低于 300 像素。"
+                                    }
+                                  }
+                                },
+                                {
+                                  "id": "zR9G8",
+                                  "type": "ref",
+                                  "ref": "b2uFEf",
+                                  "name": "要求 / 签章内容应与机构",
+                                  "width": "fill_container",
+                                  "descendants": {
+                                    "pDtRe": {
+                                      "content": "签章内容应与机构备案名称一致，不能上传个人章。"
+                                    }
+                                  }
+                                },
+                                {
+                                  "id": "ZVgGJ",
+                                  "type": "ref",
+                                  "ref": "b2uFEf",
+                                  "name": "要求 / 上传后请核对预览",
+                                  "width": "fill_container",
+                                  "descendants": {
+                                    "pDtRe": {
+                                      "content": "上传后请核对文件名称和大小，确认选择的是本机构签章图片。"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "L6qlvQ",
+                          "name": "文件选择状态条",
+                          "width": "fill_container",
+                          "fill": "$surface-muted",
+                          "cornerRadius": 4,
+                          "stroke": "#DCE7EE",
+                          "strokeWidth": 1,
+                          "gap": 18,
+                          "padding": [
+                            13,
+                            16
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "PQOpf",
+                              "name": "文件状态左侧",
+                              "gap": 10,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "FaXab",
+                                  "name": "文件状态图标容器",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "#EFF6FF",
+                                  "cornerRadius": 4,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "r222i",
+                                      "name": "文件状态图标",
+                                      "width": 16,
+                                      "height": 16,
+                                      "icon": "file-image",
+                                      "library": "lucide",
+                                      "fill": "$primary"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "hgMWA",
+                                  "name": "文件状态文本",
+                                  "layout": "vertical",
+                                  "gap": 2,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "e4eMS",
+                                      "name": "文件状态",
+                                      "fill": "$text-primary",
+                                      "content": "尚未选择文件",
+                                      "fontFamily": "$font-ui",
+                                      "fontSize": 13,
+                                      "fontWeight": "700"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "x2PwOT",
+                                      "name": "文件状态提示",
+                                      "fill": "$text-secondary",
+                                      "content": "支持 JPG、JPEG、PNG，建议不超过 2MB",
+                                      "fontFamily": "$font-ui",
+                                      "fontSize": 12,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "OIsob",
+                              "name": "文件摘要",
+                              "fill": "$text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": 340,
+                              "content": "请选择本机构签章图片",
+                              "textAlign": "right",
+                              "fontFamily": "$font-ui",
+                              "fontSize": 13,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vFtw9",
+                      "name": "责任确认侧栏",
+                      "width": 380,
+                      "height": "fill_container",
+                      "fill": "$surface-panel",
+                      "cornerRadius": 4,
+                      "stroke": "$border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Nj19B",
+                          "name": "侧栏标题区",
+                          "width": "fill_container",
+                          "fill": "#111827",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": [
+                            18,
+                            20
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "F37C0O",
+                              "name": "责任确认标题",
+                              "fill": "#FFFFFF",
+                              "content": "责任确认与平台授权",
+                              "fontFamily": "$font-ui",
+                              "fontSize": 17,
+                              "fontWeight": "800"
+                            },
+                            {
+                              "type": "text",
+                              "id": "H2Jz4D",
+                              "name": "责任确认说明",
+                              "fill": "#CBD5E1",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "签章图片将作为机构业务材料展示依据，提交前请确认真实性、合法性和授权范围。",
+                              "lineHeight": 1.5,
+                              "fontFamily": "$font-ui",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Xy1Sp",
+                          "name": "侧栏内容",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "padding": [
+                            18,
+                            20
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "aux0X",
+                              "name": "机构信息区块",
+                              "width": "fill_container",
+                              "stroke": "$border",
+                              "strokeWidth": {
+                                "bottom": 1
+                              },
+                              "layout": "vertical",
+                              "gap": 12,
+                              "padding": [
+                                0,
+                                0,
+                                16,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "bE9Lm",
+                                  "name": "机构信息标题",
+                                  "fill": "$text-primary",
+                                  "content": "机构信息",
+                                  "fontFamily": "$font-ui",
+                                  "fontSize": 15,
+                                  "fontWeight": "800"
+                                },
+                                {
+                                  "id": "DkEIE",
+                                  "type": "ref",
+                                  "ref": "PitPc",
+                                  "name": "字段 / 培训机构名称",
+                                  "width": "fill_container",
+                                  "descendants": {
+                                    "npWKM": {
+                                      "content": "培训机构名称"
+                                    },
+                                    "TbPHo": {
+                                      "content": "江西示例职业培训学校"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "x2b9G",
+                              "name": "签章使用范围",
+                              "width": "fill_container",
+                              "stroke": "$border",
+                              "strokeWidth": {
+                                "bottom": 1
+                              },
+                              "layout": "vertical",
+                              "gap": 12,
+                              "padding": [
+                                18,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "flO4q",
+                                  "name": "使用范围标题",
+                                  "fill": "$text-primary",
+                                  "content": "签章使用范围",
+                                  "fontFamily": "$font-ui",
+                                  "fontSize": 15,
+                                  "fontWeight": "800"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "Hhryt",
+                                  "name": "范围 / 01",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "EqfcR",
+                                      "name": "范围编号",
+                                      "fill": "$primary",
+                                      "content": "01",
+                                      "fontFamily": "$font-data",
+                                      "fontSize": 13,
+                                      "fontWeight": "800"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "P2vpj",
+                                      "name": "范围内容",
+                                      "fill": "$text-primary",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "考试报名、资格审核等业务材料展示。",
+                                      "lineHeight": 1.45,
+                                      "fontFamily": "$font-ui",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "W4iIea",
+                                  "name": "范围 / 02",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "TCi3b",
+                                      "name": "范围编号",
+                                      "fill": "$primary",
+                                      "content": "02",
+                                      "fontFamily": "$font-data",
+                                      "fontSize": 13,
+                                      "fontWeight": "800"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "UWlpA",
+                                      "name": "范围内容",
+                                      "fill": "$text-primary",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "培训、考试、证书或证明相关文件生成。",
+                                      "lineHeight": 1.45,
+                                      "fontFamily": "$font-ui",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "VP78g",
+                                  "name": "范围 / 03",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "W3my2B",
+                                      "name": "范围编号",
+                                      "fill": "$primary",
+                                      "content": "03",
+                                      "fontFamily": "$font-data",
+                                      "fontSize": 13,
+                                      "fontWeight": "800"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "ri1Qt",
+                                      "name": "范围内容",
+                                      "fill": "$text-primary",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "平台业务页面展示、材料归档和打印输出。",
+                                      "lineHeight": 1.45,
+                                      "fontFamily": "$font-ui",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "TM1Kp",
+                              "name": "免责声明区块",
+                              "width": "fill_container",
+                              "height": "fill_container",
+                              "layout": "vertical",
+                              "gap": 12,
+                              "padding": [
+                                18,
+                                0,
+                                0,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "lp5jQ",
+                                  "name": "免责声明标题",
+                                  "fill": "$text-primary",
+                                  "content": "免责声明",
+                                  "fontFamily": "$font-ui",
+                                  "fontSize": 15,
+                                  "fontWeight": "800"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "febCH",
+                                  "name": "风险提示",
+                                  "width": "fill_container",
+                                  "fill": "#FFFBEB",
+                                  "cornerRadius": 4,
+                                  "stroke": "#FCD34D",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "gap": 8,
+                                  "padding": 14,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "A7Kt1m",
+                                      "name": "风险提示标题",
+                                      "fill": "#92400E",
+                                      "content": "请在提交前仔细确认",
+                                      "fontFamily": "$font-ui",
+                                      "fontSize": 13,
+                                      "fontWeight": "800"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "M8E2f",
+                                      "name": "风险提示正文",
+                                      "fill": "#78350F",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "培训机构承诺上传的签章图片真实、合法、有效，签章内容与本机构备案信息一致。因签章图片不真实、不合法、未经授权、冒用或使用不当所产生的一切责任和后果，由培训机构自行承担。",
+                                      "lineHeight": 1.55,
+                                      "fontFamily": "$font-ui",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "lwTjR",
+                                  "name": "确认勾选",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "chVau",
+                                      "name": "未勾选框",
+                                      "width": 18,
+                                      "height": 18,
+                                      "fill": "#FFFFFF",
+                                      "cornerRadius": 3,
+                                      "stroke": "$border-strong",
+                                      "strokeWidth": 1
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "jJZQJ",
+                                      "name": "确认文案",
+                                      "fill": "$text-primary",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "我已阅读并确认上述免责声明，承诺对签章真伪及授权使用承担相应责任。",
+                                      "lineHeight": 1.55,
+                                      "fontFamily": "$font-ui",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "S1RpY",
+                  "name": "底部提交操作条",
+                  "width": "fill_container",
+                  "height": 56,
+                  "fill": "$surface-panel",
+                  "cornerRadius": 4,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "gap": 12,
+                  "padding": [
+                    0,
+                    18
+                  ],
+                  "justifyContent": "end",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "rD9bj",
+                      "name": "提交签章图片按钮 / 禁用",
+                      "fill": "#93C5FD",
+                      "cornerRadius": 4,
+                      "gap": 8,
+                      "padding": [
+                        10,
+                        18
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "TU8bU",
+                          "name": "提交图标",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "send",
+                          "library": "lucide",
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ADGwi",
+                          "name": "提交文字",
+                          "fill": "#FFFFFF",
+                          "content": "提交签章图片",
+                          "fontFamily": "$font-ui",
+                          "fontSize": 14,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "border": {
+      "type": "color",
+      "value": "#E5E7EB"
+    },
+    "border-strong": {
+      "type": "color",
+      "value": "#CBD5E1"
+    },
+    "danger": {
+      "type": "color",
+      "value": "#DC2626"
+    },
+    "font-data": {
+      "type": "string",
+      "value": "Geist Mono"
+    },
+    "font-ui": {
+      "type": "string",
+      "value": "Inter"
+    },
+    "primary": {
+      "type": "color",
+      "value": "#2563EB"
+    },
+    "primary-dark": {
+      "type": "color",
+      "value": "#1D4ED8"
+    },
+    "success": {
+      "type": "color",
+      "value": "#059669"
+    },
+    "surface-dark": {
+      "type": "color",
+      "value": "#0F172A"
+    },
+    "surface-muted": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "surface-page": {
+      "type": "color",
+      "value": "#F5F7FA"
+    },
+    "surface-panel": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#9CA3AF"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": "#111827"
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": "#6B7280"
+    },
+    "warning": {
+      "type": "color",
+      "value": "#D97706"
+    }
+  },
+  "fileToken": "622a62f2-f9c5-4b85-9a50-fa7d3f642a40"
+}

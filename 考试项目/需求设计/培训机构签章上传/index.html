@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>培训机构签章上传</title>
+  <style>
+    :root {
+      --ink: #1f2a37;
+      --muted: #667085;
+      --line: #d9e0e8;
+      --panel: #ffffff;
+      --paper: #f4f7fb;
+      --brand: #1f6f8b;
+      --brand-deep: #12516d;
+      --gold: #b8822a;
+      --warn-bg: #fff7ea;
+      --warn-line: #ecc98f;
+      --danger: #b42318;
+      --ok: #1c7c54;
+      --shadow: 0 18px 50px rgba(22, 45, 61, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 1180px;
+      color: var(--ink);
+      font-family: "Noto Serif SC", "Microsoft YaHei", "PingFang SC", serif;
+      background:
+        linear-gradient(135deg, rgba(31, 111, 139, 0.10), transparent 34%),
+        repeating-linear-gradient(90deg, rgba(18, 81, 109, 0.035) 0 1px, transparent 1px 28px),
+        var(--paper);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .page {
+      padding: 34px 42px 48px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin: 0 auto 24px;
+      max-width: 1360px;
+    }
+
+    .crumb {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid rgba(31, 111, 139, 0.22);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--brand-deep);
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 4px rgba(28, 124, 84, 0.12);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.42fr) 430px;
+      gap: 22px;
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .band,
+    .side-panel {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(217, 224, 232, 0.9);
+      box-shadow: var(--shadow);
+    }
+
+    .band {
+      padding: 24px;
+      border-radius: 8px;
+    }
+
+    .side-panel {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .upload-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .dropzone {
+      position: relative;
+      min-height: 332px;
+      border: 2px dashed rgba(31, 111, 139, 0.36);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(242, 248, 251, 0.86)),
+        repeating-linear-gradient(-45deg, rgba(31, 111, 139, 0.04) 0 10px, transparent 10px 20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 34px;
+      transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+
+    .dropzone.is-dragover {
+      border-color: var(--brand);
+      transform: translateY(-2px);
+      background: #eef8fb;
+    }
+
+    .drop-inner {
+      max-width: 520px;
+      text-align: center;
+    }
+
+    .seal-mark {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 20px;
+      border: 3px solid rgba(180, 35, 24, 0.72);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--danger);
+      font-weight: 800;
+      letter-spacing: 2px;
+      transform: rotate(-12deg);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .drop-title {
+      margin: 0 0 10px;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .drop-copy {
+      margin: 0 0 22px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .primary-btn,
+    .ghost-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      font-weight: 800;
+    }
+
+    .primary-btn {
+      color: #fff;
+      background: var(--brand);
+      box-shadow: 0 10px 24px rgba(31, 111, 139, 0.24);
+    }
+
+    .primary-btn:hover,
+    .ghost-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .primary-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.48;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .ghost-btn {
+      color: var(--brand-deep);
+      background: #fff;
+      border-color: rgba(31, 111, 139, 0.28);
+    }
+
+    .file-input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .rules {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+    }
+
+    .rules h3,
+    .side-block h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .rule-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 11px;
+    }
+
+    .rule-list li {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 8px;
+      color: #344054;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(31, 111, 139, 0.12);
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .file-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 16px;
+      padding: 13px 16px;
+      border: 1px solid #dce7ee;
+      border-radius: 6px;
+      background: #f8fafc;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .file-strip strong {
+      color: var(--ink);
+      font-size: 14px;
+      word-break: break-all;
+      text-align: right;
+    }
+
+    .file-strip.is-error {
+      border-color: #f4b4ad;
+      background: #fff5f3;
+      color: var(--danger);
+    }
+
+    .side-head {
+      padding: 20px 22px;
+      background: linear-gradient(135deg, #174b65, #1f6f8b);
+      color: #fff;
+    }
+
+    .side-head p {
+      margin: 8px 0 0;
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .side-body {
+      padding: 20px 22px 22px;
+    }
+
+    .side-block {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .side-block:first-child {
+      padding-top: 0;
+    }
+
+    .side-block:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .form-row {
+      margin-bottom: 13px;
+    }
+
+    .form-row label {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 7px;
+    }
+
+    .readonly-field {
+      display: flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0 12px;
+      border-radius: 6px;
+      border: 1px solid #e4eaf0;
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    .purpose-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: #344054;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .purpose-list li {
+      display: flex;
+      gap: 8px;
+    }
+
+    .purpose-list span {
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    .disclaimer {
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--warn-line);
+      background: var(--warn-bg);
+    }
+
+    .disclaimer strong {
+      color: #8a4f00;
+    }
+
+    .disclaimer p {
+      margin: 8px 0 0;
+      color: #533b17;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .consent {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 10px;
+      align-items: start;
+      margin-top: 14px;
+      color: #344054;
+      font-size: 14px;
+      line-height: 1.65;
+      cursor: pointer;
+    }
+
+    .consent input {
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      accent-color: var(--brand);
+    }
+
+    .footer-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      max-width: 1360px;
+      margin: 22px auto 0;
+      padding: 18px 0 0;
+    }
+
+    .toast {
+      position: fixed;
+      right: 36px;
+      bottom: 34px;
+      width: 360px;
+      padding: 16px 18px;
+      border-radius: 8px;
+      background: #12384c;
+      color: #fff;
+      box-shadow: 0 18px 46px rgba(17, 24, 39, 0.28);
+      opacity: 0;
+      transform: translateY(14px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1240px) {
+      body {
+        min-width: 1000px;
+      }
+
+      .shell {
+        grid-template-columns: minmax(0, 1fr) 390px;
+      }
+
+      .upload-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div>
+        <div class="crumb">培训机构管理 / 资料维护 / 签章图片上传</div>
+        <h1>培训机构签章上传</h1>
+      </div>
+      <div class="top-actions">
+        <span>当前机构：江西示例职业培训学校</span>
+        <span class="status-pill"><i class="dot"></i> 待上传签章</span>
+      </div>
+    </header>
+
+    <section class="shell">
+      <div>
+        <section class="band">
+          <div class="section-title">
+            <div>
+              <h2>上传签章图片</h2>
+              <div class="hint">用于考试报名材料、审核材料、结业或相关证明文件中的机构签章展示。</div>
+            </div>
+            <button class="ghost-btn" type="button" id="clearBtn">清空重选</button>
+          </div>
+
+          <div class="upload-grid">
+            <label class="dropzone" id="dropzone">
+              <input class="file-input" id="sealFile" type="file" accept="image/png,image/jpeg,image/jpg">
+              <span class="drop-inner">
+                <span class="seal-mark">机构签章</span>
+                <span class="drop-title">点击选择或拖拽签章图片到此处</span>
+                <span class="drop-copy">建议上传透明底 PNG，确保签章边缘清晰、无明显裁切、无水印遮挡。</span>
+                <span class="primary-btn">选择图片</span>
+              </span>
+            </label>
+
+            <aside class="rules">
+              <h3>上传要求</h3>
+              <ul class="rule-list">
+                <li><span class="check">✓</span><span>支持 JPG、JPEG、PNG 格式，优先使用透明底 PNG。</span></li>
+                <li><span class="check">✓</span><span>单个文件建议不超过 2MB，图片长宽不低于 300 像素。</span></li>
+                <li><span class="check">✓</span><span>签章内容应与机构备案名称一致，不能上传个人章或无关图片。</span></li>
+              <li><span class="check">✓</span><span>上传后请核对文件名称和大小，确认选择的是本机构签章图片。</span></li>
+            </ul>
+          </aside>
+        </div>
+          <div class="file-strip" id="fileStrip">
+            <span>尚未选择文件</span>
+            <strong id="fileSummary">请选择本机构签章图片</strong>
+          </div>
+        </section>
+      </div>
+
+      <aside class="side-panel">
+        <div class="side-head">
+          <h2>责任确认与平台授权</h2>
+          <p>签章图片将作为机构业务材料展示依据，提交前请确认真实性、合法性和授权范围。</p>
+        </div>
+        <div class="side-body">
+          <section class="side-block">
+            <h3>机构信息</h3>
+            <div class="form-row">
+              <label>培训机构名称</label>
+              <div class="readonly-field">江西示例职业培训学校</div>
+            </div>
+          </section>
+
+          <section class="side-block">
+            <h3>签章使用范围</h3>
+            <ul class="purpose-list">
+              <li><span>01</span> 考试报名、资格审核等业务材料展示。</li>
+              <li><span>02</span> 培训、考试、证书或证明相关文件生成。</li>
+              <li><span>03</span> 平台为完成上述业务所需的页面展示、材料归档和打印输出。</li>
+            </ul>
+          </section>
+
+          <section class="side-block">
+            <h3>免责声明</h3>
+            <div class="disclaimer">
+              <strong>请在提交前仔细确认：</strong>
+              <p>培训机构承诺上传的签章图片真实、合法、有效，签章内容与本机构备案信息一致。因签章图片不真实、不合法、未经授权、冒用或使用不当所产生的一切责任和后果，由培训机构自行承担。</p>
+              <p>培训机构同意并授权平台在考试报名、审核、证书或证明材料生成、业务归档、打印输出等相关场景中使用该签章图片。</p>
+            </div>
+            <label class="consent">
+              <input type="checkbox" id="consentCheck">
+              <span>我已阅读并确认上述免责声明，承诺对签章真伪及授权使用承担相应责任。</span>
+            </label>
+          </section>
+        </div>
+      </aside>
+    </section>
+
+    <div class="footer-actions">
+      <button class="primary-btn" type="button" id="submitBtn" disabled>提交签章图片</button>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">已完成签章图片提交校验，可接入后端上传接口。</div>
+
+  <script>
+    const fileInput = document.getElementById('sealFile');
+    const dropzone = document.getElementById('dropzone');
+    const fileStrip = document.getElementById('fileStrip');
+    const fileSummary = document.getElementById('fileSummary');
+    const consentCheck = document.getElementById('consentCheck');
+    const submitBtn = document.getElementById('submitBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const toast = document.getElementById('toast');
+    let selectedFile = null;
+
+    function formatSize(bytes) {
+      if (!bytes) return '-';
+      if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+      return `${(bytes / 1024 / 1024).toFixed(2)} MB`;
+    }
+
+    function updateSubmitState() {
+      submitBtn.disabled = !(selectedFile && consentCheck.checked);
+    }
+
+    function showFile(file) {
+      if (!file || !file.type.startsWith('image/')) {
+        fileStrip.classList.add('is-error');
+        fileStrip.querySelector('span').textContent = '格式不符合';
+        fileSummary.textContent = '请选择 JPG、JPEG 或 PNG 图片';
+        selectedFile = null;
+        updateSubmitState();
+        return;
+      }
+
+      selectedFile = file;
+      fileStrip.classList.remove('is-error');
+      fileStrip.querySelector('span').textContent = file.size <= 2 * 1024 * 1024 ? '已选择文件' : '文件偏大，建议压缩';
+      fileSummary.textContent = `${file.name} / ${formatSize(file.size)}`;
+      updateSubmitState();
+    }
+
+    fileInput.addEventListener('change', event => showFile(event.target.files[0]));
+    consentCheck.addEventListener('change', updateSubmitState);
+
+    ['dragenter', 'dragover'].forEach(name => {
+      dropzone.addEventListener(name, event => {
+        event.preventDefault();
+        dropzone.classList.add('is-dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(name => {
+      dropzone.addEventListener(name, event => {
+        event.preventDefault();
+        dropzone.classList.remove('is-dragover');
+      });
+    });
+
+    dropzone.addEventListener('drop', event => {
+      showFile(event.dataTransfer.files[0]);
+    });
+
+    clearBtn.addEventListener('click', () => {
+      selectedFile = null;
+      fileInput.value = '';
+      fileStrip.classList.remove('is-error');
+      fileStrip.querySelector('span').textContent = '尚未选择文件';
+      fileSummary.textContent = '请选择本机构签章图片';
+      updateSubmitState();
+    });
+
+    submitBtn.addEventListener('click', () => {
+      toast.classList.add('is-visible');
+      window.setTimeout(() => toast.classList.remove('is-visible'), 2800);
+    });
+  </script>
+</body>
+</html>
