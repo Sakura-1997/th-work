@@ -1,0 +1,4 @@
+# 数据库
+mysql -u root -p
+v33naw6egpna764huqew23z
+use spx_prod;

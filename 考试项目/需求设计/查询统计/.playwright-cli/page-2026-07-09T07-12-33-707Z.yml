@@ -1,0 +1,578 @@
+- main [ref=e2]:
+  - region "全局筛选" [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 地市
+      - combobox "地市" [ref=e6]:
+        - option "全部地市" [selected]
+        - option "南昌市"
+        - option "赣州市"
+        - option "上饶市"
+    - generic [ref=e7]:
+      - generic [ref=e8]: 培训机构
+      - combobox "培训机构" [ref=e9]:
+        - option "全部机构" [selected]
+        - option "江西安培职业培训学校"
+        - option "南昌应急培训中心"
+    - generic [ref=e10]:
+      - generic [ref=e11]: 时间范围
+      - combobox "时间范围" [ref=e12]:
+        - option "近 12 个月" [selected]
+        - option "本月"
+        - option "本季度"
+        - option "本年度"
+    - button "查询" [ref=e13] [cursor=pointer]
+    - button "重置" [ref=e14] [cursor=pointer]
+  - region "总览" [ref=e15]:
+    - heading "总览 区域监管与业务总体情况" [level=2] [ref=e16]:
+      - text: 总览
+      - generic [ref=e17]: 区域监管与业务总体情况
+    - generic "总览核心指标" [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e20]: 培训人数
+        - generic [ref=e21]:
+          - strong [ref=e22]: 68,426
+          - generic [ref=e23]: 人
+        - generic [ref=e24]: 覆盖全省培训机构
+      - generic [ref=e25]:
+        - generic [ref=e26]: 考试人数
+        - generic [ref=e27]:
+          - strong [ref=e28]: "91.6"
+          - generic [ref=e29]: "%"
+        - generic [ref=e30]: 考试通过率
+      - generic [ref=e31]:
+        - generic [ref=e32]: 首次通过率
+        - generic [ref=e33]:
+          - strong [ref=e34]: "84.7"
+          - generic [ref=e35]: "%"
+        - generic [ref=e36]: 首次考试通过占比
+      - generic [ref=e37]:
+        - generic [ref=e38]: 证书有效率
+        - generic [ref=e39]:
+          - strong [ref=e40]: "96.3"
+          - generic [ref=e41]: "%"
+        - generic [ref=e42]: 有效证书占比
+      - generic [ref=e43]:
+        - generic [ref=e44]: 发证人数
+        - generic [ref=e45]:
+          - strong [ref=e46]: 37,424
+          - generic [ref=e47]: 人
+        - generic [ref=e48]: 已发证人员
+      - generic [ref=e49]:
+        - generic [ref=e50]: 待处理事项
+        - generic [ref=e51]:
+          - strong [ref=e52]: "75"
+          - generic [ref=e53]: 件
+        - generic [ref=e54]: 按地市汇总
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - generic [ref=e57]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: 趋势对比
+            - generic [ref=e60]: 培训人数与考试通过率
+          - img "趋势对比折线图" [ref=e62]:
+            - generic [ref=e63]: 考试通过率
+            - generic [ref=e64]: 培训人数
+            - generic [ref=e65]: 100%
+            - generic [ref=e66]: 90%
+            - generic [ref=e67]: 80%
+            - generic [ref=e68]: 70%
+            - generic [ref=e69]: 60%
+            - generic [ref=e70]: 1月
+            - generic [ref=e71]: 4月
+            - generic [ref=e72]: 7月
+            - generic [ref=e73]: 10月
+            - generic [ref=e74]: 12月
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - generic [ref=e80]: 地市排名
+            - generic [ref=e81]: 考试通过率
+          - generic [ref=e83]:
+            - generic [ref=e84]:
+              - generic [ref=e85]: "1"
+              - generic [ref=e86]: 南昌市
+              - generic [ref=e87]: 91.8%
+            - generic [ref=e90]:
+              - generic [ref=e91]: "2"
+              - generic [ref=e92]: 宜春市
+              - generic [ref=e93]: 90.7%
+            - generic [ref=e96]:
+              - generic [ref=e97]: "3"
+              - generic [ref=e98]: 赣州市
+              - generic [ref=e99]: 89.5%
+            - generic [ref=e102]:
+              - generic [ref=e103]: "4"
+              - generic [ref=e104]: 抚州市
+              - generic [ref=e105]: 88.2%
+            - generic [ref=e108]:
+              - generic [ref=e109]: "5"
+              - generic [ref=e110]: 九江市
+              - generic [ref=e111]: 87.9%
+      - generic [ref=e114]:
+        - generic [ref=e115]:
+          - generic [ref=e116]:
+            - generic [ref=e118]: 区域监管态势
+            - generic [ref=e119]:
+              - button "考试通过率" [ref=e120] [cursor=pointer]
+              - button "证书有效率" [ref=e121] [cursor=pointer]
+              - button "待处理事项数" [ref=e122] [cursor=pointer]
+          - generic [ref=e124]:
+            - generic "江西区域监管态势地图" [ref=e125]:
+              - generic [ref=e126]:
+                - iframe [ref=e127]:
+                  
+                - generic [ref=e129]:
+                  - generic:
+                    - generic [ref=e131]:
+                      - generic:
+                        - strong: 南昌
+                        - generic: 91.8%
+                    - generic [ref=e132]:
+                      - generic:
+                        - strong: 九江
+                        - generic: 87.9%
+                    - generic [ref=e133]:
+                      - generic:
+                        - strong: 景德镇
+                        - generic: 88.6%
+                    - generic [ref=e134]:
+                      - generic:
+                        - strong: 上饶
+                        - generic: 82.4%
+                    - generic [ref=e135]:
+                      - generic:
+                        - strong: 鹰潭
+                        - generic: 86.2%
+                    - generic [ref=e136]:
+                      - generic:
+                        - strong: 抚州
+                        - generic: 88.2%
+                    - generic [ref=e137]:
+                      - generic:
+                        - strong: 宜春
+                        - generic: 90.7%
+                    - generic [ref=e138]:
+                      - generic:
+                        - strong: 新余
+                        - generic: 85.4%
+                    - generic [ref=e139]:
+                      - generic:
+                        - strong: 萍乡
+                        - generic: 80.6%
+                    - generic [ref=e140]:
+                      - generic:
+                        - strong: 吉安
+                        - generic: 86.8%
+                    - generic [ref=e141]:
+                      - generic:
+                        - strong: 赣州
+                        - generic: 89.5%
+                - generic:
+                  - generic:
+                    - generic: 100 公里
+            - generic [ref=e142]:
+              - generic [ref=e143]:
+                - generic [ref=e144]:
+                  - generic [ref=e145]: 全省考试通过率
+                  - strong [ref=e146]: 88.9%
+                - generic [ref=e147]:
+                  - generic [ref=e148]: 证书有效率
+                  - strong [ref=e149]: 96.3%
+                - generic [ref=e150]:
+                  - generic [ref=e151]: 待处理事项数
+                  - strong [ref=e152]: "75"
+              - generic [ref=e153]: 当前按考试通过率着色
+              - generic [ref=e154]:
+                - generic [ref=e155]: 南昌市
+                - generic [ref=e158]: 96.1%
+              - generic [ref=e159]:
+                - generic [ref=e160]: 赣州市
+                - generic [ref=e163]: 92.4%
+              - generic [ref=e164]:
+                - generic [ref=e165]: 宜春市
+                - generic [ref=e168]: 89.7%
+              - generic [ref=e169]:
+                - generic [ref=e170]: 上饶市
+                - generic [ref=e173]: 81.0%
+              - generic [ref=e174]:
+                - generic [ref=e175]: 萍乡市
+                - generic [ref=e178]: 78.6%
+        - generic [ref=e179]:
+          - generic [ref=e180]:
+            - generic [ref=e181]: 重点机构通过率
+            - generic [ref=e182]: 按机构考生考试通过率
+          - generic [ref=e183]:
+            - generic [ref=e184]:
+              - generic [ref=e185]: 江西安培职业培训学校
+              - generic [ref=e188]: 94.2%
+            - generic [ref=e189]:
+              - generic [ref=e190]: 南昌应急培训中心
+              - generic [ref=e193]: 91.6%
+            - generic [ref=e194]:
+              - generic [ref=e195]: 九江安全生产培训中心
+              - generic [ref=e198]: 88.7%
+            - generic [ref=e199]:
+              - generic [ref=e200]: 上饶安全生产培训中心
+              - generic [ref=e203]: 79.8%
+      - generic [ref=e204]:
+        - generic [ref=e205]:
+          - generic [ref=e206]:
+            - generic [ref=e207]: 机构通过率排行
+            - generic [ref=e208]: 培训机构
+          - generic [ref=e210]:
+            - generic [ref=e211]:
+              - generic [ref=e212]: "1"
+              - generic [ref=e213]: 江西安培职业培训学校
+              - generic [ref=e214]: 94.2%
+            - generic [ref=e217]:
+              - generic [ref=e218]: "2"
+              - generic [ref=e219]: 南昌应急培训中心
+              - generic [ref=e220]: 91.6%
+            - generic [ref=e223]:
+              - generic [ref=e224]: "3"
+              - generic [ref=e225]: 九江安全生产培训中心
+              - generic [ref=e226]: 88.7%
+            - generic [ref=e229]:
+              - generic [ref=e230]: "4"
+              - generic [ref=e231]: 上饶安全生产培训中心
+              - generic [ref=e232]: 79.8%
+        - generic [ref=e235]:
+          - generic [ref=e236]:
+            - generic [ref=e237]: 人员分类分布
+            - generic [ref=e238]: 按人员数量
+          - generic [ref=e240]:
+            - generic [ref=e241]:
+              - generic [ref=e242]: 特种作业
+              - generic [ref=e245]: 68%
+            - generic [ref=e246]:
+              - generic [ref=e247]: 安全生产管理人员
+              - generic [ref=e250]: 21%
+            - generic [ref=e251]:
+              - generic [ref=e252]: 主要负责人
+              - generic [ref=e255]: 11%
+  - region "培训分析" [ref=e256]:
+    - heading "培训分析 培训人数趋势、机构考生考试通过率" [level=2] [ref=e257]:
+      - text: 培训分析
+      - generic [ref=e258]: 培训人数趋势、机构考生考试通过率
+    - generic [ref=e259]:
+      - generic [ref=e260]:
+        - generic [ref=e261]: 培训人数趋势
+        - generic [ref=e262]: 按月统计
+      - generic [ref=e264]:
+        - generic [ref=e265]:
+          - generic [ref=e268]: 8,420
+          - generic [ref=e269]: 7月
+        - generic [ref=e270]:
+          - generic [ref=e273]: 7,960
+          - generic [ref=e274]: 8月
+        - generic [ref=e275]:
+          - generic [ref=e278]: 9,180
+          - generic [ref=e279]: 9月
+        - generic [ref=e280]:
+          - generic [ref=e283]: 8,706
+          - generic [ref=e284]: 10月
+        - generic [ref=e285]:
+          - generic [ref=e288]: 9,846
+          - generic [ref=e289]: 11月
+        - generic [ref=e290]:
+          - generic [ref=e293]: 10,236
+          - generic [ref=e294]: 12月
+    - generic [ref=e295]:
+      - generic [ref=e296]:
+        - generic [ref=e297]: 培训机构考生考试通过率
+        - generic [ref=e298]: 按机构、参考人数、首次与最终通过率统计
+      - table [ref=e300]:
+        - rowgroup [ref=e301]:
+          - row "培训机构 培训人数 参考人数 机构考生考试通过率 首次考试通过率 最终考试通过率" [ref=e302]:
+            - columnheader "培训机构" [ref=e303]
+            - columnheader "培训人数" [ref=e304]
+            - columnheader "参考人数" [ref=e305]
+            - columnheader "机构考生考试通过率" [ref=e306]
+            - columnheader "首次考试通过率" [ref=e307]
+            - columnheader "最终考试通过率" [ref=e308]
+        - rowgroup [ref=e309]:
+          - row "江西安培职业培训学校 6,842 6,218 94.2% 88.6% 96.4%" [ref=e310]:
+            - cell "江西安培职业培训学校" [ref=e311]
+            - cell "6,842" [ref=e312]
+            - cell "6,218" [ref=e313]
+            - cell "94.2%" [ref=e314]
+            - cell "88.6%" [ref=e315]
+            - cell "96.4%" [ref=e316]
+          - row "南昌应急培训中心 5,920 5,426 91.6% 86.8% 94.1%" [ref=e317]:
+            - cell "南昌应急培训中心" [ref=e318]
+            - cell "5,920" [ref=e319]
+            - cell "5,426" [ref=e320]
+            - cell "91.6%" [ref=e321]
+            - cell "86.8%" [ref=e322]
+            - cell "94.1%" [ref=e323]
+          - row "九江安全生产培训中心 3,286 2,842 88.7% 82.5% 91.2%" [ref=e324]:
+            - cell "九江安全生产培训中心" [ref=e325]
+            - cell "3,286" [ref=e326]
+            - cell "2,842" [ref=e327]
+            - cell "88.7%" [ref=e328]
+            - cell "82.5%" [ref=e329]
+            - cell "91.2%" [ref=e330]
+          - row "上饶安全生产培训中心 3,406 2,954 68.4% 61.8% 76.5%" [ref=e331]:
+            - cell "上饶安全生产培训中心" [ref=e332]
+            - cell "3,406" [ref=e333]
+            - cell "2,954" [ref=e334]
+            - cell "68.4%" [ref=e335]
+            - cell "61.8%" [ref=e336]
+            - cell "76.5%" [ref=e337]
+          - row "萍乡工业安全培训学校 2,784 2,306 74.8% 72.6% 81.4%" [ref=e338]:
+            - cell "萍乡工业安全培训学校" [ref=e339]
+            - cell "2,784" [ref=e340]
+            - cell "2,306" [ref=e341]
+            - cell "74.8%" [ref=e342]
+            - cell "72.6%" [ref=e343]
+            - cell "81.4%" [ref=e344]
+  - region "考试分析" [ref=e345]:
+    - heading "考试分析 查询时间段内各地考试安排与参考人数" [level=2] [ref=e346]:
+      - text: 考试分析
+      - generic [ref=e347]: 查询时间段内各地考试安排与参考人数
+    - generic [ref=e348]:
+      - generic [ref=e349]:
+        - generic [ref=e350]:
+          - generic [ref=e351]: 地市考试人数分布
+          - generic [ref=e352]: 按考试安排人数统计
+        - generic [ref=e354]:
+          - generic [ref=e355]:
+            - generic [ref=e358]: 2,860
+            - generic [ref=e359]: 南昌
+          - generic [ref=e360]:
+            - generic [ref=e363]: 2,430
+            - generic [ref=e364]: 赣州
+          - generic [ref=e365]:
+            - generic [ref=e368]: 2,016
+            - generic [ref=e369]: 上饶
+          - generic [ref=e370]:
+            - generic [ref=e373]: 1,742
+            - generic [ref=e374]: 九江
+          - generic [ref=e375]:
+            - generic [ref=e378]: 1,486
+            - generic [ref=e379]: 宜春
+          - generic [ref=e380]:
+            - generic [ref=e383]: 1,208
+            - generic [ref=e384]: 抚州
+      - generic [ref=e385]:
+        - generic [ref=e386]:
+          - generic [ref=e387]: 人员分类考试人数
+          - generic [ref=e388]: 按人员分类统计
+        - generic [ref=e389]:
+          - generic [ref=e390]:
+            - generic [ref=e391]: 理论考试
+            - generic [ref=e394]: 8,624
+          - generic [ref=e395]:
+            - generic [ref=e396]: 实操考试
+            - generic [ref=e399]: 6,912
+          - generic [ref=e400]:
+            - generic [ref=e401]: 特种作业
+            - generic [ref=e404]: 9,842
+          - generic [ref=e405]:
+            - generic [ref=e406]: 安全生产管理人员
+            - generic [ref=e409]: 3,216
+          - generic [ref=e410]:
+            - generic [ref=e411]: 主要负责人
+            - generic [ref=e414]: 2,478
+    - generic [ref=e415]:
+      - generic [ref=e416]:
+        - generic [ref=e417]: 考试安排明细
+        - generic [ref=e418]: 按时间、地市、考试点、人员分类和人数统计
+      - table [ref=e420]:
+        - rowgroup [ref=e421]:
+          - row "考试日期 地市 考试点 考试类型 人员分类 考试人数" [ref=e422]:
+            - columnheader "考试日期" [ref=e423]
+            - columnheader "地市" [ref=e424]
+            - columnheader "考试点" [ref=e425]
+            - columnheader "考试类型" [ref=e426]
+            - columnheader "人员分类" [ref=e427]
+            - columnheader "考试人数" [ref=e428]
+        - rowgroup [ref=e429]:
+          - row "2026-07-09 南昌市 南昌第一考试点 理论 特种作业 486" [ref=e430]:
+            - cell "2026-07-09" [ref=e431]
+            - cell "南昌市" [ref=e432]
+            - cell "南昌第一考试点" [ref=e433]
+            - cell "理论" [ref=e434]
+            - cell "特种作业" [ref=e435]
+            - cell "486" [ref=e436]
+          - row "2026-07-09 赣州市 赣州章贡考试点 实操 特种作业 352" [ref=e437]:
+            - cell "2026-07-09" [ref=e438]
+            - cell "赣州市" [ref=e439]
+            - cell "赣州章贡考试点" [ref=e440]
+            - cell "实操" [ref=e441]
+            - cell "特种作业" [ref=e442]
+            - cell "352" [ref=e443]
+          - row "2026-07-10 上饶市 上饶信州考试点 理论 安全生产管理人员 286" [ref=e444]:
+            - cell "2026-07-10" [ref=e445]
+            - cell "上饶市" [ref=e446]
+            - cell "上饶信州考试点" [ref=e447]
+            - cell "理论" [ref=e448]
+            - cell "安全生产管理人员" [ref=e449]
+            - cell "286" [ref=e450]
+          - row "2026-07-10 九江市 九江浔阳考试点 实操 特种作业 218" [ref=e451]:
+            - cell "2026-07-10" [ref=e452]
+            - cell "九江市" [ref=e453]
+            - cell "九江浔阳考试点" [ref=e454]
+            - cell "实操" [ref=e455]
+            - cell "特种作业" [ref=e456]
+            - cell "218" [ref=e457]
+          - row "2026-07-11 宜春市 宜春袁州考试点 理论 主要负责人 164" [ref=e458]:
+            - cell "2026-07-11" [ref=e459]
+            - cell "宜春市" [ref=e460]
+            - cell "宜春袁州考试点" [ref=e461]
+            - cell "理论" [ref=e462]
+            - cell "主要负责人" [ref=e463]
+            - cell "164" [ref=e464]
+  - region "证书分析" [ref=e465]:
+    - heading "证书分析 证书有效与持证人员分布" [level=2] [ref=e466]:
+      - text: 证书分析
+      - generic [ref=e467]: 证书有效与持证人员分布
+    - generic [ref=e468]:
+      - generic [ref=e469]:
+        - generic [ref=e470]:
+          - generic [ref=e471]: 证书状态
+          - generic [ref=e472]: 有效、持证、发证
+        - generic [ref=e474]:
+          - generic [ref=e475]:
+            - strong [ref=e477]: 93.1%
+            - generic [ref=e478]: 证书有效率
+          - generic [ref=e479]:
+            - strong [ref=e481]: 37,424
+            - generic [ref=e482]: 发证人数
+          - generic [ref=e483]:
+            - strong [ref=e485]: 11,972
+            - generic [ref=e486]: 有效证书
+      - generic [ref=e487]:
+        - generic [ref=e488]:
+          - generic [ref=e489]: 证书办理量
+          - generic [ref=e490]: 近 6 个月
+        - generic [ref=e492]:
+          - generic [ref=e496]: 7月
+          - generic [ref=e500]: 8月
+          - generic [ref=e504]: 9月
+          - generic [ref=e508]: 10月
+          - generic [ref=e512]: 11月
+          - generic [ref=e516]: 12月
+    - generic [ref=e517]:
+      - generic [ref=e518]:
+        - generic [ref=e519]: 持证人员分布
+        - generic [ref=e520]: 按人员分类、区域统计
+      - table [ref=e522]:
+        - rowgroup [ref=e523]:
+          - row "人员分类 持证人员 有效证书 发证机关" [ref=e524]:
+            - columnheader "人员分类" [ref=e525]
+            - columnheader "持证人员" [ref=e526]
+            - columnheader "有效证书" [ref=e527]
+            - columnheader "发证机关" [ref=e528]
+        - rowgroup [ref=e529]:
+          - row "特种作业 72,184 69,486 省厅" [ref=e530]:
+            - cell "特种作业" [ref=e531]
+            - cell "72,184" [ref=e532]
+            - cell "69,486" [ref=e533]
+            - cell "省厅" [ref=e534]
+          - row "安全生产管理人员 18,640 17,902 省厅" [ref=e535]:
+            - cell "安全生产管理人员" [ref=e536]
+            - cell "18,640" [ref=e537]
+            - cell "17,902" [ref=e538]
+            - cell "省厅" [ref=e539]
+          - row "主要负责人 11,312 10,968 省厅" [ref=e540]:
+            - cell "主要负责人" [ref=e541]
+            - cell "11,312" [ref=e542]
+            - cell "10,968" [ref=e543]
+            - cell "省厅" [ref=e544]
+  - region "考务人员" [ref=e545]:
+    - heading "考务人员 人员类别与人员明细" [level=2] [ref=e546]:
+      - text: 考务人员
+      - generic [ref=e547]: 人员类别与人员明细
+    - generic [ref=e548]:
+      - generic [ref=e549]:
+        - generic [ref=e550]:
+          - generic [ref=e551]: 人员类别占比
+          - generic [ref=e552]: 按人员类型
+        - generic [ref=e553]:
+          - generic [ref=e554]:
+            - generic [ref=e555]: 监考员
+            - generic [ref=e558]: 63%
+          - generic [ref=e559]:
+            - generic [ref=e560]: 考评员
+            - generic [ref=e563]: 31%
+          - generic [ref=e564]:
+            - generic [ref=e565]: 巡考员
+            - generic [ref=e568]: 6%
+      - generic [ref=e569]:
+        - generic [ref=e570]:
+          - generic [ref=e571]: 人员数量概览
+          - generic [ref=e572]: 按人员类型
+        - generic [ref=e574]:
+          - generic [ref=e575]:
+            - generic [ref=e576]: 监考员
+            - strong [ref=e577]: 1,286
+          - generic [ref=e578]:
+            - generic [ref=e579]: 考评员
+            - strong [ref=e580]: "642"
+          - generic [ref=e581]:
+            - generic [ref=e582]: 巡考员
+            - strong [ref=e583]: "118"
+    - generic [ref=e584]:
+      - generic [ref=e585]:
+        - generic [ref=e586]: 考务人员明细
+        - generic [ref=e587]: 按区域、考试点、人员类型统计
+      - table [ref=e589]:
+        - rowgroup [ref=e590]:
+          - row "区域 考试点 监考员 考评员 巡考员 数据状态" [ref=e591]:
+            - columnheader "区域" [ref=e592]
+            - columnheader "考试点" [ref=e593]
+            - columnheader "监考员" [ref=e594]
+            - columnheader "考评员" [ref=e595]
+            - columnheader "巡考员" [ref=e596]
+            - columnheader "数据状态" [ref=e597]
+        - rowgroup [ref=e598]:
+          - row "南昌市 南昌第一考试点 168 86 12 正常" [ref=e599]:
+            - cell "南昌市" [ref=e600]
+            - cell "南昌第一考试点" [ref=e601]
+            - cell "168" [ref=e602]
+            - cell "86" [ref=e603]
+            - cell "12" [ref=e604]
+            - cell "正常" [ref=e605]
+          - row "赣州市 赣州章贡考试点 142 74 10 正常" [ref=e606]:
+            - cell "赣州市" [ref=e607]
+            - cell "赣州章贡考试点" [ref=e608]
+            - cell "142" [ref=e609]
+            - cell "74" [ref=e610]
+            - cell "10" [ref=e611]
+            - cell "正常" [ref=e612]
+          - row "上饶市 上饶信州考试点 96 52 8 正常" [ref=e613]:
+            - cell "上饶市" [ref=e614]
+            - cell "上饶信州考试点" [ref=e615]
+            - cell "96" [ref=e616]
+            - cell "52" [ref=e617]
+            - cell "8" [ref=e618]
+            - cell "正常" [ref=e619]
+  - region "缴费统计" [ref=e620]:
+    - heading "缴费分析 全省及各地市缴费情况" [level=2] [ref=e621]:
+      - text: 缴费分析
+      - generic [ref=e622]: 全省及各地市缴费情况
+    - generic [ref=e623]:
+      - generic [ref=e624]:
+        - generic [ref=e625]: 地市人员分类缴费情况
+        - generic [ref=e626]: 按地市、人员分类统计缴费金额
+      - img "按地市和人员分类统计缴费金额分组柱状图" [ref=e629]:
+        - generic [ref=e630]:
+          - generic [ref=e632]: 特种作业人员
+          - generic [ref=e634]: 安全生产管理人员
+          - generic [ref=e636]: 主要负责人
+        - generic [ref=e637]: 1,000万
+        - generic [ref=e638]: 700万
+        - generic [ref=e639]: 400万
+        - generic [ref=e640]: 100万
+        - generic [ref=e641]: 920万
+        - generic [ref=e645]: 南昌
+        - generic [ref=e646]: 816万
+        - generic [ref=e650]: 赣州
+        - generic [ref=e651]: 704万
+        - generic [ref=e655]: 上饶
+        - generic [ref=e656]: 628万
+        - generic [ref=e660]: 九江
+        - generic [ref=e661]: 512万
+        - generic [ref=e665]: 宜春
+        - generic [ref=e666]: 468万
+        - generic [ref=e670]: 抚州
