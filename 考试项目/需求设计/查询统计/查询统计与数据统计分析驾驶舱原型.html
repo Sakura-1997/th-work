@@ -495,7 +495,7 @@
         </div>
         <div class="field">
           <label for="startDate">时间范围</label>
-          <div class="date-range"><input id="startDate" type="date" value="2026-01-01" /><span>→</span><input id="endDate" type="date" value="2026-07-16" /></div>
+          <div class="date-range"><input id="startDate" type="date" /><span>→</span><input id="endDate" type="date" /></div>
         </div>
         <button class="button primary" id="queryButton" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button>
         <button class="button" id="resetButton" type="button">↻ 重置</button>
@@ -654,7 +654,7 @@
               <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div>
               <div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div>
               <div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div>
-              <div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" value="2026-01-01" /><span>→</span><input name="endDate" type="date" value="2026-07-16" /></div></div>
+              <div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" /><span>→</span><input name="endDate" type="date" /></div></div>
               <button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
@@ -666,7 +666,7 @@
           <section class="topic-section" id="topic-person" data-topic-section="person">
             <header class="topic-heading"><h2>培训人员统计</h2><p>参训结构与合格判定</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter" data-topic="person" data-topic-label="培训人员统计">
-              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" value="2026-01-01" /><span>→</span><input name="endDate" type="date" value="2026-07-16" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" /><span>→</span><input name="endDate" type="date" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">参训人数</span><div class="metric-value"><strong>4,231</strong><span>人</span></div></article><article class="metric-card green"><span class="metric-label">合格</span><div class="metric-value"><strong>3,781</strong><span>人</span></div></article><article class="metric-card red"><span class="metric-label">不合格</span><div class="metric-value"><strong>216</strong><span>人</span></div></article><article class="metric-card amber"><span class="metric-label">待判定</span><div class="metric-value"><strong>234</strong><span>人</span></div></article><article class="metric-card cyan"><span class="metric-label">覆盖计划数</span><div class="metric-value"><strong>116</strong><span>个</span></div></article></div>
@@ -677,7 +677,7 @@
           <section class="topic-section" id="topic-institution" data-topic-section="institution">
             <header class="topic-heading"><h2>培训机构统计</h2><p>机构规模与培训质量对比</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter" data-topic="institution" data-topic-label="培训机构统计">
-              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" value="2026-01-01" /><span>→</span><input name="endDate" type="date" value="2026-07-16" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" /><span>→</span><input name="endDate" type="date" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">启用机构</span><div class="metric-value"><strong>76</strong><span>家</span></div></article><article class="metric-card cyan"><span class="metric-label">有计划机构</span><div class="metric-value"><strong>58</strong><span>家</span></div></article><article class="metric-card amber"><span class="metric-label">计划数</span><div class="metric-value"><strong>128</strong><span>个</span></div></article><article class="metric-card green"><span class="metric-label">参训人数</span><div class="metric-value"><strong>4,231</strong><span>人</span></div></article><article class="metric-card red"><span class="metric-label">平均合格率</span><div class="metric-value"><strong>89.4%</strong></div></article></div>
@@ -688,7 +688,7 @@
           <section class="topic-section" id="topic-teacher" data-topic-section="teacher">
             <header class="topic-heading"><h2>授课老师统计</h2><p>师资结构、课次与授课时长</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter" data-topic="teacher" data-topic-label="授课老师统计">
-              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" value="2026-01-01" /><span>→</span><input name="endDate" type="date" value="2026-07-16" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" /><span>→</span><input name="endDate" type="date" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">实际授课老师</span><div class="metric-value"><strong>186</strong><span>人</span></div></article><article class="metric-card green"><span class="metric-label">专职</span><div class="metric-value"><strong>112</strong><span>人</span></div></article><article class="metric-card amber"><span class="metric-label">兼职</span><div class="metric-value"><strong>74</strong><span>人</span></div></article><article class="metric-card cyan"><span class="metric-label">授课课次</span><div class="metric-value"><strong>1,286</strong><span>次</span></div></article><article class="metric-card red"><span class="metric-label">授课时长</span><div class="metric-value"><strong>3,842.5</strong><span>小时</span></div></article></div>
@@ -699,7 +699,7 @@
           <section class="topic-section" id="topic-pass" data-topic-section="pass">
             <header class="topic-heading"><h2>培训通过情况统计</h2><p>学时证明与培训合格结果</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter" data-topic="pass" data-topic-label="培训通过情况统计">
-              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" value="2026-01-01" /><span>→</span><input name="endDate" type="date" value="2026-07-16" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" /><span>→</span><input name="endDate" type="date" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">参训人数</span><div class="metric-value"><strong>4,231</strong><span>人</span></div></article><article class="metric-card cyan"><span class="metric-label">取得学时证明</span><div class="metric-value"><strong>3,965</strong><span>人</span></div></article><article class="metric-card green"><span class="metric-label">培训合格</span><div class="metric-value"><strong>3,781</strong><span>人</span></div></article><article class="metric-card red"><span class="metric-label">培训不合格</span><div class="metric-value"><strong>216</strong><span>人</span></div></article><article class="metric-card amber"><span class="metric-label">合格率</span><div class="metric-value"><strong>89.4%</strong></div></article></div>
@@ -710,7 +710,7 @@
           <section class="topic-section" id="topic-penalty" data-topic-section="penalty">
             <header class="topic-heading"><h2>培训机构处罚统计</h2><p>年度机构评估与违规情况</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter penalty-filter" data-topic="penalty" data-topic-label="培训机构处罚统计">
-              <div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>评估年度</label><select name="year"><option>2026</option><option>2025</option><option>2024</option></select></div><div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>评估年度</label><select name="year"></select></div><div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">参评机构</span><div class="metric-value"><strong>62</strong><span>家</span></div></article><article class="metric-card red"><span class="metric-label">违规次数</span><div class="metric-value"><strong>37</strong><span>次</span></div></article><article class="metric-card amber"><span class="metric-label">涉及违规机构</span><div class="metric-value"><strong>18</strong><span>家</span></div></article><article class="metric-card cyan"><span class="metric-label">不合格机构</span><div class="metric-value"><strong>4</strong><span>家</span></div></article><article class="metric-card green"><span class="metric-label">机构平均分</span><div class="metric-value"><strong>88.6</strong><span>分</span></div></article></div>
@@ -759,8 +759,11 @@
       window.setTimeout(() => toast.classList.remove("show"), 1600);
     }
 
-    function currentDateDefaults() {
-      return { startDate: "2026-01-01", endDate: "2026-07-16", year: "2026" };
+    function currentDateDefaults(referenceDate = new Date()) {
+      const year = referenceDate.getFullYear();
+      const month = String(referenceDate.getMonth() + 1).padStart(2, "0");
+      const day = String(referenceDate.getDate()).padStart(2, "0");
+      return { startDate: `${year}-01-01`, endDate: `${year}-${month}-${day}`, year: String(year) };
     }
 
     function resetPagination(pagination) {
@@ -768,12 +771,26 @@
       pagination.querySelectorAll(".page-button").forEach((button, index) => button.classList.toggle("active", index === 0));
     }
 
-    function resetTopicForm(form) {
-      const defaults = currentDateDefaults();
-      form.reset();
+    function applyTopicDefaults(form, defaults = currentDateDefaults()) {
       if (form.elements.startDate) form.elements.startDate.value = defaults.startDate;
       if (form.elements.endDate) form.elements.endDate.value = defaults.endDate;
-      if (form.elements.year) form.elements.year.value = defaults.year;
+      if (form.elements.year) {
+        const currentYear = Number(defaults.year);
+        form.elements.year.innerHTML = [currentYear, currentYear - 1, currentYear - 2].map((year) => `<option value="${year}">${year}</option>`).join("");
+        form.elements.year.value = defaults.year;
+      }
+    }
+
+    function initializeDateDefaults() {
+      const defaults = currentDateDefaults();
+      startDate.value = defaults.startDate;
+      endDate.value = defaults.endDate;
+      topicForms.forEach((form) => applyTopicDefaults(form, defaults));
+    }
+
+    function resetTopicForm(form) {
+      form.reset();
+      applyTopicDefaults(form);
       resetPagination(document.querySelector(`[data-topic-page="${form.dataset.topic}"]`));
     }
 
@@ -782,6 +799,8 @@
       if (form.dataset.topic === "penalty") return { city: "", year: defaults.year };
       return { keyword: "", category: "", city: "", startDate: defaults.startDate, endDate: defaults.endDate };
     }
+
+    initializeDateDefaults();
 
     function describeConditions(topic, conditions) {
       if (topic === "penalty") return `${conditions.city || "全部授权地市"} / ${conditions.year}年度`;
@@ -922,9 +941,10 @@
     });
 
     resetButton.addEventListener("click", () => {
+      const defaults = currentDateDefaults();
       citySelect.value = "";
-      startDate.value = "2026-01-01";
-      endDate.value = "2026-07-16";
+      startDate.value = defaults.startDate;
+      endDate.value = defaults.endDate;
       refreshPrototype();
     });
 
