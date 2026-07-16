@@ -495,7 +495,7 @@
         </div>
         <div class="field">
           <label for="startDate">时间范围</label>
-          <div class="date-range"><input id="startDate" type="date" value="2026-01-01" /><span>→</span><input id="endDate" type="date" value="2026-07-15" /></div>
+          <div class="date-range"><input id="startDate" type="date" value="2026-01-01" /><span>→</span><input id="endDate" type="date" value="2026-07-16" /></div>
         </div>
         <button class="button primary" id="queryButton" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button>
         <button class="button" id="resetButton" type="button">↻ 重置</button>
@@ -623,7 +623,7 @@
         <header class="section-heading"><h2>缴费分析</h2><p>地市与人员分类缴费情况</p></header>
         <div class="metric-grid dynamic-payment">
           <article class="metric-card cyan"><span class="metric-label">缴费总额</span><div class="metric-value"><strong>0.00</strong><span>万元</span></div></article>
-          <article class="metric-card green"><span class="metric-label">1. 信州区</span><div class="metric-value"><strong>0.00</strong><span>万元</span></div></article>
+          <article class="metric-card green"><span class="metric-label">1. 上饶市</span><div class="metric-value"><strong>0.00</strong><span>万元</span></div></article>
           <article class="metric-card amber"><span class="metric-label">特种作业人员</span><div class="metric-value"><strong>0.00</strong><span>万元</span></div></article>
         </div>
         <article class="panel payment-empty"><div class="panel-head"><div class="panel-title">地市人员分类缴费情况</div><div class="panel-sub">堆叠柱顶为该地市缴费合计</div></div><div class="panel-body"><div class="empty-state"><div><div class="empty-icon"></div>暂无数据</div></div></div></article>
@@ -639,8 +639,8 @@
               <button type="button" data-anchor="topic-person">培训人员</button>
               <button type="button" data-anchor="topic-institution">培训机构</button>
               <button type="button" data-anchor="topic-teacher">授课老师</button>
-              <button type="button" data-anchor="topic-pass">通过情况</button>
-              <button type="button" data-anchor="topic-penalty">机构处罚</button>
+              <button type="button" data-anchor="topic-pass">培训通过情况</button>
+              <button type="button" data-anchor="topic-penalty">培训机构处罚</button>
             </nav>
             <div class="topic-actions">
               <button class="button compact" id="archiveEntry" type="button">归档资料</button>
@@ -710,7 +710,7 @@
           <section class="topic-section" id="topic-penalty" data-topic-section="penalty">
             <header class="topic-heading"><h2>培训机构处罚统计</h2><p>年度机构评估与违规情况</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter penalty-filter" data-topic="penalty" data-topic-label="培训机构处罚统计">
-              <div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>考核年度</label><select name="year"><option>2026</option><option>2025</option><option>2024</option></select></div><div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>评估年度</label><select name="year"><option>2026</option><option>2025</option><option>2024</option></select></div><div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">参评机构</span><div class="metric-value"><strong>62</strong><span>家</span></div></article><article class="metric-card red"><span class="metric-label">违规次数</span><div class="metric-value"><strong>37</strong><span>次</span></div></article><article class="metric-card amber"><span class="metric-label">涉及违规机构</span><div class="metric-value"><strong>18</strong><span>家</span></div></article><article class="metric-card cyan"><span class="metric-label">不合格机构</span><div class="metric-value"><strong>4</strong><span>家</span></div></article><article class="metric-card green"><span class="metric-label">机构平均分</span><div class="metric-value"><strong>88.6</strong><span>分</span></div></article></div>
@@ -760,9 +760,7 @@
     }
 
     function currentDateDefaults() {
-      const today = new Date();
-      const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
-      return { startDate: `${today.getFullYear()}-01-01`, endDate: localToday, year: String(today.getFullYear()) };
+      return { startDate: "2026-01-01", endDate: "2026-07-16", year: "2026" };
     }
 
     function resetPagination(pagination) {
@@ -779,10 +777,15 @@
       resetPagination(document.querySelector(`[data-topic-page="${form.dataset.topic}"]`));
     }
 
-    function describeConditions(form) {
-      const data = new FormData(form);
-      if (form.dataset.topic === "penalty") return `${data.get("city") || "全部授权地市"} / ${data.get("year")}年度`;
-      return `${data.get("city") || "全部授权地市"} / ${data.get("startDate")} 至 ${data.get("endDate")}`;
+    function defaultTopicConditions(form) {
+      const defaults = currentDateDefaults();
+      if (form.dataset.topic === "penalty") return { city: "", year: defaults.year };
+      return { keyword: "", category: "", city: "", startDate: defaults.startDate, endDate: defaults.endDate };
+    }
+
+    function describeConditions(topic, conditions) {
+      if (topic === "penalty") return `${conditions.city || "全部授权地市"} / ${conditions.year}年度`;
+      return `${conditions.city || "全部授权地市"} / ${conditions.startDate} 至 ${conditions.endDate}`;
     }
 
     function setTopicState(form, state, message) {
@@ -796,14 +799,15 @@
 
     // 每个专题使用独立请求序号，迟到回调不会覆盖本区最新结果。
     function executeTopic(form) {
-      const start = form.elements.startDate?.value;
-      const end = form.elements.endDate?.value;
+      const runtime = topicRuntime.get(form.dataset.topic);
+      const requestId = ++runtime.requestId;
+      const querySnapshot = Object.fromEntries(new FormData(form).entries());
+      const start = querySnapshot.startDate;
+      const end = querySnapshot.endDate;
       if (start && end && start > end) {
         setTopicState(form, "error", "加载失败：计划开始日期不能晚于结束日期");
         return;
       }
-      const runtime = topicRuntime.get(form.dataset.topic);
-      const requestId = ++runtime.requestId;
       setTopicState(form, "loading", "加载中，正在实时统计...");
       window.setTimeout(() => {
         if (requestId !== runtime.requestId) return;
@@ -812,8 +816,8 @@
           setTopicState(form, "error", "加载失败，本专题数据暂未返回");
           return;
         }
-        runtime.lastSuccess = Object.fromEntries(new FormData(form).entries());
-        const conditionText = describeConditions(form);
+        runtime.lastSuccess = querySnapshot;
+        const conditionText = describeConditions(form.dataset.topic, querySnapshot);
         form.closest(".topic-section").querySelector("[data-last-success]").textContent = `最后成功查询：${conditionText}`;
         setTopicState(form, "success", "实时统计完成，已保留本专题最后成功查询条件");
       }, 260 + topicForms.indexOf(form) * 55);
@@ -857,6 +861,14 @@
     });
 
     document.querySelector("#exportAllTopics").addEventListener("click", () => {
+      const exportSheets = topicForms.map((form) => ({
+        worksheet: form.dataset.topicLabel,
+        conditions: topicRuntime.get(form.dataset.topic).lastSuccess ?? defaultTopicConditions(form)
+      }));
+      if (exportSheets.length !== 6) {
+        showToast("导出演示失败：专题工作表数量不完整");
+        return;
+      }
       const successfulTopics = [...topicRuntime.values()].filter((runtime) => runtime.lastSuccess).length;
       showToast(`导出演示：已按六专题最后成功条件生成 1 个 Excel，仅含 6 个工作表（${successfulTopics}/6 已查询）`);
     });
@@ -912,7 +924,7 @@
     resetButton.addEventListener("click", () => {
       citySelect.value = "";
       startDate.value = "2026-01-01";
-      endDate.value = "2026-07-15";
+      endDate.value = "2026-07-16";
       refreshPrototype();
     });
 
