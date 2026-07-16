@@ -25,16 +25,17 @@
 
     * { box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+    html { max-width: 100%; scroll-behavior: smooth; }
 
     body {
-      min-width: 1180px;
       min-height: 100vh;
+      max-width: 100%;
       margin: 0;
       color: var(--text);
       background: var(--page);
       font: 14px/1.5 "Microsoft YaHei", "PingFang SC", sans-serif;
       letter-spacing: 0;
+      overflow-x: clip;
     }
 
     button, input, select { font: inherit; letter-spacing: 0; }
@@ -87,7 +88,7 @@
     .nav-child.active { color: #fff; background: var(--primary); }
     .nav-item:hover, .nav-parent:hover { color: #fff; }
 
-    .app { margin-left: var(--sidebar-width); min-height: 100vh; }
+    .app { min-width: 0; min-height: 100vh; margin-left: var(--sidebar-width); }
 
     .topbar {
       position: sticky;
@@ -107,6 +108,7 @@
     .breadcrumb strong { color: var(--text-muted); font-weight: 400; }
     .user { margin-left: auto; }
 
+    .page, .page-view { min-width: 0; }
     .page { padding: 24px; }
 
     .page-switch {
@@ -247,6 +249,7 @@
 
     .field select, .field input {
       width: 100%;
+      min-width: 0;
       height: 38px;
       padding: 0 12px;
       color: var(--text-secondary);
@@ -263,6 +266,8 @@
 
     .date-range { display: grid; grid-template-columns: 1fr 22px 1fr; align-items: center; gap: 8px; }
     .date-range span { text-align: center; color: var(--text-muted); }
+    .field-label { display: block; margin-bottom: 8px; color: var(--text); font-weight: 600; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
     .button {
       height: 38px;
@@ -442,6 +447,11 @@
     }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+
     @media (max-width: 1450px) {
       .metric-grid-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .analytics-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -455,6 +465,56 @@
       .overview-grid, .analytics-grid-2, .analytics-grid-3 { grid-template-columns: 1fr; }
       .section-heading p { display: none; }
     }
+
+    @media (max-width: 1100px) {
+      .sidebar { position: relative; inset: auto; width: 100%; min-height: 56px; display: flex; overflow: hidden; }
+      .brand { height: 56px; flex: 0 0 auto; padding: 0 16px; font-size: 16px; }
+      .nav { min-width: 0; flex: 1; display: flex; justify-content: flex-end; padding: 0 8px; overflow: hidden; }
+      .nav > .nav-item, .nav-group:not(.current-nav-group) { display: none; }
+      .nav-group.current-nav-group { min-width: 0; display: flex; align-items: center; margin: 0; }
+      .current-nav-group .nav-parent, .current-nav-group .nav-child { min-height: 56px; padding: 0 14px; white-space: nowrap; }
+      .current-nav-group .nav-child { margin: 0; }
+      .app { margin-left: 0; }
+      .topbar { top: 0; }
+      .page { padding: 16px; }
+      .filter-panel, .topic-filter, .topic-filter.penalty-filter, .archive-filter { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .topic-toolbar { position: static; flex-wrap: wrap; }
+      .topic-anchors { flex-basis: 100%; width: 100%; }
+      .topic-actions { margin-left: auto; }
+      .metric-grid-5, .metric-grid-4, .metric-grid-6, .metric-grid.dynamic-payment { max-width: none; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .overview-grid, .analytics-grid-2, .analytics-grid-3 { grid-template-columns: minmax(0, 1fr); }
+      .topic-heading { flex-wrap: wrap; }
+      .topic-query-status { width: 100%; margin-left: 0; }
+      .modal-backdrop { padding-left: 0; }
+      .detail-modal { width: min(820px, calc(100vw - 32px)); }
+      .toast { left: 50%; max-width: calc(100vw - 32px); }
+    }
+
+    @media (max-width: 600px) {
+      .sidebar { display: block; }
+      .brand { justify-content: center; }
+      .nav { display: none; }
+      .topbar { height: 54px; padding: 0 12px; }
+      .breadcrumb { gap: 5px; font-size: 12px; }
+      .breadcrumb span::after { margin-left: 5px; }
+      .user { font-size: 12px; }
+      .page { padding: 10px; }
+      .page-switch { padding: 0 6px; }
+      .page-switch button { min-width: 0; flex: 1; padding: 0 8px; }
+      .filter-panel, .topic-filter, .topic-filter.penalty-filter, .archive-filter { grid-template-columns: minmax(0, 1fr); padding: 12px; }
+      .topic-actions { width: 100%; margin-left: 0; }
+      .topic-actions .button { flex: 1; }
+      .metric-grid-5, .metric-grid-4, .metric-grid-6, .metric-grid.dynamic-payment { grid-template-columns: minmax(0, 1fr); }
+      .section-heading h2, .topic-heading h2 { font-size: 18px; }
+      .panel-head { min-height: 58px; flex-wrap: wrap; gap: 4px; padding: 10px 14px; }
+      .panel-sub { width: 100%; margin-left: 0; }
+      .bar-row { grid-template-columns: 110px minmax(0, 1fr) 48px; gap: 8px; }
+      .donut-layout { flex-direction: column; gap: 18px; }
+      .pagination { justify-content: flex-start; flex-wrap: wrap; padding-inline: 14px; }
+      .archive-head { flex-wrap: wrap; gap: 10px; }
+      .archive-head .button { width: 100%; margin-left: 0; }
+      .detail-grid { grid-template-columns: minmax(0, 1fr); margin: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -465,7 +525,7 @@
       <div class="nav-group"><div class="nav-parent">监管机构</div></div>
       <div class="nav-group"><div class="nav-parent">考务人员管理</div></div>
       <div class="nav-group"><div class="nav-parent">建议意见反馈</div></div>
-      <div class="nav-group">
+      <div class="nav-group current-nav-group">
         <div class="nav-parent">查询统计</div>
         <a class="nav-item nav-child active" href="#overview">总览</a>
       </div>
@@ -481,21 +541,21 @@
     </header>
 
     <main class="page">
-      <div class="page-switch" role="tablist" aria-label="数据统计视图">
-        <button class="active" type="button" role="tab" aria-selected="true" data-view="overviewView">数据总览</button>
-        <button type="button" role="tab" aria-selected="false" data-view="trainingTopicView">培训专题统计</button>
+      <div class="page-switch" id="statisticsViewTabs" role="tablist" aria-label="数据统计视图">
+        <button class="active" id="overviewTab" type="button" role="tab" aria-controls="overviewView" aria-selected="true" tabindex="0" data-view="overviewView">数据总览</button>
+        <button id="trainingTopicTab" type="button" role="tab" aria-controls="trainingTopicView" aria-selected="false" tabindex="-1" data-view="trainingTopicView">培训专题统计</button>
       </div>
 
       <!-- 原数据总览完整保留在默认页内视图。 -->
-      <section class="page-view" id="overviewView" role="tabpanel">
+      <section class="page-view" id="overviewView" role="tabpanel" aria-labelledby="overviewTab" tabindex="0">
       <form class="filter-panel" id="statisticsFilter">
         <div class="field">
           <label for="city">地市</label>
           <select id="city"><option value="">请选择</option><option>南昌市</option><option>九江市</option><option>上饶市</option><option>赣州市</option></select>
         </div>
         <div class="field">
-          <label for="startDate">时间范围</label>
-          <div class="date-range"><input id="startDate" type="date" /><span>→</span><input id="endDate" type="date" /></div>
+          <span class="field-label">时间范围</span>
+          <div class="date-range"><label class="visually-hidden" for="startDate">开始日期</label><input id="startDate" type="date" aria-label="开始日期" /><span>→</span><label class="visually-hidden" for="endDate">结束日期</label><input id="endDate" type="date" aria-label="结束日期" /></div>
         </div>
         <button class="button primary" id="queryButton" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button>
         <button class="button" id="resetButton" type="button">↻ 重置</button>
@@ -631,7 +691,7 @@
       </section>
 
       <!-- 培训专题统计与数据总览共用当前页面和路由。 -->
-      <section class="page-view" id="trainingTopicView" role="tabpanel" hidden>
+      <section class="page-view" id="trainingTopicView" role="tabpanel" aria-labelledby="trainingTopicTab" tabindex="0" hidden>
         <div id="trainingStatsView">
           <div class="topic-toolbar">
             <nav class="topic-anchors" aria-label="培训专题锚点">
@@ -648,14 +708,28 @@
             </div>
           </div>
 
+          <!-- 六个专题保留独立静态筛选字段，便于直接打开原型演示各区状态；字段重复为有意保留。 -->
           <section class="topic-section" id="topic-plan" data-topic-section="plan">
             <header class="topic-heading"><h2>培训计划统计</h2><p>计划规模、执行状态与月度安排</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter" data-topic="plan" data-topic-label="培训计划统计">
-              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div>
-              <div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div>
-              <div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div>
-              <div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" /><span>→</span><input name="endDate" type="date" /></div></div>
-              <button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field">
+                <label for="planKeyword">培训计划关键字</label>
+                <input id="planKeyword" name="keyword" placeholder="请输入计划名称" />
+              </div>
+              <div class="field">
+                <label for="planCategory">人员分类</label>
+                <select id="planCategory" name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select>
+              </div>
+              <div class="field">
+                <label for="planCity">地市</label>
+                <select id="planCity" name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select>
+              </div>
+              <div class="field">
+                <span class="field-label">计划日期</span>
+                <div class="date-range"><label class="visually-hidden" for="planStartDate">计划开始日期</label><input id="planStartDate" name="startDate" type="date" /><span>→</span><label class="visually-hidden" for="planEndDate">计划结束日期</label><input id="planEndDate" name="endDate" type="date" /></div>
+              </div>
+              <button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button>
+              <button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">计划总数</span><div class="metric-value"><strong>128</strong><span>个</span></div></article><article class="metric-card cyan"><span class="metric-label">进行中</span><div class="metric-value"><strong>24</strong><span>个</span></div></article><article class="metric-card green"><span class="metric-label">已完成</span><div class="metric-value"><strong>91</strong><span>个</span></div></article><article class="metric-card amber"><span class="metric-label">拟培训人数</span><div class="metric-value"><strong>4,860</strong><span>人</span></div></article><article class="metric-card red"><span class="metric-label">实际参训人数</span><div class="metric-value"><strong>4,231</strong><span>人</span></div></article></div>
@@ -666,7 +740,24 @@
           <section class="topic-section" id="topic-person" data-topic-section="person">
             <header class="topic-heading"><h2>培训人员统计</h2><p>参训结构与合格判定</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter" data-topic="person" data-topic-label="培训人员统计">
-              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" /><span>→</span><input name="endDate" type="date" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field">
+                <label for="personKeyword">培训计划关键字</label>
+                <input id="personKeyword" name="keyword" placeholder="请输入计划名称" />
+              </div>
+              <div class="field">
+                <label for="personCategory">人员分类</label>
+                <select id="personCategory" name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select>
+              </div>
+              <div class="field">
+                <label for="personCity">地市</label>
+                <select id="personCity" name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select>
+              </div>
+              <div class="field">
+                <span class="field-label">计划日期</span>
+                <div class="date-range"><label class="visually-hidden" for="personStartDate">计划开始日期</label><input id="personStartDate" name="startDate" type="date" /><span>→</span><label class="visually-hidden" for="personEndDate">计划结束日期</label><input id="personEndDate" name="endDate" type="date" /></div>
+              </div>
+              <button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button>
+              <button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">参训人数</span><div class="metric-value"><strong>4,231</strong><span>人</span></div></article><article class="metric-card green"><span class="metric-label">合格</span><div class="metric-value"><strong>3,781</strong><span>人</span></div></article><article class="metric-card red"><span class="metric-label">不合格</span><div class="metric-value"><strong>216</strong><span>人</span></div></article><article class="metric-card amber"><span class="metric-label">待判定</span><div class="metric-value"><strong>234</strong><span>人</span></div></article><article class="metric-card cyan"><span class="metric-label">覆盖计划数</span><div class="metric-value"><strong>116</strong><span>个</span></div></article></div>
@@ -677,7 +768,24 @@
           <section class="topic-section" id="topic-institution" data-topic-section="institution">
             <header class="topic-heading"><h2>培训机构统计</h2><p>机构规模与培训质量对比</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter" data-topic="institution" data-topic-label="培训机构统计">
-              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" /><span>→</span><input name="endDate" type="date" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field">
+                <label for="institutionKeyword">培训计划关键字</label>
+                <input id="institutionKeyword" name="keyword" placeholder="请输入计划名称" />
+              </div>
+              <div class="field">
+                <label for="institutionCategory">人员分类</label>
+                <select id="institutionCategory" name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select>
+              </div>
+              <div class="field">
+                <label for="institutionCity">地市</label>
+                <select id="institutionCity" name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select>
+              </div>
+              <div class="field">
+                <span class="field-label">计划日期</span>
+                <div class="date-range"><label class="visually-hidden" for="institutionStartDate">计划开始日期</label><input id="institutionStartDate" name="startDate" type="date" /><span>→</span><label class="visually-hidden" for="institutionEndDate">计划结束日期</label><input id="institutionEndDate" name="endDate" type="date" /></div>
+              </div>
+              <button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button>
+              <button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">启用机构</span><div class="metric-value"><strong>76</strong><span>家</span></div></article><article class="metric-card cyan"><span class="metric-label">有计划机构</span><div class="metric-value"><strong>58</strong><span>家</span></div></article><article class="metric-card amber"><span class="metric-label">计划数</span><div class="metric-value"><strong>128</strong><span>个</span></div></article><article class="metric-card green"><span class="metric-label">参训人数</span><div class="metric-value"><strong>4,231</strong><span>人</span></div></article><article class="metric-card red"><span class="metric-label">平均合格率</span><div class="metric-value"><strong>89.4%</strong></div></article></div>
@@ -688,7 +796,24 @@
           <section class="topic-section" id="topic-teacher" data-topic-section="teacher">
             <header class="topic-heading"><h2>授课老师统计</h2><p>师资结构、课次与授课时长</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter" data-topic="teacher" data-topic-label="授课老师统计">
-              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" /><span>→</span><input name="endDate" type="date" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field">
+                <label for="teacherKeyword">培训计划关键字</label>
+                <input id="teacherKeyword" name="keyword" placeholder="请输入计划名称" />
+              </div>
+              <div class="field">
+                <label for="teacherCategory">人员分类</label>
+                <select id="teacherCategory" name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select>
+              </div>
+              <div class="field">
+                <label for="teacherCity">地市</label>
+                <select id="teacherCity" name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select>
+              </div>
+              <div class="field">
+                <span class="field-label">计划日期</span>
+                <div class="date-range"><label class="visually-hidden" for="teacherStartDate">计划开始日期</label><input id="teacherStartDate" name="startDate" type="date" /><span>→</span><label class="visually-hidden" for="teacherEndDate">计划结束日期</label><input id="teacherEndDate" name="endDate" type="date" /></div>
+              </div>
+              <button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button>
+              <button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">实际授课老师</span><div class="metric-value"><strong>186</strong><span>人</span></div></article><article class="metric-card green"><span class="metric-label">专职</span><div class="metric-value"><strong>112</strong><span>人</span></div></article><article class="metric-card amber"><span class="metric-label">兼职</span><div class="metric-value"><strong>74</strong><span>人</span></div></article><article class="metric-card cyan"><span class="metric-label">授课课次</span><div class="metric-value"><strong>1,286</strong><span>次</span></div></article><article class="metric-card red"><span class="metric-label">授课时长</span><div class="metric-value"><strong>3,842.5</strong><span>小时</span></div></article></div>
@@ -699,7 +824,24 @@
           <section class="topic-section" id="topic-pass" data-topic-section="pass">
             <header class="topic-heading"><h2>培训通过情况统计</h2><p>学时证明与培训合格结果</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter" data-topic="pass" data-topic-label="培训通过情况统计">
-              <div class="field"><label>培训计划关键字</label><input name="keyword" placeholder="请输入计划名称" /></div><div class="field"><label>人员分类</label><select name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select></div><div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>计划开始日期 / 计划结束日期</label><div class="date-range"><input name="startDate" type="date" /><span>→</span><input name="endDate" type="date" /></div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field">
+                <label for="passKeyword">培训计划关键字</label>
+                <input id="passKeyword" name="keyword" placeholder="请输入计划名称" />
+              </div>
+              <div class="field">
+                <label for="passCategory">人员分类</label>
+                <select id="passCategory" name="category"><option value="">全部</option><option>主要负责人</option><option>安全生产管理人员</option><option>特种作业人员</option></select>
+              </div>
+              <div class="field">
+                <label for="passCity">地市</label>
+                <select id="passCity" name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select>
+              </div>
+              <div class="field">
+                <span class="field-label">计划日期</span>
+                <div class="date-range"><label class="visually-hidden" for="passStartDate">计划开始日期</label><input id="passStartDate" name="startDate" type="date" /><span>→</span><label class="visually-hidden" for="passEndDate">计划结束日期</label><input id="passEndDate" name="endDate" type="date" /></div>
+              </div>
+              <button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button>
+              <button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">参训人数</span><div class="metric-value"><strong>4,231</strong><span>人</span></div></article><article class="metric-card cyan"><span class="metric-label">取得学时证明</span><div class="metric-value"><strong>3,965</strong><span>人</span></div></article><article class="metric-card green"><span class="metric-label">培训合格</span><div class="metric-value"><strong>3,781</strong><span>人</span></div></article><article class="metric-card red"><span class="metric-label">培训不合格</span><div class="metric-value"><strong>216</strong><span>人</span></div></article><article class="metric-card amber"><span class="metric-label">合格率</span><div class="metric-value"><strong>89.4%</strong></div></article></div>
@@ -710,7 +852,17 @@
           <section class="topic-section" id="topic-penalty" data-topic-section="penalty">
             <header class="topic-heading"><h2>培训机构处罚统计</h2><p>年度机构评估与违规情况</p><span class="topic-query-status" data-last-success>最后成功查询：默认条件</span></header>
             <form class="topic-filter penalty-filter" data-topic="penalty" data-topic-label="培训机构处罚统计">
-              <div class="field"><label>地市</label><select name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div class="field"><label>评估年度</label><select name="year"></select></div><div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button topic-reset" type="button">↻ 重置</button>
+              <div class="field">
+                <label for="penaltyCity">地市</label>
+                <select id="penaltyCity" name="city"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select>
+              </div>
+              <div class="field">
+                <label for="penaltyYear">评估年度</label>
+                <select id="penaltyYear" name="year"></select>
+              </div>
+              <div aria-hidden="true"></div>
+              <button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button>
+              <button class="button topic-reset" type="button">↻ 重置</button>
             </form>
             <div class="topic-state" aria-live="polite"><span class="state-dot"></span><span data-state-text>实时统计完成</span><button class="retry-button" type="button" hidden>重试</button></div>
             <div class="metric-grid metric-grid-5"><article class="metric-card"><span class="metric-label">参评机构</span><div class="metric-value"><strong>62</strong><span>家</span></div></article><article class="metric-card red"><span class="metric-label">违规次数</span><div class="metric-value"><strong>37</strong><span>次</span></div></article><article class="metric-card amber"><span class="metric-label">涉及违规机构</span><div class="metric-value"><strong>18</strong><span>家</span></div></article><article class="metric-card cyan"><span class="metric-label">不合格机构</span><div class="metric-value"><strong>4</strong><span>家</span></div></article><article class="metric-card green"><span class="metric-label">机构平均分</span><div class="metric-value"><strong>88.6</strong><span>分</span></div></article></div>
@@ -722,7 +874,17 @@
         <section class="archive-view" id="archiveView" hidden>
           <header class="archive-head"><div><h2>归档资料</h2><span class="panel-sub">已归档培训班与固化结果</span></div><button class="button" id="archiveBack" type="button">← 返回专题统计</button></header>
           <form class="topic-filter archive-filter" id="archiveFilter">
-            <div class="field"><label>培训班关键字</label><input name="archiveKeyword" placeholder="请输入培训班名称" /></div><div class="field"><label>地市</label><select name="archiveCity"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select></div><div></div><button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button><button class="button" id="archiveReset" type="button">↻ 重置</button>
+            <div class="field">
+              <label for="archiveKeyword">培训班关键字</label>
+              <input id="archiveKeyword" name="archiveKeyword" placeholder="请输入培训班名称" />
+            </div>
+            <div class="field">
+              <label for="archiveCity">地市</label>
+              <select id="archiveCity" name="archiveCity"><option value="">全部授权地市</option><option>南昌市</option><option>上饶市</option><option>赣州市</option></select>
+            </div>
+            <div aria-hidden="true"></div>
+            <button class="button primary" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button>
+            <button class="button" id="archiveReset" type="button">↻ 重置</button>
           </form>
           <article class="panel table-panel"><div class="panel-head"><div class="panel-title">已归档培训班</div><div class="panel-sub">归档内容只读</div></div><div class="table-wrap"><table><thead><tr><th style="width:260px">培训班名称</th><th>地市</th><th style="width:220px">所属计划</th><th>参训人数</th><th>合格率</th><th>归档时间</th><th>操作</th></tr></thead><tbody><tr><td class="name">特种作业人员复审培训 2026-06 班</td><td>南昌市</td><td class="name">2026 年特种作业复审培训计划</td><td>108</td><td>88.9%</td><td>2026-07-12 16:20</td><td><button class="link-button" type="button" data-archive-detail>查看详情</button></td></tr><tr><td class="name">主要负责人安全培训 2026-05 班</td><td>上饶市</td><td class="name">2026 年主要负责人年度计划</td><td>76</td><td>92.1%</td><td>2026-06-28 10:05</td><td><button class="link-button" type="button" data-archive-detail>查看详情</button></td></tr></tbody></table></div><div class="pagination" id="archivePagination"><span>共 26 条</span><button class="page-button active">1</button><button class="page-button">2</button><button class="page-button">3</button><select class="page-size"><option>10 条/页</option><option>20 条/页</option><option>50 条/页</option><option>100 条/页</option></select></div></article>
         </section>
@@ -737,7 +899,7 @@
     </section>
   </div>
 
-  <div class="toast" id="toast">统计数据已按当前条件刷新</div>
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">统计数据已按当前条件刷新</div>
 
   <script>
     const filterForm = document.querySelector("#statisticsFilter");
@@ -748,15 +910,26 @@
     const resetButton = document.querySelector("#resetButton");
     const toast = document.querySelector("#toast");
     const mapButtons = document.querySelectorAll("[data-map-metric]");
-    const viewButtons = document.querySelectorAll("[data-view]");
+    const viewButtons = [...document.querySelectorAll("[data-view]")];
+    const viewTabList = document.querySelector("#statisticsViewTabs");
     const topicForms = [...document.querySelectorAll(".topic-filter[data-topic]")];
     const topicRuntime = new Map(topicForms.map((form) => [form.dataset.topic, { requestId: 0, lastSuccess: null }]));
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let topicsInitialized = false;
+    let toastTimer = null;
 
     function showToast(message) {
+      if (toastTimer) window.clearTimeout(toastTimer);
       toast.textContent = message;
       toast.classList.add("show");
-      window.setTimeout(() => toast.classList.remove("show"), 1600);
+      toastTimer = window.setTimeout(() => {
+        toast.classList.remove("show");
+        toastTimer = null;
+      }, 1600);
+    }
+
+    function scrollBehavior() {
+      return reducedMotionQuery.matches ? "auto" : "smooth";
     }
 
     function currentDateDefaults(referenceDate = new Date()) {
@@ -848,21 +1021,36 @@
         const active = button.dataset.view === viewId;
         button.classList.toggle("active", active);
         button.setAttribute("aria-selected", String(active));
+        button.tabIndex = active ? 0 : -1;
       });
       document.querySelector(".breadcrumb strong").textContent = viewId === "overviewView" ? "数据总览" : "培训专题统计";
       if (viewId === "trainingTopicView" && !topicsInitialized) {
         topicsInitialized = true;
         topicForms.forEach(executeTopic);
       }
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: scrollBehavior() });
     }
 
     viewButtons.forEach((button) => button.addEventListener("click", () => showPageView(button.dataset.view)));
+    viewTabList.addEventListener("keydown", (event) => {
+      const currentIndex = viewButtons.indexOf(document.activeElement);
+      if (currentIndex < 0) return;
+      let targetIndex = currentIndex;
+      if (event.key === "ArrowRight") targetIndex = (currentIndex + 1) % viewButtons.length;
+      else if (event.key === "ArrowLeft") targetIndex = (currentIndex - 1 + viewButtons.length) % viewButtons.length;
+      else if (event.key === "Home") targetIndex = 0;
+      else if (event.key === "End") targetIndex = viewButtons.length - 1;
+      else return;
+      event.preventDefault();
+      const targetTab = viewButtons[targetIndex];
+      targetTab.focus();
+      showPageView(targetTab.dataset.view);
+    });
 
     document.querySelectorAll("[data-anchor]").forEach((button) => {
       button.addEventListener("click", () => {
         document.querySelectorAll("[data-anchor]").forEach((item) => item.classList.toggle("active", item === button));
-        document.querySelector(`#${button.dataset.anchor}`).scrollIntoView({ behavior: "smooth", block: "start" });
+        document.querySelector(`#${button.dataset.anchor}`).scrollIntoView({ behavior: scrollBehavior(), block: "start" });
       });
     });
 
@@ -897,7 +1085,7 @@
     document.querySelector("#archiveEntry").addEventListener("click", () => {
       trainingStatsView.hidden = true;
       archiveView.hidden = false;
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: scrollBehavior() });
     });
     document.querySelector("#archiveBack").addEventListener("click", () => {
       archiveView.hidden = true;
@@ -917,9 +1105,55 @@
     });
 
     const archiveDetailModal = document.querySelector("#archiveDetailModal");
-    document.querySelectorAll("[data-archive-detail]").forEach((button) => button.addEventListener("click", () => { archiveDetailModal.hidden = false; }));
-    document.querySelector("#archiveDetailClose").addEventListener("click", () => { archiveDetailModal.hidden = true; });
-    archiveDetailModal.addEventListener("click", (event) => { if (event.target === archiveDetailModal) archiveDetailModal.hidden = true; });
+    const archiveDetailClose = document.querySelector("#archiveDetailClose");
+    const modalBackground = [document.querySelector(".sidebar"), document.querySelector(".app")];
+    let lastArchiveTrigger = null;
+
+    function setModalBackgroundInert(inert) {
+      modalBackground.forEach((background) => { background.inert = inert; });
+    }
+
+    function modalFocusableElements() {
+      return [...archiveDetailModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')].filter((element) => !element.disabled && !element.hidden);
+    }
+
+    function openArchiveDetail(trigger) {
+      lastArchiveTrigger = trigger;
+      setModalBackgroundInert(true);
+      archiveDetailModal.hidden = false;
+      archiveDetailClose.focus();
+    }
+
+    function closeArchiveDetail() {
+      if (archiveDetailModal.hidden) return;
+      archiveDetailModal.hidden = true;
+      setModalBackgroundInert(false);
+      lastArchiveTrigger?.focus();
+      lastArchiveTrigger = null;
+    }
+
+    document.querySelectorAll("[data-archive-detail]").forEach((button) => button.addEventListener("click", (event) => openArchiveDetail(event.currentTarget)));
+    archiveDetailClose.addEventListener("click", closeArchiveDetail);
+    archiveDetailModal.addEventListener("click", (event) => { if (event.target === archiveDetailModal) closeArchiveDetail(); });
+    archiveDetailModal.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeArchiveDetail();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const focusable = modalFocusableElements();
+      if (!focusable.length) {
+        event.preventDefault();
+        return;
+      }
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if ((event.shiftKey && document.activeElement === first) || (!event.shiftKey && document.activeElement === last)) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+      }
+    });
 
     function refreshPrototype() {
       if (startDate.value && endDate.value && startDate.value > endDate.value) {
@@ -972,6 +1206,9 @@
     });
 
     document.querySelectorAll(".pagination").forEach((pagination) => {
+      const pageSize = pagination.querySelector(".page-size");
+      const listTitle = pagination.closest(".panel")?.querySelector(".panel-title")?.textContent || "列表";
+      pageSize?.setAttribute("aria-label", `${listTitle}每页条数`);
       pagination.addEventListener("click", (event) => {
         const button = event.target.closest(".page-button");
         if (!button || !/^\d+$/.test(button.textContent.trim())) return;
@@ -981,7 +1218,7 @@
         if (topic) executeTopic(document.querySelector(`.topic-filter[data-topic="${topic}"]`));
         if (pagination.id === "archivePagination") showToast(`已切换归档资料第 ${button.textContent.trim()} 页`);
       });
-      pagination.querySelector(".page-size")?.addEventListener("change", () => {
+      pageSize?.addEventListener("change", () => {
         resetPagination(pagination);
         const topic = pagination.dataset.topicPage;
         if (topic) executeTopic(document.querySelector(`.topic-filter[data-topic="${topic}"]`));
