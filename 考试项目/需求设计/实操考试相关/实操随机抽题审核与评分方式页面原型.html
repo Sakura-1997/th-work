@@ -42,7 +42,7 @@
     document.querySelector('.wrap').appendChild(vendorSection);
     const vendorNav=document.createElement('button');vendorNav.className='nav';vendorNav.dataset.view='vendors';vendorNav.innerHTML='<i data-lucide="plug-zap"></i>设备厂商管理';
     const accessGroup=document.createElement('div');accessGroup.className='group';accessGroup.textContent='设备接入';
-    const questionsNav=document.querySelector('[data-view="questions"]');questionsNav.before(accessGroup,vendorNav);
+    const questionsNav=document.querySelector('[data-view="questions"]');questionsNav.after(accessGroup,vendorNav);
     vendorNav.onclick=()=>{document.querySelectorAll('.nav').forEach(item=>item.classList.remove('active'));document.querySelectorAll('.view').forEach(item=>item.classList.remove('active'));vendorNav.classList.add('active');vendorSection.classList.add('active');document.getElementById('crumb').textContent='设备厂商管理'};
     const tag=status=>`<span class="tag green">${status}</span>`;
     function renderVendorMaster(){document.getElementById('vendorMasterPanel').innerHTML=`<div class="panel"><div class="panel-body"><div class="query-grid"><div class="query-item"><label>厂商名称</label><input placeholder="请输入厂商名称"></div><div class="query-item"><label>启停状态</label><select><option>全部</option><option>启用</option><option>停用</option></select></div><div class="query-actions"><button class="primary"><i data-lucide="search"></i>查询</button><button class="secondary"><i data-lucide="rotate-ccw"></i>重置</button></div></div></div></div><div class="panel"><div class="vendor-toolbar"><h2>厂商列表</h2><button class="primary" data-open-vendor><i data-lucide="plus"></i>新增厂商</button></div><div class="table-wrap"><table><thead><tr><th>厂商名称</th><th>厂商编码</th><th>推送地址</th><th>回调地址</th><th>鉴权方式</th><th>启停状态</th><th>最近联调结果</th><th>操作</th></tr></thead><tbody>${vendors.map(item=>`<tr><td>${item.name}</td><td>${item.code}</td><td>${item.pushUrl}</td><td>${item.callbackUrl}</td><td>${item.auth}</td><td>${tag(item.status)}</td><td>成功 ${item.checkedAt}</td><td><button class="link" data-edit-vendor="${item.code}">编辑</button></td></tr>`).join('')}</tbody></table></div></div><div class="vendor-records"><h2>最近接口记录</h2><div class="panel"><div class="table-wrap"><table><thead><tr><th>时间</th><th>厂商</th><th>学员</th><th>题目实例 ID</th><th>动作</th><th>处理结果</th><th>说明</th></tr></thead><tbody>${vendorRecords.map(item=>`<tr><td>${item.time}</td><td>${item.vendor}</td><td>${item.candidate}</td><td class="instance-id">${item.instance}</td><td>${item.action}</td><td>${item.result==='接口异常'?'<span class="tag amber">接口异常</span>':'<span class="tag green">推送成功</span>'}</td><td>${item.note}</td></tr>`).join('')}</tbody></table></div></div><p class="empty-note">推送范围：本考试点全部启用厂商；同一题目实例重复回传按接口异常处理。</p></div>`;bindVendorButtons()}
@@ -50,6 +50,116 @@
     function showDialog(type,title){const isConnection=type==='connection';const fields=isConnection?`<div class="form-item"><label class="required">考试点</label><select><option>高新实操考点</option></select></div><div class="form-item"><label class="required">设备厂商</label><select>${vendors.map(item=>`<option>${item.name}</option>`).join('')}</select></div><div class="form-item"><label class="required">厂商侧考点/租户标识</label><input value="GX-TH-001"></div><div class="form-item"><label class="required">启停状态</label><select><option>启用</option><option>停用</option></select></div><div class="form-item full"><label>备注</label><textarea>设备考试成绩接入</textarea></div>`:`<div class="form-item"><label class="required">厂商名称</label><input value="泰豪实训平台"></div><div class="form-item"><label class="required">厂商编码</label><input value="TH"></div><div class="form-item"><label class="required">推送接口地址</label><input value="https://vendor.example.com/tasks"></div><div class="form-item"><label class="required">回调接口地址</label><input value="https://exam.example.com/vendor/score"></div><div class="form-item"><label class="required">鉴权方式</label><select><option>HMAC 签名</option><option>API Key</option></select></div><div class="form-item"><label>签名密钥 / 证书引用</label><input placeholder="请输入引用信息"></div><div class="form-item"><label>联系人</label><input placeholder="请输入联系人"></div><div class="form-item"><label>联系电话</label><input placeholder="请输入联系电话"></div><div class="form-item"><label class="required">启停状态</label><select><option>启用</option><option>停用</option></select></div><div class="form-item full"><label>备注</label><textarea></textarea></div>`;const modal=document.createElement('div');modal.className='modal show';modal.innerHTML=`<div class="dialog"><div class="dialog-head"><h2>${title}</h2><button class="ghost" data-close><i data-lucide="x"></i></button></div><div class="dialog-body"><div class="form-grid">${fields}</div></div><div class="dialog-foot"><button class="secondary" data-close>取消</button><button class="primary" data-close>保存</button></div></div>`;document.body.appendChild(modal);modal.querySelectorAll('[data-close]').forEach(button=>button.onclick=()=>modal.remove());lucide.createIcons()}
     function bindVendorButtons(){document.querySelector('[data-open-vendor]')?.addEventListener('click',()=>showDialog('vendor','新增厂商'));document.querySelectorAll('[data-edit-vendor]').forEach(button=>button.onclick=()=>showDialog('vendor','编辑厂商'));document.querySelector('[data-open-connection]')?.addEventListener('click',()=>showDialog('connection','新增接入配置'));document.querySelectorAll('[data-edit-connection]').forEach(button=>button.onclick=()=>showDialog('connection','编辑接入配置'))}
     document.querySelectorAll('[data-vendor-tab]').forEach(tab=>tab.onclick=()=>{document.querySelectorAll('[data-vendor-tab]').forEach(item=>item.classList.toggle('active',item===tab));const connection=tab.dataset.vendorTab==='connection';document.getElementById('vendorMasterPanel').hidden=connection;document.getElementById('vendorConnectionPanel').hidden=!connection});
-    renderVendorMaster();renderConnections();lucide.createIcons();
+    renderVendorMaster();renderConnections();
+
+    // Each plan owns its title, dates, candidate count, and generated result instances.
+    candidateDrawResults[1].questions[0].question='绝缘手套检查与佩戴';
+    const clonePlanResults=prefix=>candidateDrawResults.map((candidate,candidateIndex)=>({
+      ...candidate,
+      questions:candidate.questions.map((question,questionIndex)=>({
+        ...question,
+        questionInstanceId:`${prefix}-${String(candidateIndex+1).padStart(3,'0')}-${String(questionIndex+1).padStart(2,'0')}`
+      }))
+    }));
+    const examPlans=[
+      {id:'plan-hv-20260720',name:'2026 年 7 月高压电工作业实操考试',project:'高压电工作业',point:'高新实操考点',date:'2026-07-20',candidateCount:48,progress:'未抽题',progressClass:'amber',lastDrawTime:'-',operator:'-',canDraw:true,results:candidateDrawResults},
+      {id:'plan-lv-20260722',name:'2026 年 7 月低压电工作业实操考试',project:'低压电工作业',point:'经开实操考点',date:'2026-07-22',candidateCount:36,progress:'36 / 36 名学员已完成',progressClass:'green',lastDrawTime:'2026-07-18 14:30',operator:'王考评员',canDraw:false,results:clonePlanResults('PQI-20260722')},
+      {id:'plan-weld-20260724',name:'2026 年 7 月焊接与热切割实操考试',project:'焊接与热切割',point:'城西考点',date:'2026-07-24',candidateCount:42,progress:'已进入考试，不可重抽',progressClass:'blue',lastDrawTime:'2026-07-19 09:15',operator:'李考评员',canDraw:false,results:clonePlanResults('PQI-20260724')}
+    ];
+    const drawTableBody=document.querySelector('#draw table tbody');
+    const drawToolbar=document.getElementById('randomizeBtn').closest('.draw-toolbar');
+    const drawSettings=document.querySelector('#drawModal .inline-table');
+    const drawSummaryValues=Array.from(document.querySelectorAll('#drawModal .plan-summary b'));
+    let activePlan=null;
+
+    function prepareDialog(modal,titleId){
+      const dialog=modal.querySelector('.dialog');
+      const title=dialog.querySelector('h2');
+      title.id=titleId;
+      dialog.setAttribute('role','dialog');
+      dialog.setAttribute('aria-modal','true');
+      dialog.setAttribute('aria-labelledby',titleId);
+      dialog.querySelector('.dialog-head .ghost')?.setAttribute('aria-label','关闭弹窗');
+    }
+    prepareDialog(drawModal,'drawModalTitle');
+    prepareDialog(questionModal,'questionModalTitle');
+    const dynamicModalObserver=new MutationObserver(records=>records.flatMap(record=>Array.from(record.addedNodes)).filter(node=>node.nodeType===1&&node.classList.contains('modal')).forEach((modal,index)=>prepareDialog(modal,`dynamicModalTitle${Date.now()}${index}`)));
+    dynamicModalObserver.observe(document.body,{childList:true});
+
+    function renderPlanRows(){
+      drawTableBody.innerHTML=examPlans.map(plan=>`<tr><td>${plan.name}</td><td>${plan.project}</td><td>${plan.point}</td><td>${plan.date}</td><td>${plan.candidateCount}</td><td><span class="tag ${plan.progressClass}">${plan.progress}</span></td><td>${plan.lastDrawTime}</td><td>${plan.operator}</td><td>${plan.canDraw?`<button class="primary" data-plan-id="${plan.id}" data-plan-action="draw"><i data-lucide="shuffle"></i>抽取考题</button>`:`<button class="link" data-plan-id="${plan.id}" data-plan-action="view">查看结果</button>`}</td></tr>`).join('');
+      drawTableBody.querySelectorAll('[data-plan-action]').forEach(button=>button.onclick=()=>openPlanModal(button.dataset.planId,button.dataset.planAction));
+      lucide.createIcons();
+    }
+    function renderCandidateResults(plan){
+      const results=document.getElementById('candidateResults');
+      results.innerHTML=plan.results.map(item=>`<details class="candidate-card" open><summary>${item.candidate}<span>${item.idCard}</span></summary><table><thead><tr><th>科目大类</th><th>考题</th><th>评分方式</th><th>题目实例 ID</th></tr></thead><tbody>${item.questions.map(question=>`<tr><td>${question.category}</td><td>${question.question}</td><td>${question.scoreSource}</td><td><span class="instance-id">${question.questionInstanceId}</span></td></tr>`).join('')}</tbody></table></details>`).join('')+'<p class="empty-note">同一学员同一科目大类不重复，不同学员之间允许抽到相同考题。</p>';
+      results.classList.remove('hidden');
+    }
+    function fillPlanSummary(plan){
+      [plan.name,plan.date,plan.project,plan.point,`${plan.candidateCount} 人`].forEach((value,index)=>drawSummaryValues[index].textContent=value);
+    }
+    function openPlanModal(planId,mode){
+      activePlan=examPlans.find(plan=>plan.id===planId);
+      const readOnly=mode==='view';
+      fillPlanSummary(activePlan);
+      drawModal.querySelector('h2').textContent=readOnly?'查看实操抽题结果':'抽取实操考题';
+      drawToolbar.classList.toggle('hidden',readOnly);
+      drawSettings.classList.toggle('hidden',readOnly);
+      confirmDraw.classList.toggle('hidden',readOnly);
+      document.getElementById('cancelDraw').textContent=readOnly?'关闭':'取消';
+      document.getElementById('candidateResults').classList.toggle('hidden',!readOnly);
+      if(readOnly) renderCandidateResults(activePlan);
+      else { document.getElementById('candidateResults').innerHTML=''; confirmDraw.disabled=true; }
+      drawModal.classList.add('show');
+    }
+    document.getElementById('randomizeBtn').onclick=()=>{renderCandidateResults(activePlan);confirmDraw.disabled=false;lucide.createIcons()};
+    confirmDraw.onclick=()=>{
+      activePlan.progress=`${activePlan.candidateCount} / ${activePlan.candidateCount} 名学员已完成`;
+      activePlan.progressClass='green';
+      activePlan.lastDrawTime='2026-07-20 09:30';
+      activePlan.operator='张考评员';
+      activePlan.canDraw=false;
+      renderPlanRows();
+      alert('抽题结果已生效，已生成学员题目实例');
+      drawModal.classList.remove('show');
+    };
+    document.getElementById('closeDraw').onclick=document.getElementById('cancelDraw').onclick=()=>drawModal.classList.remove('show');
+
+    const acceptedScoreReturns=new Map();
+    function receiveVendorScoreReturn({vendor,questionInstanceId,scoreFlowId}){
+      const existing=acceptedScoreReturns.get(questionInstanceId);
+      if(!existing){acceptedScoreReturns.set(questionInstanceId,{vendor,scoreFlowId});return {result:'接收成功',note:'首次成绩回传已入库'};}
+      if(existing.vendor===vendor&&existing.scoreFlowId===scoreFlowId)return {result:'幂等成功',note:'同一厂商、同一成绩流水重复回传，按幂等成功处理'};
+      return {result:'接口异常拒收',note:'不同厂商后到回传同一题目实例，按接口异常拒收'};
+    }
+    const firstScoreReturn=receiveVendorScoreReturn({vendor:'泰豪实训平台',questionInstanceId:'PQI-20260720-001-02',scoreFlowId:'TH-SCORE-20260720-001'});
+    const idempotentScoreReturn=receiveVendorScoreReturn({vendor:'泰豪实训平台',questionInstanceId:'PQI-20260720-001-02',scoreFlowId:'TH-SCORE-20260720-001'});
+    const rejectedScoreReturn=receiveVendorScoreReturn({vendor:'实训设备平台 B',questionInstanceId:'PQI-20260720-001-02',scoreFlowId:'VB-SCORE-20260720-009'});
+    const scoreReturnRecords=[
+      {time:'2026-07-20 14:22',vendor:'泰豪实训平台',candidate:'张三',instance:'PQI-20260720-001-02',action:'成绩回传',...firstScoreReturn},
+      {time:'2026-07-20 14:23',vendor:'泰豪实训平台',candidate:'张三',instance:'PQI-20260720-001-02',action:'成绩回传',...idempotentScoreReturn},
+      {time:'2026-07-20 14:24',vendor:'实训设备平台 B',candidate:'张三',instance:'PQI-20260720-001-02',action:'成绩回传',...rejectedScoreReturn}
+    ];
+    const vendorReturnPolicy='同一厂商、同一成绩流水重复回传为幂等成功；不同厂商后到回传同一题目实例为接口异常拒收。';
+    function renderVendorReturnRecords(){
+      const recordsBody=document.querySelector('#vendorMasterPanel .vendor-records tbody');
+      if(!recordsBody)return;
+      recordsBody.innerHTML=scoreReturnRecords.map(record=>`<tr><td>${record.time}</td><td>${record.vendor}</td><td>${record.candidate}</td><td class="instance-id">${record.instance}</td><td>${record.action}</td><td><span class="tag ${record.result==='接口异常拒收'?'amber':'green'}">${record.result}</span></td><td>${record.note}</td></tr>`).join('');
+      const policy=document.querySelector('#vendorMasterPanel .vendor-records .empty-note');
+      if(policy)policy.textContent=`推送范围：本考试点全部启用厂商；${vendorReturnPolicy}`;
+    }
+    renderVendorReturnRecords();
+
+    document.addEventListener('keydown',event=>{
+      if(event.key!=='Escape')return;
+      const openModals=Array.from(document.querySelectorAll('.modal.show'));
+      const currentModal=openModals.at(-1);
+      if(!currentModal)return;
+      if(currentModal.id)currentModal.classList.remove('show');else currentModal.remove();
+    });
+    renderPlanRows();
+    if(new URLSearchParams(location.search).get('preview')==='draw-results')openPlanModal('plan-hv-20260720','view');
+    lucide.createIcons();
   </script>
 </body></html>
