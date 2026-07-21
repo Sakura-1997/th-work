@@ -20,8 +20,8 @@
       <div class="group">实操考试管理</div>
       <button class="nav" data-view="questions"><i data-lucide="list-checks"></i>实操考题管理</button>
       <button class="nav active" data-view="draw"><i data-lucide="shuffle"></i>实操抽题管理</button>
-      <button class="nav" data-view="vendor-info"><i data-lucide="plug-zap"></i>实操厂商信息</button>
-      <button class="nav" data-view="point-vendor-management"><i data-lucide="network"></i>考点厂商管理</button>
+      <button class="nav" data-view="vendor-info"><i data-lucide="plug-zap"></i>实操平台接口配置</button>
+      <button class="nav" data-view="point-vendor-management"><i data-lucide="network"></i>考点实操平台配置</button>
     </aside>
     <main>
       <header class="top"><div class="crumb">考试机构 <b id="crumb">实操抽题管理</b></div><div class="account"><span>南昌市高新考点</span><div class="avatar">张</div></div></header>
@@ -50,12 +50,12 @@
         </section>
 
         <section class="view" id="vendor-info">
-          <div class="headline"><h1>实操厂商信息</h1><p>维护实操考试厂商接入信息和接口记录。</p></div>
+          <div class="headline"><h1>实操平台接口配置</h1><p>维护实操设备平台的接口调用地址和安全配置。</p></div>
           <div id="vendorInfoContent"></div>
         </section>
 
         <section class="view" id="point-vendor-management">
-          <div class="headline"><h1>考点厂商管理</h1><p>维护本考试点启用的实操厂商。</p></div>
+          <div class="headline"><h1>考点实操平台配置</h1><p>维护本考试点启用的实操平台接口。</p></div>
           <div id="pointVendorManagementContent"></div>
         </section>
       </div>
@@ -142,16 +142,16 @@
       examPlans.forEach(plan=>{plan.results=generatePlanResults(plan,plan.drawGeneration);});
 
       const vendors=[
-        {name:'泰豪实训平台',code:'TH',pushUrl:'https://vendor.example.com/tasks',callbackUrl:'https://exam.example.com/vendor/score',auth:'HMAC 签名',status:'启用',checkedAt:'2026-07-20 14:20'},
-        {name:'实训设备平台 B',code:'VENDOR_B',pushUrl:'https://vendor-b.example.com/tasks',callbackUrl:'https://exam.example.com/vendor/score',auth:'API Key',status:'启用',checkedAt:'2026-07-20 13:55'}
+        {name:'泰豪实训平台',code:'TH',pushUrl:'https://platform.example.com/tasks',callbackUrl:'https://exam.example.com/platform/score',auth:'HMAC 签名',credentialRef:'KEY-REF-TH-01',status:'启用',remark:'设备成绩接口接入',checkedAt:'2026-07-20 14:20'},
+        {name:'实训设备平台 B',code:'PLATFORM_B',pushUrl:'https://platform-b.example.com/tasks',callbackUrl:'https://exam.example.com/platform/score',auth:'API Key',credentialRef:'KEY-REF-PB-01',status:'启用',remark:'实操题目与成绩联调',checkedAt:'2026-07-20 13:55'}
       ];
       const pointVendorConnections=[
         {point:'高新实操考点',vendor:'泰豪实训平台',tenantCode:'GX-TH-001',status:'启用',remark:'设备考试成绩接入'},
         {point:'高新实操考点',vendor:'实训设备平台 B',tenantCode:'GX-VB-002',status:'启用',remark:'设备考试成绩接入'}
       ];
       const interfaceRecords=[
-        {time:'2026-07-20 14:20',vendor:'泰豪实训平台',candidate:'张三',instance:'PQI-LV-20260722-G1-001-K2-01',action:'题目推送',result:'题目推送成功',note:'设备评分题已推送至本考试点启用厂商'},
-        {time:'2026-07-20 14:20',vendor:'实训设备平台 B',candidate:'张三',instance:'PQI-LV-20260722-G1-001-K2-01',action:'题目推送',result:'题目推送成功',note:'设备评分题已推送至本考试点启用厂商'}
+        {time:'2026-07-20 14:20',vendor:'泰豪实训平台',candidate:'张三',instance:'PQI-LV-20260722-G1-001-K2-01',action:'题目推送',result:'题目推送成功',note:'设备评分题已推送至本考试点启用的平台接口'},
+        {time:'2026-07-20 14:20',vendor:'实训设备平台 B',candidate:'张三',instance:'PQI-LV-20260722-G1-001-K2-01',action:'题目推送',result:'题目推送成功',note:'设备评分题已推送至本考试点启用的平台接口'}
       ];
       const officialDeviceScores=new Map();
 
@@ -164,10 +164,10 @@
           result='首次成绩回传成功';
           note='正式成绩已写入对应学员题目实例';
         }else if(current.vendor===vendor&&current.scoreFlowId===scoreFlowId){
-          result='同厂商同流水幂等成功';
+          result='同平台接口同流水幂等成功';
           note='返回成功且不重复写入正式成绩';
         }else{
-          result='不同厂商后到同一实例，接口异常拒收';
+          result='不同平台接口后到同一实例，接口异常拒收';
           note='保留接口记录，不覆盖已接收的正式成绩';
         }
         interfaceRecords.push({time,vendor,candidate,instance:questionInstanceId,action:'成绩回传',result,note});
@@ -186,19 +186,19 @@
       function renderCandidateResults(results,candidateCount){return results.map(item=>`<details class="candidate-card" open><summary>${escapeHtml(item.candidate)}<span>${escapeHtml(item.idCard)}</span></summary><table><thead><tr><th>科目大类</th><th>考题</th><th>评分方式</th><th>题目实例 ID</th></tr></thead><tbody>${item.questions.map(question=>`<tr><td>${question.category} ${categoryLabels[question.category]}</td><td>${escapeHtml(question.question)}</td><td>${escapeHtml(question.scoreSource)}</td><td><span class="instance-id">${question.questionInstanceId}</span></td></tr>`).join('')}</tbody></table></details>`).join('')+`<p class="empty-note">当前展示 3 / ${candidateCount} 名学员示例；同一学员同一科目大类不重复，不同学员之间允许抽到相同考题。</p>`;}
       function resultTagClass(result){return result.includes('拒收')?'red':result.includes('幂等')?'blue':'green';}
       function renderInterfaceRecords(records){return records.map(record=>`<tr><td>${record.time}</td><td>${escapeHtml(record.vendor)}</td><td>${escapeHtml(record.candidate)}</td><td class="instance-id">${record.instance}</td><td>${record.action}</td><td><span class="tag ${resultTagClass(record.result)}">${record.result}</span></td><td>${record.note}</td></tr>`).join('');}
-      function renderVendorMaster(){return `<div class="panel"><div class="panel-body"><div class="query-grid"><div class="query-item"><label>厂商名称</label><input placeholder="请输入厂商名称"></div><div class="query-item"><label>启停状态</label><select><option>全部</option><option>启用</option><option>停用</option></select></div><div class="query-actions"><button class="primary"><i data-lucide="search"></i>查询</button><button class="secondary"><i data-lucide="rotate-ccw"></i>重置</button></div></div></div></div><div class="panel"><div class="vendor-toolbar"><h2>厂商列表</h2><button class="primary" data-config-dialog="vendor"><i data-lucide="plus"></i>新增厂商</button></div><div class="table-wrap"><table><thead><tr><th>厂商名称</th><th>厂商编码</th><th>推送地址</th><th>回调地址</th><th>鉴权方式</th><th>启停状态</th><th>最近联调结果</th><th>操作</th></tr></thead><tbody>${vendors.map(item=>`<tr><td>${item.name}</td><td>${item.code}</td><td>${item.pushUrl}</td><td>${item.callbackUrl}</td><td>${item.auth}</td><td><span class="tag green">${item.status}</span></td><td>成功 ${item.checkedAt}</td><td><div class="action-group"><button class="link" data-config-dialog="vendor">编辑</button><button class="link" data-action="connectivity-test">连通性测试</button><button class="link" data-action="show-interface-log">查看接口日志</button></div></td></tr>`).join('')}</tbody></table></div></div><div class="vendor-records" id="interfaceLog"><h2>最近接口记录</h2><div class="panel"><div class="table-wrap"><table><thead><tr><th>时间</th><th>厂商</th><th>学员</th><th>题目实例 ID</th><th>动作</th><th>处理结果</th><th>说明</th></tr></thead><tbody>${renderInterfaceRecords(interfaceRecords)}</tbody></table></div></div><p class="empty-note">设备评分题推送至本考试点全部启用厂商；同厂商同流水重复回传不重复写入，不同厂商后到记录不覆盖正式成绩。</p></div>`;}
-      function renderConnections(){return `<div class="panel"><div class="panel-note">同一考点可启用多个厂商；抽题完成后，设备评分题推送至本考试点全部启用厂商；配置由考试点直接维护。</div><div class="vendor-toolbar"><h2>考点厂商管理</h2><button class="primary" data-config-dialog="connection"><i data-lucide="plus"></i>新增接入配置</button></div><div class="table-wrap"><table><thead><tr><th>考试点</th><th>设备厂商</th><th>厂商侧考点/租户标识</th><th>启停状态</th><th>备注</th><th>操作</th></tr></thead><tbody>${pointVendorConnections.map(item=>`<tr><td>${item.point}</td><td>${item.vendor}</td><td>${item.tenantCode}</td><td><span class="tag green">${item.status}</span></td><td>${item.remark}</td><td><button class="link" data-config-dialog="connection">编辑</button></td></tr>`).join('')}</tbody></table></div></div>`;}
+      function renderVendorMaster(){return `<div class="panel"><div class="panel-body"><div class="query-grid"><div class="query-item"><label>平台名称</label><input placeholder="请输入平台名称"></div><div class="query-item"><label>启停状态</label><select><option>全部</option><option>启用</option><option>停用</option></select></div><div class="query-actions"><button class="primary"><i data-lucide="search"></i>查询</button><button class="secondary"><i data-lucide="rotate-ccw"></i>重置</button></div></div></div></div><div class="panel"><div class="vendor-toolbar"><h2>平台接口列表</h2><button class="primary" data-config-dialog="vendor"><i data-lucide="plus"></i>新增平台接口</button></div><div class="table-wrap"><table><thead><tr><th>平台名称</th><th>平台编码</th><th>推送接口地址</th><th>回调接口地址</th><th>鉴权方式</th><th>签名密钥/证书引用</th><th>启停状态</th><th>备注</th><th>最近联调结果</th><th>操作</th></tr></thead><tbody>${vendors.map(item=>`<tr><td>${item.name}</td><td>${item.code}</td><td>${item.pushUrl}</td><td>${item.callbackUrl}</td><td>${item.auth}</td><td>${item.credentialRef}</td><td><span class="tag green">${item.status}</span></td><td>${item.remark}</td><td>成功 ${item.checkedAt}</td><td><div class="action-group"><button class="link" data-config-dialog="vendor">编辑</button><button class="link" data-action="connectivity-test">接口联调</button><button class="link" data-action="show-interface-log">查看接口记录</button></div></td></tr>`).join('')}</tbody></table></div></div><div class="vendor-records" id="interfaceLog"><h2>最近接口记录</h2><div class="panel"><div class="table-wrap"><table><thead><tr><th>时间</th><th>平台接口</th><th>学员</th><th>题目实例 ID</th><th>动作</th><th>处理结果</th><th>说明</th></tr></thead><tbody>${renderInterfaceRecords(interfaceRecords)}</tbody></table></div></div><p class="empty-note">设备评分题推送至本考试点全部启用的平台接口；同平台接口同流水重复回传不重复写入，不同平台接口后到记录不覆盖正式成绩。</p></div>`;}
+      function renderConnections(){return `<div class="panel"><div class="panel-note">同一考点可启用多个实操平台接口；抽题完成后，设备评分题推送至本考试点全部启用的平台接口；配置明确说明考点启用了哪些平台接口。</div><div class="vendor-toolbar"><h2>考点实操平台配置</h2><button class="primary" data-config-dialog="connection"><i data-lucide="plus"></i>新增平台配置</button></div><div class="table-wrap"><table><thead><tr><th>考试点</th><th>实操平台接口</th><th>平台侧考点/租户标识</th><th>启停状态</th><th>备注</th><th>操作</th></tr></thead><tbody>${pointVendorConnections.map(item=>`<tr><td>${item.point}</td><td>${item.vendor}</td><td>${item.tenantCode}</td><td><span class="tag green">${item.status}</span></td><td>${item.remark}</td><td><button class="link" data-config-dialog="connection">编辑</button></td></tr>`).join('')}</tbody></table></div></div>`;}
       function renderConfigDialog(type){
         const isConnection=type==='connection';
-        const title=isConnection?'维护考点厂商管理':'维护厂商信息';
-        const fields=isConnection?`<div class="form-item"><label class="required">考试点</label><select><option>高新实操考点</option></select></div><div class="form-item"><label class="required">设备厂商</label><select>${vendors.map(item=>`<option>${item.name}</option>`).join('')}</select></div><div class="form-item"><label class="required">厂商侧考点/租户标识</label><input value="GX-TH-001"></div><div class="form-item"><label class="required">启停状态</label><select><option>启用</option><option>停用</option></select></div><div class="form-item full"><label>备注</label><textarea>设备考试成绩接入</textarea></div>`:`<div class="form-item"><label class="required">厂商名称</label><input value="泰豪实训平台"></div><div class="form-item"><label class="required">厂商编码</label><input value="TH"></div><div class="form-item"><label class="required">推送接口地址</label><input value="https://vendor.example.com/tasks"></div><div class="form-item"><label class="required">回调接口地址</label><input value="https://exam.example.com/vendor/score"></div><div class="form-item"><label class="required">鉴权方式</label><select><option>HMAC 签名</option><option>API Key</option></select></div><div class="form-item"><label>签名密钥 / 证书引用</label><input value="KEY-REF-TH-01"></div><div class="form-item"><label>联系人</label><input value="陈工"></div><div class="form-item"><label>联系电话</label><input value="138****2056"></div><div class="form-item"><label class="required">启停状态</label><select><option>启用</option><option>停用</option></select></div><div class="form-item full"><label>备注</label><textarea>设备成绩接口接入</textarea></div>`;
+        const title=isConnection?'维护考点实操平台配置':'维护实操平台接口';
+        const fields=isConnection?`<div class="form-item"><label class="required">考试点</label><select><option>高新实操考点</option></select></div><div class="form-item"><label class="required">实操平台接口</label><select>${vendors.map(item=>`<option>${item.name}</option>`).join('')}</select></div><div class="form-item"><label class="required">平台侧考点/租户标识</label><input value="GX-TH-001"></div><div class="form-item"><label class="required">启停状态</label><select><option>启用</option><option>停用</option></select></div><div class="form-item full"><label>备注</label><textarea>设备考试成绩接入</textarea></div>`:`<div class="form-item"><label class="required">平台名称</label><input value="泰豪实训平台"></div><div class="form-item"><label class="required">平台编码</label><input value="TH"></div><div class="form-item"><label class="required">推送接口地址</label><input value="https://platform.example.com/tasks"></div><div class="form-item"><label class="required">回调接口地址</label><input value="https://exam.example.com/platform/score"></div><div class="form-item"><label class="required">鉴权方式</label><select><option>HMAC 签名</option><option>API Key</option></select></div><div class="form-item"><label>签名密钥/证书引用</label><input value="KEY-REF-TH-01"></div><div class="form-item"><label class="required">启停状态</label><select><option>启用</option><option>停用</option></select></div><div class="form-item full"><label>备注</label><textarea>设备成绩接口接入</textarea></div>`;
         return `<div class="modal show dynamic-modal"><div class="dialog compact" role="dialog" aria-modal="true" aria-labelledby="configDialogTitle"><div class="dialog-head"><h2 id="configDialogTitle">${title}</h2><button class="ghost" data-action="remove-modal" aria-label="关闭弹窗"><i data-lucide="x"></i></button></div><div class="dialog-body"><div class="form-grid">${fields}</div></div><div class="dialog-foot"><button class="secondary" data-action="remove-modal">取消</button><button class="primary" data-action="remove-modal">保存</button></div></div></div>`;
       }
 
       global.__practicalExamPrototype={examPlans,interfaceRecords,generatePlanResults,renderPlanRows,renderCandidateResults,renderInterfaceRecords};
       if(typeof document==='undefined')return;
 
-      const labels={draw:'实操抽题管理','vendor-info':'实操厂商信息','point-vendor-management':'考点厂商管理',questions:'实操考题管理'};
+      const labels={draw:'实操抽题管理','vendor-info':'实操平台接口配置','point-vendor-management':'考点实操平台配置',questions:'实操考题管理'};
       const planRows=document.getElementById('planRows');
       const drawModal=document.getElementById('drawModal');
       const questionModal=document.getElementById('questionModal');
