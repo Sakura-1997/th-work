@@ -198,6 +198,8 @@
       questionRecords.find(item=>item.id==='高新实操考点-高压电工作业-K4-1').reviewState='待地市考试中心审核';
       questionRecords.push({id:'rejected-sample',point:currentPoint,project:'高压电工作业',category:'K1',name:'高压接地线装拆操作',scoreSource:'考评员评分',application:'新增申请',reviewState:'已驳回',enabled:false,trail:['地市考试中心驳回'],opinion:'请补充考试标准和否定项说明。'});
       questionRecords.forEach(item=>item.effective=item.id==='rejected-sample'?null:{project:item.project,category:item.category,name:item.name,scoreSource:item.scoreSource,enabled:true});
+      const pendingIssuerModification=questionRecords.find(item=>item.id==='高新实操考点-高压电工作业-K2-0');
+      pendingIssuerModification.pendingSnapshot={...pendingIssuerModification.effective};
       questionRecords.forEach(item=>item.lastApproved=item.reviewState==='已审核通过');
       global.__reviewReady=true;
 
@@ -251,7 +253,7 @@
         if(!approved&&!opinion){global.alert('驳回时必须填写审核意见');return;}
         if(!approved){item.reviewState='已驳回';item.enabled=Boolean(item.effective?.enabled);item.opinion=opinion;item.trail.push(`${reviewLabels[activeRole]}驳回`);}
         else if(activeRole==='center'){item.reviewState='待地市发证机关审核';item.trail.push('地市考试中心审核通过');item.opinion=opinion;}
-        else {item.reviewState=item.application==='停用申请'?'停用已生效':'已审核通过';if(item.application==='停用申请'){item.effective.enabled=false;item.enabled=false;}else{item.effective={...item.pendingSnapshot,enabled:true};item.project=item.effective.project;item.category=item.effective.category;item.name=item.effective.name;item.scoreSource=item.effective.scoreSource;item.enabled=true;}item.lastApproved=Boolean(item.effective?.enabled);item.trail.push('地市发证机关审核通过');item.opinion=opinion;}
+        else {const approvedSnapshot=item.pendingSnapshot||item.effective;if(!approvedSnapshot){global.alert('申请快照缺失，无法完成终审');return;}item.reviewState=item.application==='停用申请'?'停用已生效':'已审核通过';if(item.application==='停用申请'){item.effective.enabled=false;item.enabled=false;}else{item.effective={...approvedSnapshot,enabled:true};item.project=item.effective.project;item.category=item.effective.category;item.name=item.effective.name;item.scoreSource=item.effective.scoreSource;item.enabled=true;}item.lastApproved=Boolean(item.effective?.enabled);item.trail.push('地市发证机关审核通过');item.opinion=opinion;}
         closeModal(document.getElementById('reviewModal'));renderQuestionRows();global.alert(approved?'审核结果已提交':'申请已驳回');
       }
       function escapeHtml(value){return String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
