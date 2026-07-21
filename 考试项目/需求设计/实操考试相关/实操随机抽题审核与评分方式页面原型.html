@@ -290,7 +290,7 @@
       function mountReviewWorkspace(){
         const panels=document.querySelectorAll('#questions .panel');const panel=panels[panels.length-1];
         panel.innerHTML=`<div class="review-toolbar"><div><h2>实操考题列表</h2><p class="empty-note">新增、修改、停用均须经地市考试中心和地市发证机关两级审核。</p></div><button class="primary" data-action="open-question"><i data-lucide="plus"></i>新增考题申请</button></div><div class="table-wrap"><table><thead><tr><th>序号</th><th>操作项目</th><th>科目</th><th>考试项目</th><th>评分方式</th><th>申请类型</th><th>审核状态</th><th>启用状态</th><th>审核记录 / 意见</th><th>操作</th></tr></thead><tbody id="questionRows"></tbody></table></div>`;
-        panel.insertAdjacentHTML('beforebegin','<div class="candidate-rule"><i data-lucide="filter-check"></i>实操抽题候选题仅包含：<b>当前考试点</b>、<b>已审核通过</b>、<b>已启用</b>的实操考题；抽题过程不发起审核。</div>');
+        panel.insertAdjacentHTML('beforebegin','<div class="candidate-rule"><i data-lucide="filter-check"></i>实操抽题候选题仅包含：<b>当前考试点</b>、<b>已审核通过</b>、<b>已启用</b>的实操考题；抽题过程不发起审核。停用申请经两级审核终审通过后不再进入抽题候选池，历史记录保留。</div>');
       }
       global.__practicalExamPrototype={examPlans,interfaceRecords,questionRecords,generatePlanResults,renderPlanRows,renderCandidateResults,renderInterfaceRecords,getEligibleQuestionPools};
       if(typeof document==='undefined')return;
