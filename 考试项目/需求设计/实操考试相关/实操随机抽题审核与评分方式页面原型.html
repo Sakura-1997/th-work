@@ -17,12 +17,11 @@
   <div class="shell">
     <aside class="side">
       <div class="brand"><div class="brand-mark"><i data-lucide="shield-check"></i></div><div><b>考试监管平台</b><small>实操考试管理</small></div></div>
-      <div class="group">实操考试</div>
+      <div class="group">实操考试管理</div>
       <button class="nav active" data-view="draw"><i data-lucide="shuffle"></i>实操抽题管理</button>
-      <div class="group">考题配置</div>
+      <button class="nav" data-view="vendor-info"><i data-lucide="plug-zap"></i>实操厂商信息</button>
+      <button class="nav" data-view="point-vendor-management"><i data-lucide="network"></i>考点厂商管理</button>
       <button class="nav" data-view="questions"><i data-lucide="list-checks"></i>实操考题管理</button>
-      <div class="group">设备接入</div>
-      <button class="nav" data-view="vendors"><i data-lucide="plug-zap"></i>设备厂商管理</button>
     </aside>
     <main>
       <header class="top"><div class="crumb">考试机构 <b id="crumb">实操抽题管理</b></div><div class="account"><span>南昌市高新考点</span><div class="avatar">张</div></div></header>
@@ -50,11 +49,14 @@
           <div class="panel"><div class="panel-head"><button class="primary" data-action="open-question"><i data-lucide="plus"></i>新增</button></div><div class="table-wrap"><table><thead><tr><th>序号</th><th>操作项目</th><th>科目大类</th><th>考试项目</th><th>考试时长(分钟)</th><th>考题类型</th><th>评分方式</th><th>创建时间</th><th>操作</th></tr></thead><tbody><tr><td>1</td><td>高压电工作业</td><td>K4</td><td>电气火灾初期处置</td><td>15</td><td>实操考题</td><td><span class="tag green">考评员评分</span></td><td>2026-07-03 14:10</td><td><button class="link">详情</button> <button class="link">修改</button></td></tr><tr><td>2</td><td>高压电工作业</td><td>K2</td><td>高压开关柜停送电操作</td><td>20</td><td>实操考题</td><td><span class="tag blue">设备平台评分</span></td><td>2026-07-03 14:10</td><td><button class="link">详情</button> <button class="link">修改</button></td></tr></tbody></table></div></div>
         </section>
 
-        <section class="view" id="vendors">
-          <div class="headline"><h1>设备厂商管理</h1><p>维护厂商接入信息和本考试点启用的厂商。</p></div>
-          <div class="tabs"><button class="tab active" data-vendor-tab="master">厂商信息</button><button class="tab" data-vendor-tab="connection">考点厂商接入配置</button></div>
-          <div id="vendorMasterPanel"></div>
-          <div id="vendorConnectionPanel" hidden></div>
+        <section class="view" id="vendor-info">
+          <div class="headline"><h1>实操厂商信息</h1><p>维护实操考试厂商接入信息和接口记录。</p></div>
+          <div id="vendorInfoContent"></div>
+        </section>
+
+        <section class="view" id="point-vendor-management">
+          <div class="headline"><h1>考点厂商管理</h1><p>维护本考试点启用的实操厂商。</p></div>
+          <div id="pointVendorManagementContent"></div>
         </section>
       </div>
     </main>
@@ -185,10 +187,10 @@
       function resultTagClass(result){return result.includes('拒收')?'red':result.includes('幂等')?'blue':'green';}
       function renderInterfaceRecords(records){return records.map(record=>`<tr><td>${record.time}</td><td>${escapeHtml(record.vendor)}</td><td>${escapeHtml(record.candidate)}</td><td class="instance-id">${record.instance}</td><td>${record.action}</td><td><span class="tag ${resultTagClass(record.result)}">${record.result}</span></td><td>${record.note}</td></tr>`).join('');}
       function renderVendorMaster(){return `<div class="panel"><div class="panel-body"><div class="query-grid"><div class="query-item"><label>厂商名称</label><input placeholder="请输入厂商名称"></div><div class="query-item"><label>启停状态</label><select><option>全部</option><option>启用</option><option>停用</option></select></div><div class="query-actions"><button class="primary"><i data-lucide="search"></i>查询</button><button class="secondary"><i data-lucide="rotate-ccw"></i>重置</button></div></div></div></div><div class="panel"><div class="vendor-toolbar"><h2>厂商列表</h2><button class="primary" data-config-dialog="vendor"><i data-lucide="plus"></i>新增厂商</button></div><div class="table-wrap"><table><thead><tr><th>厂商名称</th><th>厂商编码</th><th>推送地址</th><th>回调地址</th><th>鉴权方式</th><th>启停状态</th><th>最近联调结果</th><th>操作</th></tr></thead><tbody>${vendors.map(item=>`<tr><td>${item.name}</td><td>${item.code}</td><td>${item.pushUrl}</td><td>${item.callbackUrl}</td><td>${item.auth}</td><td><span class="tag green">${item.status}</span></td><td>成功 ${item.checkedAt}</td><td><div class="action-group"><button class="link" data-config-dialog="vendor">编辑</button><button class="link" data-action="connectivity-test">连通性测试</button><button class="link" data-action="show-interface-log">查看接口日志</button></div></td></tr>`).join('')}</tbody></table></div></div><div class="vendor-records" id="interfaceLog"><h2>最近接口记录</h2><div class="panel"><div class="table-wrap"><table><thead><tr><th>时间</th><th>厂商</th><th>学员</th><th>题目实例 ID</th><th>动作</th><th>处理结果</th><th>说明</th></tr></thead><tbody>${renderInterfaceRecords(interfaceRecords)}</tbody></table></div></div><p class="empty-note">设备评分题推送至本考试点全部启用厂商；同厂商同流水重复回传不重复写入，不同厂商后到记录不覆盖正式成绩。</p></div>`;}
-      function renderConnections(){return `<div class="panel"><div class="panel-note">同一考点可启用多个厂商；抽题完成后，设备评分题推送至本考试点全部启用厂商；配置由考试点直接维护。</div><div class="vendor-toolbar"><h2>考点厂商接入配置</h2><button class="primary" data-config-dialog="connection"><i data-lucide="plus"></i>新增接入配置</button></div><div class="table-wrap"><table><thead><tr><th>考试点</th><th>设备厂商</th><th>厂商侧考点/租户标识</th><th>启停状态</th><th>备注</th><th>操作</th></tr></thead><tbody>${pointVendorConnections.map(item=>`<tr><td>${item.point}</td><td>${item.vendor}</td><td>${item.tenantCode}</td><td><span class="tag green">${item.status}</span></td><td>${item.remark}</td><td><button class="link" data-config-dialog="connection">编辑</button></td></tr>`).join('')}</tbody></table></div></div>`;}
+      function renderConnections(){return `<div class="panel"><div class="panel-note">同一考点可启用多个厂商；抽题完成后，设备评分题推送至本考试点全部启用厂商；配置由考试点直接维护。</div><div class="vendor-toolbar"><h2>考点厂商管理</h2><button class="primary" data-config-dialog="connection"><i data-lucide="plus"></i>新增接入配置</button></div><div class="table-wrap"><table><thead><tr><th>考试点</th><th>设备厂商</th><th>厂商侧考点/租户标识</th><th>启停状态</th><th>备注</th><th>操作</th></tr></thead><tbody>${pointVendorConnections.map(item=>`<tr><td>${item.point}</td><td>${item.vendor}</td><td>${item.tenantCode}</td><td><span class="tag green">${item.status}</span></td><td>${item.remark}</td><td><button class="link" data-config-dialog="connection">编辑</button></td></tr>`).join('')}</tbody></table></div></div>`;}
       function renderConfigDialog(type){
         const isConnection=type==='connection';
-        const title=isConnection?'维护考点厂商接入配置':'维护厂商信息';
+        const title=isConnection?'维护考点厂商管理':'维护厂商信息';
         const fields=isConnection?`<div class="form-item"><label class="required">考试点</label><select><option>高新实操考点</option></select></div><div class="form-item"><label class="required">设备厂商</label><select>${vendors.map(item=>`<option>${item.name}</option>`).join('')}</select></div><div class="form-item"><label class="required">厂商侧考点/租户标识</label><input value="GX-TH-001"></div><div class="form-item"><label class="required">启停状态</label><select><option>启用</option><option>停用</option></select></div><div class="form-item full"><label>备注</label><textarea>设备考试成绩接入</textarea></div>`:`<div class="form-item"><label class="required">厂商名称</label><input value="泰豪实训平台"></div><div class="form-item"><label class="required">厂商编码</label><input value="TH"></div><div class="form-item"><label class="required">推送接口地址</label><input value="https://vendor.example.com/tasks"></div><div class="form-item"><label class="required">回调接口地址</label><input value="https://exam.example.com/vendor/score"></div><div class="form-item"><label class="required">鉴权方式</label><select><option>HMAC 签名</option><option>API Key</option></select></div><div class="form-item"><label>签名密钥 / 证书引用</label><input value="KEY-REF-TH-01"></div><div class="form-item"><label>联系人</label><input value="陈工"></div><div class="form-item"><label>联系电话</label><input value="138****2056"></div><div class="form-item"><label class="required">启停状态</label><select><option>启用</option><option>停用</option></select></div><div class="form-item full"><label>备注</label><textarea>设备成绩接口接入</textarea></div>`;
         return `<div class="modal show dynamic-modal"><div class="dialog compact" role="dialog" aria-modal="true" aria-labelledby="configDialogTitle"><div class="dialog-head"><h2 id="configDialogTitle">${title}</h2><button class="ghost" data-action="remove-modal" aria-label="关闭弹窗"><i data-lucide="x"></i></button></div><div class="dialog-body"><div class="form-grid">${fields}</div></div><div class="dialog-foot"><button class="secondary" data-action="remove-modal">取消</button><button class="primary" data-action="remove-modal">保存</button></div></div></div>`;
       }
@@ -196,7 +198,7 @@
       global.__practicalExamPrototype={examPlans,interfaceRecords,generatePlanResults,renderPlanRows,renderCandidateResults,renderInterfaceRecords};
       if(typeof document==='undefined')return;
 
-      const labels={draw:'实操抽题管理',questions:'实操考题管理',vendors:'设备厂商管理'};
+      const labels={draw:'实操抽题管理','vendor-info':'实操厂商信息','point-vendor-management':'考点厂商管理',questions:'实操考题管理'};
       const planRows=document.getElementById('planRows');
       const drawModal=document.getElementById('drawModal');
       const questionModal=document.getElementById('questionModal');
@@ -210,7 +212,7 @@
       function createIcons(){global.lucide?.createIcons();}
       function closeModal(modal){if(modal.classList.contains('dynamic-modal'))modal.remove();else modal.classList.remove('show');}
       function refreshPlanRows(){planRows.innerHTML=renderPlanRows(examPlans);createIcons();}
-      function refreshVendorPanels(){document.getElementById('vendorMasterPanel').innerHTML=renderVendorMaster();document.getElementById('vendorConnectionPanel').innerHTML=renderConnections();createIcons();}
+      function refreshVendorViews(){document.getElementById('vendorInfoContent').innerHTML=renderVendorMaster();document.getElementById('pointVendorManagementContent').innerHTML=renderConnections();createIcons();}
       function showView(viewId){document.querySelectorAll('.nav').forEach(item=>item.classList.toggle('active',item.dataset.view===viewId));document.querySelectorAll('.view').forEach(item=>item.classList.toggle('active',item.id===viewId));document.getElementById('crumb').textContent=labels[viewId];}
       function fillPlanSummary(plan){document.getElementById('planSummary').innerHTML=`<span>考试计划</span><b>${plan.name}</b><span>考试日期</span><b>${plan.date}</b><span>操作项目</span><b>${plan.project}</b><span>考试点</span><b>${plan.point}</b><span>考生人数</span><b>${plan.candidateCount} 人</b><span>抽题规则</span><b>每名学员每个科目大类独立完成</b>`;}
       function openPlanModal(planId,mode){
@@ -259,8 +261,6 @@
         if(nav){showView(nav.dataset.view);return;}
         const planAction=event.target.closest('[data-plan-action]');
         if(planAction){openPlanModal(planAction.dataset.planId,planAction.dataset.planAction);return;}
-        const vendorTab=event.target.closest('[data-vendor-tab]');
-        if(vendorTab){document.querySelectorAll('[data-vendor-tab]').forEach(tab=>tab.classList.toggle('active',tab===vendorTab));const showConnections=vendorTab.dataset.vendorTab==='connection';document.getElementById('vendorMasterPanel').hidden=showConnections;document.getElementById('vendorConnectionPanel').hidden=!showConnections;return;}
         const configButton=event.target.closest('[data-config-dialog]');
         if(configButton){document.body.insertAdjacentHTML('beforeend',renderConfigDialog(configButton.dataset.configDialog));createIcons();return;}
         const action=event.target.closest('[data-action]')?.dataset.action;
@@ -276,10 +276,10 @@
       document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;const openModal=Array.from(document.querySelectorAll('.modal.show')).at(-1);if(openModal)closeModal(openModal);});
 
       refreshPlanRows();
-      refreshVendorPanels();
+      refreshVendorViews();
       const preview=new URLSearchParams(global.location.search).get('preview');
       if(preview==='draw-results')openPlanModal('plan-lv-20260722','view');
-      if(preview==='vendors')showView('vendors');
+      if(preview==='vendor-info')showView('vendor-info');
       createIcons();
     })(globalThis);
   </script>
