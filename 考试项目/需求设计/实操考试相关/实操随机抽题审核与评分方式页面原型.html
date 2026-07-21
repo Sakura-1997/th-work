@@ -197,16 +197,20 @@
       questionRecords.find(item=>item.id==='高新实操考点-高压电工作业-K4-1').application='停用申请';
       questionRecords.find(item=>item.id==='高新实操考点-高压电工作业-K4-1').reviewState='待地市考试中心审核';
       questionRecords.push({id:'rejected-sample',point:currentPoint,project:'高压电工作业',category:'K1',name:'高压接地线装拆操作',scoreSource:'考评员评分',application:'新增申请',reviewState:'已驳回',enabled:false,trail:['地市考试中心驳回'],opinion:'请补充考试标准和否定项说明。'});
+      questionRecords.forEach(item=>item.effective=item.id==='rejected-sample'?null:{project:item.project,category:item.category,name:item.name,scoreSource:item.scoreSource,enabled:true});
       questionRecords.forEach(item=>item.lastApproved=item.reviewState==='已审核通过');
       global.__reviewReady=true;
 
       function getEligibleQuestionPools(plan){
         const pools={K1:[],K2:[],K3:[],K4:[]};
-        questionRecords.filter(item=>item.point===plan.point&&item.project===plan.project&&item.lastApproved&&item.enabled).forEach(item=>pools[item.category].push({question:item.name,scoreSource:item.scoreSource}));
+        questionRecords.filter(item=>item.point===plan.point&&item.effective&&item.effective.project===plan.project&&item.effective.enabled).forEach(item=>pools[item.effective.category].push({question:item.effective.name,scoreSource:item.effective.scoreSource}));
         return pools;
       }
       function reviewClass(state){return state==='已审核通过'||state==='停用已生效'?'green':state==='已驳回'?'red':state.includes('发证机关')?'blue':'amber';}
       function questionEnabledLabel(item){return item.enabled?'已启用':item.reviewState==='停用已生效'?'已停用':'未启用';}
+      function displayVersion(item){return item.effective||item.pendingSnapshot||item;}
+      function readQuestionForm(){const selects=questionModal.querySelectorAll('select');return {project:selects[0].value,category:selects[1].value,name:questionModal.querySelector('input').value.trim(),scoreSource:selects[2].value};}
+      function fillQuestionForm(version){const selects=questionModal.querySelectorAll('select');selects[0].value=version.project;selects[1].value=version.category;questionModal.querySelector('input').value=version.name;selects[2].value=version.scoreSource;}
       function questionActions(item){
         if(activeRole==='point'){
           if(item.reviewState==='已驳回')return `<button class="link" data-question-action="resubmit" data-question-id="${item.id}">修改后重新提交</button>`;
@@ -224,28 +228,30 @@
       }
       function openQuestionApplication(id,mode){
         activeQuestionId=id||null;questionApplicationMode=mode;
+        const item=id?questionRecords.find(record=>record.id===id):null;
+        if(item&&item.effective)fillQuestionForm(item.effective);
         document.getElementById('questionModalTitle').textContent=`${mode}实操考题申请`;
         questionModal.querySelector('[data-action="save-question"]').textContent=mode==='修改后重新提交'?'重新提交申请':'提交申请';
         questionModal.classList.add('show');
       }
       function openReviewModal(id){
-        const item=questionRecords.find(record=>record.id===id);activeQuestionId=id;
+        const item=questionRecords.find(record=>record.id===id);const snapshot=item.pendingSnapshot||displayVersion(item);activeQuestionId=id;
         document.getElementById('reviewModalTitle').textContent=`${reviewLabels[activeRole]}审核`;
-        document.getElementById('reviewModalSummary').innerHTML=`<span>考题</span><b>${escapeHtml(item.name)}</b><span>申请类型</span><b>${item.application}</b><span>当前状态</span><b>${item.reviewState}</b><span>审核环节</span><b>${reviewLabels[activeRole]}</b>`;
+        document.getElementById('reviewModalSummary').innerHTML=`<span>考题</span><b>${escapeHtml(snapshot.name)}</b><span>申请类型</span><b>${item.application}</b><span>当前状态</span><b>${item.reviewState}</b><span>审核环节</span><b>${reviewLabels[activeRole]}</b>`;
         document.getElementById('reviewOpinion').value='';document.getElementById('reviewModal').classList.add('show');
       }
       function submitQuestionApplication(){
         let item=activeQuestionId?questionRecords.find(record=>record.id===activeQuestionId):null;
-        if(!item){item={id:`new-${Date.now()}`,point:currentPoint,project:'高压电工作业',category:'K2',name:'高压开关柜停送电操作（新增）',scoreSource:'考评员评分',enabled:false,trail:[],opinion:''};questionRecords.unshift(item);}
-        item.application=questionApplicationMode==='修改后重新提交'?'修改申请':questionApplicationMode==='修改'?'修改申请':'新增申请';item.reviewState='待地市考试中心审核';item.trail=['考试点提交申请'];item.opinion='';
+        if(!item){item={id:`new-${Date.now()}`,point:currentPoint,application:'新增申请',reviewState:'待地市考试中心审核',effective:null,enabled:false,trail:[],opinion:''};questionRecords.unshift(item);}
+        item.pendingSnapshot=readQuestionForm();if(!item.effective)Object.assign(item,item.pendingSnapshot);item.application=questionApplicationMode==='修改后重新提交'?'修改申请':questionApplicationMode==='修改'?'修改申请':'新增申请';item.reviewState='待地市考试中心审核';item.trail=['考试点提交申请'];item.opinion='';
         closeModal(questionModal);renderQuestionRows();global.alert('申请已提交，状态：待地市考试中心审核');
       }
       function submitReview(approved){
         const item=questionRecords.find(record=>record.id===activeQuestionId);const opinion=document.getElementById('reviewOpinion').value.trim();
         if(!approved&&!opinion){global.alert('驳回时必须填写审核意见');return;}
-        if(!approved){item.reviewState='已驳回';item.enabled=item.lastApproved;item.opinion=opinion;item.trail.push(`${reviewLabels[activeRole]}驳回`);}
+        if(!approved){item.reviewState='已驳回';item.enabled=Boolean(item.effective?.enabled);item.opinion=opinion;item.trail.push(`${reviewLabels[activeRole]}驳回`);}
         else if(activeRole==='center'){item.reviewState='待地市发证机关审核';item.trail.push('地市考试中心审核通过');item.opinion=opinion;}
-        else {item.reviewState=item.application==='停用申请'?'停用已生效':'已审核通过';item.lastApproved=item.application!=='停用申请'||item.lastApproved;item.enabled=item.application!=='停用申请';item.trail.push('地市发证机关审核通过');item.opinion=opinion;}
+        else {item.reviewState=item.application==='停用申请'?'停用已生效':'已审核通过';if(item.application==='停用申请'){item.effective.enabled=false;item.enabled=false;}else{item.effective={...item.pendingSnapshot,enabled:true};item.project=item.effective.project;item.category=item.effective.category;item.name=item.effective.name;item.scoreSource=item.effective.scoreSource;item.enabled=true;}item.lastApproved=Boolean(item.effective?.enabled);item.trail.push('地市发证机关审核通过');item.opinion=opinion;}
         closeModal(document.getElementById('reviewModal'));renderQuestionRows();global.alert(approved?'审核结果已提交':'申请已驳回');
       }
       function escapeHtml(value){return String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
@@ -346,7 +352,7 @@
         const role=event.target.closest('[data-role]');
         if(role){activeRole=role.dataset.role;renderQuestionRows();return;}
         const questionAction=event.target.closest('[data-question-action]');
-        if(questionAction){const item=questionRecords.find(record=>record.id===questionAction.dataset.questionId);const actionName=questionAction.dataset.questionAction;if(actionName==='review')openReviewModal(item.id);else if(actionName==='stop'){item.application='停用申请';item.reviewState='待地市考试中心审核';item.trail=['考试点提交停用申请'];item.opinion='';renderQuestionRows();global.alert('停用申请已提交，状态：待地市考试中心审核');}else openQuestionApplication(item.id,actionName==='modify'?'修改':actionName==='resubmit'?'修改后重新提交':'新增');return;}
+        if(questionAction){const item=questionRecords.find(record=>record.id===questionAction.dataset.questionId);const actionName=questionAction.dataset.questionAction;if(actionName==='review')openReviewModal(item.id);else if(actionName==='stop'){item.pendingSnapshot={...item.effective};item.application='停用申请';item.reviewState='待地市考试中心审核';item.trail=['考试点提交停用申请'];item.opinion='';renderQuestionRows();global.alert('停用申请已提交，状态：待地市考试中心审核');}else openQuestionApplication(item.id,actionName==='modify'?'修改':actionName==='resubmit'?'修改后重新提交':'新增');return;}
         const planAction=event.target.closest('[data-plan-action]');
         if(planAction){openPlanModal(planAction.dataset.planId,planAction.dataset.planAction);return;}
         const configButton=event.target.closest('[data-config-dialog]');
