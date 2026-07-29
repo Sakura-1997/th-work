@@ -19,3 +19,11 @@ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
 -out /home/app/nginx/conf/ssl/server.crt \
 -subj "/CN=10.10.56.72" \
 -addext "subjectAltName=IP:10.10.56.72"
+
+#nginx配置
+listen xxx ssl
+
+error_page 497 301 =307 https://$host:$server_port$request_uri;
+
+ssl_certificate     /etc/nginx/ssl/server.crt;
+ssl_certificate_key /etc/nginx/ssl/server.key;

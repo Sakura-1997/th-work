@@ -1,0 +1,53 @@
+- generic [active] [ref=e1]:
+  - heading "Directory listing for /" [level=1] [ref=e2]
+  - separator [ref=e3]
+  - list [ref=e4]:
+    - listitem [ref=e5]:
+      - link ".playwright-cli/" [ref=e6] [cursor=pointer]:
+        - /url: .playwright-cli/
+    - listitem [ref=e7]:
+      - link ".superpowers/" [ref=e8] [cursor=pointer]:
+        - /url: .superpowers/
+    - listitem [ref=e9]:
+      - link "6.25需求.txt" [ref=e10] [cursor=pointer]:
+        - /url: 6.25%E9%9C%80%E6%B1%82.txt
+    - listitem [ref=e11]:
+      - link "6月工作文件/" [ref=e12] [cursor=pointer]:
+        - /url: 6%E6%9C%88%E5%B7%A5%E4%BD%9C%E6%96%87%E4%BB%B6/
+    - listitem [ref=e13]:
+      - link "7月工作文件/" [ref=e14] [cursor=pointer]:
+        - /url: 7%E6%9C%88%E5%B7%A5%E4%BD%9C%E6%96%87%E4%BB%B6/
+    - listitem [ref=e15]:
+      - link "docs/" [ref=e16] [cursor=pointer]:
+        - /url: docs/
+    - listitem [ref=e17]:
+      - link "厅里的需求.txt" [ref=e18] [cursor=pointer]:
+        - /url: "%E5%8E%85%E9%87%8C%E7%9A%84%E9%9C%80%E6%B1%82.txt"
+    - listitem [ref=e19]:
+      - link "发票/" [ref=e20] [cursor=pointer]:
+        - /url: "%E5%8F%91%E7%A5%A8/"
+    - listitem [ref=e21]:
+      - link "国家考试系统测试环境账号密码.txt" [ref=e22] [cursor=pointer]:
+        - /url: "%E5%9B%BD%E5%AE%B6%E8%80%83%E8%AF%95%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81.txt"
+    - listitem [ref=e23]:
+      - link "培训机构相关/" [ref=e24] [cursor=pointer]:
+        - /url: "%E5%9F%B9%E8%AE%AD%E6%9C%BA%E6%9E%84%E7%9B%B8%E5%85%B3/"
+    - listitem [ref=e25]:
+      - link "帐号密码.txt" [ref=e26] [cursor=pointer]:
+        - /url: "%E5%B8%90%E5%8F%B7%E5%AF%86%E7%A0%81.txt"
+    - listitem [ref=e27]:
+      - link "本周待办.txt" [ref=e28] [cursor=pointer]:
+        - /url: "%E6%9C%AC%E5%91%A8%E5%BE%85%E5%8A%9E.txt"
+    - listitem [ref=e29]:
+      - link "相关材料/" [ref=e30] [cursor=pointer]:
+        - /url: "%E7%9B%B8%E5%85%B3%E6%9D%90%E6%96%99/"
+    - listitem [ref=e31]:
+      - link "系统部署/" [ref=e32] [cursor=pointer]:
+        - /url: "%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2/"
+    - listitem [ref=e33]:
+      - link "需求设计/" [ref=e34] [cursor=pointer]:
+        - /url: "%E9%9C%80%E6%B1%82%E8%AE%BE%E8%AE%A1/"
+    - listitem [ref=e35]:
+      - link "额外的需求.txt" [ref=e36] [cursor=pointer]:
+        - /url: "%E9%A2%9D%E5%A4%96%E7%9A%84%E9%9C%80%E6%B1%82.txt"
+  - separator [ref=e37]

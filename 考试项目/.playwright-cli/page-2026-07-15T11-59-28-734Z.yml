@@ -1,0 +1,134 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "培训监管查询统计" [level=1] [ref=e5]
+      - generic [ref=e6]: 统计分析、归档资料查询与报表导出均在当前页面完成
+    - generic [ref=e7]:
+      - button "导出统计报表" [ref=e8] [cursor=pointer]
+      - button "导出档案明细" [ref=e9] [cursor=pointer]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]: 监管单位
+        - combobox [ref=e14]:
+          - option "全部监管单位" [selected]
+      - generic [ref=e15]:
+        - generic [ref=e16]: 培训计划
+        - combobox [ref=e17]:
+          - option "全部培训计划" [selected]
+      - generic [ref=e18]:
+        - generic [ref=e19]: 作业类别
+        - combobox [ref=e20]:
+          - option "全部作业类别" [selected]
+      - generic [ref=e21]:
+        - generic [ref=e22]: 开始时间
+        - textbox [ref=e23]: 2026-01-01
+      - generic [ref=e24]:
+        - generic [ref=e25]: 结束时间
+        - textbox [ref=e26]: 2026-07-15
+      - button "查询" [ref=e27] [cursor=pointer]
+      - button "重置" [ref=e28] [cursor=pointer]
+    - generic [ref=e29]: 时间口径：培训计划与所选日期范围有交集，即纳入统计和档案查询。
+  - navigation [ref=e30]:
+    - link "统计分析" [ref=e31] [cursor=pointer]:
+      - /url: "#statistics"
+    - link "归档资料（326）" [ref=e32] [cursor=pointer]:
+      - /url: "#archives"
+  - generic [ref=e33]:
+    - generic [ref=e34]:
+      - heading "统计分析" [level=2] [ref=e35]
+      - generic [ref=e36]: 统计结果随顶部查询条件更新
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - generic [ref=e39]: 培训计划
+        - strong [ref=e40]: 1,286
+      - generic [ref=e41]:
+        - generic [ref=e42]: 培训人员
+        - strong [ref=e43]: 68,426
+      - generic [ref=e44]:
+        - generic [ref=e45]: 培训机构
+        - strong [ref=e46]: "126"
+      - generic [ref=e47]:
+        - generic [ref=e48]: 实际授课教师
+        - strong [ref=e49]: "842"
+      - generic [ref=e50]:
+        - generic [ref=e51]: 培训合格率
+        - strong [ref=e52]: 96.8%
+      - generic [ref=e53]:
+        - generic [ref=e54]: 年度违规次数
+        - strong [ref=e55]: "27"
+    - generic [ref=e56]:
+      - button "培训计划统计" [ref=e57] [cursor=pointer]
+      - button "培训人员统计" [ref=e58] [cursor=pointer]
+      - button "培训机构统计" [ref=e59] [cursor=pointer]
+      - button "授课老师统计" [ref=e60] [cursor=pointer]
+      - button "培训通过情况" [ref=e61] [cursor=pointer]
+      - button "机构违规统计" [ref=e62] [cursor=pointer]
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e65]: 培训计划数量趋势
+        - generic [ref=e66]:
+          - generic [ref=e67]: 1月
+          - generic [ref=e68]: 2月
+          - generic [ref=e69]: 3月
+          - generic [ref=e70]: 4月
+          - generic [ref=e71]: 5月
+          - generic [ref=e72]: 6月
+        - generic [ref=e73]: 点击柱形，可联动筛选下方归档资料。
+      - generic [ref=e74]:
+        - generic [ref=e75]: 监管单位培训计划排行
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - generic [ref=e78]: 南昌市应急管理局
+            - generic [ref=e81]: "236"
+          - generic [ref=e82]:
+            - generic [ref=e83]: 赣州市应急管理局
+            - generic [ref=e86]: "194"
+          - generic [ref=e87]:
+            - generic [ref=e88]: 上饶市应急管理局
+            - generic [ref=e91]: "156"
+        - generic [ref=e92]: 点击排行项，可联动筛选下方归档资料。
+  - generic [ref=e93]:
+    - generic [ref=e94]:
+      - heading "归档资料 共 326 条" [level=2] [ref=e96]
+      - button "批量下载 ZIP" [ref=e97] [cursor=pointer]
+    - table [ref=e99]:
+      - rowgroup [ref=e100]:
+        - row [ref=e101]:
+          - columnheader [ref=e102]:
+            - checkbox [ref=e103]
+          - columnheader "培训计划" [ref=e104]
+          - columnheader "监管单位" [ref=e105]
+          - columnheader "培训机构" [ref=e106]
+          - columnheader "作业类别" [ref=e107]
+          - columnheader "计划时间" [ref=e108]
+          - columnheader "培训人数" [ref=e109]
+          - columnheader "归档时间" [ref=e110]
+          - columnheader "操作" [ref=e111]
+      - rowgroup [ref=e112]:
+        - row [ref=e113]:
+          - cell [ref=e114]:
+            - checkbox [ref=e115]
+          - cell "低压电工作业初训第12期" [ref=e116]
+          - cell "南昌市应急管理局" [ref=e117]
+          - cell "江西安培职业培训学校" [ref=e118]
+          - cell "电工作业" [ref=e119]
+          - cell "2026-06-20 至 2026-07-08" [ref=e120]
+          - cell "48" [ref=e121]
+          - cell "2026-07-08" [ref=e122]
+          - cell "查看资料 下载" [ref=e123]
+        - row [ref=e124]:
+          - cell [ref=e125]:
+            - checkbox [ref=e126]
+          - cell "焊接作业复训第8期" [ref=e127]
+          - cell "赣州市应急管理局" [ref=e128]
+          - cell "赣州安全培训中心" [ref=e129]
+          - cell "焊接与热切割作业" [ref=e130]
+          - cell "2026-07-01 至 2026-07-10" [ref=e131]
+          - cell "36" [ref=e132]
+          - cell "2026-07-10" [ref=e133]
+          - cell "查看资料 下载" [ref=e134]
+    - generic [ref=e135]: 上一页 1 2 3 … 33 下一页
+  - generic [ref=e136] [cursor=pointer]:
+    - heading "确认单页面结构" [level=3] [ref=e137]
+    - paragraph [ref=e138]: 顶部统一筛选，中部六类统计，底部归档资料；图表与档案列表联动。

@@ -1,0 +1,423 @@
+- generic [ref=f1e1]:
+  - main [ref=f1e36]:
+    - generic [ref=f1e37]:
+      - generic [ref=f1e38]: 考试机构 实操抽题管理
+      - generic [ref=f1e39]:
+        - generic [ref=f1e40]: 南昌市高新考点
+        - generic [ref=f1e41]: 张
+    - generic [ref=f1e43]:
+      - generic [ref=f1e44]:
+        - heading "实操抽题管理" [level=1] [ref=f1e45]
+        - paragraph [ref=f1e46]: 按学员、每个科目大类独立生成实操考题。
+      - generic [ref=f1e49]:
+        - generic [ref=f1e50]:
+          - generic [ref=f1e51]: 考试计划名称
+          - textbox "请输入" [ref=f1e52]
+        - generic [ref=f1e53]:
+          - generic [ref=f1e54]: 操作项目
+          - combobox [ref=f1e55]:
+            - option "全部" [selected]
+            - option "高压电工作业"
+            - option "低压电工作业"
+            - option "焊接与热切割"
+        - generic [ref=f1e56]:
+          - generic [ref=f1e57]: 考试点
+          - combobox [ref=f1e58]:
+            - option "全部" [selected]
+            - option "高新实操考点"
+            - option "经开实操考点"
+            - option "城西考点"
+        - generic [ref=f1e59]:
+          - generic [ref=f1e60]: 考试日期
+          - textbox [ref=f1e61]: 2026-07-01 至 2026-07-31
+        - generic [ref=f1e62]:
+          - button "查询" [ref=f1e63] [cursor=pointer]
+          - button "重置" [ref=f1e67] [cursor=pointer]
+      - generic [ref=f1e71]:
+        - table [ref=f1e73]:
+          - rowgroup [ref=f1e74]:
+            - row [ref=f1e75]:
+              - columnheader "考试计划名称" [ref=f1e76]
+              - columnheader "操作项目" [ref=f1e77]
+              - columnheader "考试点" [ref=f1e78]
+              - columnheader "考试日期" [ref=f1e79]
+              - columnheader "固定考生人数" [ref=f1e80]
+              - columnheader "身份核验进度" [ref=f1e81]
+              - columnheader "最近核验时间" [ref=f1e82]
+              - columnheader "核验来源" [ref=f1e83]
+              - columnheader "操作" [ref=f1e84]
+          - rowgroup [ref=f1e85]:
+            - row [ref=f1e1046]:
+              - cell "2026 年 7 月高压电工作业实操考试" [ref=f1e1047]
+              - cell "高压电工作业" [ref=f1e1048]
+              - cell "高新实操考点" [ref=f1e1049]
+              - cell "2026-07-20" [ref=f1e1050]
+              - cell "48" [ref=f1e1051]
+              - cell "已核验 0 · 待核验 48 · 锁定 0" [ref=f1e1052]
+              - cell "-" [ref=f1e1054]
+              - cell "身份核验" [ref=f1e1055]
+              - cell [ref=f1e1056]:
+                - button "身份核验与抽题" [ref=f1e1058] [cursor=pointer]
+            - row [ref=f1e1062]:
+              - cell "2026 年 7 月低压电工作业实操考试" [ref=f1e1063]
+              - cell "低压电工作业" [ref=f1e1064]
+              - cell "经开实操考点" [ref=f1e1065]
+              - cell "2026-07-22" [ref=f1e1066]
+              - cell "36" [ref=f1e1067]
+              - cell "已核验 1 · 待核验 35 · 锁定 0" [ref=f1e1068]
+              - cell "2026/7/22 17:04:03" [ref=f1e1070]
+              - cell "身份核验" [ref=f1e1071]
+              - cell [ref=f1e1072]:
+                - button "身份核验与抽题" [ref=f1e1074] [cursor=pointer]
+            - row [ref=f1e1078]:
+              - cell "2026 年 7 月焊接与热切割实操考试" [ref=f1e1079]
+              - cell "焊接与热切割" [ref=f1e1080]
+              - cell "城西考点" [ref=f1e1081]
+              - cell "2026-07-24" [ref=f1e1082]
+              - cell "42" [ref=f1e1083]
+              - cell "已核验 0 · 待核验 42 · 锁定 0" [ref=f1e1084]
+              - cell "-" [ref=f1e1086]
+              - cell "身份核验" [ref=f1e1087]
+              - cell [ref=f1e1088]:
+                - button "身份核验与抽题" [ref=f1e1090] [cursor=pointer]
+        - generic [ref=f1e134]:
+          - generic [ref=f1e135]: 共 3 条
+          - button "1" [ref=f1e136]
+  - dialog [ref=f1e138]:
+    - generic [ref=f1e139]:
+      - heading "身份核验与考题实例" [level=2] [ref=f1e140]
+      - button "关闭弹窗" [ref=f1e141] [cursor=pointer]
+    - generic [ref=f1e145]:
+      - generic [ref=f1e146]:
+        - generic [ref=f1e147]: 考试计划
+        - generic [ref=f1e148]: 2026 年 7 月低压电工作业实操考试
+        - generic [ref=f1e149]: 考试日期
+        - generic [ref=f1e150]: 2026-07-22
+        - generic [ref=f1e151]: 操作项目
+        - generic [ref=f1e152]: 低压电工作业
+        - generic [ref=f1e153]: 考试点
+        - generic [ref=f1e154]: 经开实操考点
+        - generic [ref=f1e155]: 考生人数
+        - generic [ref=f1e156]: 36 人
+        - generic [ref=f1e157]: 生成规则
+        - generic [ref=f1e158]: 身份核验后，按考生和科目大类独立生成题目实例
+      - generic [ref=f1e159]:
+        - generic [ref=f1e1097]: 考生名单已在考试计划确认时固定。身份核验通过后，仅为该考生按科目大类生成当前题目实例；设备评分题在实例生成后推送，不在本平台选择或管理物理设备。
+        - table [ref=f1e1099]:
+          - rowgroup [ref=f1e1100]:
+            - row [ref=f1e1101]:
+              - columnheader "考生总数" [ref=f1e1102]
+              - columnheader "已核验" [ref=f1e1103]
+              - columnheader "待核验" [ref=f1e1104]
+              - columnheader "不可重抽" [ref=f1e1105]
+          - rowgroup [ref=f1e1106]:
+            - row [ref=f1e1107]:
+              - cell "36" [ref=f1e1108]
+              - cell "1" [ref=f1e1109]
+              - cell "35" [ref=f1e1110]
+              - cell "0" [ref=f1e1111]
+        - heading "考生身份核验进度" [level=3] [ref=f1e1113]
+        - table [ref=f1e1115]:
+          - rowgroup [ref=f1e1116]:
+            - row [ref=f1e1117]:
+              - columnheader "考生" [ref=f1e1118]
+              - columnheader "证件号" [ref=f1e1119]
+              - columnheader "当前状态" [ref=f1e1120]
+              - columnheader "最近核验时间" [ref=f1e1121]
+              - columnheader "操作" [ref=f1e1122]
+          - rowgroup [ref=f1e1123]:
+            - row [ref=f1e1124]:
+              - cell "张三" [ref=f1e1125]
+              - cell "3601**********1023" [ref=f1e1126]
+              - cell "已核验 · 第 2 轮" [ref=f1e1127]
+              - cell "2026/7/22 17:04:03" [ref=f1e1128]
+              - cell [ref=f1e1129]:
+                - button "再次核验并重新抽题" [ref=f1e1130] [cursor=pointer]
+            - row [ref=f1e1134]:
+              - cell "李四" [ref=f1e1135]
+              - cell "3601**********2048" [ref=f1e1136]
+              - cell "待身份核验" [ref=f1e1137]
+              - cell "-" [ref=f1e1138]
+              - cell [ref=f1e1139]:
+                - button "核验身份并生成题目" [ref=f1e1140] [cursor=pointer]
+            - row [ref=f1e1144]:
+              - cell "王五" [ref=f1e1145]
+              - cell "3601**********3886" [ref=f1e1146]
+              - cell "待身份核验" [ref=f1e1147]
+              - cell "-" [ref=f1e1148]
+              - cell [ref=f1e1149]:
+                - button "核验身份并生成题目" [ref=f1e1150] [cursor=pointer]
+            - row [ref=f1e1154]:
+              - cell "考生004" [ref=f1e1155]
+              - cell "3601**********1003" [ref=f1e1156]
+              - cell "待身份核验" [ref=f1e1157]
+              - cell "-" [ref=f1e1158]
+              - cell [ref=f1e1159]:
+                - button "核验身份并生成题目" [ref=f1e1160] [cursor=pointer]
+            - row [ref=f1e1164]:
+              - cell "考生005" [ref=f1e1165]
+              - cell "3601**********1004" [ref=f1e1166]
+              - cell "待身份核验" [ref=f1e1167]
+              - cell "-" [ref=f1e1168]
+              - cell [ref=f1e1169]:
+                - button "核验身份并生成题目" [ref=f1e1170] [cursor=pointer]
+            - row [ref=f1e1174]:
+              - cell "考生006" [ref=f1e1175]
+              - cell "3601**********1005" [ref=f1e1176]
+              - cell "待身份核验" [ref=f1e1177]
+              - cell "-" [ref=f1e1178]
+              - cell [ref=f1e1179]:
+                - button "核验身份并生成题目" [ref=f1e1180] [cursor=pointer]
+            - row [ref=f1e1184]:
+              - cell "考生007" [ref=f1e1185]
+              - cell "3601**********1006" [ref=f1e1186]
+              - cell "待身份核验" [ref=f1e1187]
+              - cell "-" [ref=f1e1188]
+              - cell [ref=f1e1189]:
+                - button "核验身份并生成题目" [ref=f1e1190] [cursor=pointer]
+            - row [ref=f1e1194]:
+              - cell "考生008" [ref=f1e1195]
+              - cell "3601**********1007" [ref=f1e1196]
+              - cell "待身份核验" [ref=f1e1197]
+              - cell "-" [ref=f1e1198]
+              - cell [ref=f1e1199]:
+                - button "核验身份并生成题目" [ref=f1e1200] [cursor=pointer]
+            - row [ref=f1e1204]:
+              - cell "考生009" [ref=f1e1205]
+              - cell "3601**********1008" [ref=f1e1206]
+              - cell "待身份核验" [ref=f1e1207]
+              - cell "-" [ref=f1e1208]
+              - cell [ref=f1e1209]:
+                - button "核验身份并生成题目" [ref=f1e1210] [cursor=pointer]
+            - row [ref=f1e1214]:
+              - cell "考生010" [ref=f1e1215]
+              - cell "3601**********1009" [ref=f1e1216]
+              - cell "待身份核验" [ref=f1e1217]
+              - cell "-" [ref=f1e1218]
+              - cell [ref=f1e1219]:
+                - button "核验身份并生成题目" [ref=f1e1220] [cursor=pointer]
+            - row [ref=f1e1224]:
+              - cell "考生011" [ref=f1e1225]
+              - cell "3601**********1010" [ref=f1e1226]
+              - cell "待身份核验" [ref=f1e1227]
+              - cell "-" [ref=f1e1228]
+              - cell [ref=f1e1229]:
+                - button "核验身份并生成题目" [ref=f1e1230] [cursor=pointer]
+            - row [ref=f1e1234]:
+              - cell "考生012" [ref=f1e1235]
+              - cell "3601**********1011" [ref=f1e1236]
+              - cell "待身份核验" [ref=f1e1237]
+              - cell "-" [ref=f1e1238]
+              - cell [ref=f1e1239]:
+                - button "核验身份并生成题目" [ref=f1e1240] [cursor=pointer]
+            - row [ref=f1e1244]:
+              - cell "考生013" [ref=f1e1245]
+              - cell "3601**********1012" [ref=f1e1246]
+              - cell "待身份核验" [ref=f1e1247]
+              - cell "-" [ref=f1e1248]
+              - cell [ref=f1e1249]:
+                - button "核验身份并生成题目" [ref=f1e1250] [cursor=pointer]
+            - row [ref=f1e1254]:
+              - cell "考生014" [ref=f1e1255]
+              - cell "3601**********1013" [ref=f1e1256]
+              - cell "待身份核验" [ref=f1e1257]
+              - cell "-" [ref=f1e1258]
+              - cell [ref=f1e1259]:
+                - button "核验身份并生成题目" [ref=f1e1260] [cursor=pointer]
+            - row [ref=f1e1264]:
+              - cell "考生015" [ref=f1e1265]
+              - cell "3601**********1014" [ref=f1e1266]
+              - cell "待身份核验" [ref=f1e1267]
+              - cell "-" [ref=f1e1268]
+              - cell [ref=f1e1269]:
+                - button "核验身份并生成题目" [ref=f1e1270] [cursor=pointer]
+            - row [ref=f1e1274]:
+              - cell "考生016" [ref=f1e1275]
+              - cell "3601**********1015" [ref=f1e1276]
+              - cell "待身份核验" [ref=f1e1277]
+              - cell "-" [ref=f1e1278]
+              - cell [ref=f1e1279]:
+                - button "核验身份并生成题目" [ref=f1e1280] [cursor=pointer]
+            - row [ref=f1e1284]:
+              - cell "考生017" [ref=f1e1285]
+              - cell "3601**********1016" [ref=f1e1286]
+              - cell "待身份核验" [ref=f1e1287]
+              - cell "-" [ref=f1e1288]
+              - cell [ref=f1e1289]:
+                - button "核验身份并生成题目" [ref=f1e1290] [cursor=pointer]
+            - row [ref=f1e1294]:
+              - cell "考生018" [ref=f1e1295]
+              - cell "3601**********1017" [ref=f1e1296]
+              - cell "待身份核验" [ref=f1e1297]
+              - cell "-" [ref=f1e1298]
+              - cell [ref=f1e1299]:
+                - button "核验身份并生成题目" [ref=f1e1300] [cursor=pointer]
+            - row [ref=f1e1304]:
+              - cell "考生019" [ref=f1e1305]
+              - cell "3601**********1018" [ref=f1e1306]
+              - cell "待身份核验" [ref=f1e1307]
+              - cell "-" [ref=f1e1308]
+              - cell [ref=f1e1309]:
+                - button "核验身份并生成题目" [ref=f1e1310] [cursor=pointer]
+            - row [ref=f1e1314]:
+              - cell "考生020" [ref=f1e1315]
+              - cell "3601**********1019" [ref=f1e1316]
+              - cell "待身份核验" [ref=f1e1317]
+              - cell "-" [ref=f1e1318]
+              - cell [ref=f1e1319]:
+                - button "核验身份并生成题目" [ref=f1e1320] [cursor=pointer]
+            - row [ref=f1e1324]:
+              - cell "考生021" [ref=f1e1325]
+              - cell "3601**********1020" [ref=f1e1326]
+              - cell "待身份核验" [ref=f1e1327]
+              - cell "-" [ref=f1e1328]
+              - cell [ref=f1e1329]:
+                - button "核验身份并生成题目" [ref=f1e1330] [cursor=pointer]
+            - row [ref=f1e1334]:
+              - cell "考生022" [ref=f1e1335]
+              - cell "3601**********1021" [ref=f1e1336]
+              - cell "待身份核验" [ref=f1e1337]
+              - cell "-" [ref=f1e1338]
+              - cell [ref=f1e1339]:
+                - button "核验身份并生成题目" [ref=f1e1340] [cursor=pointer]
+            - row [ref=f1e1344]:
+              - cell "考生023" [ref=f1e1345]
+              - cell "3601**********1022" [ref=f1e1346]
+              - cell "待身份核验" [ref=f1e1347]
+              - cell "-" [ref=f1e1348]
+              - cell [ref=f1e1349]:
+                - button "核验身份并生成题目" [ref=f1e1350] [cursor=pointer]
+            - row [ref=f1e1354]:
+              - cell "考生024" [ref=f1e1355]
+              - cell "3601**********1023" [ref=f1e1356]
+              - cell "待身份核验" [ref=f1e1357]
+              - cell "-" [ref=f1e1358]
+              - cell [ref=f1e1359]:
+                - button "核验身份并生成题目" [ref=f1e1360] [cursor=pointer]
+            - row [ref=f1e1364]:
+              - cell "考生025" [ref=f1e1365]
+              - cell "3601**********1024" [ref=f1e1366]
+              - cell "待身份核验" [ref=f1e1367]
+              - cell "-" [ref=f1e1368]
+              - cell [ref=f1e1369]:
+                - button "核验身份并生成题目" [ref=f1e1370] [cursor=pointer]
+            - row [ref=f1e1374]:
+              - cell "考生026" [ref=f1e1375]
+              - cell "3601**********1025" [ref=f1e1376]
+              - cell "待身份核验" [ref=f1e1377]
+              - cell "-" [ref=f1e1378]
+              - cell [ref=f1e1379]:
+                - button "核验身份并生成题目" [ref=f1e1380] [cursor=pointer]
+            - row [ref=f1e1384]:
+              - cell "考生027" [ref=f1e1385]
+              - cell "3601**********1026" [ref=f1e1386]
+              - cell "待身份核验" [ref=f1e1387]
+              - cell "-" [ref=f1e1388]
+              - cell [ref=f1e1389]:
+                - button "核验身份并生成题目" [ref=f1e1390] [cursor=pointer]
+            - row [ref=f1e1394]:
+              - cell "考生028" [ref=f1e1395]
+              - cell "3601**********1027" [ref=f1e1396]
+              - cell "待身份核验" [ref=f1e1397]
+              - cell "-" [ref=f1e1398]
+              - cell [ref=f1e1399]:
+                - button "核验身份并生成题目" [ref=f1e1400] [cursor=pointer]
+            - row [ref=f1e1404]:
+              - cell "考生029" [ref=f1e1405]
+              - cell "3601**********1028" [ref=f1e1406]
+              - cell "待身份核验" [ref=f1e1407]
+              - cell "-" [ref=f1e1408]
+              - cell [ref=f1e1409]:
+                - button "核验身份并生成题目" [ref=f1e1410] [cursor=pointer]
+            - row [ref=f1e1414]:
+              - cell "考生030" [ref=f1e1415]
+              - cell "3601**********1029" [ref=f1e1416]
+              - cell "待身份核验" [ref=f1e1417]
+              - cell "-" [ref=f1e1418]
+              - cell [ref=f1e1419]:
+                - button "核验身份并生成题目" [ref=f1e1420] [cursor=pointer]
+            - row [ref=f1e1424]:
+              - cell "考生031" [ref=f1e1425]
+              - cell "3601**********1030" [ref=f1e1426]
+              - cell "待身份核验" [ref=f1e1427]
+              - cell "-" [ref=f1e1428]
+              - cell [ref=f1e1429]:
+                - button "核验身份并生成题目" [ref=f1e1430] [cursor=pointer]
+            - row [ref=f1e1434]:
+              - cell "考生032" [ref=f1e1435]
+              - cell "3601**********1031" [ref=f1e1436]
+              - cell "待身份核验" [ref=f1e1437]
+              - cell "-" [ref=f1e1438]
+              - cell [ref=f1e1439]:
+                - button "核验身份并生成题目" [ref=f1e1440] [cursor=pointer]
+            - row [ref=f1e1444]:
+              - cell "考生033" [ref=f1e1445]
+              - cell "3601**********1032" [ref=f1e1446]
+              - cell "待身份核验" [ref=f1e1447]
+              - cell "-" [ref=f1e1448]
+              - cell [ref=f1e1449]:
+                - button "核验身份并生成题目" [ref=f1e1450] [cursor=pointer]
+            - row [ref=f1e1454]:
+              - cell "考生034" [ref=f1e1455]
+              - cell "3601**********1033" [ref=f1e1456]
+              - cell "待身份核验" [ref=f1e1457]
+              - cell "-" [ref=f1e1458]
+              - cell [ref=f1e1459]:
+                - button "核验身份并生成题目" [ref=f1e1460] [cursor=pointer]
+            - row [ref=f1e1464]:
+              - cell "考生035" [ref=f1e1465]
+              - cell "3601**********1034" [ref=f1e1466]
+              - cell "待身份核验" [ref=f1e1467]
+              - cell "-" [ref=f1e1468]
+              - cell [ref=f1e1469]:
+                - button "核验身份并生成题目" [ref=f1e1470] [cursor=pointer]
+            - row [ref=f1e1474]:
+              - cell "考生036" [ref=f1e1475]
+              - cell "3601**********1035" [ref=f1e1476]
+              - cell "待身份核验" [ref=f1e1477]
+              - cell "-" [ref=f1e1478]
+              - cell [ref=f1e1479]:
+                - button "核验身份并生成题目" [ref=f1e1480] [cursor=pointer]
+        - generic [ref=f1e1484]:
+          - group [ref=f1e1485]:
+            - generic "张三3601**********1023 · 第 2 轮 · 核验 2026/7/22 17:04:03" [ref=f1e1486] [cursor=pointer]
+            - table [ref=f1e1487]:
+              - rowgroup [ref=f1e1488]:
+                - row [ref=f1e1489]:
+                  - columnheader "科目大类" [ref=f1e1490]
+                  - columnheader "考题" [ref=f1e1491]
+                  - columnheader "评分方式" [ref=f1e1492]
+                  - columnheader "题目实例 ID" [ref=f1e1493]
+                  - columnheader "状态" [ref=f1e1494]
+              - rowgroup [ref=f1e1495]:
+                - row [ref=f1e1496]:
+                  - cell "K1 安全用具使用" [ref=f1e1497]
+                  - cell "低压验电笔检查与使用" [ref=f1e1498]
+                  - cell "考评员评分" [ref=f1e1499]
+                  - cell "PQI-LV-20260722-plan-lv-20260722-candidate-001-R2-K1-01" [ref=f1e1500]
+                  - cell "待考" [ref=f1e1501]
+                - row [ref=f1e1503]:
+                  - cell "K2 安全操作技术" [ref=f1e1504]
+                  - cell "低压配电箱停送电操作" [ref=f1e1505]
+                  - cell "设备平台评分" [ref=f1e1506]
+                  - cell "PQI-LV-20260722-plan-lv-20260722-candidate-001-R2-K2-01" [ref=f1e1507]
+                  - cell "待考" [ref=f1e1508]
+                - row [ref=f1e1510]:
+                  - cell "K3 作业现场安全隐患排除" [ref=f1e1511]
+                  - cell "低压线路漏电隐患排查" [ref=f1e1512]
+                  - cell "考评员评分" [ref=f1e1513]
+                  - cell "PQI-LV-20260722-plan-lv-20260722-candidate-001-R2-K3-01" [ref=f1e1514]
+                  - cell "待考" [ref=f1e1515]
+                - row [ref=f1e1517]:
+                  - cell "K4 作业现场应急处置" [ref=f1e1518]
+                  - cell "低压触电现场处置" [ref=f1e1519]
+                  - cell "考评员评分" [ref=f1e1520]
+                  - cell "PQI-LV-20260722-plan-lv-20260722-candidate-001-R2-K4-01" [ref=f1e1521]
+                  - cell "待考" [ref=f1e1522]
+          - paragraph [ref=f1e1524]: 当前展示 1 / 36 名学员的当前轮次；同一学员同一科目大类不重复，不同学员之间允许抽到相同考题。
+        - group [ref=f1e1525]:
+          - generic "失效的未开始轮次（1）" [active] [ref=f1e1526] [cursor=pointer]
+          - group [ref=f1e1528]:
+            - generic "张三第 1 轮 · 2026/7/22 17:04:03 · 再次身份核验后重新抽题" [ref=f1e1529] [cursor=pointer]
+    - button "关闭" [ref=f1e552] [cursor=pointer]
+  - text: "* * * * *"

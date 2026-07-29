@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>实操考试 - 随机抽题与考题管理</title>
+  <title>实操考试 - 抽题设置与考题管理</title>
   <link rel="icon" href="data:," />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Source+Serif+4:wght@600&display=swap" rel="stylesheet" />
   <style>
     :root{--ink:#1c2b3a;--muted:#64748b;--line:#dce4eb;--nav:#112736;--canvas:#f4f7f9;--paper:#fff;--blue:#146c94;--blue-soft:#e7f4f8;--green:#287756;--green-soft:#e8f5ee;--amber:#a75c13;--amber-soft:#fff3df;--red:#a33b37;--red-soft:#fcebea}
-    *{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font:14px "Noto Sans SC",sans-serif}.shell{min-height:100vh;display:grid;grid-template-columns:246px 1fr}.side{background:var(--nav);color:#d7e3e9;padding:22px 14px}.brand{display:flex;align-items:center;gap:11px;padding:0 10px 25px;border-bottom:1px solid #ffffff22}.brand-mark{width:31px;height:31px;background:#39a1b6;border-radius:7px;display:grid;place-items:center;color:#fff}.brand b{font-size:16px}.brand small{display:block;color:#91a8b4;font-size:11px;margin-top:2px}.group{margin-top:22px;color:#7e9aa8;font-size:11px;padding:0 10px 8px}.nav{width:100%;border:0;background:transparent;color:#c9d9df;text-align:left;padding:10px;border-radius:5px;display:flex;align-items:center;gap:10px;margin:2px 0;cursor:pointer}.nav.active{background:#1b4054;color:#fff}.top{height:62px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px}.crumb{color:var(--muted)}.crumb b{color:var(--ink);margin-left:8px}.account{display:flex;align-items:center;gap:12px}.avatar{width:30px;height:30px;background:#d9eef1;color:#15647a;border-radius:50%;display:grid;place-items:center;font-weight:700}.wrap{padding:26px 28px;max-width:1540px;margin:auto}.view{display:none}.view.active{display:block}.headline{margin-bottom:18px}.headline h1{font:25px "Source Serif 4","Noto Sans SC",serif;margin:0 0 5px}.headline p,.empty-note{margin:0;color:var(--muted)}.panel{background:#fff;border:1px solid var(--line);border-radius:6px;margin-bottom:16px}.panel-body,.panel-head{padding:14px 16px}.panel-head{border-bottom:1px solid var(--line)}.query-grid{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:12px}.query-item label{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.query-item input,.query-item select,.form-item input,.form-item select{width:100%;height:34px;border:1px solid #cbd6df;border-radius:4px;padding:0 9px;background:#fff}.query-actions,.right-actions{display:flex;gap:8px;align-items:end}.primary,.secondary,.ghost{border:1px solid transparent;border-radius:5px;min-height:34px;padding:0 13px;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-weight:600;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#fff;color:var(--ink);border-color:#bfcbd4}.ghost{background:transparent;color:var(--blue)}button:disabled{cursor:not-allowed;opacity:.5}button svg{width:15px;height:15px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;white-space:nowrap}th{background:#f3f7fa;color:#4f6472;text-align:left;font-size:12px;padding:10px 12px}td{padding:11px 12px;border-top:1px solid #e7edf1}.tag{display:inline-flex;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:600}.blue{color:#176886;background:var(--blue-soft)}.green{color:var(--green);background:var(--green-soft)}.amber{color:var(--amber);background:var(--amber-soft)}.red{color:var(--red);background:var(--red-soft)}.link{border:0;background:none;color:var(--blue);padding:2px 4px;cursor:pointer}.action-group{display:flex;align-items:center;gap:8px}.pagination{display:flex;justify-content:flex-end;gap:8px;padding:15px 16px;color:var(--muted)}.page{height:30px;min-width:30px;border:1px solid var(--line);background:#fff;border-radius:4px}.modal{display:none;position:fixed;inset:0;background:#0a1f2d70;z-index:5;align-items:center;justify-content:center}.modal.show{display:flex}.dialog{background:#fff;width:min(1120px,calc(100vw - 36px));max-height:92vh;overflow:auto;border-radius:7px;box-shadow:0 15px 50px #0003}.dialog.compact{width:min(760px,calc(100vw - 36px))}.dialog-head,.dialog-foot{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.dialog-head h2{margin:0;font-size:17px}.dialog-body{padding:18px}.dialog-foot{border-top:1px solid var(--line);border-bottom:0;justify-content:flex-end;gap:8px;position:sticky;bottom:0;background:#fff}.plan-summary{display:grid;grid-template-columns:100px 1fr 90px 1fr;gap:10px 16px;background:#f7fafc;border:1px solid var(--line);padding:14px 16px;border-radius:5px}.plan-summary span{color:var(--muted)}.draw-toolbar{display:flex;justify-content:space-between;align-items:center;margin:18px 0 10px}.draw-toolbar h3{margin:0;font-size:15px}.inline-table{border:1px solid var(--line);border-radius:5px;overflow:hidden}.draw-count{width:72px;height:32px;border:1px solid #cbd6df;border-radius:4px;padding:0 8px}.candidate-results{margin-top:18px}.candidate-card{border:1px solid var(--line);border-radius:6px;margin-top:10px;overflow:hidden}.candidate-card summary{cursor:pointer;padding:12px 14px;font-weight:600;background:#f7fafc}.candidate-card summary span{margin-left:10px;color:var(--muted);font-weight:400}.instance-id{font-family:ui-monospace,SFMono-Regular,monospace;color:#176886;font-size:12px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 24px}.form-item label{display:block;font-size:13px;margin-bottom:6px}.required:before{content:"*";color:#e04444;margin-right:4px}.section-title{font-size:17px;font-weight:700;margin:24px 0 12px;padding-left:11px;border-left:4px solid #1677ff}.radio-line{display:flex;gap:22px;align-items:center}.panel-note{padding:12px 16px;color:var(--muted);background:#f7fafc;border-bottom:1px solid var(--line)}.vendor-toolbar{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}.vendor-toolbar h2,.vendor-records h2{margin:0;font-size:16px}.vendor-records{margin-top:16px}.vendor-records>h2{margin-bottom:10px}.form-item textarea{width:100%;min-height:76px;border:1px solid #cbd6df;border-radius:4px;padding:8px 9px;resize:vertical}.form-item.full{grid-column:1/-1}.hidden{display:none!important}
+    *{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font:14px "Noto Sans SC",sans-serif}.shell{min-height:100vh;display:grid;grid-template-columns:246px 1fr}.side{background:var(--nav);color:#d7e3e9;padding:22px 14px}.brand{display:flex;align-items:center;gap:11px;padding:0 10px 25px;border-bottom:1px solid #ffffff22}.brand-mark{width:31px;height:31px;background:#39a1b6;border-radius:7px;display:grid;place-items:center;color:#fff}.brand b{font-size:16px}.brand small{display:block;color:#91a8b4;font-size:11px;margin-top:2px}.group{margin-top:22px;color:#7e9aa8;font-size:11px;padding:0 10px 8px}.nav{width:100%;border:0;background:transparent;color:#c9d9df;text-align:left;padding:10px;border-radius:5px;display:flex;align-items:center;gap:10px;margin:2px 0;cursor:pointer}.nav.active{background:#1b4054;color:#fff}.top{height:62px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px}.crumb{color:var(--muted)}.crumb b{color:var(--ink);margin-left:8px}.account{display:flex;align-items:center;gap:12px}.avatar{width:30px;height:30px;background:#d9eef1;color:#15647a;border-radius:50%;display:grid;place-items:center;font-weight:700}.wrap{padding:26px 28px;max-width:1540px;margin:auto}.view{display:none}.view.active{display:block}.headline{margin-bottom:18px}.headline h1{font:25px "Source Serif 4","Noto Sans SC",serif;margin:0 0 5px}.headline p,.empty-note{margin:0;color:var(--muted)}.panel{background:#fff;border:1px solid var(--line);border-radius:6px;margin-bottom:16px}.panel-body,.panel-head{padding:14px 16px}.panel-head{border-bottom:1px solid var(--line)}.query-grid{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:12px}.query-item label{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.query-item input,.query-item select,.form-item input,.form-item select{width:100%;height:34px;border:1px solid #cbd6df;border-radius:4px;padding:0 9px;background:#fff}.query-actions,.right-actions{display:flex;gap:8px;align-items:end}.primary,.secondary,.ghost{border:1px solid transparent;border-radius:5px;min-height:34px;padding:0 13px;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-weight:600;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#fff;color:var(--ink);border-color:#bfcbd4}.ghost{background:transparent;color:var(--blue)}button:disabled{cursor:not-allowed;opacity:.5}button svg{width:15px;height:15px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;white-space:nowrap}th{background:#f3f7fa;color:#4f6472;text-align:left;font-size:12px;padding:10px 12px}td{padding:11px 12px;border-top:1px solid #e7edf1}.tag{display:inline-flex;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:600}.blue{color:#176886;background:var(--blue-soft)}.green{color:var(--green);background:var(--green-soft)}.amber{color:var(--amber);background:var(--amber-soft)}.red{color:var(--red);background:var(--red-soft)}.link{border:0;background:none;color:var(--blue);padding:2px 4px;cursor:pointer}.action-group{display:flex;align-items:center;gap:8px}.pagination{display:flex;justify-content:flex-end;gap:8px;padding:15px 16px;color:var(--muted)}.page{height:30px;min-width:30px;border:1px solid var(--line);background:#fff;border-radius:4px}.modal{display:none;position:fixed;inset:0;background:#0a1f2d70;z-index:5;align-items:center;justify-content:center}.modal.show{display:flex}.dialog{background:#fff;width:min(1120px,calc(100vw - 36px));max-height:92vh;overflow:auto;border-radius:7px;box-shadow:0 15px 50px #0003}.dialog.compact{width:min(760px,calc(100vw - 36px))}.dialog-head,.dialog-foot{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.dialog-head h2{margin:0;font-size:17px}.dialog-body{padding:18px}.dialog-foot{border-top:1px solid var(--line);border-bottom:0;justify-content:flex-end;gap:8px;position:sticky;bottom:0;background:#fff}.plan-summary{display:grid;grid-template-columns:100px 1fr 90px 1fr;gap:10px 16px;background:#f7fafc;border:1px solid var(--line);padding:14px 16px;border-radius:5px}.plan-summary span{color:var(--muted)}.draw-toolbar{display:flex;justify-content:space-between;align-items:center;margin:18px 0 10px}.draw-toolbar h3{margin:0;font-size:15px}.inline-table{border:1px solid var(--line);border-radius:5px;overflow:hidden}.verification-table{overflow-x:auto;overflow-y:hidden}.verification-table table{min-width:720px}.draw-count{width:72px;height:32px;border:1px solid #cbd6df;border-radius:4px;padding:0 8px}.candidate-results{margin-top:18px}.candidate-card{border:1px solid var(--line);border-radius:6px;margin-top:10px;overflow:hidden}.candidate-card summary{cursor:pointer;padding:12px 14px;font-weight:600;background:#f7fafc}.candidate-card summary span{margin-left:10px;color:var(--muted);font-weight:400}.instance-id{font-family:ui-monospace,SFMono-Regular,monospace;color:#176886;font-size:12px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 24px}.form-item label{display:block;font-size:13px;margin-bottom:6px}.required:before{content:"*";color:#e04444;margin-right:4px}.section-title{font-size:17px;font-weight:700;margin:24px 0 12px;padding-left:11px;border-left:4px solid #1677ff}.radio-line{display:flex;gap:22px;align-items:center}.panel-note{padding:12px 16px;color:var(--muted);background:#f7fafc;border-bottom:1px solid var(--line)}.vendor-toolbar{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}.vendor-toolbar h2,.vendor-records h2{margin:0;font-size:16px}.vendor-records{margin-top:16px}.vendor-records>h2{margin-bottom:10px}.form-item textarea{width:100%;min-height:76px;border:1px solid #cbd6df;border-radius:4px;padding:8px 9px;resize:vertical}.form-item.full{grid-column:1/-1}.hidden{display:none!important}
     @media(max-width:850px){.shell{grid-template-columns:1fr}.side{display:none}.query-grid,.form-grid{grid-template-columns:1fr 1fr}.plan-summary{grid-template-columns:90px 1fr}}
     @media(max-width:600px){.wrap{padding:18px}.query-grid,.form-grid{grid-template-columns:1fr}.plan-summary{grid-template-columns:1fr}.dialog{width:calc(100vw - 22px)}.action-group{align-items:flex-start;flex-direction:column}}
-    .review-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}.review-toolbar h2{margin:0;font-size:16px}.review-trail{color:var(--muted);font-size:12px;line-height:1.65;min-width:210px;white-space:normal}.review-trail b{color:var(--ink);font-weight:600}.candidate-rule{padding:10px 16px;background:#eef8f5;color:#26674f;border:1px solid #cce9dc;border-radius:5px;margin-bottom:16px}.candidate-rule i{vertical-align:middle;width:16px;margin-right:5px}
+    .review-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}.review-toolbar h2{margin:0;font-size:16px}.review-trail{color:var(--muted);font-size:12px;line-height:1.65;min-width:210px;white-space:normal}.review-trail b{color:var(--ink);font-weight:600}.candidate-rule{padding:10px 16px;background:#eef8f5;color:#26674f;border:1px solid #cce9dc;border-radius:5px;margin-bottom:16px}.candidate-rule i{vertical-align:middle;width:16px;margin-right:5px}.settings-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}.settings-toolbar h2{margin:0;font-size:16px}.category-row td{background:#eef4f7;border-top:1px solid #cfdae1;color:#274452}.category-row strong{margin-right:16px}.category-total{color:#176886;font-weight:600}.setting-count{width:76px;height:32px;border:1px solid #cbd6df;border-radius:4px;padding:0 8px}.setting-count.invalid{border-color:var(--red);background:var(--red-soft)}.switch-control{display:inline-flex;align-items:center;gap:7px;cursor:pointer}.switch-control input{width:17px;height:17px;accent-color:var(--blue)}.validation-copy{white-space:normal;min-width:170px;line-height:1.5}.setting-context{display:flex;gap:18px;align-items:center;flex-wrap:wrap;color:var(--muted)}
   </style>
 </head>
 <body>
@@ -20,32 +20,28 @@
       <div class="brand"><div class="brand-mark"><i data-lucide="shield-check"></i></div><div><b>考试监管平台</b><small>实操考试管理</small></div></div>
       <div class="group">实操考试管理</div>
       <button class="nav" data-view="questions"><i data-lucide="list-checks"></i>实操考题管理</button>
-      <button class="nav active" data-view="draw"><i data-lucide="shuffle"></i>实操抽题管理</button>
+      <button class="nav active" data-view="draw-settings"><i data-lucide="sliders-horizontal"></i>抽题设置</button>
       <button class="nav" data-view="vendor-info"><i data-lucide="plug-zap"></i>实操平台配置</button>
       <button class="nav" data-view="point-vendor-management"><i data-lucide="network"></i>考点实操平台配置</button>
     </aside>
     <main>
-      <header class="top"><div class="crumb">考试机构 <b id="crumb">实操抽题管理</b></div><div class="account"><span>南昌市高新考点</span><div class="avatar">张</div></div></header>
+      <header class="top"><div class="crumb">考试机构 <b id="crumb">抽题设置</b></div><div class="account"><span>南昌市高新考点</span><div class="avatar">张</div></div></header>
       <div class="wrap">
-        <section class="view active" id="draw">
-          <div class="headline"><h1>实操抽题管理</h1><p>按学员、每个科目大类独立生成实操考题。</p></div>
-          <div class="panel"><div class="panel-body"><div class="query-grid">
-            <div class="query-item"><label>考试计划名称</label><input placeholder="请输入" /></div>
-            <div class="query-item"><label>操作项目</label><select><option>全部</option><option>高压电工作业</option><option>低压电工作业</option><option>焊接与热切割</option></select></div>
-            <div class="query-item"><label>考试点</label><select><option>全部</option><option>高新实操考点</option><option>经开实操考点</option><option>城西考点</option></select></div>
-            <div class="query-item"><label>考试日期</label><input value="2026-07-01 至 2026-07-31" /></div>
-            <div class="query-actions"><button class="primary"><i data-lucide="search"></i>查询</button><button class="secondary"><i data-lucide="rotate-ccw"></i>重置</button></div>
-          </div></div></div>
-          <div class="panel"><div class="table-wrap"><table><thead><tr><th>考试计划名称</th><th>操作项目</th><th>考试点</th><th>考试日期</th><th>考生人数</th><th>抽题进度</th><th>最近抽题时间</th><th>操作人</th><th>操作</th></tr></thead><tbody id="planRows"></tbody></table></div><div class="pagination"><span>共 3 条</span><button class="page">1</button></div></div>
+        <section class="view active" id="draw-settings">
+          <div class="headline"><h1>抽题设置</h1><p>按考试点、操作项目和科目大类维护科目子类抽取数量；身份核验时从符合条件的科目子类中随机选取，每个选中子类抽取 1 道考题。</p></div>
+          <div class="panel"><div class="settings-toolbar"><div><h2>科目大类抽题规则</h2><div class="setting-context" id="settingContext"></div></div><button class="primary" data-action="add-setting"><i data-lucide="plus"></i>新增大类设置</button></div><div class="table-wrap"><table><thead><tr><th>科目大类</th><th>可用科目子类数</th><th>科目子类抽取数量</th><th>启用状态</th><th>备注</th><th>操作</th></tr></thead><tbody id="drawSettingRows"></tbody></table></div></div>
         </section>
 
         <section class="view" id="questions">
           <div class="headline"><h1>实操考题管理</h1><p>维护考题、评分方式和考试标准。</p></div>
           <div class="panel"><div class="panel-body"><div class="query-grid">
-            <div class="query-item"><label>操作项目</label><select><option>全部</option><option>高压电工作业</option><option>低压电工作业</option><option>焊接与热切割</option></select></div>
-            <div class="query-item"><label>科目大类</label><select><option>请选择</option><option>K1</option><option>K2</option><option>K3</option><option>K4</option></select></div>
-            <div class="query-item"><label>考试项目</label><input placeholder="请输入" /></div>
-            <div class="query-item"><label>评分方式</label><select><option>全部</option><option>考评员评分</option><option>设备平台评分</option></select></div>
+            <div class="query-item"><label>操作项目</label><select id="questionProjectFilter"><option>全部</option><option>高压电工作业</option><option>低压电工作业</option><option>焊接与热切割</option></select></div>
+            <div class="query-item"><label>科目大类</label><select id="questionCategoryFilter"><option value="">全部</option><option>K1</option><option>K2</option><option>K3</option><option>K4</option></select></div>
+            <div class="query-item"><label>考试项目</label><input id="questionNameFilter" placeholder="请输入" /></div>
+            <div class="query-item"><label>评分方式</label><select id="questionScoreFilter"><option>全部</option><option>考评员评分</option><option>设备平台评分</option></select></div>
+            <div class="query-item"><label>考试时长（分钟）</label><input id="questionDurationFilter" type="number" min="1" step="1" placeholder="请输入正整数" /></div>
+            <div class="query-item"><label>考题类型</label><select id="questionTypeFilter"><option value="">全部</option><option value="NEW">新考题</option><option value="OLD">旧考题</option></select></div>
+            <div class="query-actions"><button class="primary" data-action="query-questions"><i data-lucide="search"></i>查询</button><button class="secondary" data-action="reset-questions"><i data-lucide="rotate-ccw"></i>重置</button></div>
           </div></div></div>
           <div class="panel"><div class="panel-head"><button class="primary" data-action="open-question"><i data-lucide="plus"></i>新增</button></div><div class="table-wrap"><table><thead><tr><th>序号</th><th>操作项目</th><th>科目大类</th><th>考试项目</th><th>考试时长(分钟)</th><th>考题类型</th><th>评分方式</th><th>创建时间</th><th>操作</th></tr></thead><tbody><tr><td>1</td><td>高压电工作业</td><td>K4</td><td>电气火灾初期处置</td><td>15</td><td>实操考题</td><td><span class="tag green">考评员评分</span></td><td>2026-07-03 14:10</td><td><button class="link">详情</button> <button class="link">修改</button></td></tr><tr><td>2</td><td>高压电工作业</td><td>K2</td><td>高压开关柜停送电操作</td><td>20</td><td>实操考题</td><td><span class="tag blue">设备平台评分</span></td><td>2026-07-03 14:10</td><td><button class="link">详情</button> <button class="link">修改</button></td></tr></tbody></table></div></div>
         </section>
@@ -68,20 +64,17 @@
       <div class="dialog-head"><h2 id="drawModalTitle">抽取实操考题</h2><button class="ghost" data-action="close-modal" aria-label="关闭弹窗"><i data-lucide="x"></i></button></div>
       <div class="dialog-body">
         <div class="plan-summary" id="planSummary"></div>
-        <div id="drawEditor">
-          <div class="draw-toolbar"><h3>随机抽题设置与结果</h3><button class="secondary" data-action="randomize"><i data-lucide="shuffle"></i><span id="randomizeLabel">开始随机抽取</span></button></div>
-          <div class="inline-table"><table><thead><tr><th>科目大类</th><th>抽取数量</th></tr></thead><tbody><tr><td>K1 安全用具使用</td><td><input class="draw-count" data-category="K1" type="number" min="1" max="2" value="1" /></td></tr><tr><td>K2 安全操作技术</td><td><input class="draw-count" data-category="K2" type="number" min="1" max="2" value="1" /></td></tr><tr><td>K3 作业现场安全隐患排除</td><td><input class="draw-count" data-category="K3" type="number" min="1" max="2" value="1" /></td></tr><tr><td>K4 作业现场应急处置</td><td><input class="draw-count" data-category="K4" type="number" min="1" max="2" value="1" /></td></tr></tbody></table></div>
-        </div>
+        <div id="drawEditor"></div>
         <div id="candidateResults" class="candidate-results hidden"></div>
       </div>
-      <div class="dialog-foot"><button class="secondary" data-action="close-modal" id="drawCancel">取消</button><button class="primary" data-action="confirm-draw" id="confirmDraw" disabled><i data-lucide="check"></i><span>确认生成题目</span></button></div>
+      <div class="dialog-foot"><button class="secondary" data-action="close-modal" id="drawCancel">关闭</button></div>
     </div>
   </div>
 
   <div class="modal" id="questionModal">
     <div class="dialog compact" role="dialog" aria-modal="true" aria-labelledby="questionModalTitle">
       <div class="dialog-head"><h2 id="questionModalTitle">新增实操考题</h2><button class="ghost" data-action="close-modal" aria-label="关闭弹窗"><i data-lucide="x"></i></button></div>
-      <div class="dialog-body"><div class="form-grid"><div class="form-item"><label class="required">操作项目</label><select><option>高压电工作业</option><option>低压电工作业</option><option>焊接与热切割</option></select></div><div class="form-item"><label class="required">科目大类</label><select><option>K1</option><option>K2</option><option>K3</option><option>K4</option></select></div><div class="form-item"><label class="required">考试项目</label><input value="高压开关柜停送电操作" /></div><div class="form-item"><label class="required">评分方式</label><select><option>考评员评分</option><option>设备平台评分</option></select></div></div><div class="section-title">考试标准</div><p class="empty-note">两种评分方式均维护考试标准和否定项。</p><div class="section-title">否定项设置</div><div class="radio-line"><label><input type="radio" name="negative" /> 否</label><label><input type="radio" name="negative" checked /> 是</label></div></div>
+      <div class="dialog-body"><div class="form-grid"><div class="form-item"><label class="required">操作项目</label><select id="questionProject"><option>高压电工作业</option><option>低压电工作业</option><option>焊接与热切割</option></select></div><div class="form-item"><label class="required">科目大类</label><select id="questionCategory"><option>K1</option><option>K2</option><option>K3</option><option>K4</option></select></div><div class="form-item"><label class="required">科目子类</label><input id="questionSubcategory" value="K2.1 停送电操作" /></div><div class="form-item"><label class="required">考试项目</label><input id="questionName" value="高压开关柜停送电操作" /></div><div class="form-item"><label class="required">考试时长（分钟）</label><input id="questionDurationMinutes" type="number" min="1" step="1" required value="20" /></div><div class="form-item"><label class="required">考题类型</label><select id="questionType" required><option value="NEW">新考题</option><option value="OLD">旧考题</option></select></div><div class="form-item"><label class="required">评分方式</label><select id="questionScoreSource"><option>考评员评分</option><option>设备平台评分</option></select></div><div class="form-item hidden" id="questionPracticalPlatformField"><label class="required">实操平台</label><select id="questionPracticalPlatform"></select><p class="empty-note">从实操平台主配置中选择；抽题时还须校验考点平台关系已启用。</p></div></div><div class="section-title">考试标准</div><p class="empty-note">两种评分方式均维护考试标准和否定项。</p><div class="section-title">否定项设置</div><div class="radio-line"><label><input type="radio" name="negative" /> 否</label><label><input type="radio" name="negative" checked /> 是</label></div></div>
       <div class="dialog-foot"><button class="secondary" data-action="close-modal">关闭</button><button class="primary" data-action="save-question">确认</button></div>
     </div>
   </div>
@@ -100,106 +93,314 @@
       'use strict';
 
       const categoryLabels={K1:'安全用具使用',K2:'安全操作技术',K3:'作业现场安全隐患排除',K4:'作业现场应急处置'};
-      const candidateRoster=[
+      const questionTypeLabels={NEW:'新考题',OLD:'旧考题'};
+      const sampleCandidates=[
         {candidate:'张三',idCard:'3601**********1023'},
         {candidate:'李四',idCard:'3601**********2048'},
         {candidate:'王五',idCard:'3601**********3886'}
       ];
+      function createFixedCandidateRoster(planId,count){
+        return Object.freeze(Array.from({length:count},(_,index)=>{
+          const sample=sampleCandidates[index]||{candidate:`考生${String(index+1).padStart(3,'0')}`,idCard:`3601**********${String(1000+index).slice(-4)}`};
+          return Object.freeze({candidateId:`${planId}-candidate-${String(index+1).padStart(3,'0')}`,...sample});
+        }));
+      }
+      function createExamPlan({id,instancePrefix,name,project,point,date,candidateCount}){
+        const candidates=createFixedCandidateRoster(id,candidateCount);
+        return {id,instancePrefix,name,project,point,date,candidateCount:candidates.length,candidates,results:[],verificationEvents:[],drawGenerationFailures:[]};
+      }
       const questionPools={
         '高压电工作业':{
-          K1:[{question:'绝缘手套检查与佩戴',scoreSource:'考评员评分'},{question:'高压验电器安全使用',scoreSource:'考评员评分'}],
-          K2:[{question:'高压开关柜停送电操作',scoreSource:'设备平台评分'},{question:'高压断路器分合闸操作',scoreSource:'设备平台评分'}],
-          K3:[{question:'高压设备异常声光判断',scoreSource:'考评员评分'},{question:'作业现场隐患排查',scoreSource:'考评员评分'}],
-          K4:[{question:'电气火灾初期处置',scoreSource:'考评员评分'},{question:'设备故障应急处置',scoreSource:'考评员评分'}]
+          K1:[{question:'绝缘手套检查与佩戴',subcategory:'K1.1 个人防护用品',durationMinutes:10,questionType:'OLD',scoreSource:'考评员评分'},{question:'高压验电器安全使用',subcategory:'K1.2 安全检测仪器',durationMinutes:12,questionType:'NEW',scoreSource:'考评员评分'}],
+          K2:[{question:'高压开关柜停送电操作',subcategory:'K2.1 停送电操作',durationMinutes:20,questionType:'OLD',scoreSource:'设备平台评分',practicalPlatformId:'platform-taihao',practicalPlatformName:'泰豪实训平台'},{question:'高压断路器分合闸操作',subcategory:'K2.2 开关设备操作',durationMinutes:18,questionType:'NEW',scoreSource:'设备平台评分',practicalPlatformId:'platform-b',practicalPlatformName:'实训设备平台 B'}],
+          K3:[{question:'高压设备异常声光判断',subcategory:'K3.1 设备异常辨识',durationMinutes:15,questionType:'NEW',scoreSource:'考评员评分'},{question:'作业现场隐患排查',subcategory:'K3.2 作业环境排查',durationMinutes:15,questionType:'OLD',scoreSource:'考评员评分'}],
+          K4:[{question:'电气火灾初期处置',subcategory:'K4.1 电气火灾处置',durationMinutes:15,questionType:'OLD',scoreSource:'考评员评分'},{question:'设备故障应急处置',subcategory:'K4.2 设备故障处置',durationMinutes:12,questionType:'NEW',scoreSource:'考评员评分'}]
         },
         '低压电工作业':{
-          K1:[{question:'低压验电笔检查与使用',scoreSource:'考评员评分'},{question:'万用表安全检查',scoreSource:'考评员评分'}],
-          K2:[{question:'低压配电箱停送电操作',scoreSource:'设备平台评分'},{question:'三相异步电动机接线',scoreSource:'设备平台评分'}],
-          K3:[{question:'低压线路漏电隐患排查',scoreSource:'考评员评分'},{question:'临时用电风险辨识',scoreSource:'考评员评分'}],
-          K4:[{question:'低压触电现场处置',scoreSource:'考评员评分'},{question:'配电线路火情处置',scoreSource:'考评员评分'}]
+          K1:[{question:'低压验电笔检查与使用',subcategory:'K1.1 个人防护用品',durationMinutes:10,questionType:'OLD',scoreSource:'考评员评分'},{question:'万用表安全检查',subcategory:'K1.2 安全检测仪器',durationMinutes:12,questionType:'NEW',scoreSource:'考评员评分'}],
+          K2:[{question:'低压配电箱停送电操作',subcategory:'K2.1 停送电操作',durationMinutes:18,questionType:'OLD',scoreSource:'设备平台评分',practicalPlatformId:'platform-taihao',practicalPlatformName:'泰豪实训平台'},{question:'三相异步电动机接线',subcategory:'K2.2 电气接线操作',durationMinutes:25,questionType:'NEW',scoreSource:'设备平台评分',practicalPlatformId:'platform-b',practicalPlatformName:'实训设备平台 B'}],
+          K3:[{question:'低压线路漏电隐患排查',subcategory:'K3.1 设备异常辨识',durationMinutes:15,questionType:'NEW',scoreSource:'考评员评分'},{question:'临时用电风险辨识',subcategory:'K3.2 作业环境排查',durationMinutes:15,questionType:'OLD',scoreSource:'考评员评分'}],
+          K4:[{question:'低压触电现场处置',subcategory:'K4.1 触电事故处置',durationMinutes:12,questionType:'OLD',scoreSource:'考评员评分'},{question:'配电线路火情处置',subcategory:'K4.2 电气火灾处置',durationMinutes:15,questionType:'NEW',scoreSource:'考评员评分'}]
         },
         '焊接与热切割':{
-          K1:[{question:'焊帽与防护手套检查',scoreSource:'考评员评分'},{question:'气瓶减压器安全检查',scoreSource:'考评员评分'}],
-          K2:[{question:'板材平焊焊缝操作',scoreSource:'设备平台评分'},{question:'氧乙炔切割操作',scoreSource:'设备平台评分'}],
-          K3:[{question:'焊接作业火灾隐患排查',scoreSource:'考评员评分'},{question:'气瓶泄漏风险辨识',scoreSource:'考评员评分'}],
-          K4:[{question:'焊接灼伤现场处置',scoreSource:'考评员评分'},{question:'气瓶回火应急处置',scoreSource:'考评员评分'}]
+          K1:[{question:'焊帽与防护手套检查',subcategory:'K1.1 个人防护用品',durationMinutes:10,questionType:'OLD',scoreSource:'考评员评分'},{question:'气瓶减压器安全检查',subcategory:'K1.2 安全检测仪器',durationMinutes:12,questionType:'NEW',scoreSource:'考评员评分'}],
+          K2:[{question:'板材平焊焊缝操作',subcategory:'K2.1 焊接操作',durationMinutes:25,questionType:'OLD',scoreSource:'设备平台评分',practicalPlatformId:'platform-taihao',practicalPlatformName:'泰豪实训平台'},{question:'氧乙炔切割操作',subcategory:'K2.2 热切割操作',durationMinutes:20,questionType:'NEW',scoreSource:'设备平台评分',practicalPlatformId:'platform-b',practicalPlatformName:'实训设备平台 B'}],
+          K3:[{question:'焊接作业火灾隐患排查',subcategory:'K3.1 火灾隐患排查',durationMinutes:15,questionType:'NEW',scoreSource:'考评员评分'},{question:'气瓶泄漏风险辨识',subcategory:'K3.2 气瓶风险辨识',durationMinutes:15,questionType:'OLD',scoreSource:'考评员评分'}],
+          K4:[{question:'焊接灼伤现场处置',subcategory:'K4.1 灼伤事故处置',durationMinutes:12,questionType:'OLD',scoreSource:'考评员评分'},{question:'气瓶回火应急处置',subcategory:'K4.2 气瓶事故处置',durationMinutes:15,questionType:'NEW',scoreSource:'考评员评分'}]
         }
       };
       const examPlans=[
-        {id:'plan-hv-20260720',instancePrefix:'HV-20260720',name:'2026 年 7 月高压电工作业实操考试',project:'高压电工作业',point:'高新实操考点',date:'2026-07-20',candidateCount:48,state:'notDrawn',progress:'未抽题',progressClass:'amber',lastDrawTime:'-',operator:'-',drawGeneration:0,results:[]},
-        {id:'plan-lv-20260722',instancePrefix:'LV-20260722',name:'2026 年 7 月低压电工作业实操考试',project:'低压电工作业',point:'经开实操考点',date:'2026-07-22',candidateCount:36,state:'redrawAllowed',progress:'36 / 36 名学员已完成，开考前可重抽',progressClass:'green',lastDrawTime:'2026-07-18 14:30',operator:'王考评员',drawGeneration:1,results:[]},
-        {id:'plan-weld-20260724',instancePrefix:'WELD-20260724',name:'2026 年 7 月焊接与热切割实操考试',project:'焊接与热切割',point:'城西考点',date:'2026-07-24',candidateCount:42,state:'locked',progress:'已有学员开始考试，不可重抽',progressClass:'blue',lastDrawTime:'2026-07-19 09:15',operator:'李考评员',drawGeneration:1,results:[]}
+        createExamPlan({id:'plan-hv-20260720',instancePrefix:'HV-20260720',name:'2026 年 7 月高压电工作业实操考试',project:'高压电工作业',point:'高新实操考点',date:'2026-07-20',candidateCount:48}),
+        createExamPlan({id:'plan-lv-20260722',instancePrefix:'LV-20260722',name:'2026 年 7 月低压电工作业实操考试',project:'低压电工作业',point:'经开实操考点',date:'2026-07-22',candidateCount:36}),
+        createExamPlan({id:'plan-weld-20260724',instancePrefix:'WELD-20260724',name:'2026 年 7 月焊接与热切割实操考试',project:'焊接与热切割',point:'城西考点',date:'2026-07-24',candidateCount:42})
       ];
-      const defaultDrawCounts={K1:1,K2:1,K3:1,K4:1};
+      const drawSettings=examPlans.flatMap(plan=>Object.keys(questionPools[plan.project]).map(category=>({
+        id:`setting-${plan.id}-${category}`,examPoint:plan.point,operationProject:plan.project,category,subcategoryDrawCount:1,enabled:true,remark:'身份核验时随机选择科目子类'
+      })));
 
-      function generatePlanResults(plan,generation,counts=defaultDrawCounts){
-        const pools=global.__reviewReady?getEligibleQuestionPools(plan):questionPools[plan.project];
-        if(!pools)throw new Error(`操作项目缺少候选题：${plan.project}`);
-        return candidateRoster.map((candidate,candidateIndex)=>({
-          ...candidate,
-          questions:Object.keys(categoryLabels).flatMap(category=>{
-            const pool=pools[category];
-            const count=Number(counts[category]);
-            if(!Number.isInteger(count)||count<1||count>pool.length)throw new Error(`${category} 抽取数量应为 1 至 ${pool.length}`);
-            return Array.from({length:count},(_,pickIndex)=>{
-              const selected=pool[(candidateIndex+generation+pickIndex)%pool.length];
-              return {...selected,category,questionInstanceId:`PQI-${plan.instancePrefix}-G${generation}-${String(candidateIndex+1).padStart(3,'0')}-${category}-${String(pickIndex+1).padStart(2,'0')}`};
-            });
-          })
-        }));
+      function normalizeQuestionSnapshot(snapshot){
+        const normalized={...snapshot};
+        if(normalized.scoreSource!=='设备平台评分'){
+          delete normalized.practicalPlatformId;
+          delete normalized.practicalPlatformName;
+          return normalized;
+        }
+        const platform=vendors.find(item=>item.id===normalized.practicalPlatformId);
+        if(platform)normalized.practicalPlatformName=platform.name;
+        return normalized;
       }
-      examPlans.forEach(plan=>{plan.results=generatePlanResults(plan,plan.drawGeneration);});
+      function validateQuestionSnapshot(snapshot){
+        const normalized=normalizeQuestionSnapshot(snapshot);
+        if(normalized.scoreSource==='设备平台评分'){
+          if(!normalized.practicalPlatformId)return {ok:false,code:'PRACTICAL_PLATFORM_REQUIRED',message:'设备平台评分题必须选择实操平台'};
+          if(!vendors.some(item=>item.id===normalized.practicalPlatformId))return {ok:false,code:'PRACTICAL_PLATFORM_NOT_FOUND',message:'所选实操平台不在主配置中'};
+        }
+        return {ok:true,normalized};
+      }
+      function enabledPlatformConnection(point,practicalPlatformId){
+        const platform=vendors.find(item=>item.id===practicalPlatformId&&item.status==='启用');
+        if(!platform)return null;
+        const connection=pointVendorConnections.find(item=>item.point===point&&item.practicalPlatformId===practicalPlatformId&&item.status==='启用');
+        return connection?{platform,connection}:null;
+      }
+      function isQuestionEligibleAtPoint(question,point){
+        return question.scoreSource!=='设备平台评分'||Boolean(question.practicalPlatformId&&enabledPlatformConnection(point,question.practicalPlatformId));
+      }
+      function drawSettingsForPlan(plan){return drawSettings.filter(item=>item.examPoint===plan.point&&item.operationProject===plan.project);}
+      function eligibleQuestionsForCategory(plan,setting){
+        const questions=global.__reviewReady
+          ?questionRecords.filter(item=>item.point===plan.point&&item.effective&&item.effective.project===plan.project&&item.effective.category===setting.category&&item.effective.enabled).map(item=>normalizeQuestionSnapshot({question:item.effective.name,subcategory:item.effective.subcategory,durationMinutes:item.effective.durationMinutes,questionType:item.effective.questionType,scoreSource:item.effective.scoreSource,practicalPlatformId:item.effective.practicalPlatformId,practicalPlatformName:item.effective.practicalPlatformName}))
+          :(questionPools[plan.project]?.[setting.category]||[]).map(normalizeQuestionSnapshot);
+        return questions.filter(item=>isQuestionEligibleAtPoint(item,plan.point));
+      }
+      function eligibleSubcategoriesForSetting(plan,setting){
+        return Array.from(eligibleQuestionsForCategory(plan,setting).reduce((groups,item)=>{if(!groups.has(item.subcategory))groups.set(item.subcategory,[]);groups.get(item.subcategory).push(item);return groups;},new Map()),([subcategory,questions])=>({subcategory,questions}));
+      }
+      function randomSample(items,count){
+        const shuffled=[...items];
+        for(let index=shuffled.length-1;index>0;index--){const target=Math.floor(Math.random()*(index+1));[shuffled[index],shuffled[target]]=[shuffled[target],shuffled[index]];}
+        return shuffled.slice(0,count);
+      }
+      function validateDrawSettings(plan,settings=drawSettingsForPlan(plan)){
+        const rows=settings.map(setting=>{
+          const eligibleSubcategoryCount=eligibleSubcategoriesForSetting(plan,setting).length;
+          const count=Number(setting.subcategoryDrawCount);
+          let message=setting.enabled?`校验通过，可用 ${eligibleSubcategoryCount} 个科目子类`:'未启用，不参与抽题';
+          if(setting.enabled&&(!Number.isInteger(count)||count<1))message='启用大类的科目子类抽取数量必须为正整数';
+          else if(setting.enabled&&count>eligibleSubcategoryCount)message=`抽取 ${count} 个，超过可用科目子类 ${eligibleSubcategoryCount} 个`;
+          return {setting,eligibleSubcategoryCount,valid:!setting.enabled||(Number.isInteger(count)&&count>=1&&count<=eligibleSubcategoryCount),message};
+        });
+        if(!settings.length)rows.push({setting:null,eligibleSubcategoryCount:0,valid:false,message:'当前考试点和操作项目未配置抽题设置'});
+        return {ok:rows.every(item=>item.valid),rows};
+      }
+
+      function generateCandidateResults(plan,candidateId,roundNumber,verifiedAt=now(),verifiedAtEpochMs=Date.now()){
+        const settings=drawSettingsForPlan(plan);
+        const validation=validateDrawSettings(plan,settings);
+        if(!validation.ok){const error=new Error(validation.rows.filter(item=>!item.valid).map(item=>`${item.setting?`${item.setting.category}：`:''}${item.message}`).join('；'));error.code='DRAW_SETTING_INVALID';throw error;}
+        const candidateIndex=plan.candidates.findIndex(candidate=>candidate.candidateId===candidateId);
+        if(candidateIndex<0)throw new Error('考生不在已确认的考试计划名单中');
+        const candidate=plan.candidates[candidateIndex];
+        const questions=settings.filter(setting=>setting.enabled).flatMap((setting,settingIndex)=>{
+          const subcategoryPools=eligibleSubcategoriesForSetting(plan,setting);
+          const count=Number(setting.subcategoryDrawCount);
+          return randomSample(subcategoryPools,count).map((selectedSubcategory,pickIndex)=>{
+            const selected=randomSample(selectedSubcategory.questions,1)[0];
+            return normalizeQuestionSnapshot({question:selected.question,scoreSource:selected.scoreSource,practicalPlatformId:selected.practicalPlatformId,practicalPlatformName:selected.practicalPlatformName,durationMinutes:selected.durationMinutes,questionType:selected.questionType,category:setting.category,subcategory:selectedSubcategory.subcategory,drawSettingId:setting.id,status:'待考',questionInstanceId:`PQI-${plan.instancePrefix}-${candidateId}-R${roundNumber}-${setting.category}-${String(pickIndex+1).padStart(2,'0')}`});
+          });
+        });
+        const generatedStamp=captureTime();
+        return {...candidate,roundNumber,verifiedAt,verifiedAtEpochMs,generatedAt:generatedStamp.label,generatedAtEpochMs:generatedStamp.epochMs,generatedAtIso:generatedStamp.iso,isCurrent:true,questions};
+      }
+      function now(){return new Date().toLocaleString('zh-CN',{hour12:false});}
+      function captureTime(){const value=new Date();return {label:value.toLocaleString('zh-CN',{hour12:false}),epochMs:value.getTime(),iso:value.toISOString()};}
+      function nextRound(plan,candidateId){return Math.max(0,...plan.results.filter(item=>item.candidateId===candidateId).map(item=>item.roundNumber||0))+1;}
+      function hasImmutableQuestion(round){return round.questions.some(question=>question.status!=='待考'||deviceRawScores.has(question.questionInstanceId));}
+      function enabledPlatformsForPoint(point){
+        return pointVendorConnections.filter(item=>item.point===point).map(item=>enabledPlatformConnection(point,item.practicalPlatformId)).filter(Boolean);
+      }
+      let dispatchSequence=0;
+      function buildDevicePlatformDispatches(plan,round){
+        return round.questions.filter(question=>question.scoreSource==='设备平台评分').flatMap(question=>{
+          const target=enabledPlatformConnection(plan.point,question.practicalPlatformId);
+          return target?[{
+            dispatchId:`dispatch-${Date.now()}-${++dispatchSequence}`,time:now(),practicalPlatformId:target.platform.id,vendor:target.platform.name,candidate:round.candidate,instance:question.questionInstanceId,action:'题目推送',dispatchStatus:'待推送',result:'待推送',retryable:true,attempts:0,note:`题目实例和抽题轮次已生效，仅等待所选实操平台 ${target.platform.name} 接收`
+          }]:[];
+        });
+      }
+      function invokeDispatchAdapter(plan,round,record){
+        if(typeof plan.dispatchDevicePlatformQuestion==='function')return plan.dispatchDevicePlatformQuestion(round,record);
+        if(typeof plan.dispatchDevicePlatformQuestions==='function')return plan.dispatchDevicePlatformQuestions(round,[record]);
+        return {ok:true};
+      }
+      function attemptDevicePlatformDispatch(plan,round,record){
+        record.attempts+=1;
+        record.lastAttemptAt=now();
+        try{
+          const response=invokeDispatchAdapter(plan,round,record);
+          if(response===false||response?.ok===false)throw new Error(response?.message||'平台拒绝接收');
+          record.dispatchStatus='推送成功';record.result='题目推送成功';record.retryable=false;record.time=record.lastAttemptAt;record.note=`第 ${record.attempts} 次推送成功`;
+          delete record.lastError;
+          return {ok:true,dispatch:record};
+        }catch(error){
+          record.dispatchStatus='推送失败';record.result='题目推送失败';record.retryable=true;record.time=record.lastAttemptAt;record.lastError=error.message||'平台接口异常';record.note=`${record.lastError}；可按原题目实例 ID 重试`;
+          return {ok:false,dispatch:record,reason:record.lastError};
+        }
+      }
+      function findQuestionInstance(questionInstanceId){
+        for(const plan of examPlans)for(const round of plan.results){
+          const question=round.questions.find(item=>item.questionInstanceId===questionInstanceId);
+          if(question)return {plan,round,question};
+        }
+        return null;
+      }
+      function retryDevicePlatformDispatch(dispatchId){
+        const record=interfaceRecords.find(item=>item.dispatchId===dispatchId&&item.action==='题目推送');
+        if(!record)return {ok:false,reason:'推送记录不存在'};
+        if(record.dispatchStatus!=='推送失败'||!record.retryable)return {ok:false,reason:'该推送记录当前不可重试',dispatch:record};
+        const found=findQuestionInstance(record.instance);
+        if(!found||!found.round.isCurrent||found.question.status==='已作废')return {ok:false,reason:'题目实例已失效，禁止重试推送',dispatch:record};
+        return attemptDevicePlatformDispatch(found.plan,found.round,record);
+      }
+      function recordDrawFailure(plan,candidateId,code,reason,verificationEvent){
+        const stamp=captureTime();
+        const failure={time:stamp.label,timeEpochMs:stamp.epochMs,timeIso:stamp.iso,candidateId,code,reason,verificationEventId:verificationEvent.eventId};
+        plan.drawGenerationFailures.push(failure);
+        return failure;
+      }
+      function verifyCandidate(plan,candidateId){
+        const candidate=plan.candidates.find(item=>item.candidateId===candidateId);
+        if(!candidate)return {ok:false,reason:'考生不在已确认的考试计划名单中'};
+        const verificationStamp=captureTime();
+        const verificationEvent={eventId:`verify-${plan.id}-${verificationStamp.epochMs}-${plan.verificationEvents.length+1}`,time:verificationStamp.label,timeEpochMs:verificationStamp.epochMs,timeIso:verificationStamp.iso,candidateId,candidate:candidate.candidate,result:'身份核验成功'};
+        plan.verificationEvents.push(verificationEvent);
+        const prior=plan.results.find(item=>item.candidateId===candidateId&&item.isCurrent);
+        if(prior&&hasImmutableQuestion(prior)){
+          const reason='该考生已开始考试或已有成绩，不能重新抽题';
+          return {ok:false,reason,verificationEvent,drawFailure:recordDrawFailure(plan,candidateId,'CURRENT_ROUND_IMMUTABLE',reason,verificationEvent)};
+        }
+        let round;
+        try{
+          round=generateCandidateResults(plan,candidateId,nextRound(plan,candidateId),verificationEvent.time,verificationEvent.timeEpochMs);
+        }catch(error){
+          const reason=`题目生成失败：${error.message||'请检查候选题配置后重试'}`;
+          return {ok:false,reason,verificationEvent,drawFailure:recordDrawFailure(plan,candidateId,error.code==='DRAW_SETTING_INVALID'?'DRAW_SETTING_INVALID':'DRAW_GENERATION_FAILED',reason,verificationEvent)};
+        }
+        const hasDeviceQuestion=round.questions.some(question=>question.scoreSource==='设备平台评分');
+        const unavailableQuestion=round.questions.find(question=>question.scoreSource==='设备平台评分'&&!enabledPlatformConnection(plan.point,question.practicalPlatformId));
+        if(hasDeviceQuestion&&unavailableQuestion){
+          const reason=`所选实操平台 ${unavailableQuestion.practicalPlatformName||unavailableQuestion.practicalPlatformId||'未配置'} 未启用或未启用考点平台关系，设备平台评分题不能生成`;
+          return {ok:false,reason,verificationEvent,drawFailure:recordDrawFailure(plan,candidateId,'PRACTICAL_PLATFORM_UNAVAILABLE',reason,verificationEvent)};
+        }
+        if(prior){
+          prior.isCurrent=false;prior.invalidatedAt=now();prior.invalidatedReason='再次身份核验后重新抽题';
+          prior.questions.forEach(question=>{question.statusBeforeInvalidation=question.status;question.status='已作废';});
+        }
+        plan.results.push(round);
+        const dispatches=buildDevicePlatformDispatches(plan,round);
+        interfaceRecords.push(...dispatches);
+        const dispatchResults=dispatches.map(record=>attemptDevicePlatformDispatch(plan,round,record));
+        return {ok:true,round,verificationEvent,dispatches,dispatchResults,partialDispatchFailure:dispatchResults.some(result=>!result.ok)};
+      }
+      function markQuestionStarted(plan,candidateId){const round=plan.results.find(item=>item.candidateId===candidateId&&item.isCurrent);if(round)round.questions[0].status='已开始';return round;}
 
       const vendors=[
-        {name:'泰豪实训平台',interfaceUrl:'https://platform.example.com/tasks',status:'启用',remark:'设备成绩接口接入',checkedAt:'2026-07-20 14:20'},
-        {name:'实训设备平台 B',interfaceUrl:'https://platform-b.example.com/tasks',status:'启用',remark:'实操题目与成绩联调',checkedAt:'2026-07-20 13:55'}
+        {id:'platform-taihao',name:'泰豪实训平台',interfaceUrl:'https://platform.example.com/tasks',status:'启用',remark:'设备成绩接口接入',checkedAt:'2026-07-20 14:20'},
+        {id:'platform-b',name:'实训设备平台 B',interfaceUrl:'https://platform-b.example.com/tasks',status:'启用',remark:'实操题目与成绩联调',checkedAt:'2026-07-20 13:55'}
       ];
       const pointVendorConnections=[
-        {point:'高新实操考点',vendor:'泰豪实训平台',status:'启用',remark:'设备考试成绩接入'},
-        {point:'高新实操考点',vendor:'实训设备平台 B',status:'启用',remark:'设备考试成绩接入'}
+        {point:'高新实操考点',practicalPlatformId:'platform-taihao',vendor:'泰豪实训平台',status:'启用',remark:'设备考试成绩接入'},
+        {point:'高新实操考点',practicalPlatformId:'platform-b',vendor:'实训设备平台 B',status:'启用',remark:'设备考试成绩接入'},
+        {point:'经开实操考点',practicalPlatformId:'platform-taihao',vendor:'泰豪实训平台',status:'启用',remark:'设备考试成绩接入'},
+        {point:'经开实操考点',practicalPlatformId:'platform-b',vendor:'实训设备平台 B',status:'启用',remark:'设备考试成绩接入'},
+        {point:'城西考点',practicalPlatformId:'platform-taihao',vendor:'泰豪实训平台',status:'启用',remark:'设备考试成绩接入'},
+        {point:'城西考点',practicalPlatformId:'platform-b',vendor:'实训设备平台 B',status:'启用',remark:'设备考试成绩接入'}
       ];
       const interfaceRecords=[
-        {time:'2026-07-20 14:20',vendor:'泰豪实训平台',candidate:'张三',instance:'PQI-LV-20260722-G1-001-K2-01',action:'题目推送',result:'题目推送成功',note:'设备评分题已推送至本考试点启用的平台接口'},
-        {time:'2026-07-20 14:20',vendor:'实训设备平台 B',candidate:'张三',instance:'PQI-LV-20260722-G1-001-K2-01',action:'题目推送',result:'题目推送成功',note:'设备评分题已推送至本考试点启用的平台接口'}
+        {dispatchId:'dispatch-sample-a',time:'2026-07-20 14:20',practicalPlatformId:'platform-taihao',vendor:'泰豪实训平台',candidate:'张三',instance:'PQI-LV-20260722-G1-001-K2-01',action:'题目推送',dispatchStatus:'推送成功',result:'题目推送成功',retryable:false,attempts:1,note:'设备评分题仅推送至题目所选实操平台'},
+        {dispatchId:'dispatch-sample-b',time:'2026-07-20 14:20',practicalPlatformId:'platform-b',vendor:'实训设备平台 B',candidate:'张三',instance:'PQI-LV-20260722-G1-001-K2-02',action:'题目推送',dispatchStatus:'推送成功',result:'题目推送成功',retryable:false,attempts:1,note:'设备评分题仅推送至题目所选实操平台'}
       ];
-      const officialDeviceScores=new Map();
+      const deviceRawScores=new Map();
+      const vendorScoreEvents=new Map();
+      const validResultStatuses=new Set(['COMPLETED','ABSENT','DEVICE_FAILURE','INVALID']);
 
-      function recordScoreReturn({time,vendor,candidate,questionInstanceId,scoreFlowId}){
-        const current=officialDeviceScores.get(questionInstanceId);
-        let result;
-        let note;
-        if(!current){
-          officialDeviceScores.set(questionInstanceId,{vendor,scoreFlowId});
-          result='首次成绩回传成功';
-          note='正式成绩已写入对应学员题目实例';
-        }else if(current.vendor===vendor&&current.scoreFlowId===scoreFlowId){
-          result='同平台接口同流水幂等成功';
-          note='返回成功且不重复写入正式成绩';
-        }else{
-          result='不同平台接口后到同一实例，接口异常拒收';
-          note='保留接口记录，不覆盖已接收的正式成绩';
-        }
-        interfaceRecords.push({time,vendor,candidate,instance:questionInstanceId,action:'成绩回传',result,note});
+      function appendScoreRecord(payload,result,note,code){
+        const record={time:payload.time||now(),vendor:payload.vendor,candidate:payload.candidate||'-',instance:payload.questionInstanceId,action:'成绩回传',result,note,code};
+        interfaceRecords.push(record);
+        return record;
       }
-      recordScoreReturn({time:'2026-07-20 14:22',vendor:'泰豪实训平台',candidate:'张三',questionInstanceId:'PQI-LV-20260722-G1-001-K2-01',scoreFlowId:'TH-SCORE-20260720-001'});
-      recordScoreReturn({time:'2026-07-20 14:23',vendor:'泰豪实训平台',candidate:'张三',questionInstanceId:'PQI-LV-20260722-G1-001-K2-01',scoreFlowId:'TH-SCORE-20260720-001'});
-      recordScoreReturn({time:'2026-07-20 14:24',vendor:'实训设备平台 B',candidate:'张三',questionInstanceId:'PQI-LV-20260722-G1-001-K2-01',scoreFlowId:'VB-SCORE-20260720-009'});
+      function rejectScoreReturn(payload,code,note){return {ok:false,code,record:appendScoreRecord(payload,'成绩回传拒收',note,code)};}
+      function isValidIsoDateTime(value){
+        if(typeof value!=='string')return false;
+        const match=/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(Z|[+-]\d{2}:\d{2})$/.exec(value);
+        if(!match)return false;
+        const [,yearText,monthText,dayText,hourText,minuteText,secondText,zone]=match;
+        const [year,month,day,hour,minute,second]=[yearText,monthText,dayText,hourText,minuteText,secondText].map(Number);
+        const leapYear=year%4===0&&(year%100!==0||year%400===0);
+        const daysInMonth=[31,leapYear?29:28,31,30,31,30,31,31,30,31,30,31];
+        if(month<1||month>12||day<1||day>daysInMonth[month-1]||hour>23||minute>59||second>59)return false;
+        if(zone!=='Z'){
+          const [offsetHour,offsetMinute]=zone.slice(1).split(':').map(Number);
+          if(offsetHour>23||offsetMinute>59)return false;
+        }
+        return Number.isFinite(Date.parse(value));
+      }
+      function recordScoreReturn(input={}){
+        const {time,candidate,score,maxScore,completedAt}=input;
+        const vendor=typeof input.vendor==='string'?input.vendor.trim():input.vendor;
+        const questionInstanceId=typeof input.questionInstanceId==='string'?input.questionInstanceId.trim():input.questionInstanceId;
+        const vendorScoreEventNo=typeof (input.vendorScoreEventNo??input.scoreFlowId)==='string'?(input.vendorScoreEventNo??input.scoreFlowId).trim():(input.vendorScoreEventNo??input.scoreFlowId);
+        const resultStatus=typeof input.resultStatus==='string'?input.resultStatus.trim():input.resultStatus;
+        const payload={time,vendor,candidate,questionInstanceId,vendorScoreEventNo,scoreFlowId:vendorScoreEventNo,score,maxScore,completedAt,resultStatus};
+        const requiredFields={vendor,questionInstanceId,vendorScoreEventNo,score,maxScore,completedAt,resultStatus};
+        const missingFields=Object.entries(requiredFields).filter(([,value])=>value===undefined||value===null||(typeof value==='string'&&!value.trim())).map(([field])=>field);
+        if(missingFields.length)return rejectScoreReturn(payload,'SCORE_PAYLOAD_INVALID',`缺少必填字段：${missingFields.join('、')}，未写入正式成绩`);
+        if(input.vendorScoreEventNo!==undefined&&input.scoreFlowId!==undefined&&String(input.vendorScoreEventNo).trim()!==String(input.scoreFlowId).trim())return rejectScoreReturn(payload,'SCORE_PAYLOAD_INVALID','vendorScoreEventNo 与 scoreFlowId 不一致，未写入正式成绩');
+        if(typeof score!=='number'||!Number.isFinite(score)||typeof maxScore!=='number'||!Number.isFinite(maxScore)||maxScore<=0)return rejectScoreReturn(payload,'SCORE_PAYLOAD_INVALID','得分和满分必须为有效数字，且满分必须大于 0，未写入正式成绩');
+        if(score<0||score>maxScore)return rejectScoreReturn(payload,'SCORE_OUT_OF_RANGE','得分必须大于等于 0 且不能超过回传满分，未写入正式成绩');
+        if(!validResultStatuses.has(resultStatus))return rejectScoreReturn(payload,'RESULT_STATUS_INVALID','结果状态不在允许范围内，未写入正式成绩');
+        if(!isValidIsoDateTime(completedAt))return rejectScoreReturn(payload,'COMPLETED_AT_INVALID','完成时间必须是带 Z 或时区偏移的有效 ISO 8601 日期时间，未写入正式成绩');
+        const eventKey=JSON.stringify([vendor,vendorScoreEventNo]);
+        const canonicalPayload={vendor,questionInstanceId,vendorScoreEventNo,score,maxScore,completedAt,resultStatus};
+        const priorEvent=vendorScoreEvents.get(eventKey);
+        if(priorEvent){
+          if(JSON.stringify(priorEvent.payload)===JSON.stringify(canonicalPayload))return {ok:true,code:'SCORE_IDEMPOTENT',rawScore:priorEvent.acceptedResult.rawScore,originalResult:priorEvent.acceptedResult,record:appendScoreRecord(payload,'同平台接口同流水幂等成功','返回原受理结果且不重复写入原始成绩','SCORE_IDEMPOTENT')};
+          return rejectScoreReturn(payload,'SCORE_EVENT_CONFLICT','同一平台成绩事件号已用于其他题目实例或不同成绩载荷，未写入原始成绩');
+        }
+        const found=findQuestionInstance(questionInstanceId);
+        if(!found)return rejectScoreReturn(payload,'QUESTION_INSTANCE_NOT_FOUND','题目实例不存在，未写入正式成绩');
+        if(!found.round.isCurrent||found.question.status==='已作废')return rejectScoreReturn(payload,'QUESTION_INSTANCE_NOT_CURRENT','题目实例已作废或不是当前轮次，未写入正式成绩');
+        if(found.question.scoreSource!=='设备平台评分')return rejectScoreReturn(payload,'SCORE_SOURCE_NOT_DEVICE_PLATFORM','该题由考评员评分，设备平台成绩拒收');
+        const successfulDispatch=interfaceRecords.find(record=>record.action==='题目推送'&&record.instance===questionInstanceId&&record.vendor===vendor&&record.dispatchStatus==='推送成功');
+        if(!successfulDispatch)return rejectScoreReturn(payload,'DISPATCH_NOT_SUCCESSFUL','未找到返回平台对应的成功推送记录，未写入正式成绩');
+        const questionFullScore=found.question.fullScore??found.question.maxScore;
+        if(questionFullScore!==undefined&&questionFullScore!==null&&Number(questionFullScore)!==maxScore)return rejectScoreReturn(payload,'SCORE_MAX_MISMATCH','回传满分与题目实例满分快照不一致，未写入正式成绩');
+        const current=deviceRawScores.get(questionInstanceId);
+        if(!current){
+          const rawScore={rawScoreReference:`DEVICE:${vendor}:${vendorScoreEventNo}`,questionInstanceId,sourceType:'DEVICE_PLATFORM',vendor,vendorScoreEventNo,scoreFlowId:vendorScoreEventNo,rawScore:score,maxScore,completedAt,resultStatus,receivedAt:time||now(),immutable:true};
+          deviceRawScores.set(questionInstanceId,Object.freeze(rawScore));
+          found.question.deviceScoreReceived=true;found.question.rawScoreReference=rawScore.rawScoreReference;found.question.rawScore=score;found.question.maxScore=maxScore;found.question.status='待考评员确认';
+          const result={ok:true,code:'RAW_SCORE_ACCEPTED',rawScore,record:appendScoreRecord(payload,'设备原始成绩回传成功','不可变原始成绩已写入，等待考评员签名确认','RAW_SCORE_ACCEPTED')};
+          vendorScoreEvents.set(eventKey,{payload:canonicalPayload,acceptedResult:result});
+          return result;
+        }
+        return rejectScoreReturn(payload,'SCORE_CONFLICT','该题目实例已有不可变原始成绩，保留接口记录且不覆盖');
+      }
 
       const currentPoint='高新实操考点';
       let activeQuestionId=null;
       let questionApplicationMode='新增';
       const questionRecords=[];
-      ['高新实操考点','经开实操考点','城西考点'].forEach(point=>Object.entries(questionPools).forEach(([project,categories])=>Object.entries(categories).forEach(([category,items])=>items.forEach((item,index)=>questionRecords.push({id:`${point}-${project}-${category}-${index}`,point,project,category,name:item.question,scoreSource:item.scoreSource,application:'存量考题',reviewState:'已审核通过',enabled:true,trail:['地市考试中心审核通过','地市发证机关审核通过'],opinion:''})))));
+      ['高新实操考点','经开实操考点','城西考点'].forEach(point=>Object.entries(questionPools).forEach(([project,categories])=>Object.entries(categories).forEach(([category,items])=>items.forEach((item,index)=>questionRecords.push({id:`${point}-${project}-${category}-${index}`,point,project,category,subcategory:item.subcategory,name:item.question,durationMinutes:item.durationMinutes,questionType:item.questionType,scoreSource:item.scoreSource,...(item.scoreSource==='设备平台评分'?{practicalPlatformId:item.practicalPlatformId,practicalPlatformName:item.practicalPlatformName}:{}),application:'存量考题',reviewState:'已审核通过',enabled:true,trail:['地市考试中心审核通过','地市发证机关审核通过'],opinion:''})))));
       questionRecords.find(item=>item.id==='高新实操考点-高压电工作业-K2-0').application='修改申请';
       questionRecords.find(item=>item.id==='高新实操考点-高压电工作业-K2-0').reviewState='待地市发证机关审核';
       questionRecords.find(item=>item.id==='高新实操考点-高压电工作业-K4-1').application='停用申请';
       questionRecords.find(item=>item.id==='高新实操考点-高压电工作业-K4-1').reviewState='待地市考试中心审核';
-      questionRecords.push({id:'rejected-sample',point:currentPoint,project:'高压电工作业',category:'K1',name:'高压接地线装拆操作',scoreSource:'考评员评分',application:'新增申请',reviewState:'已驳回',enabled:false,trail:['地市考试中心驳回'],opinion:'请补充考试标准和否定项说明。'});
-      questionRecords.forEach(item=>item.effective=item.id==='rejected-sample'?null:{project:item.project,category:item.category,name:item.name,scoreSource:item.scoreSource,enabled:true});
+      questionRecords.push({id:'rejected-sample',point:currentPoint,project:'高压电工作业',category:'K1',subcategory:'K1.1 个人防护用品',name:'高压接地线装拆操作',durationMinutes:15,questionType:'NEW',scoreSource:'考评员评分',application:'新增申请',reviewState:'已驳回',enabled:false,trail:['地市考试中心驳回'],opinion:'请补充考试标准和否定项说明。'});
+      questionRecords.forEach(item=>item.effective=item.id==='rejected-sample'?null:normalizeQuestionSnapshot({project:item.project,category:item.category,subcategory:item.subcategory,name:item.name,durationMinutes:item.durationMinutes,questionType:item.questionType,scoreSource:item.scoreSource,practicalPlatformId:item.practicalPlatformId,practicalPlatformName:item.practicalPlatformName,enabled:true}));
       const pendingIssuerModification=questionRecords.find(item=>item.id==='高新实操考点-高压电工作业-K2-0');
       pendingIssuerModification.pendingSnapshot={...pendingIssuerModification.effective};
       questionRecords.forEach((item,index)=>Object.assign(item,{
-        duration:index%2===0?'20 分钟':'15 分钟',
         standard:'按《特种作业人员安全技术培训考核管理规定》及对应作业项目标准执行。',
         negativeItems:'未按规定佩戴防护用品、违反安全操作规程或造成设备损坏，判定为否定项。',
         canReview:false,
@@ -212,15 +413,25 @@
 
       function getEligibleQuestionPools(plan){
         const pools={K1:[],K2:[],K3:[],K4:[]};
-        questionRecords.filter(item=>item.point===plan.point&&item.effective&&item.effective.project===plan.project&&item.effective.enabled).forEach(item=>pools[item.effective.category].push({question:item.effective.name,scoreSource:item.effective.scoreSource}));
+        questionRecords.filter(item=>item.point===plan.point&&item.effective&&item.effective.project===plan.project&&item.effective.enabled&&isQuestionEligibleAtPoint(item.effective,plan.point)).forEach(item=>pools[item.effective.category].push(normalizeQuestionSnapshot({question:item.effective.name,subcategory:item.effective.subcategory,durationMinutes:item.effective.durationMinutes,questionType:item.effective.questionType,scoreSource:item.effective.scoreSource,practicalPlatformId:item.effective.practicalPlatformId,practicalPlatformName:item.effective.practicalPlatformName})));
         return pools;
       }
       function reviewClass(state){return state==='已审核通过'||state==='停用已生效'?'green':state==='已驳回'?'red':state.includes('发证机关')?'blue':'amber';}
       function questionEnabledLabel(item){return item.enabled?'已启用':item.reviewState==='停用已生效'?'已停用':'未启用';}
       function displayVersion(item){return item.effective||item.pendingSnapshot||item;}
       function reviewStage(item){return item.reviewState.includes('发证机关')?'地市发证机关':'地市考试中心';}
-      function readQuestionForm(){const selects=questionModal.querySelectorAll('select');return {project:selects[0].value,category:selects[1].value,name:questionModal.querySelector('input').value.trim(),scoreSource:selects[2].value};}
-      function fillQuestionForm(version){const selects=questionModal.querySelectorAll('select');selects[0].value=version.project;selects[1].value=version.category;questionModal.querySelector('input').value=version.name;selects[2].value=version.scoreSource;}
+      function syncQuestionPlatformField(selectedId=''){
+        const isDevice=document.getElementById('questionScoreSource').value==='设备平台评分';
+        const field=document.getElementById('questionPracticalPlatformField');const select=document.getElementById('questionPracticalPlatform');
+        field.classList.toggle('hidden',!isDevice);select.required=isDevice;
+        select.innerHTML=`<option value="">请选择实操平台</option>${vendors.map(item=>`<option value="${item.id}" ${item.id===selectedId?'selected':''}>${escapeHtml(item.name)}（${item.status}）</option>`).join('')}`;
+        if(!isDevice)select.value='';
+      }
+      function readQuestionForm(){
+        const scoreSource=document.getElementById('questionScoreSource').value;
+        return normalizeQuestionSnapshot({project:document.getElementById('questionProject').value,category:document.getElementById('questionCategory').value,subcategory:document.getElementById('questionSubcategory').value.trim(),name:document.getElementById('questionName').value.trim(),durationMinutes:Number(document.getElementById('questionDurationMinutes').value),questionType:document.getElementById('questionType').value,scoreSource,practicalPlatformId:scoreSource==='设备平台评分'?document.getElementById('questionPracticalPlatform').value:undefined});
+      }
+      function fillQuestionForm(version){document.getElementById('questionProject').value=version.project;document.getElementById('questionCategory').value=version.category;document.getElementById('questionSubcategory').value=version.subcategory;document.getElementById('questionName').value=version.name;document.getElementById('questionDurationMinutes').value=version.durationMinutes;document.getElementById('questionType').value=version.questionType;document.getElementById('questionScoreSource').value=version.scoreSource;syncQuestionPlatformField(version.practicalPlatformId||'');}
       function questionActions(item){
         // canReview / availableActions are supplied by the backend for the current user.
         if(item.canReview&&item.availableActions.includes('review'))return `<button class="primary" data-question-action="review" data-question-id="${item.id}">审核</button>`;
@@ -229,14 +440,16 @@
         return '<span class="empty-note">无可用操作</span>';
       }
       function renderQuestionRows(){
-        const rows=questionRecords.filter(item=>item.point===currentPoint).map((item,index)=>`<tr><td>${index+1}</td><td>${escapeHtml(item.project)}</td><td>${item.category}</td><td>${escapeHtml(item.name)}</td><td><span class="tag ${item.scoreSource==='设备平台评分'?'blue':'green'}">${item.scoreSource}</span></td><td>${item.application}</td><td><span class="tag ${reviewClass(item.reviewState)}">${item.reviewState}</span></td><td><span class="tag ${item.enabled?'green':'amber'}">${questionEnabledLabel(item)}</span></td><td class="review-trail"><b>${item.trail.join(' → ')}</b>${item.opinion?`<br>审核意见：${escapeHtml(item.opinion)}`:''}</td><td><div class="action-group">${questionActions(item)}</div></td></tr>`).join('');
+        const project=document.getElementById('questionProjectFilter')?.value||'全部';const category=document.getElementById('questionCategoryFilter')?.value||'';const name=document.getElementById('questionNameFilter')?.value.trim()||'';const score=document.getElementById('questionScoreFilter')?.value||'全部';const duration=document.getElementById('questionDurationFilter')?.value||'';const type=document.getElementById('questionTypeFilter')?.value||'';
+        const filtered=questionRecords.filter(item=>{const version=displayVersion(item);return item.point===currentPoint&&(project==='全部'||version.project===project)&&(!category||version.category===category)&&(!name||version.name.includes(name))&&(score==='全部'||version.scoreSource===score)&&(!duration||version.durationMinutes===Number(duration))&&(!type||version.questionType===type);});
+        const rows=filtered.map((item,index)=>{const version=displayVersion(item);return `<tr><td>${index+1}</td><td>${escapeHtml(version.project)}</td><td>${version.category}</td><td>${escapeHtml(version.subcategory)}</td><td>${escapeHtml(version.name)}</td><td>${version.durationMinutes} 分钟</td><td><span class="tag ${version.questionType==='NEW'?'blue':'amber'}">${questionTypeLabels[version.questionType]}</span></td><td><span class="tag ${version.scoreSource==='设备平台评分'?'blue':'green'}">${version.scoreSource}</span></td><td>${version.scoreSource==='设备平台评分'?escapeHtml(version.practicalPlatformName||'未配置'):'-'}</td><td>${item.application}</td><td><span class="tag ${reviewClass(item.reviewState)}">${item.reviewState}</span></td><td><span class="tag ${item.enabled?'green':'amber'}">${questionEnabledLabel(item)}</span></td><td class="review-trail"><b>${item.trail.join(' → ')}</b>${item.opinion?`<br>审核意见：${escapeHtml(item.opinion)}`:''}</td><td><div class="action-group">${questionActions(item)}</div></td></tr>`;}).join('');
         document.getElementById('questionRows').innerHTML=rows;
         createIcons();
       }
       function openQuestionApplication(id,mode){
         activeQuestionId=id||null;questionApplicationMode=mode;
         const item=id?questionRecords.find(record=>record.id===id):null;
-        if(item&&item.effective)fillQuestionForm(item.effective);
+        if(item&&item.effective)fillQuestionForm(item.effective);else{document.getElementById('questionScoreSource').value='考评员评分';syncQuestionPlatformField();}
         document.getElementById('questionModalTitle').textContent=`${mode}实操考题申请`;
         questionModal.querySelector('[data-action="save-question"]').textContent=mode==='修改后重新提交'?'重新提交申请':'提交申请';
         questionModal.classList.add('show');
@@ -244,13 +457,17 @@
       function openReviewModal(id){
         const item=questionRecords.find(record=>record.id===id);const snapshot=item.pendingSnapshot||displayVersion(item);activeQuestionId=id;
         document.getElementById('reviewModalTitle').textContent='审核实操考题申请';
-        document.getElementById('reviewModalSummary').innerHTML=`<span>考试点</span><b>${escapeHtml(item.point)}</b><span>操作项目</span><b>${escapeHtml(snapshot.project)}</b><span>科目大类</span><b>${snapshot.category}</b><span>考试项目</span><b>${escapeHtml(snapshot.name)}</b><span>评分方式</span><b>${snapshot.scoreSource}</b><span>考试时长</span><b>${item.duration}</b><span>考试标准</span><b>${escapeHtml(item.standard)}</b><span>否定项</span><b>${escapeHtml(item.negativeItems)}</b><span>申请类型</span><b>${item.application}</b><span>当前状态</span><b>${item.reviewState}</b><span>历史审核意见</span><b>${item.trail.join(' → ')}${item.opinion?`；${escapeHtml(item.opinion)}`:'；暂无'}</b>`;
+        const platformDetail=snapshot.scoreSource==='设备平台评分'?`<span>实操平台</span><b>${escapeHtml(snapshot.practicalPlatformName||'未配置')}</b>`:'';
+        document.getElementById('reviewModalSummary').innerHTML=`<span>考试点</span><b>${escapeHtml(item.point)}</b><span>操作项目</span><b>${escapeHtml(snapshot.project)}</b><span>科目大类</span><b>${snapshot.category}</b><span>科目子类</span><b>${escapeHtml(snapshot.subcategory)}</b><span>考试项目</span><b>${escapeHtml(snapshot.name)}</b><span>考试时长</span><b>${snapshot.durationMinutes} 分钟</b><span>考题类型</span><b>${questionTypeLabels[snapshot.questionType]}</b><span>评分方式</span><b>${snapshot.scoreSource}</b>${platformDetail}<span>考试标准</span><b>${escapeHtml(item.standard)}</b><span>否定项</span><b>${escapeHtml(item.negativeItems)}</b><span>申请类型</span><b>${item.application}</b><span>当前状态</span><b>${item.reviewState}</b><span>历史审核意见</span><b>${item.trail.join(' → ')}${item.opinion?`；${escapeHtml(item.opinion)}`:'；暂无'}</b>`;
         document.getElementById('reviewOpinion').value='';document.getElementById('reviewModal').classList.add('show');
       }
       function submitQuestionApplication(){
         let item=activeQuestionId?questionRecords.find(record=>record.id===activeQuestionId):null;
+        const snapshot=readQuestionForm();
+        if(!snapshot.project||!snapshot.category||!snapshot.subcategory||!snapshot.name||!Number.isInteger(snapshot.durationMinutes)||snapshot.durationMinutes<1||!questionTypeLabels[snapshot.questionType]||!snapshot.scoreSource){global.alert('请完整填写考题信息，考试时长必须为正整数分钟');return;}
+        const snapshotValidation=validateQuestionSnapshot(snapshot);if(!snapshotValidation.ok){global.alert(snapshotValidation.message);return;}
         if(!item){item={id:`new-${Date.now()}`,point:currentPoint,application:'新增申请',reviewState:'待地市考试中心审核',effective:null,enabled:false,trail:[],opinion:''};questionRecords.unshift(item);}
-        item.pendingSnapshot=readQuestionForm();if(!item.effective)Object.assign(item,item.pendingSnapshot);item.application=questionApplicationMode==='修改后重新提交'?'修改申请':questionApplicationMode==='修改'?'修改申请':'新增申请';item.reviewState='待地市考试中心审核';item.trail=['考试点提交申请'];item.opinion='';
+        item.pendingSnapshot=snapshot;if(!item.effective)Object.assign(item,item.pendingSnapshot);item.application=questionApplicationMode==='修改后重新提交'?'修改申请':questionApplicationMode==='修改'?'修改申请':'新增申请';item.reviewState='待地市考试中心审核';item.trail=['考试点提交申请'];item.opinion='';
         closeModal(questionModal);renderQuestionRows();global.alert('申请已提交，状态：待地市考试中心审核');
       }
       function submitReview(approved){
@@ -259,19 +476,57 @@
         const stage=reviewStage(item);
         if(!approved){item.reviewState='已驳回';item.enabled=Boolean(item.effective?.enabled);item.opinion=opinion;item.trail.push(`${stage}驳回`);}
         else if(stage==='地市考试中心'){item.reviewState='待地市发证机关审核';item.trail.push('地市考试中心审核通过');item.opinion=opinion;}
-        else {const approvedSnapshot=item.pendingSnapshot||item.effective;if(!approvedSnapshot){global.alert('申请快照缺失，无法完成终审');return;}item.reviewState=item.application==='停用申请'?'停用已生效':'已审核通过';if(item.application==='停用申请'){item.effective.enabled=false;item.enabled=false;}else{item.effective={...approvedSnapshot,enabled:true};item.project=item.effective.project;item.category=item.effective.category;item.name=item.effective.name;item.scoreSource=item.effective.scoreSource;item.enabled=true;}item.lastApproved=Boolean(item.effective?.enabled);item.trail.push('地市发证机关审核通过');item.opinion=opinion;}
+        else {const approvedSnapshot=item.pendingSnapshot||item.effective;if(!approvedSnapshot){global.alert('申请快照缺失，无法完成终审');return;}item.reviewState=item.application==='停用申请'?'停用已生效':'已审核通过';if(item.application==='停用申请'){item.effective.enabled=false;item.enabled=false;}else{item.effective=normalizeQuestionSnapshot({...approvedSnapshot,enabled:true});item.project=item.effective.project;item.category=item.effective.category;item.subcategory=item.effective.subcategory;item.name=item.effective.name;item.durationMinutes=item.effective.durationMinutes;item.questionType=item.effective.questionType;item.scoreSource=item.effective.scoreSource;if(item.effective.scoreSource==='设备平台评分'){item.practicalPlatformId=item.effective.practicalPlatformId;item.practicalPlatformName=item.effective.practicalPlatformName;}else{delete item.practicalPlatformId;delete item.practicalPlatformName;}item.enabled=true;}item.lastApproved=Boolean(item.effective?.enabled);item.trail.push('地市发证机关审核通过');item.opinion=opinion;}
         item.canReview=false;item.availableActions=item.reviewState==='已审核通过'&&item.enabled?['modify','stop']:item.reviewState==='已驳回'?['resubmit']:[];
         closeModal(document.getElementById('reviewModal'));renderQuestionRows();global.alert(approved?'审核结果已提交':'申请已驳回');
       }
       function escapeHtml(value){return String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
-      function planActions(plan){
-        if(plan.state==='notDrawn')return `<button class="primary" data-plan-id="${plan.id}" data-plan-action="draw"><i data-lucide="shuffle"></i>抽取考题</button>`;
-        if(plan.state==='redrawAllowed')return `<button class="link" data-plan-id="${plan.id}" data-plan-action="view">查看结果</button><button class="link" data-plan-id="${plan.id}" data-plan-action="redraw"><i data-lucide="refresh-cw"></i>重新抽题</button>`;
-        return `<button class="link" data-plan-id="${plan.id}" data-plan-action="view">查看结果</button>`;
+      function planForSettingFilters(){return examPlans.find(item=>item.point===currentPoint)||{id:`settings-${currentPoint}`,point:currentPoint,project:'高压电工作业'};}
+      function renderDrawSettings(){
+        const plan=planForSettingFilters();const settings=drawSettingsForPlan(plan);const validation=validateDrawSettings(plan,settings);const resultById=new Map(validation.rows.filter(item=>item.setting).map(item=>[item.setting.id,item]));
+        document.getElementById('settingContext').innerHTML=`<span>考试点：<b>${escapeHtml(plan.point)}</b></span><span>操作项目：<b>${escapeHtml(plan.project)}</b></span><span class="tag ${validation.ok?'green':'red'}">${validation.ok?'配置有效':'配置异常'}</span>`;
+        document.getElementById('drawSettingRows').innerHTML=settings.map(setting=>{const result=resultById.get(setting.id);return `<tr><td><b>${setting.category} ${categoryLabels[setting.category]||''}</b></td><td>${result.eligibleSubcategoryCount} 个</td><td>${setting.subcategoryDrawCount} 个</td><td><span class="tag ${setting.enabled?'green':'gray'}">${setting.enabled?'启用':'停用'}</span></td><td>${escapeHtml(setting.remark||'-')}</td><td><button class="link" data-setting-edit="${setting.id}">编辑</button></td></tr>`;}).join('')||'<tr><td colspan="6" class="empty-note">暂无科目大类设置</td></tr>';createIcons();
       }
-      function renderPlanRows(plans){return plans.map(plan=>`<tr data-plan-id="${plan.id}"><td>${escapeHtml(plan.name)}</td><td>${escapeHtml(plan.project)}</td><td>${escapeHtml(plan.point)}</td><td>${plan.date}</td><td>${plan.candidateCount}</td><td><span class="tag ${plan.progressClass}">${escapeHtml(plan.progress)}</span></td><td>${plan.lastDrawTime}</td><td>${escapeHtml(plan.operator)}</td><td><div class="action-group">${planActions(plan)}</div></td></tr>`).join('');}
-      function renderCandidateResults(results,candidateCount){return results.map(item=>`<details class="candidate-card" open><summary>${escapeHtml(item.candidate)}<span>${escapeHtml(item.idCard)}</span></summary><table><thead><tr><th>科目大类</th><th>考题</th><th>评分方式</th><th>题目实例 ID</th></tr></thead><tbody>${item.questions.map(question=>`<tr><td>${question.category} ${categoryLabels[question.category]}</td><td>${escapeHtml(question.question)}</td><td>${escapeHtml(question.scoreSource)}</td><td><span class="instance-id">${question.questionInstanceId}</span></td></tr>`).join('')}</tbody></table></details>`).join('')+`<p class="empty-note">当前展示 3 / ${candidateCount} 名学员示例；同一学员同一科目大类不重复，不同学员之间允许抽到相同考题。</p>`;}
-      function resultTagClass(result){return result.includes('拒收')?'red':result.includes('幂等')?'blue':'green';}
+      function renderDrawSettingDialog(settingId){
+        const existing=settingId?drawSettings.find(item=>item.id===settingId):null;const value=existing||{category:'K1',subcategoryDrawCount:1,enabled:false,remark:''};
+        return `<div class="modal show dynamic-modal" id="drawSettingModal"><div class="dialog compact" role="dialog" aria-modal="true" aria-labelledby="drawSettingDialogTitle"><div class="dialog-head"><h2 id="drawSettingDialogTitle">${existing?'编辑':'新增'}科目大类抽题设置</h2><button class="ghost" data-action="remove-modal" aria-label="关闭弹窗"><i data-lucide="x"></i></button></div><div class="dialog-body"><div class="form-grid"><div class="form-item"><label class="required">科目大类</label><select id="settingCategory" ${existing?'disabled':''}>${Object.keys(categoryLabels).map(category=>`<option ${category===value.category?'selected':''}>${category} ${categoryLabels[category]}</option>`).join('')}</select></div><div class="form-item"><label class="required">科目子类抽取数量</label><input id="settingSubcategoryDrawCount" type="number" min="1" step="1" value="${value.subcategoryDrawCount}"></div><div class="form-item"><label class="required">启用状态</label><select id="settingEnabled"><option value="true" ${value.enabled?'selected':''}>启用</option><option value="false" ${value.enabled?'':'selected'}>停用</option></select></div><div class="form-item full"><label>备注</label><textarea id="settingRemark">${escapeHtml(value.remark||'')}</textarea></div></div><div class="empty-note">启用后，身份核验将随机选择指定数量的可用科目子类，并从每个选中子类抽取 1 道考题。</div></div><div class="dialog-foot"><button class="secondary" data-action="remove-modal">取消</button><button class="primary" data-action="save-setting" data-setting-id="${existing?.id||''}">保存</button></div></div></div>`;
+      }
+      function saveDrawSetting(settingId){
+        const plan=planForSettingFilters();const category=document.getElementById('settingCategory').value.split(' ')[0];const subcategoryDrawCount=Number(document.getElementById('settingSubcategoryDrawCount').value);const enabled=document.getElementById('settingEnabled').value==='true';const remark=document.getElementById('settingRemark').value.trim();
+        if(!category||!Number.isInteger(subcategoryDrawCount)||subcategoryDrawCount<1){global.alert('请完整填写设置，科目子类抽取数量必须为正整数');return;}
+        const existing=settingId?drawSettings.find(item=>item.id===settingId):null;if(!existing&&drawSettings.some(item=>item.examPoint===plan.point&&item.operationProject===plan.project&&item.category===category)){global.alert('该科目大类已存在抽题设置');return;}
+        const candidate={...(existing||{}),examPoint:plan.point,operationProject:plan.project,category,subcategoryDrawCount,enabled,remark};const validation=validateDrawSettings(plan,[candidate]);
+        if(!validation.ok){global.alert(validation.rows[0].message);return;}
+        if(existing)Object.assign(existing,{subcategoryDrawCount,enabled,remark});else drawSettings.push({id:`setting-${Date.now()}`,examPoint:plan.point,operationProject:plan.project,category,subcategoryDrawCount,enabled,remark});
+        closeModal(document.getElementById('drawSettingModal'));renderDrawSettings();
+      }
+      function planMetrics(plan){
+        const current=plan.results.filter(item=>item.isCurrent);
+        const blocked=current.filter(hasImmutableQuestion).length;
+        const verifiedCandidateIds=new Set(plan.verificationEvents.filter(item=>item.result==='身份核验成功').map(item=>item.candidateId));
+        const latestVerification=plan.verificationEvents.at(-1);
+        const latestDraw=plan.results.filter(item=>item.isCurrent).at(-1);
+        return {total:plan.candidateCount,verifiedCandidates:verifiedCandidateIds.size,currentRounds:current.length,pendingVerification:Math.max(0,plan.candidateCount-verifiedCandidateIds.size),drawFailures:plan.drawGenerationFailures.length,blocked,latestVerificationTime:latestVerification?.time||'-',latestVerificationTimeEpochMs:latestVerification?.timeEpochMs||null,latestDrawTime:latestDraw?.generatedAt||'-',latestDrawTimeEpochMs:latestDraw?.generatedAtEpochMs||null};
+      }
+      function planActions(plan){return `<button class="link" data-plan-id="${plan.id}" data-plan-action="monitor"><i data-lucide="eye"></i>查看监控</button>`;}
+      function renderPlanRows(plans){return plans.map(plan=>{const metrics=planMetrics(plan);return `<tr data-plan-id="${plan.id}"><td>${escapeHtml(plan.name)}</td><td>${escapeHtml(plan.project)}</td><td>${escapeHtml(plan.point)}</td><td>${plan.date}</td><td>${metrics.total}</td><td><span class="tag ${metrics.pendingVerification?'amber':'green'}">${metrics.verifiedCandidates}</span></td><td>${metrics.currentRounds}</td><td>${metrics.pendingVerification}</td><td><span class="tag ${metrics.drawFailures?'red':'green'}">${metrics.drawFailures}</span></td><td>${metrics.latestVerificationTime}<br><span class="empty-note">抽题 ${metrics.latestDrawTime}</span></td><td><div class="action-group">${planActions(plan)}</div></td></tr>`;}).join('');}
+      function renderCandidateResults(results,candidateCount){return results.map(item=>`<details class="candidate-card" open><summary>${escapeHtml(item.candidate)}<span>${escapeHtml(item.idCard)} · 第 ${item.roundNumber} 轮 · 核验 ${item.verifiedAt}</span></summary><table><thead><tr><th>科目大类 / 子类</th><th>考题</th><th>时长</th><th>考题类型</th><th>评分方式</th><th>实操平台</th><th>题目实例 ID</th><th>状态</th></tr></thead><tbody>${item.questions.map(question=>`<tr><td>${question.category} ${categoryLabels[question.category]}<br><span class="empty-note">${escapeHtml(question.subcategory)}</span></td><td>${escapeHtml(question.question)}</td><td>${question.durationMinutes} 分钟</td><td>${questionTypeLabels[question.questionType]}</td><td>${escapeHtml(question.scoreSource)}</td><td>${question.scoreSource==='设备平台评分'?escapeHtml(question.practicalPlatformName):'-'}</td><td><span class="instance-id">${question.questionInstanceId}</span></td><td><span class="tag ${question.status==='待考'?'amber':'blue'}">${question.status}</span></td></tr>`).join('')}</tbody></table></details>`).join('')+`<p class="empty-note">当前展示 ${results.length} / ${candidateCount} 名学员的当前轮次；设备评分题保存所选实操平台快照并仅向该平台推送。</p>`;}
+      function renderInvalidatedHistory(history){return history.map(item=>`<details class="candidate-card"><summary>${escapeHtml(item.candidate)}<span>第 ${item.roundNumber} 轮 · ${item.invalidatedAt} · ${item.invalidatedReason}</span></summary><div class="table-wrap"><table><thead><tr><th>题目实例 ID</th><th>科目大类</th><th>考题</th><th>状态</th></tr></thead><tbody>${item.questions.map(question=>`<tr><td><span class="instance-id">${question.questionInstanceId}</span></td><td>${question.category} ${categoryLabels[question.category]}</td><td>${escapeHtml(question.question)}</td><td><span class="tag ${question.status==='待考'?'amber':'blue'}">${question.status}</span></td></tr>`).join('')}</tbody></table></div></details>`).join('');}
+      function renderVerificationWorkspace(plan){
+        const metrics=planMetrics(plan);
+        const current=plan.results.filter(item=>item.isCurrent);
+        const history=plan.results.filter(item=>!item.isCurrent);
+        const rosterRows=plan.candidates.map(candidate=>{
+          const round=current.find(item=>item.candidateId===candidate.candidateId);
+          const verification=plan.verificationEvents.filter(item=>item.candidateId===candidate.candidateId).at(-1);
+          const failure=plan.drawGenerationFailures.filter(item=>item.candidateId===candidate.candidateId).at(-1);
+          const identityState=verification?'<span class="tag green">已核验</span>':'<span class="tag amber">待核验</span>';
+          const drawState=round?`<span class="tag ${hasImmutableQuestion(round)?'blue':'green'}">第 ${round.roundNumber} 轮 · ${hasImmutableQuestion(round)?'已锁定':'当前有效'}</span>`:failure?`<span class="tag red">生成失败：${escapeHtml(failure.reason)}</span>`:'-';
+          return `<tr><td>${escapeHtml(candidate.candidate)}</td><td>${escapeHtml(candidate.idCard)}</td><td>${identityState}</td><td>${drawState}</td><td>${verification?.time||'-'}</td><td>${round?.generatedAt||'-'}</td></tr>`;
+        }).join('');
+        return `<div class="panel-note">本页只读展示身份核验、抽题轮次、题目实例和平台推送结果。身份核验由考场设备触发，设备评分题在新轮次生效后按平台分别进入推送队列。</div><div class="inline-table"><table><thead><tr><th>考生总数</th><th>已核验考生</th><th>当前抽题轮次</th><th>待核验</th><th>抽题生成失败</th><th>不可重抽</th></tr></thead><tbody><tr><td>${metrics.total}</td><td>${metrics.verifiedCandidates}</td><td>${metrics.currentRounds}</td><td>${metrics.pendingVerification}</td><td>${metrics.drawFailures}</td><td>${metrics.blocked}</td></tr></tbody></table></div><div class="draw-toolbar"><h3>身份核验与抽题监控</h3><span class="empty-note">最近核验 ${metrics.latestVerificationTime} · 最近抽题 ${metrics.latestDrawTime}</span></div><div class="inline-table verification-table"><table><thead><tr><th>考生</th><th>证件号</th><th>核验状态</th><th>当前抽题轮次</th><th>最近核验时间</th><th>最近抽题时间</th></tr></thead><tbody>${rosterRows}</tbody></table></div><div class="candidate-results">${current.length?renderCandidateResults(current,plan.candidateCount):'<p class="empty-note">暂无当前有效的考生抽题轮次。</p>'}</div><details class="candidate-card"><summary>已作废轮次（${history.length}）</summary>${history.length?`<div class="candidate-results">${renderInvalidatedHistory(history)}</div>`:'<p class="empty-note" style="padding:12px 14px">暂无已作废轮次。</p>'}</details>`;
+      }
+      function resultTagClass(result){return result.includes('拒收')||result.includes('失败')?'red':result.includes('待推送')?'amber':result.includes('幂等')?'blue':'green';}
       function renderInterfaceRecords(records){return records.map(record=>`<tr><td>${record.time}</td><td>${escapeHtml(record.candidate)}</td><td class="instance-id">${record.instance}</td><td>${record.action}</td><td><span class="tag ${resultTagClass(record.result)}">${record.result}</span></td><td>${record.note}</td></tr>`).join('');}
       function renderVendorMaster(){return `<div class="panel"><div class="panel-body"><div class="query-grid"><div class="query-item"><label>平台名称</label><input placeholder="请输入平台名称"></div><div class="query-item"><label>启停状态</label><select><option>全部</option><option>启用</option><option>停用</option></select></div><div class="query-actions"><button class="primary"><i data-lucide="search"></i>查询</button><button class="secondary"><i data-lucide="rotate-ccw"></i>重置</button></div></div></div></div><div class="panel"><div class="vendor-toolbar"><h2>实操平台列表</h2><button class="primary" data-config-dialog="vendor"><i data-lucide="plus"></i>新增平台</button></div><div class="table-wrap"><table><thead><tr><th>平台名称</th><th>平台接口地址</th><th>启停状态</th><th>备注</th><th>最近联调结果</th><th>操作</th></tr></thead><tbody>${vendors.map(item=>`<tr><td>${item.name}</td><td>${item.interfaceUrl}</td><td><span class="tag green">${item.status}</span></td><td>${item.remark}</td><td>成功 ${item.checkedAt}</td><td><div class="action-group"><button class="link" data-config-dialog="vendor">编辑</button><button class="link" data-action="show-interface-log" data-vendor="${escapeHtml(item.name)}">查看接口记录</button></div></td></tr>`).join('')}</tbody></table></div></div>`;}
       function renderInterfaceRecordModal(vendor){
@@ -279,7 +534,7 @@
         const body=records.length?`<div class="table-wrap"><table><thead><tr><th>时间</th><th>学员</th><th>题目实例 ID</th><th>动作</th><th>处理结果</th><th>说明</th></tr></thead><tbody>${renderInterfaceRecords(records)}</tbody></table></div>`:'<p class="empty-note">暂无接口记录。</p>';
         return `<div class="modal show dynamic-modal"><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="interfaceRecordDialogTitle"><div class="dialog-head"><h2 id="interfaceRecordDialogTitle">接口记录</h2><button class="ghost" data-action="remove-modal" aria-label="关闭弹窗"><i data-lucide="x"></i></button></div><div class="dialog-body"><p class="empty-note">${escapeHtml(vendor)}</p>${body}</div><div class="dialog-foot"><button class="secondary" data-action="remove-modal">关闭</button></div></div></div>`;
       }
-      function renderConnections(){return `<div class="panel"><div class="panel-note">同一考点可启用多个实操平台；抽题完成后，设备评分题推送至本考试点全部启用的实操平台；配置明确说明考点启用了哪些平台。</div><div class="vendor-toolbar"><h2>考点实操平台配置</h2><button class="primary" data-config-dialog="connection"><i data-lucide="plus"></i>新增平台配置</button></div><div class="table-wrap"><table><thead><tr><th>考试点</th><th>实操平台</th><th>启停状态</th><th>备注</th><th>操作</th></tr></thead><tbody>${pointVendorConnections.map(item=>`<tr><td>${item.point}</td><td>${item.vendor}</td><td><span class="tag green">${item.status}</span></td><td>${item.remark}</td><td><button class="link" data-config-dialog="connection">编辑</button></td></tr>`).join('')}</tbody></table></div></div>`;}
+      function renderConnections(){return `<div class="panel"><div class="panel-note">同一考点可启用多个实操平台；设备评分题仅推送至考题所选且主配置、考点关系均启用的实操平台。</div><div class="vendor-toolbar"><h2>考点实操平台配置</h2><button class="primary" data-config-dialog="connection"><i data-lucide="plus"></i>新增平台配置</button></div><div class="table-wrap"><table><thead><tr><th>考试点</th><th>实操平台</th><th>启停状态</th><th>备注</th><th>操作</th></tr></thead><tbody>${pointVendorConnections.map(item=>`<tr><td>${item.point}</td><td>${item.vendor}</td><td><span class="tag green">${item.status}</span></td><td>${item.remark}</td><td><button class="link" data-config-dialog="connection">编辑</button></td></tr>`).join('')}</tbody></table></div></div>`;}
       function renderConfigDialog(type){
         const isConnection=type==='connection';
         const title=isConnection?'维护考点实操平台配置':'维护实操平台配置';
@@ -289,71 +544,148 @@
 
       function mountReviewWorkspace(){
         const panels=document.querySelectorAll('#questions .panel');const panel=panels[panels.length-1];
-        panel.innerHTML=`<div class="review-toolbar"><div><h2>实操考题列表</h2><p class="empty-note">新增、修改、停用均须经地市考试中心和地市发证机关两级审核。</p></div><button class="primary" data-action="open-question"><i data-lucide="plus"></i>新增考题申请</button></div><div class="table-wrap"><table><thead><tr><th>序号</th><th>操作项目</th><th>科目</th><th>考试项目</th><th>评分方式</th><th>申请类型</th><th>审核状态</th><th>启用状态</th><th>审核记录 / 意见</th><th>操作</th></tr></thead><tbody id="questionRows"></tbody></table></div>`;
-        panel.insertAdjacentHTML('beforebegin','<div class="candidate-rule"><i data-lucide="filter-check"></i>实操抽题候选题仅包含：<b>当前考试点</b>、<b>已审核通过</b>、<b>已启用</b>的实操考题；抽题过程不发起审核。停用申请经两级审核终审通过后不再进入抽题候选池，历史记录保留。</div>');
+        panel.innerHTML=`<div class="review-toolbar"><div><h2>实操考题列表</h2><p class="empty-note">新增、修改、停用均须经地市考试中心和地市发证机关两级审核。</p></div><button class="primary" data-action="open-question"><i data-lucide="plus"></i>新增考题申请</button></div><div class="table-wrap"><table><thead><tr><th>序号</th><th>操作项目</th><th>科目大类</th><th>科目子类</th><th>考试项目</th><th>考试时长</th><th>考题类型</th><th>评分方式</th><th>实操平台</th><th>申请类型</th><th>审核状态</th><th>启用状态</th><th>审核记录 / 意见</th><th>操作</th></tr></thead><tbody id="questionRows"></tbody></table></div>`;
+        panel.insertAdjacentHTML('beforebegin','<div class="candidate-rule"><i data-lucide="filter"></i>实操抽题候选题仅包含：<b>当前考试点</b>、<b>已审核通过</b>、<b>已启用</b>的实操考题；设备评分题还要求<b>所选实操平台主配置</b>及<b>考点平台关系</b>均启用。考评员评分题不保存实操平台。</div>');
       }
-      global.__practicalExamPrototype={examPlans,interfaceRecords,questionRecords,generatePlanResults,renderPlanRows,renderCandidateResults,renderInterfaceRecords,getEligibleQuestionPools};
+      function runPrototypeRuntimeChecks(){
+        const passed=[];
+        const check=(condition,label)=>{if(!condition)throw new Error(`运行检查失败：${label}`);passed.push(label);};
+        const originalPlanCount=examPlans.length;
+        const originalRecordCount=interfaceRecords.length;
+        const originalRawScores=Array.from(deviceRawScores.entries());
+        const originalScoreEvents=Array.from(vendorScoreEvents.entries());
+        const originalConnectionStatuses=pointVendorConnections.map(item=>item.status);
+        const originalVendorStatuses=vendors.map(item=>item.status);
+        const runtimeK2Setting=drawSettings.find(item=>item.examPoint==='高新实操考点'&&item.operationProject==='高压电工作业'&&item.category==='K2');
+        const originalK2DrawCount=runtimeK2Setting.subcategoryDrawCount;
+        try{
+          const normalizedManual=normalizeQuestionSnapshot({scoreSource:'考评员评分',practicalPlatformId:'platform-taihao',practicalPlatformName:'泰豪实训平台'});
+          check(!Object.hasOwn(normalizedManual,'practicalPlatformId')&&!Object.hasOwn(normalizedManual,'practicalPlatformName'),'考评员评分题不保存实操平台');
+          check(validateQuestionSnapshot({scoreSource:'设备平台评分'}).code==='PRACTICAL_PLATFORM_REQUIRED','设备平台评分题必须选择主数据中的实操平台');
+          check(questionRecords.filter(item=>item.effective?.scoreSource==='设备平台评分').every(item=>item.effective.practicalPlatformId&&item.effective.practicalPlatformName),'设备平台评分题主数据保存实操平台');
+          check(questionRecords.filter(item=>item.effective?.scoreSource==='考评员评分').every(item=>!Object.hasOwn(item.effective,'practicalPlatformId')&&!Object.hasOwn(item.effective,'practicalPlatformName')),'考评员评分题主数据不含实操平台');
+          runtimeK2Setting.subcategoryDrawCount=2;
+          const plan=createExamPlan({id:`runtime-${Date.now()}`,instancePrefix:'RUNTIME',name:'运行检查',project:'高压电工作业',point:'高新实操考点',date:'2026-07-22',candidateCount:3});
+          examPlans.push(plan);
+          const [candidate,otherCandidate]=plan.candidates;
+          plan.dispatchDevicePlatformQuestion=(round,record)=>{
+            check(plan.results.includes(round),'平台调用前新轮次已提交');
+            check(interfaceRecords.includes(record),'平台调用前独立 outbox 已创建');
+            if(record.vendor==='实训设备平台 B')throw new Error('模拟平台 B 离线');
+          };
+          const first=verifyCandidate(plan,candidate.candidateId);
+          check(first.ok&&first.partialDispatchFailure,'单平台失败不回滚当前轮次');
+          check(first.dispatches.length===2&&first.dispatches.some(item=>item.dispatchStatus==='推送成功')&&first.dispatches.some(item=>item.dispatchStatus==='推送失败'&&item.retryable),'每道设备题只为所选实操平台保留独立可重试推送记录');
+          check(first.dispatches.every(item=>first.round.questions.some(question=>question.questionInstanceId===item.instance&&question.practicalPlatformId===item.practicalPlatformId&&question.practicalPlatformName===item.vendor)),'设备题仅推送至题目所选实操平台');
+          check(first.round.questions.filter(item=>item.scoreSource==='设备平台评分').every(item=>item.practicalPlatformId&&item.practicalPlatformName),'题目实例快照保存所选实操平台');
+          check(first.round.questions.filter(item=>item.scoreSource==='考评员评分').every(item=>!Object.hasOwn(item,'practicalPlatformId')&&!Object.hasOwn(item,'practicalPlatformName')),'人工评分题实例不保存实操平台');
+          check(!plan.results.some(item=>item.candidateId===otherCandidate.candidateId),'抽题状态按考生隔离');
+          const failedDispatch=first.dispatches.find(item=>item.dispatchStatus==='推送失败');
+          delete plan.dispatchDevicePlatformQuestion;
+          check(retryDevicePlatformDispatch(failedDispatch.dispatchId).ok,'失败平台可按原实例重试');
+          const firstIds=first.round.questions.map(item=>item.questionInstanceId);
+          const second=verifyCandidate(plan,candidate.candidateId);
+          check(second.ok&&first.round.questions.every(item=>item.status==='已作废')&&first.round.questions.every(item=>firstIds.includes(item.questionInstanceId)),'重新核验作废旧轮次并保留实例 ID');
+          check(second.round.questions.every(item=>!firstIds.includes(item.questionInstanceId)),'新轮次生成新实例 ID');
+          const oldDevice=first.round.questions.find(item=>item.scoreSource==='设备平台评分');
+          const manual=second.round.questions.find(item=>item.scoreSource==='考评员评分');
+          const device=second.round.questions.find(item=>item.practicalPlatformName==='泰豪实训平台');
+          device.fullScore=100;
+          const scorePayload=(eventNo,overrides={})=>({vendor:'泰豪实训平台',questionInstanceId:device.questionInstanceId,vendorScoreEventNo:eventNo,score:86.5,maxScore:100,completedAt:'2026-07-22T09:30:00+08:00',resultStatus:'COMPLETED',...overrides});
+          const scoreCount=deviceRawScores.size;
+          check(recordScoreReturn(scorePayload('missing-instance',{questionInstanceId:'不存在'})).code==='QUESTION_INSTANCE_NOT_FOUND','拒收不存在实例成绩');
+          check(recordScoreReturn(scorePayload('old-instance',{questionInstanceId:oldDevice.questionInstanceId})).code==='QUESTION_INSTANCE_NOT_CURRENT','拒收作废或非当前实例成绩');
+          check(recordScoreReturn(scorePayload('manual-source',{questionInstanceId:manual.questionInstanceId})).code==='SCORE_SOURCE_NOT_DEVICE_PLATFORM','拒收人工评分题成绩');
+          check(recordScoreReturn(scorePayload('wrong-vendor',{vendor:'未下发平台'})).code==='DISPATCH_NOT_SUCCESSFUL','拒收错误平台成绩');
+          const undispatched=second.dispatches.find(item=>item.vendor==='实训设备平台 B');
+          undispatched.dispatchStatus='推送失败';undispatched.result='题目推送失败';undispatched.retryable=true;
+          check(recordScoreReturn(scorePayload('undispatched',{vendor:undispatched.vendor})).code==='DISPATCH_NOT_SUCCESSFUL','拒收未成功推送平台成绩');
+          check(deviceRawScores.size===scoreCount,'拒收场景不写设备原始成绩');
+          const {completedAt,...missingCompletedAt}=scorePayload('missing-field');
+          check(recordScoreReturn(missingCompletedAt).code==='SCORE_PAYLOAD_INVALID'&&deviceRawScores.size===scoreCount,'缺少必填字段时拒收且不写设备原始成绩');
+          check(recordScoreReturn(scorePayload('malformed-completed-at',{completedAt:'1'})).code==='COMPLETED_AT_INVALID'&&deviceRawScores.size===scoreCount,'拒收不符合 ISO 8601 日期时间格式的完成时间');
+          check(recordScoreReturn(scorePayload('rollover-completed-at',{completedAt:'2026-02-30'})).code==='COMPLETED_AT_INVALID'&&deviceRawScores.size===scoreCount,'拒收不存在且会被日期解析器滚动的完成日期');
+          check(recordScoreReturn(scorePayload('out-of-range',{score:100.01})).code==='SCORE_OUT_OF_RANGE'&&deviceRawScores.size===scoreCount,'得分超出满分时拒收且不写设备原始成绩');
+          check(recordScoreReturn(scorePayload('max-mismatch',{maxScore:90})).code==='SCORE_MAX_MISMATCH'&&deviceRawScores.size===scoreCount,'回传满分与题目满分不一致时拒收且不写设备原始成绩');
+          const acceptedPayload=scorePayload('accepted');
+          const accepted=recordScoreReturn(acceptedPayload);
+          check(accepted.code==='RAW_SCORE_ACCEPTED'&&accepted.rawScore.rawScore===86.5&&accepted.rawScore.maxScore===100&&accepted.rawScore.completedAt==='2026-07-22T09:30:00+08:00'&&accepted.rawScore.resultStatus==='COMPLETED'&&accepted.rawScore.immutable===true&&Object.isFrozen(accepted.rawScore)&&device.status==='待考评员确认','设备平台回传写入不可变原始成绩并进入待考评员确认');
+          const acceptedScoreCount=deviceRawScores.size;
+          const duplicate=recordScoreReturn({...acceptedPayload});
+          check(duplicate.code==='SCORE_IDEMPOTENT'&&duplicate.originalResult===accepted&&deviceRawScores.size===acceptedScoreCount,'同平台同事件同载荷返回原受理结果且不重复写入原始成绩');
+          const metrics=planMetrics(plan);
+          check(metrics.verifiedCandidates===1&&metrics.currentRounds===1&&metrics.pendingVerification===2&&metrics.drawFailures===0&&metrics.latestVerificationTime!=='-'&&metrics.latestDrawTime!=='-','监控指标分别统计核验、当前轮次、待核验、失败和时间');
+          const otherRound=verifyCandidate(plan,otherCandidate.candidateId).round;
+          const otherDevice=otherRound.questions.find(item=>item.scoreSource==='设备平台评分');
+          const reuseLogCount=interfaceRecords.length;
+          const reused=recordScoreReturn({...acceptedPayload,questionInstanceId:otherDevice.questionInstanceId});
+          check(reused.code==='SCORE_EVENT_CONFLICT'&&interfaceRecords.length===reuseLogCount+1&&!deviceRawScores.has(otherDevice.questionInstanceId),'同平台成绩事件跨题目实例复用时拒收、留痕且不写原始成绩');
+          const platformBConnection=pointVendorConnections.find(item=>item.practicalPlatformId==='platform-b');
+          platformBConnection.status='停用';
+          check(getEligibleQuestionPools(plan).K2.every(item=>item.practicalPlatformId!=='platform-b'),'考点未启用所选实操平台时设备题不进入候选池');
+          platformBConnection.status='启用';
+          const platformB=vendors.find(item=>item.id==='platform-b');
+          platformB.status='停用';
+          check(getEligibleQuestionPools(plan).K2.every(item=>item.practicalPlatformId!=='platform-b'),'所选实操平台主配置停用时设备题不进入候选池');
+          platformB.status='启用';
+          pointVendorConnections.forEach(item=>item.status='停用');
+          const noPlatform=createExamPlan({id:`runtime-no-platform-${Date.now()}`,instancePrefix:'NO-PLATFORM',name:'无平台检查',project:'高压电工作业',point:'高新实操考点',date:'2026-07-22',candidateCount:1});
+          examPlans.push(noPlatform);
+          const rejected=verifyCandidate(noPlatform,noPlatform.candidates[0].candidateId);
+          check(!rejected.ok&&rejected.drawFailure.code==='DRAW_SETTING_INVALID'&&noPlatform.verificationEvents.length===1&&noPlatform.drawGenerationFailures.length===1&&noPlatform.results.length===0,'所选平台关系均停用导致候选不足时核验成功与抽题失败分开留痕');
+          pointVendorConnections.forEach((item,index)=>item.status=originalConnectionStatuses[index]);
+          vendors.forEach(item=>item.status='停用');
+          const globallyDisabled=createExamPlan({id:`runtime-disabled-vendor-${Date.now()}`,instancePrefix:'DISABLED-VENDOR',name:'平台总开关停用检查',project:'高压电工作业',point:'高新实操考点',date:'2026-07-22',candidateCount:1});
+          examPlans.push(globallyDisabled);
+          const globallyRejected=verifyCandidate(globallyDisabled,globallyDisabled.candidates[0].candidateId);
+          check(!globallyRejected.ok&&globallyRejected.drawFailure.code==='DRAW_SETTING_INVALID'&&globallyDisabled.verificationEvents.length===1&&globallyDisabled.drawGenerationFailures.length===1&&globallyDisabled.results.length===0,'所选平台主配置均停用导致候选不足时拒绝设备题抽题');
+          const crossDay=createExamPlan({id:`runtime-cross-day-${Date.now()}`,instancePrefix:'CROSS-DAY',name:'跨日时间检查',project:'高压电工作业',point:'高新实操考点',date:'2026-07-22',candidateCount:2});
+          crossDay.results=[
+            {candidateId:crossDay.candidates[0].candidateId,isCurrent:true,generatedAt:'2026/7/9 23:59:00',generatedAtEpochMs:Date.parse('2026-07-09T23:59:00+08:00'),questions:[]},
+            {candidateId:crossDay.candidates[1].candidateId,isCurrent:true,generatedAt:'2026/7/10 00:01:00',generatedAtEpochMs:Date.parse('2026-07-10T00:01:00+08:00'),questions:[]}
+          ];
+          check(planMetrics(crossDay).latestDrawTime==='2026/7/10 00:01:00','跨日抽题时间按写入顺序判定，7 月 10 日晚于 7 月 9 日');
+          return passed;
+        }finally{
+          examPlans.splice(originalPlanCount);
+          interfaceRecords.splice(originalRecordCount);
+          deviceRawScores.clear();
+          originalRawScores.forEach(([key,value])=>deviceRawScores.set(key,value));
+          vendorScoreEvents.clear();
+          originalScoreEvents.forEach(([key,value])=>vendorScoreEvents.set(key,value));
+          pointVendorConnections.forEach((item,index)=>item.status=originalConnectionStatuses[index]);
+          vendors.forEach((item,index)=>item.status=originalVendorStatuses[index]);
+          runtimeK2Setting.subcategoryDrawCount=originalK2DrawCount;
+        }
+      }
+      global.__practicalExamPrototype={examPlans,vendors,pointVendorConnections,interfaceRecords,deviceRawScores,questionRecords,drawSettings,createExamPlan,generateCandidateResults,verifyCandidate,retryDevicePlatformDispatch,recordScoreReturn,markQuestionStarted,planMetrics,runPrototypeRuntimeChecks,renderPlanRows,renderCandidateResults,renderVerificationWorkspace,renderInterfaceRecords,getEligibleQuestionPools,drawSettingsForPlan,eligibleSubcategoriesForSetting,validateDrawSettings,normalizeQuestionSnapshot,validateQuestionSnapshot,isQuestionEligibleAtPoint};
       if(typeof document==='undefined')return;
 
-      const labels={draw:'实操抽题管理','vendor-info':'实操平台配置','point-vendor-management':'考点实操平台配置',questions:'实操考题管理'};
-      const planRows=document.getElementById('planRows');
+      const labels={'draw-settings':'抽题设置','vendor-info':'实操平台配置','point-vendor-management':'考点实操平台配置',questions:'实操考题管理'};
       const drawModal=document.getElementById('drawModal');
       const questionModal=document.getElementById('questionModal');
       const reviewModal=document.getElementById('reviewModal');
       const candidateResults=document.getElementById('candidateResults');
       const drawEditor=document.getElementById('drawEditor');
-      const confirmDraw=document.getElementById('confirmDraw');
       let activePlan=null;
-      let activePlanMode=null;
-      let pendingResults=null;
 
       function createIcons(){global.lucide?.createIcons();}
       function closeModal(modal){if(modal.classList.contains('dynamic-modal'))modal.remove();else modal.classList.remove('show');}
-      function refreshPlanRows(){planRows.innerHTML=renderPlanRows(examPlans);createIcons();}
       function refreshVendorViews(){document.getElementById('vendorInfoContent').innerHTML=renderVendorMaster();document.getElementById('pointVendorManagementContent').innerHTML=renderConnections();createIcons();}
       function openInterfaceRecordModal(vendor){document.body.insertAdjacentHTML('beforeend',renderInterfaceRecordModal(vendor));createIcons();}
       function showView(viewId){document.querySelectorAll('.nav').forEach(item=>item.classList.toggle('active',item.dataset.view===viewId));document.querySelectorAll('.view').forEach(item=>item.classList.toggle('active',item.id===viewId));document.getElementById('crumb').textContent=labels[viewId];}
-      function fillPlanSummary(plan){document.getElementById('planSummary').innerHTML=`<span>考试计划</span><b>${plan.name}</b><span>考试日期</span><b>${plan.date}</b><span>操作项目</span><b>${plan.project}</b><span>考试点</span><b>${plan.point}</b><span>考生人数</span><b>${plan.candidateCount} 人</b><span>抽题规则</span><b>每名学员每个科目大类独立完成</b>`;}
-      function openPlanModal(planId,mode){
+      function fillPlanSummary(plan){document.getElementById('planSummary').innerHTML=`<span>考试计划</span><b>${plan.name}</b><span>考试日期</span><b>${plan.date}</b><span>操作项目</span><b>${plan.project}</b><span>考试点</span><b>${plan.point}</b><span>考生人数</span><b>${plan.candidateCount} 人</b><span>生成规则</span><b>身份核验后，按考生和科目大类独立生成题目实例</b>`;}
+      function openPlanModal(planId){
         activePlan=examPlans.find(plan=>plan.id===planId);
-        activePlanMode=mode;
-        pendingResults=null;
-        const readOnly=mode==='view';
         fillPlanSummary(activePlan);
-        document.getElementById('drawModalTitle').textContent=readOnly?'查看实操抽题结果':mode==='redraw'?'重新抽取实操考题':'抽取实操考题';
-        document.getElementById('randomizeLabel').textContent=mode==='redraw'?'重新生成结果':'开始随机抽取';
-        drawEditor.classList.toggle('hidden',readOnly);
-        confirmDraw.classList.toggle('hidden',readOnly);
-        document.getElementById('drawCancel').textContent=readOnly?'关闭':'取消';
-        candidateResults.innerHTML=readOnly?renderCandidateResults(activePlan.results,activePlan.candidateCount):'';
-        candidateResults.classList.toggle('hidden',!readOnly);
-        confirmDraw.disabled=true;
-        confirmDraw.querySelector('span').textContent=`确认生成 ${activePlan.candidateCount} 名学员题目`;
+        document.getElementById('drawModalTitle').textContent='身份核验与抽题监控';
+        drawEditor.innerHTML=renderVerificationWorkspace(activePlan);
+        candidateResults.innerHTML='';
+        candidateResults.classList.add('hidden');
         drawModal.classList.add('show');
         createIcons();
       }
-      function readDrawCounts(){return Object.fromEntries(Array.from(document.querySelectorAll('.draw-count'),input=>[input.dataset.category,Number(input.value)]));}
-      function randomizeActivePlan(){
-        try{
-          pendingResults=generatePlanResults(activePlan,activePlan.drawGeneration+1,readDrawCounts());
-          candidateResults.innerHTML=renderCandidateResults(pendingResults,activePlan.candidateCount);
-          candidateResults.classList.remove('hidden');
-          confirmDraw.disabled=false;
-        }catch(error){global.alert(error.message);}
-      }
-      function confirmActiveDraw(){
-        if(!pendingResults)return;
-        activePlan.drawGeneration+=1;
-        activePlan.results=pendingResults;
-        activePlan.state='redrawAllowed';
-        activePlan.progress=`${activePlan.candidateCount} / ${activePlan.candidateCount} 名学员已完成，开考前可重抽`;
-        activePlan.progressClass='green';
-        activePlan.lastDrawTime='2026-07-20 09:30';
-        activePlan.operator='张考评员';
-        refreshPlanRows();
-        closeModal(drawModal);
-        global.alert(activePlanMode==='redraw'?'旧批次已保留，新抽题结果已生效':'抽题结果已生效，已生成学员题目实例');
-      }
+      function refreshVerificationWorkspace(){if(activePlan){drawEditor.innerHTML=renderVerificationWorkspace(activePlan);createIcons();}}
 
       document.addEventListener('click',event=>{
         const nav=event.target.closest('[data-view]');
@@ -361,13 +693,17 @@
         const questionAction=event.target.closest('[data-question-action]');
         if(questionAction){const item=questionRecords.find(record=>record.id===questionAction.dataset.questionId);const actionName=questionAction.dataset.questionAction;if(actionName==='review')openReviewModal(item.id);else if(actionName==='stop'){item.pendingSnapshot={...item.effective};item.application='停用申请';item.reviewState='待地市考试中心审核';item.trail=['考试点提交停用申请'];item.opinion='';renderQuestionRows();global.alert('停用申请已提交，状态：待地市考试中心审核');}else openQuestionApplication(item.id,actionName==='modify'?'修改':actionName==='resubmit'?'修改后重新提交':'新增');return;}
         const planAction=event.target.closest('[data-plan-action]');
-        if(planAction){openPlanModal(planAction.dataset.planId,planAction.dataset.planAction);return;}
+        if(planAction){openPlanModal(planAction.dataset.planId);return;}
+        const settingEdit=event.target.closest('[data-setting-edit]');
+        if(settingEdit){document.body.insertAdjacentHTML('beforeend',renderDrawSettingDialog(settingEdit.dataset.settingEdit));createIcons();return;}
         const configButton=event.target.closest('[data-config-dialog]');
         if(configButton){document.body.insertAdjacentHTML('beforeend',renderConfigDialog(configButton.dataset.configDialog));createIcons();return;}
         const action=event.target.closest('[data-action]')?.dataset.action;
+        if(action==='add-setting'){document.body.insertAdjacentHTML('beforeend',renderDrawSettingDialog());createIcons();return;}
+        if(action==='save-setting'){saveDrawSetting(event.target.closest('[data-setting-id]').dataset.settingId);return;}
+        if(action==='query-questions'){renderQuestionRows();return;}
+        if(action==='reset-questions'){['questionProjectFilter','questionCategoryFilter','questionScoreFilter','questionTypeFilter'].forEach(id=>document.getElementById(id).selectedIndex=0);document.getElementById('questionNameFilter').value='';document.getElementById('questionDurationFilter').value='';renderQuestionRows();return;}
         if(action==='open-question'){openQuestionApplication(null,'新增');return;}
-        if(action==='randomize'){randomizeActivePlan();return;}
-        if(action==='confirm-draw'){confirmActiveDraw();return;}
         if(action==='save-question'){submitQuestionApplication();return;}
         if(action==='approve-review'){submitReview(true);return;}
         if(action==='reject-review'){submitReview(false);return;}
@@ -376,13 +712,15 @@
         if(event.target.classList.contains('modal'))closeModal(event.target);
       });
       document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;const openModal=Array.from(document.querySelectorAll('.modal.show')).at(-1);if(openModal)closeModal(openModal);});
+      document.getElementById('questionScoreSource').addEventListener('change',()=>syncQuestionPlatformField());
 
-      refreshPlanRows();
       refreshVendorViews();
       mountReviewWorkspace();
       renderQuestionRows();
+      renderDrawSettings();
+      syncQuestionPlatformField();
       const preview=new URLSearchParams(global.location.search).get('preview');
-      if(preview==='draw-results')openPlanModal('plan-lv-20260722','view');
+      if(preview==='draw-results')openPlanModal('plan-lv-20260722');
       if(preview==='vendor-info')showView('vendor-info');
       createIcons();
     })(globalThis);

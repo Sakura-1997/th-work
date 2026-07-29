@@ -1,7 +1,7 @@
 172.16.157.70   tellhow   Ai@tellhow2026   账号：root  密码：Ai@tellhow2025
 172.16.157.70   ssl证书目录   /home/tellhow/spx/app/openresty/conf/ssl
 前端nginx spx-openresty
-监管机构部署目录    /home/tellhow/spx/jgjg/regulatory-agency
+监管机构部署目录    /home/tellhow/spx/jgjg/regulatory-agencies-v3.0
 监管机构app部署目录 /home/tellhow/spx/app/openresty/www/speapp/dist
 
 
