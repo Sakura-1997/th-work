@@ -1,0 +1,12 @@
+https://10.11.4.241  10.11.60.14  许向东  密码都  Ai@tellhow2026123   Ai@tellhow2026
+
+su root
+cd /home/admin
+
+unzip dist.zip
+rm -rf /home/app/frontend/spt-dist
+mv dist /home/app/frontend/spt-dist
+cd /home/app
+
+docker-compose down nginx
+docker-compose up -d nginx

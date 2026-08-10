@@ -1,4 +1,4 @@
-https://10.10.4.1/  10.10.56.72  许向东  密码都是Ai@tellhow2026
+https://10.10.4.1/  10.10.56.72  许向东  密码都是  Ai@tellhow2026123
 
 docker compose在/home/app下面
 
