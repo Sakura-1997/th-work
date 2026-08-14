@@ -1,0 +1,96 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Microsoft YaHei, PingFang SC, sans-serif","fontSize":"20px","primaryTextColor":"#111827","primaryBorderColor":"#374151","lineColor":"#374151","secondaryTextColor":"#111827","tertiaryTextColor":"#111827"},"flowchart":{"htmlLabels":true,"curve":"basis","nodeSpacing":36,"rankSpacing":48}}}%%
+flowchart TB
+  User["用户提交任务"]
+  Workspace["工作区管理器<br/>打开 workspace-{userId}"]
+  WorkspaceCheck{"工作区归属校验通过？"}
+
+  CreateTask["任务服务<br/>写入 config_snapshot、根 task、event"]
+  Planner["任务规划器<br/>要求总控 Agent 生成结构化计划"]
+  Lead["总控 Pi Agent<br/>拆分目标、定义子任务与验收条件"]
+  Graph["依赖图管理器<br/>检查循环依赖、输入和验收条件"]
+  PlanValid{"计划是否合法？"}
+  SavePlan["保存计划<br/>写入子 task、task_dependency、artifact、event、checkpoint"]
+
+  Scheduler["调度器<br/>检查依赖、并发、预算、权限和资源锁"]
+  Ready{"存在可运行任务？"}
+  Config["配置装配器<br/>读取 config_snapshot 和 device_capability"]
+  Pool["Agent 实例池<br/>创建 agent_run 和 Pi session"]
+  Child["子 Pi Agent<br/>执行一个明确的子任务"]
+
+  ToolCall["工具网关<br/>写入 tool_call"]
+  Permission{"是否需要用户授权？"}
+  PermissionWrite["写入 permission_request<br/>等待用户决定"]
+  PermissionResult{"用户是否允许？"}
+  Execute["执行网页、知识库或文件工具"]
+
+  ResultType{"产生什么结果？"}
+  Evidence["证据服务<br/>写入 evidence 和 event"]
+  Artifact["成果服务<br/>写入 artifact_version、artifact_evidence<br/>更新 artifact.currentVersionId"]
+
+  Mailbox["消息信箱<br/>向总控或验收器提交结构化结果"]
+  Validator["结果验收器<br/>检查结构、证据、事实和验收条件"]
+  Passed{"验收是否通过？"}
+  Repair["创建修正 task、依赖和 event"]
+  Complete["更新 task、agent_run<br/>写入 event 和 checkpoint"]
+  AllDone{"所有任务是否完成？"}
+  Summary["总控 Agent 汇总全部结果"]
+  Deliver["向用户交付成果、引用和质量报告"]
+  Reject["更新 tool_call 和 task 为拒绝或失败<br/>写入 event"]
+
+  User --> Workspace
+  Workspace --> WorkspaceCheck
+  WorkspaceCheck -- "否" --> Reject
+  WorkspaceCheck -- "是" --> CreateTask
+
+  CreateTask --> Planner
+  Planner --> Lead
+  Lead --> Graph
+  Graph --> PlanValid
+  PlanValid -- "否：要求修订" --> Planner
+  PlanValid -- "是" --> SavePlan
+
+  SavePlan --> Scheduler
+  Scheduler --> Ready
+  Ready -- "否：等待依赖或资源" --> Scheduler
+  Ready -- "是" --> Config
+  Config --> Pool
+  Pool --> Child
+
+  Child --> ToolCall
+  ToolCall --> Permission
+  Permission -- "需要" --> PermissionWrite
+  PermissionWrite --> PermissionResult
+  PermissionResult -- "拒绝" --> Reject
+  PermissionResult -- "允许" --> Execute
+  Permission -- "不需要" --> Execute
+
+  Execute --> ResultType
+  ResultType -- "网页或知识资料" --> Evidence
+  ResultType -- "办公成果文件" --> Artifact
+  Evidence --> Mailbox
+  Artifact --> Mailbox
+
+  Mailbox --> Validator
+  Validator --> Passed
+  Passed -- "否" --> Repair
+  Repair --> Scheduler
+  Passed -- "是" --> Complete
+
+  Complete --> AllDone
+  AllDone -- "否" --> Scheduler
+  AllDone -- "是" --> Summary
+  Summary --> Deliver
+
+  classDef actor fill:#DBEAFE,stroke:#1D4ED8,color:#111827,stroke-width:2px;
+  classDef agent fill:#DCFCE7,stroke:#15803D,color:#111827,stroke-width:2px;
+  classDef service fill:#F3F4F6,stroke:#4B5563,color:#111827,stroke-width:2px;
+  classDef data fill:#FEF3C7,stroke:#A16207,color:#111827,stroke-width:2px;
+  classDef decision fill:#FCE7F3,stroke:#BE185D,color:#111827,stroke-width:2px;
+  classDef terminal fill:#E0E7FF,stroke:#4338CA,color:#111827,stroke-width:2px;
+
+  class User actor;
+  class Lead,Child,Summary agent;
+  class Workspace,CreateTask,Planner,Graph,Scheduler,Config,Pool,ToolCall,PermissionWrite,Execute,Mailbox,Validator,Repair,Complete service;
+  class SavePlan,Evidence,Artifact data;
+  class WorkspaceCheck,PlanValid,Ready,Permission,PermissionResult,ResultType,Passed,AllDone decision;
+  class Deliver,Reject terminal;

@@ -1,0 +1,97 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Microsoft YaHei, PingFang SC, sans-serif","fontSize":"18px","primaryTextColor":"#111827","primaryBorderColor":"#374151","lineColor":"#374151","actorTextColor":"#111827","actorBorder":"#374151","actorBkg":"#DBEAFE","signalColor":"#374151","signalTextColor":"#111827","labelBoxBkgColor":"#F3F4F6","labelBoxBorderColor":"#6B7280","labelTextColor":"#111827","noteBkgColor":"#FEF3C7","noteBorderColor":"#A16207","noteTextColor":"#111827"},"sequence":{"diagramMarginX":28,"diagramMarginY":24,"actorMargin":42,"width":170,"height":70,"boxMargin":12,"messageMargin":32,"noteMargin":12}}}%%
+sequenceDiagram
+  autonumber
+
+  actor U as 用户
+  participant UI as 客户端界面
+  participant W as 工作区管理器
+  participant P as 任务规划器
+  participant L as 总控 Agent
+  participant G as 依赖图与调度器
+  participant A as 配置装配器与实例池
+  participant C as 子 Agent
+  participant T as 工具与权限网关
+  participant Q as 结果验收与检查点
+  participant B as business.db
+  participant S as pi-session.db
+
+  U->>UI: 提交目标、资料范围和交付格式
+  UI->>W: 使用登录返回的 userId 打开工作区
+  W->>B: 校验 workspace_metadata
+  B-->>W: workspaceId、userId 一致
+  W-->>UI: 当前工作区可用
+
+  UI->>P: 创建任务
+  P->>B: 写 config_snapshot、根 task、task.created 事件
+  P->>L: 请求生成结构化任务计划
+  L-->>P: 返回子任务、依赖、预算和验收条件
+  P->>G: 校验计划和任务 DAG
+
+  alt 计划不合法
+    G-->>P: 返回循环依赖或缺失条件
+    P->>L: 要求修订计划
+  else 计划合法
+    G->>B: 写子 task、task_dependency、artifact
+    G->>B: 写 plan.created 事件和计划检查点
+  end
+
+  loop 每个进入可运行队列的子任务
+    G->>B: 查询依赖、状态、预算和资源锁
+    G->>A: 请求启动子任务
+    A->>B: 写 agent_run，更新 task=running
+    A->>B: 写 task.started 事件
+    A->>S: 创建带 parentSessionId 的 Pi 会话
+    A->>B: 回写 agent_run.sessionId
+
+    A->>B: 读取 config_snapshot
+    A->>C: 装配专家、Skill、模型和工具
+    C->>S: 写入 Agent 消息和上下文
+
+    C->>T: 请求调用工具
+    T->>B: 写 tool_call=requested
+
+    opt 需要用户授权
+      T->>B: 写 permission_request=pending
+      T-->>UI: 展示权限申请
+      UI-->>T: 用户允许或拒绝
+      T->>B: 更新 permission_request 和 tool_call
+    end
+
+    alt 权限被拒绝
+      T-->>C: 返回拒绝结果
+      C->>S: 保存工具拒绝消息
+    else 允许执行
+      T->>B: 更新 tool_call=executing
+      T->>T: 执行网页、知识库或文件工具
+      T->>B: 更新 tool_call=succeeded/failed/unknown
+      T-->>C: 返回工具结果
+      C->>S: 保存工具结果和 Agent 回复
+
+      alt 返回研究资料
+        C->>B: 写 evidence 和 evidence.created 事件
+      else 返回办公文件
+        C->>B: 写 artifact_version
+        C->>B: 写 artifact_evidence
+        C->>B: 更新 artifact.currentVersionId
+      end
+    end
+
+    C-->>Q: 提交结构化子任务结果
+    Q->>B: 读取 task、evidence、tool_call 和成果版本
+
+    alt 验收通过
+      Q->>B: 更新 task、agent_run=succeeded
+      Q->>B: 写 task.completed 事件
+      Q->>B: 写安全 checkpoint
+    else 验收失败
+      Q->>B: 更新 task、agent_run=failed
+      Q->>B: 写 validation.failed 事件
+      Q->>G: 请求创建定向修正任务
+      G->>B: 写修正 task 和 task_dependency
+    end
+  end
+
+  G->>L: 所有必要子任务完成
+  L->>S: 读取父子会话结果并生成总结
+  L-->>UI: 返回成果、引用和质量说明
+  UI-->>U: 展示报告、表格、PPT/PDF

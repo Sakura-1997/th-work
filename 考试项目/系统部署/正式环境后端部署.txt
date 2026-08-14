@@ -1,3 +1,10 @@
+release.yml 运行工作流
+71-spe
+72-spt
+
+cd /home/app
+./run.sh
+
 # 数据库
 mysql -u root -p
 v33naw6egpna764huqew23z
