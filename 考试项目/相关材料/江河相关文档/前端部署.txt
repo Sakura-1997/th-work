@@ -1,0 +1,6 @@
+部署培训端前端项目
+地址 http://192.168.3.160:10757/hosts/files  
+目录 /opt/1panel/apps/openresty/openresty/www/spt
+账密  
+940ea37860
+469779e457

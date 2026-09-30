@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>江西考勤设备 WSS 协议规范 v1.0</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f1ea;
+      --surface: #ffffff;
+      --surface-2: #fbfaf7;
+      --ink: #17212b;
+      --muted: #5e6772;
+      --line: #d8d1c6;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --accent-3: #1d4ed8;
+      --success: #0f7a47;
+      --warn: #a16207;
+      --danger: #b42318;
+      --shadow: 0 10px 30px rgba(22, 33, 45, 0.06);
+      --radius: 8px;
+      --radius-sm: 6px;
+      --toc-width: 292px;
+      --content-max: 1500px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(246, 243, 237, 0.88) 0%, rgba(244, 241, 234, 1) 240px),
+        var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+      letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    * { box-sizing: border-box; }
+    img, svg { max-width: 100%; display: block; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    p, li, td, th, dd { font-size: 0.98rem; }
+    code, pre, kbd { font-family: var(--mono); }
+
+    .page {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 20px 20px 36px;
+    }
+
+    .chrome {
+      position: sticky;
+      top: 12px;
+      z-index: 80;
+      display: flex;
+      justify-content: flex-end;
+      pointer-events: none;
+      margin-bottom: -44px;
+    }
+
+    .print-btn {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink);
+      border-radius: var(--radius);
+      padding: 9px 12px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .print-btn svg, .copy-btn svg, .toc-link svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: none;
+    }
+
+    .masthead {
+      padding: 18px 0 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .masthead-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent-2);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 2.2vw, 2.5rem);
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      margin: 12px 0 0;
+      max-width: 70ch;
+      color: var(--muted);
+    }
+
+    .summary {
+      display: grid;
+      gap: 10px;
+      justify-items: end;
+    }
+
+    .summary-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 30px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.82rem;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .tag strong { font-weight: 700; }
+    .tag.norm { border-color: rgba(15, 118, 110, 0.32); color: var(--accent); }
+    .tag.compat { border-color: rgba(180, 83, 9, 0.28); color: var(--accent-2); }
+    .tag.alert { border-color: rgba(180, 35, 24, 0.26); color: var(--danger); }
+
+    .meta-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .meta-item {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      min-width: 0;
+    }
+
+    .meta-item span {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .meta-item strong {
+      display: block;
+      font-size: 0.95rem;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: var(--toc-width) minmax(0, 1fr);
+      gap: 22px;
+      margin-top: 22px;
+      align-items: start;
+    }
+
+    .toc,
+    .mobile-nav {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+    }
+
+    .toc {
+      position: sticky;
+      top: 14px;
+      padding: 14px;
+      max-height: calc(100vh - 28px);
+      overflow: auto;
+    }
+
+    .toc h2,
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .toc-link {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      color: var(--ink);
+      border: 1px solid transparent;
+      line-height: 1.35;
+    }
+
+    .toc-link:hover { background: rgba(15, 118, 110, 0.06); text-decoration: none; }
+    .toc-link.active {
+      background: rgba(15, 118, 110, 0.09);
+      border-color: rgba(15, 118, 110, 0.2);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .toc-link .index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.4em;
+      color: var(--accent-2);
+      flex: none;
+    }
+
+    .toc-link .label { min-width: 0; }
+
+    .mobile-nav {
+      display: none;
+      margin-top: 16px;
+      padding: 8px;
+      overflow-x: auto;
+      gap: 8px;
+      white-space: nowrap;
+      scrollbar-width: thin;
+    }
+
+    .mobile-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: var(--surface);
+      white-space: nowrap;
+    }
+
+    .mobile-nav a.active {
+      border-color: rgba(15, 118, 110, 0.28);
+      background: rgba(15, 118, 110, 0.08);
+      color: var(--accent);
+    }
+
+    .content {
+      min-width: 0;
+    }
+
+    .section {
+      padding: 28px 0 30px;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 92px;
+    }
+
+    .section h2 {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-size: 1.24rem;
+    }
+
+    .section h3 {
+      margin: 18px 0 10px;
+      font-size: 1.02rem;
+    }
+
+    .section p { margin: 0 0 12px; }
+    .section ul, .section ol { margin: 8px 0 12px 22px; padding: 0; }
+    .section li { margin: 4px 0; }
+
+    .note {
+      border-left: 3px solid var(--accent);
+      background: rgba(15, 118, 110, 0.06);
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      margin: 12px 0;
+    }
+
+    .warn {
+      border-left-color: var(--accent-2);
+      background: rgba(180, 83, 9, 0.07);
+    }
+
+    .diagram-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .diagram {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #fff 0%, #fcfbf8 100%);
+      padding: 10px;
+      overflow: hidden;
+    }
+
+    .diagram figcaption {
+      margin: 0 0 8px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--ink);
+    }
+
+    .svg-diagram text {
+      font-family: var(--sans);
+      fill: var(--ink);
+      font-size: 14px;
+    }
+
+    .svg-diagram .muted { fill: var(--muted); font-size: 12px; }
+    .svg-diagram .node { fill: #fff; stroke: #334155; stroke-width: 1.2; rx: 8; ry: 8; }
+    .svg-diagram .node-accent { fill: rgba(15, 118, 110, 0.08); stroke: var(--accent); }
+    .svg-diagram .node-warn { fill: rgba(180, 83, 9, 0.09); stroke: var(--accent-2); }
+    .svg-diagram .node-soft { fill: rgba(29, 78, 216, 0.06); stroke: var(--accent-3); }
+    .svg-diagram .line { stroke: #475569; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .svg-diagram .line-muted { stroke: #94a3b8; stroke-width: 1.2; fill: none; marker-end: url(#arrow-muted); }
+    .svg-diagram .dash { stroke-dasharray: 5 4; }
+    .svg-diagram .lane { fill: #f7f5f1; stroke: var(--line); }
+    .svg-diagram .state { fill: #fff; stroke: var(--line); }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      margin: 12px 0 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th, td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: #faf8f4;
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0;
+      z-index: 1;
+    }
+
+    tbody tr:nth-child(2n) td { background: rgba(244, 241, 234, 0.25); }
+    td code, li code, p code, th code { color: #0f172a; background: rgba(148, 163, 184, 0.12); padding: 0 4px; border-radius: 4px; }
+    p code, li code, td code, th code, .note code { overflow-wrap: anywhere; word-break: break-word; }
+
+    .pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 12px 0 14px;
+    }
+
+    .code-shell {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #0d1520;
+      color: #dce3ea;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .code-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .code-title {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      min-width: 0;
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(203, 213, 225, 0.25);
+      background: rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 7px 10px;
+      cursor: pointer;
+      font: inherit;
+      white-space: nowrap;
+    }
+
+    .code-shell pre {
+      margin: 0;
+      padding: 12px;
+      overflow: auto;
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+
+    .code-shell code { background: transparent; color: inherit; padding: 0; }
+
+    .inline-code {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(148, 163, 184, 0.12);
+      font-family: var(--mono);
+      font-size: 0.92em;
+    }
+
+    .accept-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .accept-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+    }
+
+    .accept-row strong { display: block; margin-bottom: 4px; }
+    .accept-row span { color: var(--muted); display: block; }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 8px;
+    }
+
+    .footer-note {
+      padding: 18px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1180px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc { display: none; }
+      .mobile-nav { display: flex; }
+      .masthead-top, .meta-grid, .diagram-grid, .pair, .accept-row { grid-template-columns: 1fr; }
+      .summary { justify-items: start; }
+      .summary-row { justify-content: flex-start; }
+      table { min-width: 680px; }
+    }
+
+    @media (max-width: 760px) {
+      .page { padding: 14px 14px 28px; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .accept-row { grid-template-columns: 1fr; }
+      .chrome { top: 8px; margin-bottom: -42px; }
+      .print-btn { padding: 8px 10px; }
+      h1 { font-size: 1.6rem; }
+      .section { padding: 24px 0 26px; }
+      table { min-width: 600px; }
+    }
+
+    @media print {
+      :root { --bg: #fff; }
+      html { scroll-behavior: auto; }
+      body { background: #fff; }
+      .chrome, .toc, .mobile-nav, .copy-btn { display: none !important; }
+      .page { max-width: none; padding: 0; }
+      .masthead, .section { break-inside: avoid; }
+      .section { padding: 18px 0 20px; }
+      .code-shell { background: #fff; color: #000; border-color: #999; }
+      .code-head { background: #f3f3f3; color: #000; }
+      .svg-diagram .node, .svg-diagram .node-accent, .svg-diagram .node-warn, .svg-diagram .node-soft, .svg-diagram .state, .svg-diagram .lane { fill: #fff !important; }
+      .svg-diagram text { fill: #000 !important; }
+      .table-wrap { overflow: visible; }
+      table { min-width: 0; }
+      a { color: #000; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="chrome" aria-hidden="true">
+      <button class="print-btn" id="printBtn" type="button" aria-label="打印此文档">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4h10v4"/><path d="M7 17h10v3H7z"/><path d="M6 17H4a2 2 0 0 1-2-2v-4a3 3 0 0 1 3-3h16a3 3 0 0 1 3 3v4a2 2 0 0 1-2 2h-2"/><path d="M7 11h10"/></svg>
+        <span>打印</span>
+      </button>
+    </div>
+
+    <header class="masthead" id="top">
+      <div class="masthead-top">
+        <div>
+          <p class="eyebrow">Vendor technical integration document</p>
+          <h1>江西考勤设备 WSS 协议规范</h1>
+          <p class="lede">面向考勤设备厂商工程师与平台集成测试人员。本文档定义设备主动接入平台的联调地址、消息结构、认证、心跳、状态上报、考勤补传、幂等和错误处理约束。<span class="inline-code">MUST</span>、<span class="inline-code">SHOULD</span>、<span class="inline-code">MAY</span> 按 RFC 2119 语义使用。</p>
+        </div>
+        <div class="summary">
+          <div class="summary-row">
+            <span class="tag norm"><strong>v1.0</strong> 规范版本</span>
+            <span class="tag compat"><strong>规范</strong> 厂商对接口径</span>
+            <span class="tag"><strong>WSS</strong> JSON / UTF-8</span>
+          </div>
+          <div class="summary-row">
+            <span class="tag"><strong>时区</strong> Asia/Shanghai</span>
+            <span class="tag alert"><strong>生产</strong> 另行下发</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span>联调地址</span>
+          <strong>wss://27.nat0.cn:60448/attendance/device/connect</strong>
+        </div>
+        <div class="meta-item">
+          <span>生产地址</span>
+          <strong>由平台另行签发，不在本文档公开</strong>
+        </div>
+        <div class="meta-item">
+          <span>对象</span>
+          <strong>设备厂商工程师、平台联调测试人员</strong>
+        </div>
+        <div class="meta-item">
+          <span>文档性质</span>
+          <strong>vendor technical integration document，独立于试行政策文本</strong>
+        </div>
+      </div>
+
+      <nav class="mobile-nav" aria-label="移动端目录">
+        <a href="#quickstart" data-section-link="quickstart"><span class="index">1</span>快速接入</a>
+        <a href="#diagrams" data-section-link="diagrams"><span class="index">2</span>流程图</a>
+        <a href="#envelope" data-section-link="envelope"><span class="index">3</span>通用包</a>
+        <a href="#auth" data-section-link="auth"><span class="index">4</span>AUTH</a>
+        <a href="#attendance" data-section-link="attendance"><span class="index">5</span>考勤</a>
+        <a href="#errors" data-section-link="errors"><span class="index">6</span>错误码</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="toc" aria-label="桌面端目录">
+        <h2>目录</h2>
+        <ol class="toc-list">
+          <li><a class="toc-link" href="#quickstart" data-section-link="quickstart"><span class="index">1</span><span class="label">快速接入与传输矩阵</span></a></li>
+          <li><a class="toc-link" href="#diagrams" data-section-link="diagrams"><span class="index">2</span><span class="label">接入、序列、重试与状态图</span></a></li>
+          <li><a class="toc-link" href="#envelope" data-section-link="envelope"><span class="index">3</span><span class="label">通用消息包</span></a></li>
+          <li><a class="toc-link" href="#auth" data-section-link="auth"><span class="index">4</span><span class="label">AUTH 认证</span></a></li>
+          <li><a class="toc-link" href="#heartbeat" data-section-link="heartbeat"><span class="index">5</span><span class="label">HEARTBEAT</span></a></li>
+          <li><a class="toc-link" href="#device-status" data-section-link="device-status"><span class="index">6</span><span class="label">DEVICE_STATUS</span></a></li>
+          <li><a class="toc-link" href="#attendance" data-section-link="attendance"><span class="index">7</span><span class="label">ATTENDANCE_RECORD</span></a></li>
+          <li><a class="toc-link" href="#outbound" data-section-link="outbound"><span class="index">8</span><span class="label">平台回包形状与示例</span></a></li>
+          <li><a class="toc-link" href="#errors" data-section-link="errors"><span class="index">9</span><span class="label">错误码矩阵</span></a></li>
+          <li><a class="toc-link" href="#retry" data-section-link="retry"><span class="index">10</span><span class="label">幂等、重试、离线缓存</span></a></li>
+          <li><a class="toc-link" href="#security" data-section-link="security"><span class="index">11</span><span class="label">安全、日志与隐私</span></a></li>
+          <li><a class="toc-link" href="#operations" data-section-link="operations"><span class="index">12</span><span class="label">上线、凭证与运行状态</span></a></li>
+          <li><a class="toc-link" href="#acceptance" data-section-link="acceptance"><span class="index">13</span><span class="label">测试与验收</span></a></li>
+          <li><a class="toc-link" href="#troubleshooting" data-section-link="troubleshooting"><span class="index">14</span><span class="label">排障清单</span></a></li>
+          <li><a class="toc-link" href="#compatibility" data-section-link="compatibility"><span class="index">15</span><span class="label">规范码与变更</span></a></li>
+        </ol>
+      </aside>
+
+      <main class="content">
+        <section class="section" id="quickstart">
+          <h2>1. 快速接入与传输矩阵</h2>
+          <p>本文档只定义设备主动连入平台的 WSS 协议。设备侧先拿到 <code>deviceId</code>、<code>accessKey</code>、<code>secretKey</code>，连上联调地址后立即发 <code>AUTH</code>，认证成功后再进入心跳、状态和考勤上报。</p>
+          <div class="note warn">
+            联调地址仅用于联调与验收，生产地址由平台单独签发。设备不得经厂商云或第三方中转考勤数据。
+          </div>
+          <h3>快速接入检查</h3>
+          <ol>
+            <li>确认设备时间已对齐到 <code>Asia/Shanghai</code>，并按 <code>yyyy-MM-dd HH:mm:ss</code> 输出。</li>
+            <li>确认 TLS 1.2+、证书链和主机名校验均已启用。</li>
+            <li>确认联调地址可连通，单条消息不超过 2 MiB，图片解码后不超过 1 MiB。</li>
+            <li>确认认证窗口为 ±300 秒，nonce 复用窗口为 600 秒。</li>
+            <li>确认心跳 30 秒一次，90 秒无心跳或业务消息即视为离线。</li>
+            <li>确认业务处理端到端超时按 5 秒控制，失败时不得紧密重试。</li>
+          </ol>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>项目</th>
+                  <th>规范值</th>
+                  <th>补充说明</th>
+                  <th>方向</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>协议</td>
+                  <td>WSS over TLS</td>
+                  <td>必须启用 TLS 1.2+，证书链与主机名校验 MUST 开启</td>
+                  <td>双向</td>
+                </tr>
+                <tr>
+                  <td>编码</td>
+                  <td>JSON / UTF-8</td>
+                  <td>禁止以非 UTF-8 编码发送</td>
+                  <td>双向</td>
+                </tr>
+                <tr>
+                  <td>时区</td>
+                  <td>Asia/Shanghai</td>
+                  <td>时间戳必须是本地时间，不带时区后缀</td>
+                  <td>双向</td>
+                </tr>
+                <tr>
+                  <td>时间格式</td>
+                  <td><code>yyyy-MM-dd HH:mm:ss</code></td>
+                  <td>精确到秒</td>
+                  <td>双向</td>
+                </tr>
+                <tr>
+                  <td>单条消息大小</td>
+                  <td>≤ 2 MiB</td>
+                  <td>按 UTF-8 字节数计</td>
+                  <td>双向</td>
+                </tr>
+                <tr>
+                  <td>照片解码大小</td>
+                  <td>≤ 1 MiB</td>
+                  <td>仅 JPEG / PNG；支持 raw Base64 或 data URI</td>
+                  <td>上行考勤</td>
+                </tr>
+                <tr>
+                  <td>心跳</td>
+                  <td>30 秒一次</td>
+                  <td>任意业务消息也计入活动</td>
+                  <td>设备 -> 平台</td>
+                </tr>
+                <tr>
+                  <td>离线阈值</td>
+                  <td>90 秒</td>
+                  <td>90 秒无活动即离线</td>
+                  <td>平台判定</td>
+                </tr>
+                <tr>
+                  <td>认证窗口</td>
+                  <td>±300 秒</td>
+                  <td>超窗直接失败并关闭连接</td>
+                  <td>AUTH</td>
+                </tr>
+                <tr>
+                  <td>Nonce TTL / 复用窗口</td>
+                  <td>600 秒</td>
+                  <td>单次使用，禁止重放</td>
+                  <td>AUTH</td>
+                </tr>
+                <tr>
+                  <td>业务处理超时</td>
+                  <td>5 秒</td>
+                  <td>超时属于可重试故障；客户端不得紧密循环重发</td>
+                  <td>平台处理</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section" id="diagrams">
+          <h2>2. 接入、序列、重试与状态图</h2>
+          <p>以下图示只用于协议联调，内容与正文条款一致；打印时仍可直接阅读。</p>
+          <div class="diagram-grid">
+            <figure class="diagram">
+              <figcaption>2.1 总体接入流程</figcaption>
+              <svg class="svg-diagram" viewBox="0 0 720 240" role="img" aria-label="总体接入流程图">
+                <defs>
+                  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L8,3 z" fill="#475569"></path>
+                  </marker>
+                  <marker id="arrow-muted" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"></path>
+                  </marker>
+                </defs>
+                <rect x="18" y="28" width="122" height="54" class="node node-soft"></rect>
+                <text x="79" y="51" text-anchor="middle">设备登记</text>
+                <text x="79" y="69" text-anchor="middle" class="muted">deviceId / 凭证</text>
+
+                <rect x="176" y="28" width="124" height="54" class="node node-accent"></rect>
+                <text x="238" y="51" text-anchor="middle">WSS 连接</text>
+                <text x="238" y="69" text-anchor="middle" class="muted">TLS 1.2+</text>
+
+                <rect x="336" y="28" width="124" height="54" class="node"></rect>
+                <text x="398" y="51" text-anchor="middle">AUTH 认证</text>
+                <text x="398" y="69" text-anchor="middle" class="muted">HMAC-SHA256</text>
+
+                <rect x="496" y="28" width="124" height="54" class="node node-warn"></rect>
+                <text x="558" y="51" text-anchor="middle">在线运行</text>
+                <text x="558" y="69" text-anchor="middle" class="muted">心跳 / 状态 / 考勤</text>
+
+                <rect x="248" y="142" width="224" height="54" class="node"></rect>
+                <text x="360" y="165" text-anchor="middle">平台验收与业务落库</text>
+                <text x="360" y="183" text-anchor="middle" class="muted">ACK 仅表示原始报文已被平台 durable 接收</text>
+
+                <path d="M140 55 H176" class="line"></path>
+                <path d="M300 55 H336" class="line"></path>
+                <path d="M460 55 H496" class="line"></path>
+                <path d="M558 82 V110 C558 124 490 124 460 124 H400" class="line"></path>
+                <path d="M320 110 H240 C220 110 210 124 210 142" class="line-muted dash"></path>
+                <path d="M520 110 H560 C590 110 600 126 600 142" class="line-muted dash"></path>
+              </svg>
+            </figure>
+
+            <figure class="diagram">
+              <figcaption>2.2 WebSocket 认证、心跳与考勤序列</figcaption>
+              <svg class="svg-diagram" viewBox="0 0 720 300" role="img" aria-label="WebSocket认证心跳考勤序列图">
+                <defs>
+                  <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L8,3 z" fill="#475569"></path>
+                  </marker>
+                </defs>
+                <rect x="26" y="20" width="110" height="244" class="lane"></rect>
+                <rect x="584" y="20" width="110" height="244" class="lane"></rect>
+                <text x="81" y="42" text-anchor="middle">设备</text>
+                <text x="639" y="42" text-anchor="middle">平台</text>
+                <line x1="81" y1="56" x2="81" y2="246" class="line-muted"></line>
+                <line x1="639" y1="56" x2="639" y2="246" class="line-muted"></line>
+
+                <rect x="148" y="56" width="160" height="36" class="node node-accent"></rect>
+                <text x="228" y="79" text-anchor="middle">AUTH</text>
+                <path d="M138 74 H584" class="line" marker-end="url(#arrow2)"></path>
+                <text x="360" y="66" text-anchor="middle" class="muted">deviceId + timestamp + nonce</text>
+
+                <rect x="408" y="56" width="160" height="36" class="node"></rect>
+                <text x="488" y="79" text-anchor="middle">AUTH_ACK / ERROR</text>
+                <path d="M584 102 H138" class="line" marker-end="url(#arrow2)"></path>
+
+                <rect x="148" y="126" width="160" height="36" class="node"></rect>
+                <text x="228" y="149" text-anchor="middle">HEARTBEAT</text>
+                <path d="M138 144 H584" class="line" marker-end="url(#arrow2)"></path>
+
+                <rect x="408" y="126" width="160" height="36" class="node"></rect>
+                <text x="488" y="149" text-anchor="middle">HEARTBEAT_ACK</text>
+                <path d="M584 172 H138" class="line" marker-end="url(#arrow2)"></path>
+
+                <rect x="148" y="196" width="178" height="36" class="node node-warn"></rect>
+                <text x="237" y="219" text-anchor="middle">ATTENDANCE_RECORD</text>
+                <path d="M138 214 H584" class="line" marker-end="url(#arrow2)"></path>
+
+                <rect x="396" y="196" width="172" height="36" class="node node-soft"></rect>
+                <text x="482" y="219" text-anchor="middle">ATTENDANCE_ACK / ERROR</text>
+                <path d="M584 242 H138" class="line" marker-end="url(#arrow2)"></path>
+              </svg>
+            </figure>
+
+            <figure class="diagram">
+              <figcaption>2.3 重试 + 离线缓存流程</figcaption>
+              <svg class="svg-diagram" viewBox="0 0 720 260" role="img" aria-label="重试和离线缓存流程图">
+                <defs>
+                  <marker id="arrow3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L8,3 z" fill="#475569"></path>
+                  </marker>
+                </defs>
+                <rect x="24" y="46" width="140" height="52" class="node node-warn"></rect>
+                <text x="94" y="70" text-anchor="middle">产生考勤记录</text>
+                <text x="94" y="88" text-anchor="middle" class="muted">recordId 稳定</text>
+
+                <rect x="192" y="46" width="150" height="52" class="node"></rect>
+                <text x="267" y="70" text-anchor="middle">写入本地缓存</text>
+                <text x="267" y="88" text-anchor="middle" class="muted">7 天 + 10000 条</text>
+
+                <rect x="372" y="46" width="154" height="52" class="node node-accent"></rect>
+                <text x="449" y="70" text-anchor="middle">发送尝试</text>
+                <text x="449" y="88" text-anchor="middle" class="muted">new messageId</text>
+
+                <rect x="556" y="46" width="140" height="52" class="node node-soft"></rect>
+                <text x="626" y="70" text-anchor="middle">ACK = 0 ?</text>
+                <text x="626" y="88" text-anchor="middle" class="muted">durable 接收</text>
+
+                <path d="M164 72 H192" class="line" marker-end="url(#arrow3)"></path>
+                <path d="M342 72 H372" class="line" marker-end="url(#arrow3)"></path>
+                <path d="M526 72 H556" class="line" marker-end="url(#arrow3)"></path>
+
+                <rect x="562" y="140" width="128" height="44" class="node node-accent"></rect>
+                <text x="626" y="166" text-anchor="middle">删除本地记录</text>
+                <path d="M626 98 V140" class="line" marker-end="url(#arrow3)"></path>
+
+                <rect x="396" y="140" width="132" height="44" class="node node-warn"></rect>
+                <text x="462" y="166" text-anchor="middle">失败 / 超时 / 离线</text>
+                <path d="M556 158 H528" class="line-muted dash" marker-end="url(#arrow3)"></path>
+
+                <rect x="198" y="140" width="148" height="44" class="node"></rect>
+                <text x="272" y="166" text-anchor="middle">等待 ≥ 10 秒后重试</text>
+                <path d="M396 162 H346" class="line" marker-end="url(#arrow3)"></path>
+              </svg>
+            </figure>
+
+            <figure class="diagram">
+              <figcaption>2.4 连接与设备状态机</figcaption>
+              <svg class="svg-diagram" viewBox="0 0 720 260" role="img" aria-label="连接与设备状态机图">
+                <defs>
+                  <marker id="arrow4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L8,3 z" fill="#475569"></path>
+                  </marker>
+                </defs>
+                <circle cx="112" cy="90" r="38" class="state"></circle>
+                <text x="112" y="86" text-anchor="middle">CONNECTING</text>
+                <text x="112" y="103" text-anchor="middle" class="muted">WSS 已建连</text>
+
+                <circle cx="286" cy="90" r="38" class="state"></circle>
+                <text x="286" y="86" text-anchor="middle">AUTH_PENDING</text>
+                <text x="286" y="103" text-anchor="middle" class="muted">待 AUTH</text>
+
+                <circle cx="458" cy="90" r="38" class="state"></circle>
+                <text x="458" y="86" text-anchor="middle">ONLINE</text>
+                <text x="458" y="103" text-anchor="middle" class="muted">心跳 / 考勤</text>
+
+                <circle cx="632" cy="90" r="38" class="state"></circle>
+                <text x="632" y="86" text-anchor="middle">OFFLINE</text>
+                <text x="632" y="103" text-anchor="middle" class="muted">90 秒无活动</text>
+
+                <path d="M150 90 H248" class="line" marker-end="url(#arrow4)"></path>
+                <path d="M324 90 H420" class="line" marker-end="url(#arrow4)"></path>
+                <path d="M496 90 H594" class="line" marker-end="url(#arrow4)"></path>
+
+                <path d="M458 128 C458 186 286 198 286 128" class="line-muted dash" marker-end="url(#arrow4)"></path>
+                <text x="372" y="214" text-anchor="middle" class="muted">重连算法由设备厂商自定，但重试间隔 MUST ≥ 10 秒，禁止紧密循环。</text>
+              </svg>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="envelope">
+          <h2>3. 通用消息包</h2>
+          <p>所有消息都使用统一外层包。设备发给平台的业务消息和平台回给设备的 ACK / ERROR 都沿用同一外层结构。</p>
+          <div class="note">
+            约束要点：<code>payload</code> MUST 是非空对象；未知字段将被忽略或丢弃；每次发送尝试都必须生成新的 <code>messageId</code>；同一考勤事件的 <code>recordId</code> 在设备内必须保持稳定且唯一。
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>字段</th>
+                  <th>类型</th>
+                  <th>约束</th>
+                  <th>方向</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>messageId</code></td>
+                  <td>String</td>
+                  <td>设备侧每次发送尝试都必须是新值；同设备内不得重复。平台回包应尽量回显；对不可关联的非法 JSON，<code>messageId</code> MAY 为 <code>null</code>。</td>
+                  <td>双向</td>
+                </tr>
+                <tr>
+                  <td><code>messageType</code></td>
+                  <td>String</td>
+                  <td>设备上行仅允许 <code>AUTH</code>、<code>HEARTBEAT</code>、<code>DEVICE_STATUS</code>、<code>ATTENDANCE_RECORD</code>。平台下行仅允许 <code>AUTH_ACK</code>、<code>HEARTBEAT_ACK</code>、<code>DEVICE_STATUS_ACK</code>、<code>ATTENDANCE_ACK</code>、<code>ERROR</code>。设备不得主动发送 ACK / ERROR。</td>
+                  <td>双向</td>
+                </tr>
+                <tr>
+                  <td><code>deviceId</code></td>
+                  <td>String</td>
+                  <td>必须与平台注册设备一致；认证成功后绑定到会话。</td>
+                  <td>双向</td>
+                </tr>
+                <tr>
+                  <td><code>timestamp</code></td>
+                  <td>String</td>
+                  <td>必须使用 <code>yyyy-MM-dd HH:mm:ss</code>，时区为 <code>Asia/Shanghai</code>。</td>
+                  <td>双向</td>
+                </tr>
+                <tr>
+                  <td><code>payload</code></td>
+                  <td>Object</td>
+                  <td>MUST 非空对象；未知字段忽略/丢弃；文档未列明字段不形成兼容承诺。</td>
+                  <td>双向</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section" id="auth">
+          <h2>4. AUTH 认证</h2>
+          <p>设备建立连接后必须先发 <code>AUTH</code>。平台按设备ID、接入密钥、时间戳、随机数和签名完成认证；未认证连接不得发送考勤业务。</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>字段</th>
+                  <th>类型</th>
+                  <th>规范值 / 约束</th>
+                  <th>补充说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>accessKey</code></td>
+                  <td>String</td>
+                  <td>必填，由平台线下发放</td>
+                  <td>不可明文写入日志</td>
+                </tr>
+                <tr>
+                  <td><code>nonce</code></td>
+                  <td>String</td>
+                  <td>必填，单次使用，600 秒内不得复用</td>
+                  <td>重放即失败</td>
+                </tr>
+                <tr>
+                  <td><code>signature</code></td>
+                  <td>String</td>
+                  <td>HMAC-SHA256，结果为 64 位十六进制字符串，建议小写，输入大小写不敏感</td>
+                  <td>严格 hex 解析</td>
+                </tr>
+                <tr>
+                  <td><code>firmwareVersion</code></td>
+                  <td>String</td>
+                  <td>可选</td>
+                  <td>仅作透传，不参与签名串</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note">
+            认证签名串必须精确拼接为 <code>deviceId + timestamp + nonce</code>，中间无任何分隔符。设备端 secret 使用 UTF-8 作为 HMAC 密钥，平台验签采用常量时间比较。
+          </div>
+
+          <h3>认证测试向量</h3>
+          <div class="pair">
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head">
+                <span class="code-title">AUTH 请求示例</span>
+                <button class="copy-btn" type="button" data-copy aria-label="复制 AUTH 请求示例">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg>
+                  <span>复制</span>
+                </button>
+              </div>
+              <pre><code>{
+  "messageId": "m-auth-001",
+  "messageType": "AUTH",
+  "deviceId": "DEV-001",
+  "timestamp": "2026-07-14 10:15:30",
+  "payload": {
+    "accessKey": "access-001",
+    "nonce": "nonce-001",
+    "signature": "0a7742ae07d3b95fbbd78acfab5f1bc6fc1a6958b7922f350fadddd4e4432864",
+    "firmwareVersion": "1.0.0"
+  }
+}</code></pre>
+            </figure>
+
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head">
+                <span class="code-title">AUTH_ACK 响应示例</span>
+                <button class="copy-btn" type="button" data-copy aria-label="复制 AUTH_ACK 响应示例">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg>
+                  <span>复制</span>
+                </button>
+              </div>
+              <pre><code>{
+  "messageId": "m-auth-001",
+  "messageType": "AUTH_ACK",
+  "deviceId": "DEV-001",
+  "timestamp": "2026-07-14 10:15:30",
+  "payload": {
+    "code": "0",
+    "message": "认证成功",
+    "serverTime": "2026-07-14 10:15:30"
+  }
+}</code></pre>
+            </figure>
+          </div>
+
+          <div class="note warn">
+            <strong>验证向量：</strong>deviceId <code>DEV-001</code>、timestamp <code>2026-07-14 10:15:30</code>、nonce <code>nonce-001</code>、secretKey <code>secret-001</code> 的期望签名为 <code>0a7742ae07d3b95fbbd78acfab5f1bc6fc1a6958b7922f350fadddd4e4432864</code>。
+          </div>
+
+          <p class="small-note">accessKey / secretKey 的签发、绑定、失效和重配都在平台侧线下完成，不属于线上报文的一部分。</p>
+        </section>
+
+        <section class="section" id="heartbeat">
+          <h2>5. HEARTBEAT</h2>
+          <p>心跳用于维持在线态。设备认证成功后每 30 秒发送一次心跳；任何业务消息也会被平台视为活动，不必额外补发心跳。</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>字段</th>
+                  <th>类型</th>
+                  <th>规范值 / 约束</th>
+                  <th>补充说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>status</code></td>
+                  <td>String</td>
+                  <td>可选；如上报，仅允许 <code>ONLINE</code>、<code>OFFLINE</code>、<code>ABNORMAL</code></td>
+                  <td>不接受中文值、历史文本或其他别名</td>
+                </tr>
+                <tr>
+                  <td><code>localRecordCount</code></td>
+                  <td>Integer</td>
+                  <td>当前可选；建议上报本地待传记录数</td>
+                  <td>便于平台估算积压量</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pair">
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head">
+                <span class="code-title">HEARTBEAT 请求示例</span>
+                <button class="copy-btn" type="button" data-copy aria-label="复制 HEARTBEAT 请求示例"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg><span>复制</span></button>
+              </div>
+              <pre><code>{
+  "messageId": "m-heart-001",
+  "messageType": "HEARTBEAT",
+  "deviceId": "DEV-001",
+  "timestamp": "2026-07-14 10:16:00",
+  "payload": {
+    "status": "ONLINE",
+    "localRecordCount": 7
+  }
+}</code></pre>
+            </figure>
+
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head">
+                <span class="code-title">HEARTBEAT_ACK 响应示例</span>
+                <button class="copy-btn" type="button" data-copy aria-label="复制 HEARTBEAT_ACK 响应示例"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg><span>复制</span></button>
+              </div>
+              <pre><code>{
+  "messageId": "m-heart-001",
+  "messageType": "HEARTBEAT_ACK",
+  "deviceId": "DEV-001",
+  "timestamp": "2026-07-14 10:16:00",
+  "payload": {
+    "code": "0",
+    "message": "心跳成功",
+    "serverTime": "2026-07-14 10:16:00"
+  }
+}</code></pre>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="device-status">
+          <h2>6. DEVICE_STATUS</h2>
+          <p>设备状态消息用于上报启动、停机、故障、恢复、存储不足和摄像头异常等事件。状态字段和事件字段都必须明确；描述字段可选。</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>字段</th>
+                  <th>类型</th>
+                  <th>规范值 / 约束</th>
+                  <th>补充说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>status</code></td>
+                  <td>String</td>
+                  <td>必填；仅允许 <code>ONLINE</code>、<code>OFFLINE</code>、<code>ABNORMAL</code></td>
+                  <td>不接受中文值、历史文本或其他别名</td>
+                </tr>
+                <tr>
+                  <td><code>event</code></td>
+                  <td>String</td>
+                  <td>必填，枚举为 <code>STARTUP</code>、<code>SHUTDOWN</code>、<code>FAULT</code>、<code>RECOVERY</code>、<code>STORAGE_LOW</code>、<code>CAMERA_ERROR</code></td>
+                  <td>不接受中文值、历史文本或其他别名</td>
+                </tr>
+                <tr>
+                  <td><code>description</code></td>
+                  <td>String</td>
+                  <td>可选；用于补充设备自检、告警或恢复说明</td>
+                  <td>不要放入密钥、Base64 或个人隐私数据</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pair">
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head">
+                <span class="code-title">DEVICE_STATUS 请求示例</span>
+                <button class="copy-btn" type="button" data-copy aria-label="复制 DEVICE_STATUS 请求示例"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg><span>复制</span></button>
+              </div>
+              <pre><code>{
+  "messageId": "m-status-001",
+  "messageType": "DEVICE_STATUS",
+  "deviceId": "DEV-001",
+  "timestamp": "2026-07-14 10:16:30",
+  "payload": {
+    "status": "ABNORMAL",
+    "event": "CAMERA_ERROR",
+    "description": "camera reconnect failed"
+  }
+}</code></pre>
+            </figure>
+
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head">
+                <span class="code-title">DEVICE_STATUS_ACK 响应示例</span>
+                <button class="copy-btn" type="button" data-copy aria-label="复制 DEVICE_STATUS_ACK 响应示例"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg><span>复制</span></button>
+              </div>
+              <pre><code>{
+  "messageId": "m-status-001",
+  "messageType": "DEVICE_STATUS_ACK",
+  "deviceId": "DEV-001",
+  "timestamp": "2026-07-14 10:16:30",
+  "payload": {
+    "code": "0",
+    "message": "状态已接收",
+    "serverTime": "2026-07-14 10:16:30"
+  }
+}</code></pre>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="attendance">
+          <h2>7. ATTENDANCE_RECORD</h2>
+          <p>考勤记录是核心业务消息。平台收到后先做协议校验、签名/幂等/照片校验，再向上游业务层投递。<code>ATTENDANCE_ACK code=0</code> 只代表原始报文已被平台 durable 接收，不代表最终出勤匹配已经完成。</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>字段</th>
+                  <th>类型</th>
+                  <th>规范值 / 长度 / 约束</th>
+                  <th>补充说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>recordId</code></td>
+                  <td>String</td>
+                  <td>必填，≤ 64；同一设备内唯一；同一考勤事件重试时必须保持不变</td>
+                  <td>平台按 <code>(deviceId, recordId)</code> 幂等</td>
+                </tr>
+                <tr>
+                  <td><code>deviceName</code></td>
+                  <td>String</td>
+                  <td>必填，≤ 64</td>
+                  <td>用于审计和排障，不作为主键</td>
+                </tr>
+                <tr>
+                  <td><code>personName</code></td>
+                  <td>String</td>
+                  <td>必填，≤ 64</td>
+                  <td>应与证件姓名一致</td>
+                </tr>
+                <tr>
+                  <td><code>idCard</code></td>
+                  <td>String</td>
+                  <td>必填，≤ 32</td>
+                  <td>身份证号或平台认可的证件标识</td>
+                </tr>
+                <tr>
+                  <td><code>punchTime</code></td>
+                  <td>String</td>
+                  <td>必填，精确到秒，格式 <code>yyyy-MM-dd HH:mm:ss</code></td>
+                  <td>实际打卡时间，补传时不得改写</td>
+                </tr>
+                <tr>
+                  <td><code>createTime</code></td>
+                  <td>String</td>
+                  <td>必填，精确到秒，格式 <code>yyyy-MM-dd HH:mm:ss</code></td>
+                  <td>设备生成记录时间</td>
+                </tr>
+                <tr>
+                  <td><code>punchType</code></td>
+                  <td>String</td>
+                  <td>规范码为 <code>IN</code> / <code>OUT</code></td>
+                  <td>仅接受英文规范码，不接受中文值或别名</td>
+                </tr>
+                <tr>
+                  <td><code>verifyType</code></td>
+                  <td>String</td>
+                  <td>必填；仅允许 <code>FACE</code> / <code>FINGERPRINT</code> / <code>CARD</code> / <code>OTHER</code></td>
+                  <td>仅接受英文规范码，不接受中文值或别名</td>
+                </tr>
+                <tr>
+                  <td><code>verifyResult</code></td>
+                  <td>String</td>
+                  <td>规范码为 <code>PASS</code> / <code>FAIL</code></td>
+                  <td>仅接受英文规范码，不接受中文值或别名</td>
+                </tr>
+                <tr>
+                  <td><code>photoBase64</code></td>
+                  <td>String</td>
+                  <td>可传 raw Base64 或 data URI；仅 JPEG / PNG；解码后 ≤ 1 MiB</td>
+                  <td>当 <code>verifyType=FACE</code> 且 <code>verifyResult=PASS</code> 时必填</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note warn">
+            所有协议枚举字段只接受英文规范码：<code>IN</code> / <code>OUT</code>、<code>FACE</code> / <code>FINGERPRINT</code> / <code>CARD</code> / <code>OTHER</code>、<code>PASS</code> / <code>FAIL</code>。不接受中文值、历史文本或其他别名；<code>FACE + PASS</code> 必须携带照片。
+          </div>
+
+          <div class="pair">
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head">
+                <span class="code-title">ATTENDANCE_RECORD 请求示例</span>
+                <button class="copy-btn" type="button" data-copy aria-label="复制 ATTENDANCE_RECORD 请求示例"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg><span>复制</span></button>
+              </div>
+              <pre><code>{
+  "messageId": "m-att-001",
+  "messageType": "ATTENDANCE_RECORD",
+  "deviceId": "DEV-001",
+  "timestamp": "2026-07-14 10:17:05",
+  "payload": {
+    "recordId": "DEV-001-20260714101705-0001",
+    "deviceName": "一楼东门考勤机",
+    "personName": "张三",
+    "idCard": "360XXXXXXXXXXXXX",
+    "punchTime": "2026-07-14 10:17:05",
+    "punchType": "IN",
+    "verifyType": "FACE",
+    "verifyResult": "PASS",
+    "photoBase64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...",
+    "createTime": "2026-07-14 10:17:06"
+  }
+}</code></pre>
+            </figure>
+
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head">
+                <span class="code-title">ATTENDANCE_ACK 响应示例</span>
+                <button class="copy-btn" type="button" data-copy aria-label="复制 ATTENDANCE_ACK 响应示例"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg><span>复制</span></button>
+              </div>
+              <pre><code>{
+  "messageId": "m-att-001",
+  "messageType": "ATTENDANCE_ACK",
+  "deviceId": "DEV-001",
+  "timestamp": "2026-07-14 10:17:06",
+  "payload": {
+    "code": "0",
+    "message": "接收成功",
+    "recordId": "DEV-001-20260714101705-0001",
+    "serverTime": "2026-07-14 10:17:06"
+  }
+}</code></pre>
+            </figure>
+          </div>
+
+          <p class="small-note"><code>photoBase64</code> 支持 raw Base64 或 <code>data:image/jpeg;base64,</code> / <code>data:image/png;base64,</code> 前缀；平台会先解码、再校验格式和大小。成功 ACK 只代表原始报文已被平台接受，不代表最终 attendance matching 完成。</p>
+        </section>
+
+        <section class="section" id="outbound">
+          <h2>8. 平台回包形状与示例</h2>
+          <p>平台发送给设备的终端消息沿用统一外层包，固定形状如下：<code>{messageId,messageType,deviceId,timestamp,payload:{code,message,recordId?,serverTime}}</code>。<code>recordId</code> 仅出现在考勤响应中；<code>serverTime</code> 应在所有 ACK / ERROR 中返回。</p>
+
+          <div class="note">
+            当请求 JSON 不可关联或无法解析时，平台仍然返回 <code>ERROR</code>；此时 <code>messageId</code> MAY 为 <code>null</code>。正常可关联请求则应回显原 <code>messageId</code>。
+          </div>
+
+          <div class="pair">
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head"><span class="code-title">ERROR 响应示例</span><button class="copy-btn" type="button" data-copy aria-label="复制 ERROR 响应示例"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg><span>复制</span></button></div>
+              <pre><code>{
+  "messageId": "m-att-002",
+  "messageType": "ERROR",
+  "deviceId": "DEV-001",
+  "timestamp": "2026-07-14 10:18:01",
+  "payload": {
+    "code": "INVALID_MESSAGE",
+    "message": "消息JSON格式错误",
+    "serverTime": "2026-07-14 10:18:01"
+  }
+}</code></pre>
+            </figure>
+
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head"><span class="code-title">不可关联的 ERROR 示例</span><button class="copy-btn" type="button" data-copy aria-label="复制不可关联的 ERROR 示例"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg><span>复制</span></button></div>
+              <pre><code>{
+  "messageId": null,
+  "messageType": "ERROR",
+  "deviceId": null,
+  "timestamp": "2026-07-14 10:18:01",
+  "payload": {
+    "code": "INVALID_MESSAGE",
+    "message": "消息JSON格式错误",
+    "serverTime": "2026-07-14 10:18:01"
+  }
+}</code></pre>
+            </figure>
+          </div>
+
+          <div class="pair">
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head"><span class="code-title">HEARTBEAT_ACK 结构</span><button class="copy-btn" type="button" data-copy aria-label="复制 HEARTBEAT_ACK 结构"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg><span>复制</span></button></div>
+              <pre><code>{
+  "messageId": "m-heart-001",
+  "messageType": "HEARTBEAT_ACK",
+  "deviceId": "DEV-001",
+  "timestamp": "2026-07-14 10:16:00",
+  "payload": {
+    "code": "0",
+    "message": "心跳成功",
+    "serverTime": "2026-07-14 10:16:00"
+  }
+}</code></pre>
+            </figure>
+
+            <figure class="code-shell" data-copy-block>
+              <div class="code-head"><span class="code-title">DEVICE_STATUS_ACK 结构</span><button class="copy-btn" type="button" data-copy aria-label="复制 DEVICE_STATUS_ACK 结构"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10v10H9z"/><path d="M5 5h10v10H5z"/></svg><span>复制</span></button></div>
+              <pre><code>{
+  "messageId": "m-status-001",
+  "messageType": "DEVICE_STATUS_ACK",
+  "deviceId": "DEV-001",
+  "timestamp": "2026-07-14 10:16:30",
+  "payload": {
+    "code": "0",
+    "message": "状态已接收",
+    "serverTime": "2026-07-14 10:16:30"
+  }
+}</code></pre>
+            </figure>
+          </div>
+
+          <div class="note warn">
+            ACK / ERROR 只能由平台发给设备。设备如果把 <code>AUTH_ACK</code>、<code>HEARTBEAT_ACK</code>、<code>DEVICE_STATUS_ACK</code>、<code>ATTENDANCE_ACK</code>、<code>ERROR</code> 当作上行消息发送，平台应判定为无效报文。
+          </div>
+        </section>
+
+        <section class="section" id="errors">
+          <h2>9. 错误码矩阵</h2>
+          <p>下面的错误码覆盖当前协议约束。除 <code>SERVER_BUSY</code> 外，其余 fatal 错误都应关闭当前连接。<code>SERVER_BUSY</code> 可能因为超时、过载或停机而关闭连接，设备端必须同时支持“连接保留”和“连接关闭”两种结果。</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>code</th>
+                  <th>含义</th>
+                  <th>重试动作</th>
+                  <th>是否关闭连接</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>0</code></td>
+                  <td>成功</td>
+                  <td>无需重试；按业务继续处理</td>
+                  <td>否</td>
+                </tr>
+                <tr>
+                  <td><code>AUTH_FAILED</code></td>
+                  <td>认证失败</td>
+                  <td>检查 deviceId、accessKey、nonce、时间戳和签名；修正后重新认证</td>
+                  <td>是</td>
+                </tr>
+                <tr>
+                  <td><code>DEVICE_DISABLED</code></td>
+                  <td>设备已停用</td>
+                  <td>先恢复设备状态再重新连接</td>
+                  <td>是</td>
+                </tr>
+                <tr>
+                  <td><code>INVALID_MESSAGE</code></td>
+                  <td>消息格式错误</td>
+                  <td>修正 JSON / envelope / 字段结构后再发</td>
+                  <td>是</td>
+                </tr>
+                <tr>
+                  <td><code>INVALID_SIGNATURE</code></td>
+                  <td>签名错误</td>
+                  <td>检查 canonical string 与 secretKey</td>
+                  <td>是</td>
+                </tr>
+                <tr>
+                  <td><code>TIME_EXPIRED</code></td>
+                  <td>时间戳超窗</td>
+                  <td>校准设备时间后重新认证</td>
+                  <td>是</td>
+                </tr>
+                <tr>
+                  <td><code>RECORD_INVALID</code></td>
+                  <td>考勤记录不合法或冲突</td>
+                  <td>修正内容或人工处理；同一 <code>(deviceId,recordId)</code> 的冲突版本不得再重试</td>
+                  <td>是</td>
+                </tr>
+                <tr>
+                  <td><code>SERVER_BUSY</code></td>
+                  <td>平台繁忙</td>
+                  <td>至少等待 10 秒后再试；若连接已关闭则重新建连</td>
+                  <td>可能关闭</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note warn">
+            所有 fatal 错误都属于“当前尝试失败”。其中 <code>SERVER_BUSY</code> 既可能是可重试拥塞，也可能因超时、过载或关停被主动关闭连接；设备不得做紧密循环重发。
+          </div>
+        </section>
+
+        <section class="section" id="retry">
+          <h2>10. 幂等、重试、离线缓存</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>规则</th>
+                  <th>要求</th>
+                  <th>说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>messageId</td>
+                  <td>每次发送尝试必须生成新值</td>
+                  <td>平台按 <code>(deviceId,messageId)</code> 做请求级去重</td>
+                </tr>
+                <tr>
+                  <td>recordId</td>
+                  <td>同一考勤事件重试时必须保持不变</td>
+                  <td>平台按 <code>(deviceId,recordId)</code> 做记录级去重</td>
+                </tr>
+                <tr>
+                  <td>重复内容</td>
+                  <td>完全相同的 payload 和 photo digest 重发可接受</td>
+                  <td>仍按幂等成功处理</td>
+                </tr>
+                <tr>
+                  <td>冲突内容</td>
+                  <td>同一 <code>recordId</code> 但 payload / photo digest 不一致时不可重试</td>
+                  <td>返回 <code>RECORD_INVALID</code>，并视为安全事件</td>
+                </tr>
+                <tr>
+                  <td>离线缓存</td>
+                  <td>必须同时满足 7 天和 10000 条记录</td>
+                  <td>两者都要满足，不能只满足其中一个</td>
+                </tr>
+                <tr>
+                  <td>删除时机</td>
+                  <td>只在收到 code=0 后删除本地原始记录</td>
+                  <td>未确认或失败记录必须保留</td>
+                </tr>
+                <tr>
+                  <td>补传顺序</td>
+                  <td>按 <code>punchTime</code> 的时间顺序发送</td>
+                  <td>不要按入库顺序打乱原始时序</td>
+                </tr>
+                <tr>
+                  <td>重试间隔</td>
+                  <td>重试间隔 MUST ≥ 10 秒</td>
+                  <td>设备厂商自行定义退避算法，但不得 tight loop</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="small-note">平台按业务逻辑先接收 raw report，再异步做最终 attendance / matching。设备收到 ACK 后可以删本地记录；若未收到 ACK，必须保留并按上表重试。</p>
+        </section>
+
+        <section class="section" id="security">
+          <h2>11. 安全、日志与隐私</h2>
+          <ul>
+            <li>生产流量 MUST 走 WSS/TLS，经网关终止后再进入平台运行环境。</li>
+            <li>设备凭证、签名、nonce、accessKey、secretKey 不得写入普通日志、错误栈或可公开导出的调试信息。</li>
+            <li><code>photoBase64</code>、原始签名和明文密钥必须从业务日志中剔除；如需追踪，只保留 SHA-256 摘要、对象键和必要审计字段。</li>
+            <li>未知字段默认丢弃，不作为存证或下游透传的稳定契约。</li>
+            <li>对 <code>RECORD_INVALID</code>、签名不一致和同一 recordId 的冲突重发，平台应记录安全审计事件。</li>
+            <li>设备厂商不得用云中转、转存、二次加工或转卖考勤数据。</li>
+          </ul>
+          <div class="note">
+            当前实现的 raw JSON 只用于规范化审计快照，不应包含 Base64 照片、密钥、签名或未白名单字段。外部文档只承诺协议行为，不暴露内部存储结构。
+          </div>
+        </section>
+
+        <section class="section" id="operations">
+          <h2>12. 上线、凭证与运行状态</h2>
+          <div class="accept-grid">
+            <div class="accept-row">
+              <div>
+                <strong>凭证签发</strong>
+                <span>平台按设备维度线下签发 <code>deviceId</code>、<code>accessKey</code>、<code>secretKey</code>，并明确绑定教室/机构范围。</span>
+              </div>
+              <div>
+                <strong>变更规则</strong>
+                <span>设备更换、迁移、停用、IP 变更或重置密钥时，必须重新完成联调与授权更新。</span>
+              </div>
+              <div>
+                <strong>运行状态</strong>
+                <span>平台侧应能区分 ONLINE、OFFLINE、ABNORMAL 与未认证状态，用于现场排障和告警。</span>
+              </div>
+            </div>
+          </div>
+          <h3>设备侧操作建议</h3>
+          <ul>
+            <li>连接失败先检查证书、时间、DNS、端口和网关放行。</li>
+            <li>认证失败先检查 deviceId、accessKey、secretKey、签名串和时间窗。</li>
+            <li>业务失败先确认 messageId / recordId 是否唯一，照片是否可解码，字段是否超长。</li>
+            <li>离线恢复后优先补传最早的未确认记录，再继续实时上报。</li>
+          </ul>
+        </section>
+
+        <section class="section" id="acceptance">
+          <h2>13. 测试与验收</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>场景</th>
+                  <th>期望结果</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>有效 AUTH</td><td>返回 <code>AUTH_ACK</code>，设备进入在线态</td></tr>
+                <tr><td>未知设备 AUTH</td><td>返回 <code>AUTH_FAILED</code> 并关闭连接</td></tr>
+                <tr><td>停用设备 AUTH</td><td>返回 <code>DEVICE_DISABLED</code> 并关闭连接</td></tr>
+                <tr><td>签名错误</td><td>返回 <code>INVALID_SIGNATURE</code> 并关闭连接</td></tr>
+                <tr><td>时间戳超窗</td><td>返回 <code>TIME_EXPIRED</code> 并关闭连接</td></tr>
+                <tr><td>有效 HEARTBEAT</td><td>返回 <code>HEARTBEAT_ACK</code>，刷新最后活动时间</td></tr>
+                <tr><td>有效 DEVICE_STATUS</td><td>返回 <code>DEVICE_STATUS_ACK</code>，记录状态事件</td></tr>
+                <tr><td>有效考勤 + 照片</td><td>照片解码、校验并接受，返回 <code>ATTENDANCE_ACK</code></td></tr>
+                <tr><td>照片格式无效或超过 1 MiB</td><td>返回非重试的 <code>INVALID_MESSAGE</code>，不得确认成功；存储等瞬时故障才返回可重试错误</td></tr>
+                <tr><td>同 deviceId + messageId 重复</td><td>幂等处理，不重复入库</td></tr>
+                <tr><td>同 deviceId + recordId 相同 payload</td><td>幂等成功，可重复 ACK</td></tr>
+                <tr><td>同 deviceId + recordId 冲突 payload</td><td>返回 <code>RECORD_INVALID</code>，并记录安全事件</td></tr>
+                <tr><td><code>verifyResult=FAIL</code></td><td>只保留 raw report，不生成最终 attendance</td></tr>
+                <tr><td>handler 超时</td><td>只返回一次终态错误，旧连接关闭，同设备 lane 保持隔离直至完成</td></tr>
+                <tr><td>全局过载</td><td>返回 <code>SERVER_BUSY</code>，客户端等待 ≥ 10 秒后再试</td></tr>
+                <tr><td>断网缓存恢复</td><td>按 punchTime 顺序补传，删除仅发生在 code=0 后</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section" id="troubleshooting">
+          <h2>14. 排障清单</h2>
+          <ol>
+            <li>先看连接是否走了正确的 WSS 地址、证书和主机名。</li>
+            <li>再看时间戳是否超窗，设备时钟是否漂移。</li>
+            <li>再看签名串是否严格等于 <code>deviceId + timestamp + nonce</code>。</li>
+            <li>再看 <code>messageId</code> 是否每次重试都换新，<code>recordId</code> 是否保持稳定。</li>
+            <li>再看 <code>photoBase64</code> 是否是 JPEG / PNG、是否超过 1 MiB、是否缺少 FACE + PASS 场景下的必填照片。</li>
+            <li>再看设备是否在 <code>SERVER_BUSY</code> 后做了紧密循环重发。</li>
+            <li>最后检查平台是否返回了 <code>RECORD_INVALID</code>，这通常意味着同 recordId 的内容发生冲突。</li>
+          </ol>
+        </section>
+
+        <section class="section" id="compatibility">
+          <h2>15. 规范码与变更</h2>
+          <p>所有协议枚举字段只接受本文列出的英文规范码，不提供中文值、历史文本或其他别名兼容。</p>
+          <ul>
+            <li>考勤方向仅允许 <code>IN</code> / <code>OUT</code>，核验方式仅允许 <code>FACE</code> / <code>FINGERPRINT</code> / <code>CARD</code> / <code>OTHER</code>，核验结果仅允许 <code>PASS</code> / <code>FAIL</code>。</li>
+            <li>状态值仅允许 <code>ONLINE</code> / <code>OFFLINE</code> / <code>ABNORMAL</code>，状态事件仅允许 <code>STARTUP</code> / <code>SHUTDOWN</code> / <code>FAULT</code> / <code>RECOVERY</code> / <code>STORAGE_LOW</code> / <code>CAMERA_ERROR</code>。</li>
+            <li>如果后续协议扩展字段或状态码，只有本文档与平台联调确认后的值才是外部合同。</li>
+            <li>当业务要求变化时，设备厂商与平台测试方必须同步更新需求文档、实施文档和验收清单。</li>
+          </ul>
+          <p class="footer-note">本文档仅描述接口协议与外部行为，不公开平台内部实现、表结构或中间件选择。</p>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const printBtn = document.getElementById('printBtn');
+      if (printBtn) {
+        printBtn.addEventListener('click', () => window.print());
+      }
+
+      const copyButtons = document.querySelectorAll('[data-copy]');
+      copyButtons.forEach((button) => {
+        button.addEventListener('click', async () => {
+          const shell = button.closest('[data-copy-block]');
+          const code = shell && shell.querySelector('pre code');
+          if (!code) return;
+          const text = code.textContent.replace(/\n+$/, '');
+          const label = button.querySelector('span');
+          const original = label ? label.textContent : '复制';
+          try {
+            await navigator.clipboard.writeText(text);
+            if (label) label.textContent = '已复制';
+            button.setAttribute('aria-pressed', 'true');
+            setTimeout(() => {
+              if (label) label.textContent = original;
+              button.setAttribute('aria-pressed', 'false');
+            }, 1200);
+          } catch (error) {
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(code);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand('copy');
+            selection.removeAllRanges();
+            if (label) label.textContent = '已复制';
+            setTimeout(() => { if (label) label.textContent = original; }, 1200);
+          }
+        });
+      });
+
+      const links = Array.from(document.querySelectorAll('[data-section-link]'));
+      const sections = links
+        .map((link) => document.getElementById(link.getAttribute('href').slice(1)))
+        .filter(Boolean);
+
+      function setActive(id) {
+        links.forEach((link) => {
+          const active = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', active);
+        });
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible && visible.target && visible.target.id) {
+          setActive(visible.target.id);
+        }
+      }, { rootMargin: '-32% 0px -56% 0px', threshold: [0.08, 0.16, 0.32, 0.5] });
+
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+      if (sections[0]) setActive(sections[0].id);
+
+      window.addEventListener('hashchange', () => {
+        const id = location.hash.replace('#', '');
+        if (id) setActive(id);
+      });
+    })();
+  </script>
+</body>
+</html>

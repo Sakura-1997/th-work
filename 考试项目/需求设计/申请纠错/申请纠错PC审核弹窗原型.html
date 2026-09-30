@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>申请纠错PC审核列表及弹窗原型</title>
+  <style>
+    :root {
+      --nav: #001a2d;
+      --nav-soft: #06243b;
+      --primary: #2f80ed;
+      --primary-soft: #e8f2ff;
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --line: #e6ebf2;
+      --line-strong: #d8e0eb;
+      --text: #1f2d3d;
+      --muted: #66788f;
+      --light: #a7b4c4;
+      --success: #18a058;
+      --warning: #f59e0b;
+      --danger: #d93025;
+      --shadow: 0 14px 38px rgba(15, 35, 58, .14);
+      --radius: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--bg);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      background: var(--nav);
+      color: #d6eaff;
+      padding: 18px 0;
+      overflow: hidden;
+    }
+
+    .brand {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 22px;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .nav {
+      padding: 14px 0;
+    }
+
+    .nav-item,
+    .nav-sub {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 22px;
+      color: #cfe6ff;
+      white-space: nowrap;
+    }
+
+    .nav-sub {
+      height: 38px;
+      padding-left: 42px;
+      font-size: 13px;
+      color: #a9c6e4;
+    }
+
+    .nav-item.active,
+    .nav-sub.active {
+      background: #0b3555;
+      color: #fff;
+      border-right: 3px solid var(--primary);
+    }
+
+    .main {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .crumb {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .user {
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .page {
+      padding: 22px 24px 40px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(15, 35, 58, .06);
+    }
+
+    .panel-head {
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) auto auto;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .filter-input {
+      height: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      padding: 0 10px;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+    }
+
+    .btn {
+      min-width: 76px;
+      height: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      color: var(--text);
+      background: #fff;
+      padding: 0 14px;
+    }
+
+    .btn.primary {
+      border-color: var(--primary);
+      color: #fff;
+      background: var(--primary);
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table th,
+    .table td {
+      height: 46px;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .table th {
+      color: var(--muted);
+      background: #f8fafc;
+      font-weight: 600;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      height: 22px;
+      padding: 0 8px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .tag.pending {
+      color: #9a5b00;
+      background: #fff4d6;
+    }
+
+    .tag.approved {
+      color: #0f7b43;
+      background: #e9f8f0;
+    }
+
+    .tag.rejected {
+      color: #b3261e;
+      background: #fdecea;
+    }
+
+    .link-btn {
+      border: 0;
+      color: var(--primary);
+      background: transparent;
+      padding: 0;
+    }
+
+    .table-footer {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pager {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .page-num {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      color: #fff;
+      background: var(--primary);
+      font-size: 13px;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: rgba(8, 20, 35, .46);
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .audit-modal {
+      width: min(980px, calc(100vw - 64px));
+      max-height: calc(100vh - 64px);
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .modal-head {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .modal-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .modal-title::before {
+      content: "";
+      width: 4px;
+      height: 18px;
+      border-radius: 2px;
+      background: var(--primary);
+    }
+
+    .close-btn {
+      width: 32px;
+      height: 32px;
+      border: 0;
+      border-radius: 4px;
+      color: var(--muted);
+      background: transparent;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .close-btn:hover {
+      background: #f1f4f8;
+    }
+
+    .modal-body {
+      min-height: 0;
+      overflow: auto;
+      padding: 18px 20px 20px;
+      background: #f8fafc;
+    }
+
+    .content-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .card-head {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+      font-weight: 700;
+    }
+
+    .card-sub {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 104px minmax(0, 1fr);
+      border-top: 1px solid var(--line);
+    }
+
+    .info-grid:first-of-type {
+      border-top: 0;
+    }
+
+    .info-label,
+    .info-value {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      padding: 9px 12px;
+      font-size: 13px;
+    }
+
+    .info-label {
+      color: var(--muted);
+      background: #f8fafc;
+      border-right: 1px solid var(--line);
+    }
+
+    .info-value {
+      color: var(--text);
+      background: #fff;
+      word-break: break-all;
+    }
+
+    .remark {
+      align-items: flex-start;
+      line-height: 1.7;
+    }
+
+    .material-list {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .material-item {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 10px;
+      min-height: 56px;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fbfcfe;
+    }
+
+    .file-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      color: var(--primary);
+      background: var(--primary-soft);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .file-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .file-meta {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .preview-box {
+      height: 180px;
+      margin: 0 14px 14px;
+      border: 1px dashed #b9cce6;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      color: #5b7aa3;
+      background:
+        linear-gradient(135deg, rgba(47, 128, 237, .08), rgba(255, 255, 255, 0)),
+        #f7fbff;
+      text-align: center;
+    }
+
+    .preview-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .audit-card {
+      margin-top: 14px;
+    }
+
+    .audit-body {
+      padding: 14px;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .radio-card {
+      min-width: 130px;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .radio-card:has(input:checked) {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .radio-card input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+    }
+
+    .radio-title {
+      font-weight: 700;
+    }
+
+    .opinion-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text);
+      font-weight: 700;
+      margin: 4px 0 8px;
+    }
+
+    .opinion-tip {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .opinion {
+      width: 100%;
+      min-height: 88px;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      outline: none;
+      resize: none;
+      padding: 10px;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    .opinion.error {
+      border-color: var(--danger);
+      background: #fffafa;
+    }
+
+    .error-text {
+      display: none;
+      margin-top: 6px;
+      color: var(--danger);
+      font-size: 12px;
+    }
+
+    .error-text.show {
+      display: block;
+    }
+
+    .modal-actions {
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 0 20px;
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      top: 28px;
+      z-index: 40;
+      display: none;
+      min-width: 220px;
+      padding: 10px 16px;
+      border-radius: 4px;
+      color: #fff;
+      background: rgba(31, 45, 61, .92);
+      text-align: center;
+      transform: translateX(-50%);
+      box-shadow: 0 8px 22px rgba(15, 35, 58, .18);
+    }
+
+    .toast.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="appShell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">考</span><span>考试业务管理</span></div>
+      <nav class="nav">
+        <div class="nav-item active">报名管理</div>
+        <div class="nav-sub active">申请纠错审核</div>
+        <div class="nav-sub">考生信息管理</div>
+        <div class="nav-item">考试计划</div>
+        <div class="nav-item">档案管理</div>
+      </nav>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb">报名管理 / 申请纠错审核</div>
+        <div class="user">审核员：省厅管理员</div>
+      </header>
+      <div class="page">
+        <section class="panel">
+          <div class="panel-head">
+            <div class="panel-title">申请纠错审核列表</div>
+            <button class="btn primary" type="button">批量导出</button>
+          </div>
+          <div class="filters">
+            <input class="filter-input" placeholder="申请人姓名" aria-label="申请人姓名">
+            <input class="filter-input" placeholder="身份证号" aria-label="身份证号">
+            <select class="filter-input" aria-label="审核状态">
+              <option>全部状态</option>
+              <option selected>待审核</option>
+              <option>审核通过</option>
+              <option>审核不通过</option>
+            </select>
+            <input class="filter-input" placeholder="提交日期" aria-label="提交日期">
+            <button class="btn primary" type="button">查询</button>
+            <button class="btn" type="button">重置</button>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>申请编号</th>
+                <th>申请人</th>
+                <th>身份证号</th>
+                <th>申请事项</th>
+                <th>提交时间</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>JZ20260623001</td>
+                <td>张三</td>
+                <td>360102199001011234</td>
+                <td>身份信息及证书日期纠错</td>
+                <td>2026-06-23 14:18</td>
+                <td><span class="tag pending">待审核</span></td>
+                <td><button class="link-btn audit-trigger" type="button">审核</button></td>
+              </tr>
+              <tr>
+                <td>JZ20260623002</td>
+                <td>李四</td>
+                <td>360102198812126789</td>
+                <td>照片上传及单位类型纠错</td>
+                <td>2026-06-23 10:42</td>
+                <td><span class="tag pending">待审核</span></td>
+                <td><button class="link-btn audit-trigger" type="button">审核</button></td>
+              </tr>
+              <tr>
+                <td>JZ20260622008</td>
+                <td>王五</td>
+                <td>360102199205206543</td>
+                <td>身份证号码纠错</td>
+                <td>2026-06-22 16:05</td>
+                <td><span class="tag rejected">审核不通过</span></td>
+                <td><button class="link-btn" type="button">查看</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="table-footer">
+            <span>共 3 条记录，待审核 2 条</span>
+            <div class="pager">
+              <button class="btn" type="button">上一页</button>
+              <span class="page-num">1</span>
+              <button class="btn" type="button">下一页</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="auditOverlay" aria-hidden="true">
+    <section class="audit-modal" role="dialog" aria-modal="true" aria-labelledby="auditTitle">
+      <header class="modal-head">
+        <div class="modal-title" id="auditTitle">申请纠错审核</div>
+        <button class="close-btn" id="closeModal" type="button" aria-label="关闭">×</button>
+      </header>
+
+      <div class="modal-body">
+        <div class="content-stack">
+          <section class="card">
+            <div class="card-head">
+              <span>申请信息</span>
+              <span class="card-sub">用户提交的更正后信息，覆盖 Excel 纠错表字段</span>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">姓名</div>
+              <div class="info-value">张三</div>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">身份证号</div>
+              <div class="info-value">360102199001011234</div>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">性别</div>
+              <div class="info-value">男</div>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">学历</div>
+              <div class="info-value">本科</div>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">初次发证日期</div>
+              <div class="info-value">2023-06-12</div>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">有效期开始时间</div>
+              <div class="info-value">2023-06-12</div>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">有效期结束时间</div>
+              <div class="info-value">2029-06-11</div>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">复审时间</div>
+              <div class="info-value">2026-06-11</div>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">实际复审时间</div>
+              <div class="info-value">2026-06-10</div>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">照片</div>
+              <div class="info-value">已上传正确照片：证件照.jpg</div>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">单位类型</div>
+              <div class="info-value">主要负责人</div>
+            </div>
+            <div class="info-grid">
+              <div class="info-label">备注</div>
+              <div class="info-value remark">身份证号码录入时末位有误，同时补充证书有效期和复审时间证明材料，请按佐证材料核验后更正。</div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-head">
+              <span>佐证材料</span>
+              <span class="card-sub">共 4 份</span>
+            </div>
+            <div class="material-list">
+              <div class="material-item">
+                <div class="file-icon">PDF</div>
+                <div>
+                  <div class="file-name">身份证正反面扫描件.pdf</div>
+                  <div class="file-meta">2.4MB · 2026-06-23 14:17</div>
+                </div>
+                <button class="btn" type="button">查看</button>
+              </div>
+              <div class="material-item">
+                <div class="file-icon">JPG</div>
+                <div>
+                  <div class="file-name">证件照.jpg</div>
+                  <div class="file-meta">860KB · 2026-06-23 14:17</div>
+                </div>
+                <button class="btn" type="button">查看</button>
+              </div>
+              <div class="material-item">
+                <div class="file-icon">PDF</div>
+                <div>
+                  <div class="file-name">证书有效期证明.pdf</div>
+                  <div class="file-meta">1.6MB · 2026-06-23 14:17</div>
+                </div>
+                <button class="btn" type="button">查看</button>
+              </div>
+              <div class="material-item">
+                <div class="file-icon">PDF</div>
+                <div>
+                  <div class="file-name">单位类型证明.pdf</div>
+                  <div class="file-meta">980KB · 2026-06-23 14:17</div>
+                </div>
+                <button class="btn" type="button">查看</button>
+              </div>
+            </div>
+            <div class="preview-box">
+              <div>
+                <div class="preview-title">材料预览区</div>
+                <div>点击右侧“查看”后在此处预览图片或 PDF</div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section class="card audit-card">
+          <div class="card-head">
+            <span>审核处理</span>
+            <span class="card-sub">选择审核结果后点击底部确认</span>
+          </div>
+          <div class="audit-body">
+            <div class="radio-group" role="radiogroup" aria-label="审核结果">
+              <label class="radio-card">
+                <input type="radio" name="auditResult" value="pass" checked>
+                <span class="radio-title">通过</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="auditResult" value="reject">
+                <span class="radio-title">不通过</span>
+              </label>
+            </div>
+            <label class="opinion-label" for="auditOpinion">
+              <span>审核意见</span>
+              <span class="opinion-tip" id="opinionTip">不通过时必填</span>
+            </label>
+            <textarea class="opinion" id="auditOpinion" maxlength="200" placeholder="请输入审核意见，最多 200 字"></textarea>
+            <div class="error-text" id="opinionError">选择“不通过”时，请填写审核意见</div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="modal-actions">
+        <button class="btn" id="cancelAudit" type="button">取消</button>
+        <button class="btn primary" id="confirmAudit" type="button">确认</button>
+      </footer>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const overlay = document.getElementById("auditOverlay");
+    const appShell = document.getElementById("appShell");
+    const closeModal = document.getElementById("closeModal");
+    const cancelAudit = document.getElementById("cancelAudit");
+    const confirmAudit = document.getElementById("confirmAudit");
+    const opinion = document.getElementById("auditOpinion");
+    const opinionError = document.getElementById("opinionError");
+    const toast = document.getElementById("toast");
+
+    function selectedResult() {
+      return document.querySelector("input[name='auditResult']:checked").value;
+    }
+
+    function resetAuditForm() {
+      document.querySelector("input[name='auditResult'][value='pass']").checked = true;
+      opinion.value = "";
+      validateOpinion();
+    }
+
+    function openAuditModal() {
+      resetAuditForm();
+      overlay.classList.add("show");
+      overlay.setAttribute("aria-hidden", "false");
+      appShell.setAttribute("aria-hidden", "true");
+      document.body.classList.add("modal-open");
+      closeModal.focus();
+    }
+
+    function closeAuditModal() {
+      overlay.classList.remove("show");
+      overlay.setAttribute("aria-hidden", "true");
+      appShell.removeAttribute("aria-hidden");
+      document.body.classList.remove("modal-open");
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1800);
+    }
+
+    function validateOpinion() {
+      const needOpinion = selectedResult() === "reject";
+      const invalid = needOpinion && !opinion.value.trim();
+      opinion.classList.toggle("error", invalid);
+      opinionError.classList.toggle("show", invalid);
+      return !invalid;
+    }
+
+    document.querySelectorAll("input[name='auditResult']").forEach(radio => {
+      radio.addEventListener("change", validateOpinion);
+    });
+
+    document.querySelectorAll(".audit-trigger").forEach(button => {
+      button.addEventListener("click", openAuditModal);
+    });
+
+    opinion.addEventListener("input", validateOpinion);
+    closeModal.addEventListener("click", closeAuditModal);
+    cancelAudit.addEventListener("click", closeAuditModal);
+
+    confirmAudit.addEventListener("click", () => {
+      if (!validateOpinion()) {
+        opinion.focus();
+        return;
+      }
+      const resultText = selectedResult() === "pass" ? "通过" : "不通过";
+      closeAuditModal();
+      showToast(`审核结果已确认：${resultText}`);
+    });
+
+    overlay.addEventListener("click", event => {
+      if (event.target === overlay) {
+        closeAuditModal();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && overlay.classList.contains("show")) {
+        closeAuditModal();
+      }
+    });
+  </script>
+</body>
+</html>

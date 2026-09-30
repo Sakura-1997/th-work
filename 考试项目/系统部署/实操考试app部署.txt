@@ -1,0 +1,30 @@
+https://10.10.4.1/  10.10.56.72  许向东  密码都是  Ai@tellhow2026123
+
+docker compose在/home/app下面
+
+#实操部署
+su root
+cd /home/admin
+unzip dist.zip
+rm -rf /home/app/sc-dist
+mv dist /home/app/sc-dist
+cd /home/app
+docker-compose down nginx_sc
+docker-compose up -d nginx_sc
+
+
+
+#自建ssl证书
+openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
+-keyout /home/app/nginx/conf/ssl/server.key \
+-out /home/app/nginx/conf/ssl/server.crt \
+-subj "/CN=10.10.56.72" \
+-addext "subjectAltName=IP:10.10.56.72"
+
+#nginx配置
+listen xxx ssl
+
+error_page 497 301 =307 https://$host:$server_port$request_uri;
+
+ssl_certificate     /etc/nginx/ssl/server.crt;
+ssl_certificate_key /etc/nginx/ssl/server.key;

@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>教室管理与考勤设备管理原型</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root {
+      --bg: #f3f3f4;
+      --panel: #ffffff;
+      --line: #e5e5e5;
+      --line-dark: #d8d8d8;
+      --text: #222;
+      --muted: #666;
+      --placeholder: #b8b8b8;
+      --primary: #1677ff;
+      --primary-dark: #0f63d6;
+      --danger: #d93026;
+      --warning: #d48806;
+      --success: #27864f;
+      --table-head: #fafafa;
+      --shadow: 0 10px 26px rgba(0, 0, 0, .12);
+      --radius: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 1280px;
+      color: var(--text);
+      background: var(--bg);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .topbar {
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      background: #fff;
+      color: var(--muted);
+    }
+
+    .breadcrumb {
+      font-size: 16px;
+    }
+
+    .user {
+      color: #444;
+    }
+
+    .page {
+      padding: 20px 18px 30px;
+    }
+
+    .tabs-panel,
+    .search-panel,
+    .table-panel {
+      background: var(--panel);
+    }
+
+    .tabs-panel {
+      height: 84px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tabs {
+      display: flex;
+      align-items: flex-end;
+      gap: 38px;
+      height: 84px;
+    }
+
+    .tab {
+      height: 84px;
+      min-width: 126px;
+      border: 0;
+      border-bottom: 3px solid transparent;
+      background: transparent;
+      color: #555;
+      font-size: 16px;
+      text-align: center;
+      padding: 0 18px;
+    }
+
+    .tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      font-weight: 700;
+    }
+
+    .search-panel {
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 46px;
+      margin-bottom: 20px;
+    }
+
+    .search-fields {
+      display: flex;
+      align-items: center;
+      gap: 54px;
+      flex-wrap: wrap;
+    }
+
+    .form-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+
+    .form-item label {
+      color: #222;
+      font-size: 15px;
+    }
+
+    .input,
+    .select {
+      width: 230px;
+      height: 40px;
+      border: 1px solid #d6d6d6;
+      border-radius: 6px;
+      color: #222;
+      background: #fff;
+      padding: 0 14px;
+      outline: none;
+    }
+
+    .select {
+      padding-right: 34px;
+    }
+
+    .input::placeholder {
+      color: var(--placeholder);
+    }
+
+    .input:focus,
+    .select:focus,
+    .textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, .10);
+    }
+
+    .search-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .btn {
+      height: 40px;
+      min-width: 86px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid #d6d6d6;
+      border-radius: 6px;
+      background: #fff;
+      color: #444;
+      padding: 0 16px;
+      white-space: nowrap;
+    }
+
+    .btn.primary {
+      color: #fff;
+      background: var(--primary);
+      border-color: var(--primary);
+      font-weight: 700;
+      box-shadow: 0 6px 14px rgba(22, 119, 255, .20);
+    }
+
+    .btn.primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn.danger {
+      color: #fff;
+      background: var(--danger);
+      border-color: var(--danger);
+    }
+
+    .btn.text {
+      min-width: auto;
+      height: auto;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--primary);
+      box-shadow: none;
+    }
+
+    .btn.text.danger-text {
+      color: var(--danger);
+    }
+
+    .btn.text + .btn.text {
+      margin-left: 12px;
+    }
+
+    .table-panel {
+      min-height: 690px;
+      padding: 14px 15px 20px;
+    }
+
+    .table-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 44px;
+      padding: 0 0 12px;
+    }
+
+    .table-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .table-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      background: #fff;
+    }
+
+    th,
+    td {
+      height: 51px;
+      border-bottom: 1px solid var(--line);
+      padding: 0 12px;
+      text-align: center;
+      vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    th {
+      height: 48px;
+      background: var(--table-head);
+      color: #1f1f1f;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    tbody tr:hover {
+      background: #fbfdff;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 52px;
+      height: 24px;
+      padding: 0 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .tag.ok {
+      color: var(--success);
+      background: #edf8f1;
+      border-color: #cdebd8;
+    }
+
+    .tag.warn {
+      color: var(--warning);
+      background: #fff7e6;
+      border-color: #ffe0a3;
+    }
+
+    .tag.stop {
+      color: var(--danger);
+      background: #fff1f0;
+      border-color: #ffccc7;
+    }
+
+    .tag.idle {
+      color: #666;
+      background: #f0f0f0;
+      border-color: #dedede;
+    }
+
+    .tab-page {
+      display: none;
+    }
+
+    .tab-page.active {
+      display: block;
+    }
+
+    .pager {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      color: #666;
+      padding: 8px 24px 0;
+    }
+
+    .page-btn,
+    .page-arrow,
+    .page-size {
+      height: 30px;
+      min-width: 30px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background: transparent;
+      color: #555;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8px;
+    }
+
+    .page-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: #fff;
+    }
+
+    .page-arrow {
+      color: #b8b8b8;
+      font-size: 18px;
+    }
+
+    .page-size {
+      border-color: #d6d6d6;
+      background: #fff;
+      padding: 0 12px;
+    }
+
+    .modal-mask {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, .42);
+      z-index: 20;
+    }
+
+    .modal-mask.open {
+      display: flex;
+    }
+
+    .modal {
+      width: 760px;
+      max-height: 86vh;
+      display: none;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .modal.open {
+      display: grid;
+    }
+
+    .modal.small {
+      width: 460px;
+    }
+
+    .modal-head {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .close {
+      width: 28px;
+      height: 28px;
+      border: 0;
+      background: transparent;
+      color: #999;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .modal-body {
+      overflow: auto;
+      padding: 22px;
+    }
+
+    .modal-foot {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 0 22px;
+      border-top: 1px solid var(--line);
+      background: #fafafa;
+    }
+
+    .detail-grid,
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 24px;
+    }
+
+    .detail-item {
+      min-height: 36px;
+      display: grid;
+      grid-template-columns: 108px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .detail-label {
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .detail-value {
+      color: #222;
+      overflow-wrap: anywhere;
+    }
+
+    .section-title {
+      margin: 22px 0 12px;
+      padding-left: 10px;
+      border-left: 3px solid var(--primary);
+      font-weight: 700;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 8px;
+    }
+
+    .form-row.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-row label {
+      color: #333;
+    }
+
+    .textarea {
+      width: 100%;
+      min-height: 78px;
+      padding: 10px 12px;
+      border: 1px solid #d6d6d6;
+      border-radius: 6px;
+      resize: vertical;
+      outline: none;
+    }
+
+    .mini-table {
+      border: 1px solid var(--line);
+    }
+
+    .mini-table th,
+    .mini-table td {
+      height: 40px;
+      font-size: 13px;
+    }
+
+    .notice {
+      padding: 12px 14px;
+      color: #345;
+      background: #f5f9ff;
+      border: 1px solid #d8e9ff;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="breadcrumb">首页 / 培训机构 / 教室与考勤设备管理</div>
+    <div class="user">管理员⌄</div>
+  </header>
+
+  <main class="page">
+    <section class="tabs-panel">
+      <div class="tabs">
+        <button class="tab active" data-tab="room">教室管理</button>
+        <button class="tab" data-tab="device">考勤设备管理</button>
+      </div>
+    </section>
+
+    <section class="search-panel">
+      <div class="search-fields" id="roomSearch">
+        <div class="form-item">
+          <label>教室名称：</label>
+          <input class="input filter-input" placeholder="请输入">
+        </div>
+        <div class="form-item">
+          <label>教室类型：</label>
+          <select class="select filter-input">
+            <option value="">全部</option>
+            <option>理论教室</option>
+            <option>实操教室</option>
+            <option>其他</option>
+          </select>
+        </div>
+        <div class="form-item">
+          <label>使用状态：</label>
+          <select class="select filter-input">
+            <option value="">全部</option>
+            <option>启用</option>
+            <option>停用</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="search-fields hidden" id="deviceSearch">
+        <div class="form-item">
+          <label>设备编号：</label>
+          <input class="input filter-input" placeholder="请输入">
+        </div>
+        <div class="form-item">
+          <label>设备状态：</label>
+          <select class="select filter-input">
+            <option value="">全部</option>
+            <option>启用</option>
+            <option>停用</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="search-actions">
+        <button class="btn primary" id="queryBtn">查询</button>
+        <button class="btn" id="resetBtn">重置</button>
+      </div>
+    </section>
+
+    <section class="table-panel">
+      <div class="tab-page active" id="roomPage">
+        <div class="table-toolbar">
+          <div class="table-title">教室列表</div>
+          <div class="table-actions">
+            <button class="btn primary" data-modal="roomEditModal">新增教室</button>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 70px">序号</th>
+              <th>教室名称</th>
+              <th>教室地址</th>
+              <th style="width: 110px">容量</th>
+              <th style="width: 130px">教室类型</th>
+              <th style="width: 110px">使用状态</th>
+              <th style="width: 150px">当前设备</th>
+              <th style="width: 160px">今日占用</th>
+              <th style="width: 190px">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>第一教室</td>
+              <td>机构三楼 301</td>
+              <td>48 人</td>
+              <td>理论教室</td>
+              <td><span class="tag ok">启用</span></td>
+              <td>DH-KQ-1001</td>
+              <td>09:00-11:30</td>
+              <td>
+                <button class="btn text" data-modal="roomViewModal">查看</button>
+                <button class="btn text" data-modal="roomEditModal">编辑</button>
+                <button class="btn text danger-text" data-modal="roomStopModal">停用</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>第二教室</td>
+              <td>机构三楼 302</td>
+              <td>42 人</td>
+              <td>理论教室</td>
+              <td><span class="tag ok">启用</span></td>
+              <td>DH-KQ-1002</td>
+              <td>无</td>
+              <td>
+                <button class="btn text" data-modal="roomViewModal">查看</button>
+                <button class="btn text" data-modal="roomEditModal">编辑</button>
+                <button class="btn text danger-text" data-modal="roomStopModal">停用</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>实操培训室</td>
+              <td>机构一楼 A 区</td>
+              <td>30 人</td>
+              <td>实操教室</td>
+              <td><span class="tag ok">启用</span></td>
+              <td>DH-KQ-2001</td>
+              <td>14:00-17:00</td>
+              <td>
+                <button class="btn text" data-modal="roomViewModal">查看</button>
+                <button class="btn text" data-modal="roomEditModal">编辑</button>
+                <button class="btn text danger-text" data-modal="roomStopModal">停用</button>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>临时教室</td>
+              <td>机构二楼 205</td>
+              <td>36 人</td>
+              <td>其他</td>
+              <td><span class="tag idle">停用</span></td>
+              <td>未部署</td>
+              <td>无</td>
+              <td>
+                <button class="btn text" data-modal="roomViewModal">查看</button>
+                <button class="btn text" data-modal="roomEditModal">编辑</button>
+                <button class="btn text" data-modal="roomEnableModal">启用</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pager">
+          <button class="page-arrow">‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <span>...</span>
+          <button class="page-btn">8</button>
+          <button class="page-arrow">›</button>
+          <button class="page-size">10 条/页⌄</button>
+        </div>
+      </div>
+
+      <div class="tab-page" id="devicePage">
+        <div class="table-toolbar">
+          <div class="table-title">考勤设备列表</div>
+          <div class="table-actions">
+            <button class="btn">同步设备</button>
+            <button class="btn primary" data-modal="deviceEditModal">新增设备</button>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 70px">序号</th>
+              <th>设备编号</th>
+              <th>设备名称</th>
+              <th style="width: 120px">设备状态</th>
+              <th>部署教室</th>
+              <th style="width: 190px">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>DH-KQ-1001</td>
+              <td>一号人脸考勤机</td>
+              <td><span class="tag ok">启用</span></td>
+              <td>第一教室</td>
+              <td>
+                <button class="btn text" data-modal="deviceViewModal">查看</button>
+                <button class="btn text" data-modal="deviceEditModal">编辑</button>
+                <button class="btn text danger-text" data-modal="deviceStopModal">停用</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>DH-KQ-1002</td>
+              <td>二号人脸考勤机</td>
+              <td><span class="tag idle">停用</span></td>
+              <td>第二教室</td>
+              <td>
+                <button class="btn text" data-modal="deviceViewModal">查看</button>
+                <button class="btn text" data-modal="deviceEditModal">编辑</button>
+                <button class="btn text" data-modal="deviceEnableModal">启用</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>DH-KQ-2001</td>
+              <td>实操区考勤机</td>
+              <td><span class="tag ok">启用</span></td>
+              <td>实操培训室</td>
+              <td>
+                <button class="btn text" data-modal="deviceViewModal">查看</button>
+                <button class="btn text" data-modal="deviceEditModal">编辑</button>
+                <button class="btn text danger-text" data-modal="deviceStopModal">停用</button>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>DH-KQ-3001</td>
+              <td>三号人脸考勤机</td>
+              <td><span class="tag idle">停用</span></td>
+              <td>未部署</td>
+              <td>
+                <button class="btn text" data-modal="deviceViewModal">查看</button>
+                <button class="btn text" data-modal="deviceEditModal">编辑</button>
+                <button class="btn text" data-modal="deviceEnableModal">启用</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pager">
+          <button class="page-arrow">‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <span>...</span>
+          <button class="page-btn">5</button>
+          <button class="page-arrow">›</button>
+          <button class="page-size">10 条/页⌄</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-mask" id="modalMask">
+    <section class="modal" id="roomViewModal">
+      <div class="modal-head">
+        <div class="modal-title">教室详情</div>
+        <button class="close" data-close>×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">教室名称：</div><div class="detail-value">第二教室</div></div>
+          <div class="detail-item"><div class="detail-label">教室类型：</div><div class="detail-value">理论教室</div></div>
+          <div class="detail-item"><div class="detail-label">教室地址：</div><div class="detail-value">机构三楼 302</div></div>
+          <div class="detail-item"><div class="detail-label">容量：</div><div class="detail-value">42 人</div></div>
+          <div class="detail-item"><div class="detail-label">使用状态：</div><div class="detail-value"><span class="tag ok">启用</span></div></div>
+          <div class="detail-item"><div class="detail-label">当前设备：</div><div class="detail-value">DH-KQ-1002</div></div>
+        </div>
+        <div class="section-title">设备部署历史</div>
+        <table class="mini-table">
+          <thead>
+            <tr>
+              <th>设备编号</th>
+              <th>部署说明</th>
+              <th>生效时间</th>
+              <th>失效时间</th>
+              <th>记录状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DH-KQ-1002</td>
+              <td>当前部署</td>
+              <td>2026-07-01 08:00</td>
+              <td>-</td>
+              <td><span class="tag ok">有效</span></td>
+            </tr>
+            <tr>
+              <td>DH-KQ-0808</td>
+              <td>历史部署</td>
+              <td>2026-06-12 08:00</td>
+              <td>2026-07-01 07:59</td>
+              <td><span class="tag idle">已终止</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-foot">
+        <button class="btn" data-close>关闭</button>
+      </div>
+    </section>
+
+    <section class="modal" id="roomEditModal">
+      <div class="modal-head">
+        <div class="modal-title">编辑教室</div>
+        <button class="close" data-close>×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-row">
+            <label>教室名称</label>
+            <input class="input" value="第二教室">
+          </div>
+          <div class="form-row">
+            <label>教室类型</label>
+            <select class="select">
+              <option>理论教室</option>
+              <option>实操教室</option>
+              <option>其他</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>教室容量</label>
+            <input class="input" value="42">
+          </div>
+          <div class="form-row">
+            <label>使用状态</label>
+            <select class="select">
+              <option>启用</option>
+              <option>停用</option>
+            </select>
+          </div>
+          <div class="form-row full">
+            <label>教室地址</label>
+            <input class="input" value="机构三楼 302">
+          </div>
+          <div class="form-row full">
+            <label>备注</label>
+            <textarea class="textarea">线下培训教室，排课时可选择。</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn" data-close>取消</button>
+        <button class="btn primary" data-toast="教室信息已保存">保存</button>
+      </div>
+    </section>
+
+    <section class="modal small" id="roomStopModal">
+      <div class="modal-head">
+        <div class="modal-title">停用教室</div>
+        <button class="close" data-close>×</button>
+      </div>
+      <div class="modal-body">
+        <div class="notice">停用后，该教室不能被新排课选择；历史排课、设备部署和打卡记录仍保留。</div>
+        确认停用“第二教室”吗？
+      </div>
+      <div class="modal-foot">
+        <button class="btn" data-close>取消</button>
+        <button class="btn danger" data-toast="教室已停用">确认停用</button>
+      </div>
+    </section>
+
+    <section class="modal small" id="roomEnableModal">
+      <div class="modal-head">
+        <div class="modal-title">启用教室</div>
+        <button class="close" data-close>×</button>
+      </div>
+      <div class="modal-body">确认启用“临时教室”吗？启用后可在排课中选择。</div>
+      <div class="modal-foot">
+        <button class="btn" data-close>取消</button>
+        <button class="btn primary" data-toast="教室已启用">确认启用</button>
+      </div>
+    </section>
+
+    <section class="modal" id="deviceViewModal">
+      <div class="modal-head">
+        <div class="modal-title">设备详情</div>
+        <button class="close" data-close>×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-item"><div class="detail-label">设备编号：</div><div class="detail-value">DH-KQ-1002</div></div>
+          <div class="detail-item"><div class="detail-label">设备名称：</div><div class="detail-value">二号人脸考勤机</div></div>
+          <div class="detail-item"><div class="detail-label">设备状态：</div><div class="detail-value"><span class="tag idle">停用</span></div></div>
+          <div class="detail-item"><div class="detail-label">部署教室：</div><div class="detail-value">第二教室</div></div>
+          <div class="detail-item"><div class="detail-label">接入来源：</div><div class="detail-value">大华平台</div></div>
+          <div class="detail-item"><div class="detail-label">平台编号：</div><div class="detail-value">DH-KQ-1002</div></div>
+        </div>
+        <div class="section-title">部署历史</div>
+        <table class="mini-table">
+          <thead>
+            <tr>
+              <th>教室</th>
+              <th>生效时间</th>
+              <th>失效时间</th>
+              <th>记录状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>第二教室</td>
+              <td>2026-07-01 08:00</td>
+              <td>-</td>
+              <td><span class="tag ok">有效</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-foot">
+        <button class="btn" data-close>关闭</button>
+      </div>
+    </section>
+
+    <section class="modal" id="deviceEditModal">
+      <div class="modal-head">
+        <div class="modal-title">编辑设备</div>
+        <button class="close" data-close>×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-row">
+            <label>设备编号</label>
+            <input class="input" value="DH-KQ-1002" readonly>
+          </div>
+          <div class="form-row">
+            <label>设备名称</label>
+            <input class="input" value="二号人脸考勤机">
+          </div>
+          <div class="form-row">
+            <label>设备状态</label>
+            <select class="select">
+              <option>启用</option>
+              <option>停用</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>设备来源</label>
+            <input class="input" value="大华平台" readonly>
+          </div>
+          <div class="form-row full">
+            <label>备注</label>
+            <textarea class="textarea">设备停用后不参与新的打卡核验，历史记录保留。</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn" data-close>取消</button>
+        <button class="btn primary" data-toast="设备信息已保存">保存</button>
+      </div>
+    </section>
+
+    <section class="modal small" id="deviceStopModal">
+      <div class="modal-head">
+        <div class="modal-title">停用设备</div>
+        <button class="close" data-close>×</button>
+      </div>
+      <div class="modal-body">
+        <div class="notice">停用后，该设备不参与新的打卡核验；历史部署和打卡记录仍保留。</div>
+        确认停用设备“DH-KQ-1001”吗？
+      </div>
+      <div class="modal-foot">
+        <button class="btn" data-close>取消</button>
+        <button class="btn danger" data-toast="设备已停用">确认停用</button>
+      </div>
+    </section>
+
+    <section class="modal small" id="deviceEnableModal">
+      <div class="modal-head">
+        <div class="modal-title">启用设备</div>
+        <button class="close" data-close>×</button>
+      </div>
+      <div class="modal-body">
+        <div class="notice">启用后，该设备可在部署到教室后参与打卡核验。</div>
+        确认启用设备“DH-KQ-3001”吗？
+      </div>
+      <div class="modal-foot">
+        <button class="btn" data-close>取消</button>
+        <button class="btn primary" data-toast="设备已启用">确认启用</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const pages = {
+      room: document.getElementById('roomPage'),
+      device: document.getElementById('devicePage')
+    };
+    const searchBlocks = {
+      room: document.getElementById('roomSearch'),
+      device: document.getElementById('deviceSearch')
+    };
+    const mask = document.getElementById('modalMask');
+    let activeModal = null;
+
+    function setTab(name) {
+      tabs.forEach((tab) => tab.classList.toggle('active', tab.dataset.tab === name));
+      Object.entries(pages).forEach(([key, page]) => page.classList.toggle('active', key === name));
+      Object.entries(searchBlocks).forEach(([key, block]) => block.classList.toggle('hidden', key !== name));
+    }
+
+    function textFromCell(row, index) {
+      return row ? row.cells[index].innerText.trim() : '';
+    }
+
+    function statusTag(status) {
+      const className = status === '启用' || status === '有效' ? 'ok' : 'idle';
+      return `<span class="tag ${className}">${status}</span>`;
+    }
+
+    function setValue(field, value) {
+      if (!field) return;
+      field.value = value;
+    }
+
+    function hydrateRoomModal(id, row) {
+      const room = {
+        name: textFromCell(row, 1),
+        address: textFromCell(row, 2),
+        capacity: textFromCell(row, 3),
+        type: textFromCell(row, 4),
+        status: textFromCell(row, 5),
+        device: textFromCell(row, 6)
+      };
+      const isCreate = !row;
+
+      if (id === 'roomViewModal' && row) {
+        const values = document.querySelectorAll('#roomViewModal .detail-value');
+        values[0].textContent = room.name;
+        values[1].textContent = room.type;
+        values[2].textContent = room.address;
+        values[3].textContent = room.capacity;
+        values[4].innerHTML = statusTag(room.status);
+        values[5].textContent = room.device;
+
+        const history = document.querySelector('#roomViewModal .mini-table tbody');
+        history.innerHTML = room.device === '未部署'
+          ? '<tr><td colspan="5">暂无部署记录</td></tr>'
+          : `<tr><td>${room.device}</td><td>当前部署</td><td>2026-07-01 08:00</td><td>-</td><td>${statusTag('有效')}</td></tr><tr><td>DH-KQ-0808</td><td>历史部署</td><td>2026-06-12 08:00</td><td>2026-07-01 07:59</td><td>${statusTag('已终止')}</td></tr>`;
+      }
+
+      if (id === 'roomEditModal') {
+        document.querySelector('#roomEditModal .modal-title').textContent = isCreate ? '新增教室' : '编辑教室';
+        const fields = document.querySelectorAll('#roomEditModal .input, #roomEditModal .select, #roomEditModal .textarea');
+        setValue(fields[0], isCreate ? '' : room.name);
+        setValue(fields[1], isCreate ? '理论教室' : room.type);
+        setValue(fields[2], isCreate ? '' : room.capacity.replace(' 人', ''));
+        setValue(fields[3], isCreate ? '启用' : room.status);
+        setValue(fields[4], isCreate ? '' : room.address);
+        setValue(fields[5], isCreate ? '' : '线下培训教室，排课时可选择。');
+      }
+
+      if (id === 'roomStopModal' && row) {
+        document.querySelector('#roomStopModal .modal-body').innerHTML = `<div class="notice">停用后，该教室不能被新排课选择；历史排课、设备部署和打卡记录仍保留。</div>确认停用“${room.name}”吗？`;
+      }
+
+      if (id === 'roomEnableModal' && row) {
+        document.querySelector('#roomEnableModal .modal-body').textContent = `确认启用“${room.name}”吗？启用后可在排课中选择。`;
+      }
+    }
+
+    function hydrateDeviceModal(id, row) {
+      const device = {
+        code: textFromCell(row, 1),
+        name: textFromCell(row, 2),
+        status: textFromCell(row, 3),
+        room: textFromCell(row, 4)
+      };
+      const isCreate = !row;
+
+      if (id === 'deviceViewModal' && row) {
+        const values = document.querySelectorAll('#deviceViewModal .detail-value');
+        values[0].textContent = device.code;
+        values[1].textContent = device.name;
+        values[2].innerHTML = statusTag(device.status);
+        values[3].textContent = device.room;
+        values[4].textContent = '大华平台';
+        values[5].textContent = device.code;
+
+        const history = document.querySelector('#deviceViewModal .mini-table tbody');
+        history.innerHTML = device.room === '未部署'
+          ? '<tr><td colspan="4">暂无部署记录</td></tr>'
+          : `<tr><td>${device.room}</td><td>2026-07-01 08:00</td><td>-</td><td>${statusTag('有效')}</td></tr>`;
+      }
+
+      if (id === 'deviceEditModal') {
+        document.querySelector('#deviceEditModal .modal-title').textContent = isCreate ? '新增设备' : '编辑设备';
+        const fields = document.querySelectorAll('#deviceEditModal .input, #deviceEditModal .select, #deviceEditModal .textarea');
+        setValue(fields[0], isCreate ? '' : device.code);
+        setValue(fields[1], isCreate ? '' : device.name);
+        setValue(fields[2], isCreate ? '启用' : device.status);
+        setValue(fields[3], '大华平台');
+        setValue(fields[4], isCreate ? '' : '设备停用后不参与新的打卡核验，历史记录保留。');
+      }
+
+      if (id === 'deviceStopModal' && row) {
+        document.querySelector('#deviceStopModal .modal-body').innerHTML = `<div class="notice">停用后，该设备不参与新的打卡核验；历史部署和打卡记录仍保留。</div>确认停用设备“${device.code}”吗？`;
+      }
+
+      if (id === 'deviceEnableModal' && row) {
+        document.querySelector('#deviceEnableModal .modal-body').innerHTML = `<div class="notice">启用后，该设备可在部署到教室后参与打卡核验。</div>确认启用设备“${device.code}”吗？`;
+      }
+    }
+
+    function hydrateModal(id, trigger) {
+      const row = trigger.closest('tr');
+      if (id.startsWith('room')) hydrateRoomModal(id, row);
+      if (id.startsWith('device')) hydrateDeviceModal(id, row);
+    }
+
+    function openModal(id, trigger) {
+      if (trigger) hydrateModal(id, trigger);
+      activeModal = document.getElementById(id);
+      if (!activeModal) return;
+      document.querySelectorAll('.modal').forEach((modal) => modal.classList.remove('open'));
+      activeModal.classList.add('open');
+      mask.classList.add('open');
+    }
+
+    function closeModal() {
+      if (activeModal) activeModal.classList.remove('open');
+      mask.classList.remove('open');
+      activeModal = null;
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => setTab(tab.dataset.tab));
+    });
+
+    document.querySelectorAll('[data-modal]').forEach((button) => {
+      button.addEventListener('click', () => openModal(button.dataset.modal, button));
+    });
+
+    document.querySelectorAll('[data-close]').forEach((button) => {
+      button.addEventListener('click', closeModal);
+    });
+
+    mask.addEventListener('click', (event) => {
+      if (event.target === mask) closeModal();
+    });
+
+    document.querySelectorAll('[data-toast]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const message = button.dataset.toast;
+        closeModal();
+        window.setTimeout(() => alert(message), 80);
+      });
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      document.querySelectorAll('.filter-input').forEach((field) => {
+        field.value = '';
+      });
+    });
+  </script>
+</body>
+</html>

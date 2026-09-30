@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数据总览 - 查询统计原型</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23001529'/%3E%3Cpath d='M8 10h16M8 16h16M8 22h16' stroke='%231677ff' stroke-width='3'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --primary: #1677ff;
+      --nav: #001529;
+      --page: #f5f5f5;
+      --panel: #ffffff;
+      --line: #f0f0f0;
+      --line-strong: #d9d9d9;
+      --text: rgba(0, 0, 0, 0.88);
+      --text-secondary: rgba(0, 0, 0, 0.65);
+      --text-muted: rgba(0, 0, 0, 0.45);
+      --green: #52c41a;
+      --amber: #faad14;
+      --red: #ff4d4f;
+      --cyan: #13c2c2;
+      --sidebar-width: 224px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { max-width: 100%; scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      max-width: 100%;
+      margin: 0;
+      color: var(--text);
+      background: var(--page);
+      font: 14px/1.5 "Microsoft YaHei", "PingFang SC", sans-serif;
+      letter-spacing: 0;
+      overflow-x: clip;
+    }
+
+    button, input, select { font: inherit; letter-spacing: 0; }
+    button { cursor: pointer; }
+
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 20;
+      width: var(--sidebar-width);
+      color: rgba(255, 255, 255, 0.7);
+      background: var(--nav);
+      overflow-y: auto;
+    }
+
+    .brand {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      margin-right: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .nav { padding: 12px 0 24px; }
+    .nav-group { margin-top: 2px; }
+    .nav-item, .nav-parent {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      padding: 0 22px;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+    }
+    .nav-parent::after { content: "⌄"; margin-left: auto; color: rgba(255, 255, 255, 0.55); }
+    .nav-child { margin: 0 8px; padding-left: 52px; border-radius: 4px; }
+    .nav-child.active { color: #fff; background: var(--primary); }
+    .nav-item:hover, .nav-parent:hover { color: #fff; }
+
+    .app { min-width: 0; min-height: 100vh; margin-left: var(--sidebar-width); }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 12;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .breadcrumb { display: flex; align-items: center; gap: 10px; }
+    .breadcrumb span::after { content: "/"; margin-left: 10px; color: rgba(0, 0, 0, 0.25); }
+    .breadcrumb strong { color: var(--text-muted); font-weight: 400; }
+    .user { margin-left: auto; }
+
+    .page { min-width: 0; }
+    .page { padding: 24px; }
+
+    .filter-panel {
+      display: grid;
+      grid-template-columns: 240px minmax(360px, 1fr) auto auto;
+      gap: 20px;
+      align-items: end;
+      padding: 20px 22px;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .field select, .field input {
+      width: 100%;
+      min-width: 0;
+      height: 38px;
+      padding: 0 12px;
+      color: var(--text-secondary);
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      outline: none;
+      background: #fff;
+    }
+
+    .field select:focus, .field input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+    }
+
+    .date-range { display: grid; grid-template-columns: 1fr 22px 1fr; align-items: center; gap: 8px; }
+    .date-range span { text-align: center; color: var(--text-muted); }
+    .field-label { display: block; margin-bottom: 8px; color: var(--text); font-weight: 600; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+    .button {
+      height: 38px;
+      min-width: 88px;
+      padding: 0 18px;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      color: var(--text-secondary);
+      background: #fff;
+      font-weight: 600;
+    }
+    .button.primary { color: #fff; border-color: var(--primary); background: var(--primary); }
+    .button:hover { border-color: var(--primary); color: var(--primary); }
+    .button.primary:hover { color: #fff; background: #4096ff; }
+    .button:disabled { cursor: wait; opacity: 0.65; }
+    .search-icon { width: 13px; height: 13px; display: inline-block; margin-right: 7px; border: 2px solid currentColor; border-radius: 50%; position: relative; vertical-align: -2px; }
+    .search-icon::after { content: ""; position: absolute; right: -5px; bottom: -3px; width: 6px; height: 2px; background: currentColor; transform: rotate(45deg); transform-origin: left center; }
+
+    .dashboard-section { margin-top: 24px; scroll-margin-top: 76px; }
+    .section-heading { min-height: 34px; display: flex; align-items: baseline; margin-bottom: 12px; }
+    .section-heading h2 { margin: 0; font-size: 22px; line-height: 1.35; }
+    .section-heading p { margin: 0 0 0 auto; color: var(--text-muted); }
+
+    .metric-grid { display: grid; gap: 14px; margin-bottom: 14px; }
+    .metric-grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .metric-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .metric-grid-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .metric-grid.dynamic-payment { grid-template-columns: repeat(3, minmax(220px, 1fr)); max-width: 980px; }
+
+    .metric-card {
+      min-height: 122px;
+      padding: 22px 20px;
+      border-left: 4px solid var(--primary);
+      border-radius: 4px;
+      background: #fff;
+    }
+    .metric-card.green { border-left-color: var(--green); }
+    .metric-card.amber { border-left-color: var(--amber); }
+    .metric-card.red { border-left-color: var(--red); }
+    .metric-card.cyan { border-left-color: var(--cyan); }
+    .metric-label { display: block; color: var(--text-muted); }
+    .metric-value { display: flex; align-items: baseline; gap: 6px; margin-top: 12px; }
+    .metric-value strong { font-size: 30px; line-height: 1; }
+    .metric-value span { color: var(--text-muted); }
+
+    .overview-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(280px, 0.78fr); gap: 14px; margin-bottom: 14px; }
+    .analytics-grid { display: grid; gap: 14px; margin-bottom: 14px; }
+    .analytics-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .analytics-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .panel {
+      min-width: 0;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #fff;
+    }
+    .panel-head {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-bottom: 1px solid var(--line);
+    }
+    .panel-title { font-size: 17px; font-weight: 700; }
+    .panel-sub { margin-left: auto; color: var(--text-muted); font-size: 13px; }
+    .panel-body { position: relative; min-height: 300px; padding: 20px; }
+    .map-panel .panel-body { min-height: 480px; padding: 0; background: #eef1f3; }
+    .rank-panel .panel-body { min-height: 480px; }
+    .chart-panel .panel-body { min-height: 330px; }
+
+    .map-toolbar {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 3;
+      display: flex;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      background: #fff;
+    }
+    .map-toolbar button { height: 36px; padding: 0 16px; border: 0; color: var(--text-secondary); background: #fff; }
+    .map-toolbar button + button { border-left: 1px solid var(--line-strong); }
+    .map-toolbar button.active { color: #fff; background: var(--primary); }
+
+    .jiangxi-map { width: 100%; height: 480px; display: block; }
+    .city-shape { fill: #dfe5e8; stroke: #fff; stroke-width: 3; transition: fill 0.2s, filter 0.2s; }
+    .city-shape.has-value { fill: #ff7875; }
+    .city-group:hover .city-shape { filter: brightness(0.94); }
+    .city-name { fill: rgba(0, 0, 0, 0.78); font-size: 14px; font-weight: 700; text-anchor: middle; pointer-events: none; }
+    .city-value { fill: rgba(0, 0, 0, 0.62); font-size: 12px; text-anchor: middle; pointer-events: none; }
+
+    .rank-list { margin: 0; padding: 0; list-style: none; }
+    .rank-item { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 10px; min-height: 58px; border-bottom: 1px solid var(--line); }
+    .rank-item b { width: 26px; height: 26px; display: grid; place-items: center; color: var(--primary); background: #e6f4ff; }
+    .rank-item:first-child b { color: #fff; background: var(--amber); }
+    .rank-item strong { color: var(--primary); }
+
+    .empty-state { min-height: 220px; display: grid; place-items: center; color: var(--text-muted); text-align: center; }
+    .empty-icon { width: 54px; height: 38px; margin: 0 auto 12px; border: 2px solid #e5e7eb; border-radius: 4px 4px 8px 8px; position: relative; }
+    .empty-icon::before { content: ""; position: absolute; top: -9px; left: 13px; width: 24px; height: 14px; border: 2px solid #e5e7eb; border-bottom: 0; background: #fff; }
+
+    .legend { display: flex; justify-content: flex-end; gap: 18px; margin-bottom: 12px; color: var(--text-muted); font-size: 13px; }
+    .legend i { width: 10px; height: 10px; display: inline-block; margin-right: 6px; border-radius: 50%; background: var(--primary); }
+    .legend i.amber { background: var(--amber); }
+
+    .line-chart { width: 100%; height: 260px; display: block; }
+    .chart-grid { stroke: #f0f0f0; stroke-width: 1; }
+    .chart-axis { fill: var(--text-muted); font-size: 11px; }
+    .training-line { fill: none; stroke: var(--primary); stroke-width: 3; }
+    .rate-line { fill: none; stroke: var(--amber); stroke-width: 3; }
+    .chart-point-blue { fill: #fff; stroke: var(--primary); stroke-width: 2; }
+    .chart-point-amber { fill: #fff; stroke: var(--amber); stroke-width: 2; }
+
+    .bar-chart { display: grid; gap: 24px; padding: 24px 4px 8px; }
+    .bar-row { display: grid; grid-template-columns: 150px 1fr 56px; align-items: center; gap: 12px; }
+    .bar-label { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--text-secondary); text-align: right; }
+    .bar-track { height: 16px; background: #f5f5f5; }
+    .bar-fill { display: block; height: 100%; background: var(--primary); }
+    .bar-value { color: var(--text-secondary); }
+
+    .donut-layout { min-height: 260px; display: flex; align-items: center; justify-content: center; gap: 30px; }
+    .donut {
+      width: 174px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      position: relative;
+      background: conic-gradient(var(--primary) 0 var(--value), var(--green) var(--value) calc(var(--value) + var(--secondary)), var(--amber) 0);
+    }
+    .donut::after { content: ""; position: absolute; inset: 34px; border-radius: 50%; background: #fff; }
+    .donut-center { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; text-align: center; }
+    .donut-center strong { display: block; font-size: 26px; }
+    .donut-legend { display: grid; gap: 14px; color: var(--text-secondary); }
+    .donut-legend i { width: 10px; height: 10px; display: inline-block; margin-right: 8px; background: var(--primary); }
+    .donut-legend i.green { background: var(--green); }
+    .donut-legend i.amber { background: var(--amber); }
+
+    .table-panel { margin-bottom: 14px; }
+    .table-wrap { overflow-x: auto; padding: 0 20px 16px; }
+    table { width: 100%; min-width: 920px; border-collapse: collapse; table-layout: fixed; }
+    th, td { height: 58px; padding: 10px 14px; border-bottom: 1px solid var(--line); text-align: center; }
+    th { color: var(--text); background: #fafafa; font-weight: 700; }
+    td { color: var(--text-secondary); }
+    td.name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .status { display: inline-block; min-width: 52px; padding: 2px 8px; border: 1px solid #b7eb8f; color: #389e0d; background: #f6ffed; }
+    .status.off { border-color: #ffccc7; color: #cf1322; background: #fff2f0; }
+
+    .pagination { display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 0 22px 18px; color: var(--text-muted); }
+    .page-button { min-width: 32px; height: 32px; border: 1px solid var(--line-strong); border-radius: 4px; color: var(--text-secondary); background: #fff; }
+    .page-button.active { color: #fff; border-color: var(--primary); background: var(--primary); }
+    .page-size { height: 32px; margin-left: 6px; border: 1px solid var(--line-strong); border-radius: 4px; color: var(--text-secondary); background: #fff; }
+
+    .city-columns { min-height: 260px; display: flex; align-items: end; justify-content: space-around; gap: 24px; padding: 28px 36px 6px; border-bottom: 1px solid var(--line-strong); }
+    .city-column { flex: 1; max-width: 88px; text-align: center; }
+    .column-value { margin-bottom: 6px; color: var(--text-secondary); }
+    .column-bar { width: 42px; height: var(--height); margin: 0 auto 8px; background: var(--primary); }
+    .column-name { color: var(--text-muted); }
+
+    .certificate-donut { background: conic-gradient(var(--primary) 0 100%, var(--green) 0); }
+    .staff-donut { --value: 33.33%; --secondary: 50%; }
+
+    .payment-empty .panel-body { min-height: 360px; }
+    .toast {
+      position: fixed;
+      top: 82px;
+      left: calc(50% + var(--sidebar-width) / 2);
+      z-index: 40;
+      padding: 10px 18px;
+      border: 1px solid #b7eb8f;
+      color: #389e0d;
+      background: #f6ffed;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      opacity: 0;
+      transform: translate(-50%, -8px);
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+
+    @media (max-width: 1450px) {
+      .metric-grid-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .analytics-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .filter-panel { grid-template-columns: 210px minmax(320px, 1fr) auto auto; }
+    }
+
+    @media (max-width: 1240px) {
+      .metric-grid-5, .metric-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .overview-grid, .analytics-grid-2, .analytics-grid-3 { grid-template-columns: 1fr; }
+      .section-heading p:not(.always-visible) { display: none; }
+    }
+
+    @media (max-width: 1100px) {
+      .sidebar { position: relative; inset: auto; width: 100%; min-height: 56px; display: flex; overflow: hidden; }
+      .brand { height: 56px; flex: 0 0 auto; padding: 0 16px; font-size: 16px; }
+      .nav { min-width: 0; flex: 1; display: flex; justify-content: flex-end; padding: 0 8px; overflow: hidden; }
+      .nav > .nav-item, .nav-group:not(.current-nav-group) { display: none; }
+      .nav-group.current-nav-group { min-width: 0; display: flex; align-items: center; margin: 0; }
+      .current-nav-group .nav-parent, .current-nav-group .nav-child { min-height: 56px; padding: 0 14px; white-space: nowrap; }
+      .current-nav-group .nav-child { margin: 0; }
+      .app { margin-left: 0; }
+      .topbar { top: 0; }
+      .page { padding: 16px; }
+      .filter-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .metric-grid-5, .metric-grid-4, .metric-grid-6, .metric-grid.dynamic-payment { max-width: none; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .overview-grid, .analytics-grid-2, .analytics-grid-3 { grid-template-columns: minmax(0, 1fr); }
+      .toast { left: 50%; max-width: calc(100vw - 32px); }
+    }
+
+    @media (max-width: 600px) {
+      .sidebar { display: block; }
+      .brand { justify-content: center; }
+      .nav { display: none; }
+      .topbar { height: 54px; padding: 0 12px; }
+      .breadcrumb { gap: 5px; font-size: 12px; }
+      .breadcrumb span::after { margin-left: 5px; }
+      .user { font-size: 12px; }
+      .page { padding: 10px; }
+      .filter-panel { grid-template-columns: minmax(0, 1fr); padding: 12px; }
+      .metric-grid-5, .metric-grid-4, .metric-grid-6, .metric-grid.dynamic-payment { grid-template-columns: minmax(0, 1fr); }
+      .section-heading h2 { font-size: 18px; }
+      .panel-head { min-height: 58px; flex-wrap: wrap; gap: 4px; padding: 10px 14px; }
+      .panel-sub { width: 100%; margin-left: 0; }
+      .bar-row { grid-template-columns: 110px minmax(0, 1fr) 48px; gap: 8px; }
+      .donut-layout { flex-direction: column; gap: 18px; }
+      .pagination { justify-content: flex-start; flex-wrap: wrap; padding-inline: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar" aria-label="系统导航">
+    <div class="brand"><span class="brand-mark">监</span>监管平台</div>
+    <nav class="nav">
+      <a class="nav-item" href="#overview">首页</a>
+      <div class="nav-group"><div class="nav-parent">监管机构</div></div>
+      <div class="nav-group"><div class="nav-parent">考务人员管理</div></div>
+      <div class="nav-group"><div class="nav-parent">建议意见反馈</div></div>
+      <div class="nav-group current-nav-group">
+        <div class="nav-parent">查询统计</div>
+        <a class="nav-item nav-child active" href="#overview">总览</a>
+      </div>
+      <div class="nav-group"><div class="nav-parent">实操考试管理</div></div>
+      <div class="nav-group"><div class="nav-parent">系统管理</div></div>
+    </nav>
+  </aside>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="breadcrumb"><span>首页</span><span>数据统计</span><strong>数据总览</strong></div>
+      <div class="user">管理员 ▼</div>
+    </header>
+
+    <main class="page">
+      <form class="filter-panel" id="statisticsFilter">
+        <div class="field">
+          <label for="city">地市</label>
+          <select id="city"><option value="">请选择</option><option>南昌市</option><option>九江市</option><option>上饶市</option><option>赣州市</option></select>
+        </div>
+        <div class="field">
+          <span class="field-label">时间范围</span>
+          <div class="date-range"><label class="visually-hidden" for="startDate">开始日期</label><input id="startDate" type="date" aria-label="开始日期" /><span>→</span><label class="visually-hidden" for="endDate">结束日期</label><input id="endDate" type="date" aria-label="结束日期" /></div>
+        </div>
+        <button class="button primary" id="queryButton" type="submit"><span class="search-icon" aria-hidden="true"></span>查询</button>
+        <button class="button" id="resetButton" type="button">↻ 重置</button>
+      </form>
+
+      <section class="dashboard-section" id="overview">
+        <header class="section-heading"><h2>总览</h2><p>区域监管与业务总体情况</p></header>
+        <div class="metric-grid metric-grid-5">
+          <article class="metric-card cyan"><span class="metric-label">培训人数</span><div class="metric-value"><strong>0</strong><span>人</span></div></article>
+          <article class="metric-card"><span class="metric-label">考试通过率</span><div class="metric-value"><strong>42.9%</strong></div></article>
+          <article class="metric-card amber"><span class="metric-label">首次通过率</span><div class="metric-value"><strong>66.7%</strong></div></article>
+          <article class="metric-card green"><span class="metric-label">证书有效率</span><div class="metric-value"><strong>100.0%</strong></div></article>
+          <article class="metric-card red"><span class="metric-label">发证人数</span><div class="metric-value"><strong>1</strong><span>人</span></div></article>
+        </div>
+
+        <div class="overview-grid">
+          <article class="panel map-panel">
+            <div class="panel-head"><div class="panel-title">区域监管态势</div><div class="panel-sub">江西省各地市</div></div>
+            <div class="panel-body">
+              <div class="map-toolbar" role="group" aria-label="地图指标"><button class="active" type="button" data-map-metric="pass">考试通过率</button><button type="button" data-map-metric="cert">证书有效率</button></div>
+              <svg class="jiangxi-map" viewBox="0 0 720 480" role="img" aria-label="江西省十一地市监管态势图">
+                <g class="city-group" data-city="九江市"><title>九江市 --</title><path class="city-shape" d="M270 35 L390 28 L430 82 L384 122 L285 112 L242 72 Z" /><text class="city-name" x="337" y="69">九江</text><text class="city-value" x="337" y="88">--</text></g>
+                <g class="city-group" data-city="景德镇市"><title>景德镇市 --</title><path class="city-shape" d="M430 82 L522 66 L556 118 L516 164 L425 148 L384 122 Z" /><text class="city-name" x="477" y="111">景德镇</text><text class="city-value" x="477" y="130">--</text></g>
+                <g class="city-group" data-city="南昌市"><title>南昌市 --</title><path class="city-shape" d="M242 112 L384 122 L392 190 L326 226 L232 194 L205 143 Z" /><text class="city-name" x="300" y="159">南昌</text><text class="city-value" x="300" y="178">--</text></g>
+                <g class="city-group" data-city="上饶市" data-pass="42.9" data-cert="100"><title>上饶市 42.9%</title><path class="city-shape has-value" d="M425 148 L516 164 L620 145 L660 218 L600 272 L493 245 L392 190 Z" /><text class="city-name" x="535" y="196">上饶</text><text class="city-value" x="535" y="215">42.9%</text></g>
+                <g class="city-group" data-city="鹰潭市"><title>鹰潭市 --</title><path class="city-shape" d="M392 190 L493 245 L447 286 L360 258 L326 226 Z" /><text class="city-name" x="414" y="233">鹰潭</text><text class="city-value" x="414" y="252">--</text></g>
+                <g class="city-group" data-city="宜春市"><title>宜春市 --</title><path class="city-shape" d="M112 152 L205 143 L232 194 L210 270 L106 286 L66 226 Z" /><text class="city-name" x="154" y="207">宜春</text><text class="city-value" x="154" y="226">--</text></g>
+                <g class="city-group" data-city="新余市"><title>新余市 --</title><path class="city-shape" d="M210 270 L232 194 L326 226 L320 292 L258 319 Z" /><text class="city-name" x="270" y="258">新余</text><text class="city-value" x="270" y="277">--</text></g>
+                <g class="city-group" data-city="萍乡市"><title>萍乡市 --</title><path class="city-shape" d="M66 226 L106 286 L92 352 L30 330 L24 260 Z" /><text class="city-name" x="66" y="285">萍乡</text><text class="city-value" x="66" y="304">--</text></g>
+                <g class="city-group" data-city="抚州市"><title>抚州市 --</title><path class="city-shape" d="M320 292 L360 258 L447 286 L500 352 L442 407 L338 374 Z" /><text class="city-name" x="405" y="323">抚州</text><text class="city-value" x="405" y="342">--</text></g>
+                <g class="city-group" data-city="吉安市"><title>吉安市 --</title><path class="city-shape" d="M92 352 L106 286 L210 270 L258 319 L338 374 L294 425 L170 432 Z" /><text class="city-name" x="215" y="356">吉安</text><text class="city-value" x="215" y="375">--</text></g>
+                <g class="city-group" data-city="赣州市"><title>赣州市 --</title><path class="city-shape" d="M92 352 L170 432 L294 425 L338 374 L442 407 L405 468 L124 468 L48 418 Z" /><text class="city-name" x="251" y="432">赣州</text><text class="city-value" x="251" y="451">--</text></g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="panel rank-panel">
+            <div class="panel-head"><div class="panel-title">地市排名</div><div class="panel-sub" id="rankSubtitle">考试通过率 TOP 5</div></div>
+            <div class="panel-body"><ol class="rank-list" id="cityRanking"><li class="rank-item"><b>1</b><span>上饶市</span><strong>42.9%</strong></li></ol></div>
+          </article>
+        </div>
+
+        <div class="analytics-grid analytics-grid-3">
+          <article class="panel chart-panel">
+            <div class="panel-head"><div class="panel-title">趋势对比</div><div class="panel-sub">培训人数与考试通过率</div></div>
+            <div class="panel-body"><div class="legend"><span><i></i>培训人数</span><span><i class="amber"></i>考试通过率</span></div><svg class="line-chart" viewBox="0 0 560 250" aria-label="培训人数与考试通过率趋势">
+              <line class="chart-grid" x1="45" y1="30" x2="530" y2="30"/><line class="chart-grid" x1="45" y1="90" x2="530" y2="90"/><line class="chart-grid" x1="45" y1="150" x2="530" y2="150"/><line class="chart-grid" x1="45" y1="210" x2="530" y2="210"/>
+              <polyline class="training-line" points="55,210 130,210 205,210 280,210 355,210 430,210 505,210"/><polyline class="rate-line" points="55,210 130,210 205,210 280,210 355,30 430,210 505,166"/>
+              <g class="chart-axis"><text x="42" y="238">01月</text><text x="117" y="238">02月</text><text x="192" y="238">03月</text><text x="267" y="238">04月</text><text x="342" y="238">05月</text><text x="417" y="238">06月</text><text x="492" y="238">07月</text></g>
+            </svg></div>
+          </article>
+          <article class="panel chart-panel">
+            <div class="panel-head"><div class="panel-title">机构通过率排行</div><div class="panel-sub">有效考试实例通过率</div></div>
+            <div class="panel-body"><div class="bar-chart"><div class="bar-row"><span class="bar-label">上饶市安泰职业培训学校</span><span class="bar-track"><i class="bar-fill" style="width:60%"></i></span><span class="bar-value">60%</span></div><div class="bar-row"><span class="bar-label">南昌市安全科学中心</span><span class="bar-track"><i class="bar-fill" style="width:0"></i></span><span class="bar-value">0%</span></div></div></div>
+          </article>
+          <article class="panel chart-panel">
+            <div class="panel-head"><div class="panel-title">人员分类分布</div><div class="panel-sub">按报名人员统计</div></div>
+            <div class="panel-body"><div class="donut-layout"><div class="donut" style="--value: 100%; --secondary: 0%"><div class="donut-center"><div><strong>5</strong>人</div></div></div><div class="donut-legend"><span><i></i>特种作业人员</span><span><i class="green"></i>安全生产管理人员</span><span><i class="amber"></i>主要负责人</span></div></div></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="dashboard-section" id="training">
+        <header class="section-heading"><h2>培训分析</h2><p>培训规模、合格情况与机构考生通过率</p></header>
+        <div class="metric-grid metric-grid-5">
+          <article class="metric-card cyan"><span class="metric-label">培训人数</span><div class="metric-value"><strong>0</strong><span>人</span></div></article>
+          <article class="metric-card"><span class="metric-label">参考人数</span><div class="metric-value"><strong>5</strong><span>人</span></div></article>
+          <article class="metric-card green"><span class="metric-label">培训合格人数</span><div class="metric-value"><strong>0</strong><span>人</span></div></article>
+          <article class="metric-card amber"><span class="metric-label">机构考生通过率</span><div class="metric-value"><strong>60.0%</strong></div></article>
+          <article class="metric-card red"><span class="metric-label">启用培训机构</span><div class="metric-value"><strong>--</strong><span>家</span></div></article>
+        </div>
+        <div class="analytics-grid analytics-grid-2">
+          <article class="panel chart-panel"><div class="panel-head"><div class="panel-title">培训人数趋势</div><div class="panel-sub">按月统计</div></div><div class="panel-body"><div class="empty-state"><div><div class="empty-icon"></div>暂无数据</div></div></div></article>
+          <article class="panel chart-panel"><div class="panel-head"><div class="panel-title">重点机构通过率</div><div class="panel-sub">实例通过率 TOP 4</div></div><div class="panel-body"><div class="bar-chart"><div class="bar-row"><span class="bar-label">上饶市安泰职业培训学校</span><span class="bar-track"><i class="bar-fill" style="width:60%"></i></span><span>60%</span></div><div class="bar-row"><span class="bar-label">南昌市安全科学中心</span><span class="bar-track"><i class="bar-fill" style="width:0"></i></span><span>0%</span></div></div></div></article>
+        </div>
+        <article class="panel table-panel">
+          <div class="panel-head"><div class="panel-title">培训机构考生考试通过率</div><div class="panel-sub">按机构、参考人数、首次与最终通过率统计</div></div>
+          <div class="table-wrap"><table><thead><tr><th style="width:260px">培训机构</th><th>培训人数</th><th>参考人数</th><th>实例通过率</th><th>首次通过率</th><th>最终通过率</th></tr></thead><tbody><tr><td class="name">上饶市安全生产考试中心</td><td>0</td><td>0</td><td>--</td><td>--</td><td>--</td></tr><tr><td class="name">上饶市安全生产考试中心信州考点</td><td>0</td><td>0</td><td>--</td><td>--</td><td>--</td></tr><tr><td class="name">鄱阳县安全生产考试中心</td><td>0</td><td>0</td><td>--</td><td>--</td><td>--</td></tr></tbody></table></div>
+          <div class="pagination"><span>共 10 条</span><button class="page-button">‹</button><button class="page-button active">1</button><button class="page-button">›</button><select class="page-size"><option>10 条/页</option><option>20 条/页</option><option>50 条/页</option><option>100 条/页</option></select></div>
+        </article>
+      </section>
+
+      <section class="dashboard-section" id="teacher">
+        <header class="section-heading"><h2>教师统计</h2><p class="always-visible">当前在册快照，不受时间范围影响</p></header>
+        <div class="metric-grid metric-grid-5">
+          <article class="metric-card"><span class="metric-label">教师总数</span><div class="metric-value"><strong>42</strong><span>人</span></div></article>
+          <article class="metric-card green"><span class="metric-label">启用教师</span><div class="metric-value"><strong>36</strong><span>人</span></div></article>
+          <article class="metric-card cyan"><span class="metric-label">专职教师</span><div class="metric-value"><strong>25</strong><span>人</span></div></article>
+          <article class="metric-card amber"><span class="metric-label">兼职教师</span><div class="metric-value"><strong>17</strong><span>人</span></div></article>
+          <article class="metric-card red"><span class="metric-label">覆盖考核项目</span><div class="metric-value"><strong>8</strong><span>项</span></div></article>
+        </div>
+        <div class="analytics-grid analytics-grid-2">
+          <article class="panel chart-panel">
+            <div class="panel-head"><div class="panel-title">教师状态分布</div><div class="panel-sub">当前在册教师</div></div>
+            <div class="panel-body"><div class="donut-layout"><div class="donut" style="--value:85.7%;--secondary:11.9%"><div class="donut-center"><div><strong>42</strong>人</div></div></div><div class="donut-legend"><span><i></i>启用 36</span><span><i class="green"></i>禁用 5</span><span><i class="amber"></i>未设置 1</span></div></div></div>
+          </article>
+          <article class="panel chart-panel">
+            <div class="panel-head"><div class="panel-title">考核项目教师数量 TOP10</div><div class="panel-sub">同一项目按教师去重</div></div>
+            <div class="panel-body"><div class="bar-chart"><div class="bar-row"><span class="bar-label">低压电工作业</span><span class="bar-track"><i class="bar-fill" style="width:100%"></i></span><span>18人</span></div><div class="bar-row"><span class="bar-label">高压电工作业</span><span class="bar-track"><i class="bar-fill" style="width:78%"></i></span><span>14人</span></div><div class="bar-row"><span class="bar-label">焊接与热切割作业</span><span class="bar-track"><i class="bar-fill" style="width:61%"></i></span><span>11人</span></div><div class="bar-row"><span class="bar-label">登高架设作业</span><span class="bar-track"><i class="bar-fill" style="width:44%"></i></span><span>8人</span></div></div></div>
+          </article>
+        </div>
+        <article class="panel table-panel">
+          <div class="panel-head"><div class="panel-title">考核项目教师统计</div><div class="panel-sub">教师可覆盖多个项目，项目行不可直接求和</div></div>
+          <div class="table-wrap"><table style="min-width:1180px"><thead><tr><th>项目编码</th><th style="width:240px">考核项目</th><th>教师数</th><th>启用</th><th>禁用</th><th>专职</th><th>兼职</th><th>理论授课</th><th>实操授课</th></tr></thead><tbody><tr><td>T01</td><td class="name">低压电工作业</td><td>18</td><td>16</td><td>2</td><td>11</td><td>7</td><td>10</td><td>8</td></tr><tr><td>T02</td><td class="name">高压电工作业</td><td>14</td><td>12</td><td>2</td><td>9</td><td>5</td><td>8</td><td>6</td></tr><tr><td>T03</td><td class="name">焊接与热切割作业</td><td>11</td><td>10</td><td>1</td><td>7</td><td>4</td><td>5</td><td>6</td></tr></tbody></table></div>
+          <div class="pagination"><span>共 8 条</span><button class="page-button">‹</button><button class="page-button active">1</button><button class="page-button">2</button><button class="page-button">›</button><select class="page-size"><option>10 条/页</option><option>20 条/页</option><option>50 条/页</option><option>100 条/页</option></select></div>
+        </article>
+      </section>
+
+      <section class="dashboard-section" id="exam">
+        <header class="section-heading"><h2>考试分析</h2><p>各地考试安排与人员结构</p></header>
+        <div class="analytics-grid analytics-grid-2">
+          <article class="panel chart-panel"><div class="panel-head"><div class="panel-title">地市考试人数分布</div><div class="panel-sub">按考试安排人数统计</div></div><div class="panel-body"><div class="city-columns"><div class="city-column"><div class="column-value">46</div><div class="column-bar" style="--height:220px"></div><div class="column-name">上饶市</div></div></div></div></article>
+          <article class="panel chart-panel"><div class="panel-head"><div class="panel-title">考试类型与人员分类</div><div class="panel-sub">理论、实操及三类人员</div></div><div class="panel-body"><div class="bar-chart"><div class="bar-row"><span class="bar-label">理论考试</span><span class="bar-track"><i class="bar-fill" style="width:92%"></i></span><span>46</span></div><div class="bar-row"><span class="bar-label">实操考试</span><span class="bar-track"><i class="bar-fill" style="width:24%"></i></span><span>12</span></div><div class="bar-row"><span class="bar-label">特种作业人员</span><span class="bar-track"><i class="bar-fill" style="width:62%"></i></span><span>31</span></div></div></div></article>
+        </div>
+        <article class="panel table-panel">
+          <div class="panel-head"><div class="panel-title">考试安排明细</div><div class="panel-sub">按时间、地市、考试点、人员分类和人数统计</div></div>
+          <div class="table-wrap"><table><thead><tr><th>考试日期</th><th>地市</th><th style="width:320px">考试点</th><th>考试类型</th><th style="width:190px">人员分类</th><th>考试人数</th></tr></thead><tbody><tr><td>2026-07-09</td><td>上饶市</td><td class="name">上饶市安全生产考试中心信州考点</td><td>理论</td><td>特种作业人员</td><td>12</td></tr><tr><td>2026-07-07</td><td>上饶市</td><td class="name">上饶市安全生产考试中心信州考点</td><td>实操</td><td>特种作业人员</td><td>10</td></tr><tr><td>2026-07-03</td><td>上饶市</td><td class="name">上饶市安全生产考试中心信州考点</td><td>理论</td><td>特种作业人员</td><td>8</td></tr></tbody></table></div>
+          <div class="pagination"><span>共 46 条</span><button class="page-button">‹</button><button class="page-button active">1</button><button class="page-button">2</button><button class="page-button">3</button><button class="page-button">›</button><select class="page-size"><option>10 条/页</option><option>20 条/页</option><option>50 条/页</option><option>100 条/页</option></select></div>
+        </article>
+      </section>
+
+      <section class="dashboard-section" id="certificate">
+        <header class="section-heading"><h2>证书分析</h2><p>证书有效状态与持证人员分布</p></header>
+        <div class="metric-grid metric-grid-4">
+          <article class="metric-card green"><span class="metric-label">证书有效率</span><div class="metric-value"><strong>100.0%</strong></div></article>
+          <article class="metric-card cyan"><span class="metric-label">发证人数</span><div class="metric-value"><strong>1</strong><span>人</span></div></article>
+          <article class="metric-card"><span class="metric-label">有效证书</span><div class="metric-value"><strong>1</strong><span>本</span></div></article>
+          <article class="metric-card amber"><span class="metric-label">持证人员</span><div class="metric-value"><strong>1</strong><span>人</span></div></article>
+        </div>
+        <div class="analytics-grid analytics-grid-2">
+          <article class="panel chart-panel"><div class="panel-head"><div class="panel-title">证书状态</div><div class="panel-sub">有效证书占比</div></div><div class="panel-body"><div class="donut-layout"><div class="donut certificate-donut"><div class="donut-center"><div><strong>100%</strong>有效</div></div></div><div class="donut-legend"><span><i></i>有效证书</span><span><i class="green"></i>其他证书</span></div></div></div></article>
+          <article class="panel chart-panel"><div class="panel-head"><div class="panel-title">证书办理量</div><div class="panel-sub">按月统计</div></div><div class="panel-body"><svg class="line-chart" viewBox="0 0 560 250" aria-label="证书办理量趋势"><line class="chart-grid" x1="45" y1="30" x2="530" y2="30"/><line class="chart-grid" x1="45" y1="90" x2="530" y2="90"/><line class="chart-grid" x1="45" y1="150" x2="530" y2="150"/><line class="chart-grid" x1="45" y1="210" x2="530" y2="210"/><polyline class="training-line" points="55,210 130,210 205,210 280,210 355,210 430,210 505,30"/><g class="chart-axis"><text x="42" y="238">01月</text><text x="117" y="238">02月</text><text x="192" y="238">03月</text><text x="267" y="238">04月</text><text x="342" y="238">05月</text><text x="417" y="238">06月</text><text x="492" y="238">07月</text></g></svg></div></article>
+        </div>
+        <article class="panel table-panel"><div class="panel-head"><div class="panel-title">持证人员分布</div><div class="panel-sub">按人员分类统计</div></div><div class="table-wrap"><table style="min-width:680px"><thead><tr><th>人员分类</th><th>持证人员</th><th>有效证书</th></tr></thead><tbody><tr><td>特种作业人员</td><td>1</td><td>1</td></tr></tbody></table></div></article>
+      </section>
+
+      <section class="dashboard-section" id="staff">
+        <header class="section-heading"><h2>考务人员</h2><p>人员类别、数量与区域考试点明细</p></header>
+        <div class="analytics-grid analytics-grid-2">
+          <article class="panel chart-panel"><div class="panel-head"><div class="panel-title">人员类别占比</div><div class="panel-sub">仅统计启用人员</div></div><div class="panel-body"><div class="donut-layout"><div class="donut staff-donut"><div class="donut-center"><div><strong>18</strong>人</div></div></div><div class="donut-legend"><span><i></i>监考员 33.33%</span><span><i class="green"></i>考评员 50%</span><span><i class="amber"></i>巡考员 16.67%</span></div></div></div></article>
+          <article class="panel chart-panel"><div class="panel-head"><div class="panel-title">人员数量概览</div><div class="panel-sub">按考务人员类型统计</div></div><div class="panel-body"><div class="bar-chart"><div class="bar-row"><span class="bar-label">监考员</span><span class="bar-track"><i class="bar-fill" style="width:66.7%"></i></span><span>6人</span></div><div class="bar-row"><span class="bar-label">考评员</span><span class="bar-track"><i class="bar-fill" style="width:100%"></i></span><span>9人</span></div><div class="bar-row"><span class="bar-label">巡考员</span><span class="bar-track"><i class="bar-fill" style="width:33.3%"></i></span><span>3人</span></div></div></div></article>
+        </div>
+        <article class="panel table-panel">
+          <div class="panel-head"><div class="panel-title">考务人员明细</div><div class="panel-sub">启用、停用状态分行</div></div>
+          <div class="table-wrap"><table><thead><tr><th>区域</th><th style="width:360px">考试点</th><th>监考员</th><th>考评员</th><th>巡考员</th><th>数据状态</th></tr></thead><tbody><tr><td>上饶市</td><td class="name">上饶市安全生产考试中心信州考点</td><td>6</td><td>9</td><td>3</td><td><span class="status">正常</span></td></tr><tr><td>上饶市</td><td class="name">上饶市安全生产考试中心信州考点</td><td>1</td><td>0</td><td>0</td><td><span class="status off">停用</span></td></tr></tbody></table></div>
+          <div class="pagination"><span>共 2 条</span><button class="page-button">‹</button><button class="page-button active">1</button><button class="page-button">›</button><select class="page-size"><option>10 条/页</option><option>20 条/页</option><option>50 条/页</option><option>100 条/页</option></select></div>
+        </article>
+      </section>
+
+      <section class="dashboard-section" id="payment">
+        <header class="section-heading"><h2>缴费分析</h2><p>地市与人员分类缴费情况</p></header>
+        <div class="metric-grid dynamic-payment">
+          <article class="metric-card cyan"><span class="metric-label">缴费总额</span><div class="metric-value"><strong>0.00</strong><span>万元</span></div></article>
+          <article class="metric-card green"><span class="metric-label">1. 上饶市</span><div class="metric-value"><strong>0.00</strong><span>万元</span></div></article>
+          <article class="metric-card amber"><span class="metric-label">特种作业人员</span><div class="metric-value"><strong>0.00</strong><span>万元</span></div></article>
+        </div>
+        <article class="panel payment-empty"><div class="panel-head"><div class="panel-title">地市人员分类缴费情况</div><div class="panel-sub">堆叠柱顶为该地市缴费合计</div></div><div class="panel-body"><div class="empty-state"><div><div class="empty-icon"></div>暂无数据</div></div></div></article>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">统计数据已按当前条件刷新</div>
+
+  <script>
+    const filterForm = document.querySelector("#statisticsFilter");
+    const citySelect = document.querySelector("#city");
+    const startDate = document.querySelector("#startDate");
+    const endDate = document.querySelector("#endDate");
+    const queryButton = document.querySelector("#queryButton");
+    const resetButton = document.querySelector("#resetButton");
+    const toast = document.querySelector("#toast");
+    const mapButtons = document.querySelectorAll("[data-map-metric]");
+    let toastTimer = null;
+
+    function showToast(message) {
+      if (toastTimer) window.clearTimeout(toastTimer);
+      toast.textContent = message;
+      toast.classList.add("show");
+      toastTimer = window.setTimeout(() => {
+        toast.classList.remove("show");
+        toastTimer = null;
+      }, 1600);
+    }
+
+    function currentDateDefaults(referenceDate = new Date()) {
+      const year = referenceDate.getFullYear();
+      const month = String(referenceDate.getMonth() + 1).padStart(2, "0");
+      const day = String(referenceDate.getDate()).padStart(2, "0");
+      return { startDate: `${year}-01-01`, endDate: `${year}-${month}-${day}` };
+    }
+
+    function resetPagination(pagination) {
+      if (!pagination) return;
+      const numberedButtons = [...pagination.querySelectorAll(".page-button")].filter((button) => /^\d+$/.test(button.textContent.trim()));
+      pagination.querySelectorAll(".page-button").forEach((button) => button.classList.remove("active"));
+      numberedButtons[0]?.classList.add("active");
+    }
+
+    const defaults = currentDateDefaults();
+    startDate.value = defaults.startDate;
+    endDate.value = defaults.endDate;
+
+    function refreshPrototype() {
+      if (startDate.value && endDate.value && startDate.value > endDate.value) {
+        showToast("开始日期不能晚于结束日期");
+        return;
+      }
+      queryButton.disabled = true;
+      queryButton.textContent = "查询中...";
+      document.querySelectorAll(".pagination").forEach(resetPagination);
+      window.setTimeout(() => {
+        queryButton.disabled = false;
+        queryButton.innerHTML = '<span class="search-icon" aria-hidden="true"></span>查询';
+        showToast("统计数据已按当前条件刷新，教师统计仅使用地市条件");
+      }, 520);
+    }
+
+    filterForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      refreshPrototype();
+    });
+
+    resetButton.addEventListener("click", () => {
+      const resetDefaults = currentDateDefaults();
+      citySelect.value = "";
+      startDate.value = resetDefaults.startDate;
+      endDate.value = resetDefaults.endDate;
+      refreshPrototype();
+    });
+
+    const mapData = {
+      pass: { value: "42.9%", rank: "考试通过率 TOP 5" },
+      cert: { value: "100.0%", rank: "证书有效率 TOP 5" }
+    };
+
+    mapButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        mapButtons.forEach((item) => item.classList.toggle("active", item === button));
+        const state = mapData[button.dataset.mapMetric];
+        document.querySelector("#rankSubtitle").textContent = state.rank;
+        document.querySelector("#cityRanking").innerHTML = `<li class="rank-item"><b>1</b><span>上饶市</span><strong>${state.value}</strong></li>`;
+        document.querySelectorAll(".city-group").forEach((group) => {
+          const value = group.dataset[button.dataset.mapMetric];
+          const valueNode = group.querySelector(".city-value");
+          const shape = group.querySelector(".city-shape");
+          valueNode.textContent = value ? `${Number(value).toFixed(1)}%` : "--";
+          shape.classList.toggle("has-value", Boolean(value));
+          group.querySelector("title").textContent = `${group.dataset.city} ${valueNode.textContent}`;
+        });
+      });
+    });
+
+    document.querySelectorAll(".pagination").forEach((pagination) => {
+      const pageSize = pagination.querySelector(".page-size");
+      const listTitle = pagination.closest(".panel")?.querySelector(".panel-title")?.textContent || "列表";
+      pageSize?.setAttribute("aria-label", `${listTitle}每页条数`);
+      pagination.addEventListener("click", (event) => {
+        const button = event.target.closest(".page-button");
+        if (!button || !/^\d+$/.test(button.textContent.trim())) return;
+        pagination.querySelectorAll(".page-button").forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+      });
+      pageSize?.addEventListener("change", () => resetPagination(pagination));
+    });
+  </script>
+</body>
+</html>

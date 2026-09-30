@@ -1,0 +1,15 @@
+http://git.xiaoxiao.work.gd/tellhow/spt/actions?workflow=release.yml&actor=0&status=0
+选择release.yml然后点击运行工作流（71-spe   72-spt）
+去远程服务器上的/home/spx/releases/latest目录下找到包，通过ftp把包放到/home/admin下面
+
+
+
+cd /home/app
+./run.sh
+
+# 数据库  72
+去/home/app/scripts目录下执行sh link_mysql.sh命令
+
+# mysql -u root -p
+#v33naw6egpna764huqew23z
+#use spx_prod;

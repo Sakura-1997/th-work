@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>班级排课绑定教室 UI 方案</title>
+	<style>
+		:root {
+			--blue: #3478f6;
+			--blue-soft: #eef4ff;
+			--green: #16a34a;
+			--amber: #f59e0b;
+			--red: #ef4444;
+			--text: #1f2937;
+			--muted: #64748b;
+			--line: #e5eaf3;
+			--panel: #ffffff;
+			--bg: #f5f7fb;
+		}
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			margin: 0;
+			background: var(--bg);
+			color: var(--text);
+			font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+		}
+		.canvas {
+			width: 1600px;
+			min-height: 1000px;
+			padding: 24px;
+			background: linear-gradient(180deg, #f8fafc 0%, #f3f6fb 100%);
+		}
+		.section {
+			background: var(--panel);
+			border: 1px solid var(--line);
+			border-radius: 6px;
+			box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+		}
+		.section-title {
+			display: flex;
+			align-items: center;
+			height: 48px;
+			padding: 0 18px;
+			border-bottom: 1px solid var(--line);
+			font-size: 18px;
+			font-weight: 700;
+		}
+		.section-title::before {
+			content: "";
+			width: 4px;
+			height: 20px;
+			margin-right: 10px;
+			border-radius: 999px;
+			background: var(--blue);
+		}
+		.basic-grid {
+			display: grid;
+			grid-template-columns: 1.15fr 0.9fr 0.9fr 0.9fr;
+			gap: 18px 16px;
+			padding: 18px;
+		}
+		.field {
+			min-width: 0;
+		}
+		.label {
+			margin-bottom: 8px;
+			color: #303744;
+			font-size: 13px;
+			font-weight: 700;
+		}
+		.required::before {
+			content: "*";
+			margin-right: 4px;
+			color: var(--red);
+		}
+		.input {
+			height: 34px;
+			padding: 0 12px;
+			border: 1px solid #dfe6f1;
+			border-radius: 4px;
+			background: #f8fafc;
+			color: #9aa4b2;
+			font-size: 13px;
+			line-height: 34px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.schedule {
+			margin-top: 18px;
+		}
+		.schedule-layout {
+			display: grid;
+			grid-template-columns: 292px 1fr;
+			height: 740px;
+		}
+		.left {
+			border-right: 1px solid var(--line);
+			padding: 14px 12px;
+			background: #fff;
+		}
+		.left-title {
+			text-align: center;
+			font-size: 16px;
+			font-weight: 700;
+			margin-bottom: 14px;
+		}
+		.course-group {
+			margin-top: 12px;
+		}
+		.group-title {
+			margin: 0 0 8px;
+			color: #94a3b8;
+			font-size: 12px;
+		}
+		.course-item {
+			display: grid;
+			grid-template-columns: 8px 1fr auto auto;
+			align-items: center;
+			gap: 8px;
+			min-height: 46px;
+			margin-bottom: 8px;
+			padding: 9px 8px;
+			border: 1px solid transparent;
+			border-radius: 8px;
+			background: #fff;
+			box-shadow: inset 0 0 0 1px #eef2f7;
+		}
+		.dot {
+			width: 6px;
+			height: 6px;
+			border-radius: 999px;
+			background: var(--blue);
+		}
+		.course-name {
+			min-width: 0;
+			font-size: 13px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.hours {
+			padding: 2px 8px;
+			border-radius: 5px;
+			background: #eef2ff;
+			color: #4f46e5;
+			font-size: 12px;
+			font-weight: 700;
+		}
+		.type {
+			padding: 2px 7px;
+			border-radius: 5px;
+			background: #eff6ff;
+			color: #2563eb;
+			font-size: 12px;
+			font-weight: 700;
+		}
+		.board {
+			min-width: 0;
+			background: #fff;
+			position: relative;
+		}
+		.board-toolbar {
+			position: sticky;
+			top: 0;
+			z-index: 5;
+			padding: 12px 16px 10px;
+			border-bottom: 1px solid var(--line);
+			background: #fbfcff;
+		}
+		.top-row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+		}
+		.week-tabs {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			min-width: 0;
+		}
+		.week-tab {
+			min-width: 122px;
+			height: 30px;
+			padding: 0 12px;
+			border: 1px solid #dbe3f0;
+			border-radius: 6px;
+			background: #fff;
+			color: #475569;
+			font-size: 12px;
+			font-weight: 700;
+			line-height: 28px;
+			text-align: center;
+		}
+		.week-tab.active {
+			border-color: var(--blue);
+			background: var(--blue-soft);
+			color: var(--blue);
+		}
+		.summary {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+			margin-top: 12px;
+			padding-top: 10px;
+			border-top: 1px solid #edf1f7;
+			flex-wrap: wrap;
+		}
+		.progress-item {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			color: #64748b;
+			font-size: 12px;
+			white-space: nowrap;
+		}
+		.progress-value {
+			color: #4f46e5;
+			font-weight: 800;
+		}
+		.progress-bar {
+			width: 56px;
+			height: 4px;
+			border-radius: 999px;
+			background: #e9edf5;
+			overflow: hidden;
+		}
+		.progress-bar span {
+			display: block;
+			height: 100%;
+			border-radius: inherit;
+			background: var(--green);
+		}
+		.default-room {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			padding: 6px 8px;
+			border: 1px solid #b9d2ff;
+			border-radius: 6px;
+			background: #f4f8ff;
+			box-shadow: 0 0 0 3px rgba(52, 120, 246, 0.08);
+		}
+		.default-room label {
+			color: #334155;
+			font-size: 12px;
+			font-weight: 700;
+			white-space: nowrap;
+		}
+		.select {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			min-width: 220px;
+			height: 30px;
+			padding: 0 10px;
+			border: 1px solid #c9d7ef;
+			border-radius: 4px;
+			background: #fff;
+			color: #1f2937;
+			font-size: 12px;
+		}
+		.chevron {
+			width: 8px;
+			height: 8px;
+			border-right: 1.5px solid #64748b;
+			border-bottom: 1.5px solid #64748b;
+			transform: rotate(45deg) translateY(-2px);
+		}
+		.btn {
+			height: 30px;
+			padding: 0 11px;
+			border: 1px solid #c6d8ff;
+			border-radius: 5px;
+			background: #f5f8ff;
+			color: var(--blue);
+			font-size: 12px;
+			font-weight: 700;
+			line-height: 28px;
+			white-space: nowrap;
+		}
+		.grid {
+			display: grid;
+			grid-template-columns: 118px repeat(7, 1fr);
+			min-width: 1120px;
+			border-left: 1px solid var(--line);
+			border-top: 1px solid var(--line);
+		}
+		.grid-wrap {
+			height: calc(100% - 116px);
+			overflow: hidden;
+			padding: 0 14px 14px;
+			background: #fff;
+		}
+		.header-cell,
+		.time-cell,
+		.day-cell {
+			border-right: 1px solid var(--line);
+			border-bottom: 1px solid var(--line);
+		}
+		.header-cell {
+			height: 92px;
+			background: #f8fafc;
+			padding: 10px;
+			font-size: 12px;
+			font-weight: 700;
+		}
+		.header-main {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+		}
+		.weekday {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+		}
+		.weekday small {
+			color: #94a3b8;
+			font-size: 11px;
+			font-weight: 500;
+		}
+		.gear {
+			width: 18px;
+			height: 18px;
+			border-radius: 999px;
+			background: #eaf2ff;
+			color: var(--blue);
+			font-size: 12px;
+			line-height: 18px;
+			text-align: center;
+		}
+		.header-pills {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 4px;
+			margin-top: 8px;
+		}
+		.header-pill {
+			border-radius: 5px;
+			background: #eef4ff;
+			color: #2563eb;
+			font-size: 10px;
+			line-height: 18px;
+			text-align: center;
+		}
+		.time-cell {
+			height: 96px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 0 14px;
+			background: #fafafa;
+			font-size: 15px;
+			font-weight: 800;
+		}
+		.time-cell small {
+			margin-top: 7px;
+			color: #94a3b8;
+			font-size: 12px;
+			font-weight: 600;
+		}
+		.day-cell {
+			position: relative;
+			height: 96px;
+			background: #fff;
+		}
+		.slot-card {
+			position: absolute;
+			inset: 7px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: 8px;
+			border: 1px solid #dbeafe;
+			border-radius: 7px;
+			background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+			box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+		}
+		.slot-card.highlight {
+			border-color: #80b2ff;
+			box-shadow: 0 0 0 3px rgba(52, 120, 246, 0.13), 0 8px 18px rgba(37, 99, 235, 0.12);
+		}
+		.slot-time {
+			color: #64748b;
+			font-size: 11px;
+			font-weight: 700;
+		}
+		.slot-title {
+			margin: 2px 0;
+			color: #1f2937;
+			font-size: 13px;
+			font-weight: 800;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.slot-meta {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 6px;
+			min-width: 0;
+		}
+		.meta-left {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			min-width: 0;
+		}
+		.meta-pill {
+			max-width: 74px;
+			height: 22px;
+			padding: 0 7px;
+			border: 1px solid #c7d2fe;
+			border-radius: 5px;
+			background: #f5f8ff;
+			color: #2563eb;
+			font-size: 11px;
+			font-weight: 800;
+			line-height: 20px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.room-pill {
+			border-color: #bbf7d0;
+			background: #f0fdf4;
+			color: #15803d;
+		}
+		.room-pill.empty {
+			border-color: #fed7aa;
+			background: #fff7ed;
+			color: #c2410c;
+		}
+		.course-type {
+			padding: 3px 6px;
+			border-radius: 5px;
+			border: 1px solid #dbeafe;
+			background: #eff6ff;
+			color: #2563eb;
+			font-size: 11px;
+			font-weight: 800;
+			line-height: 1;
+		}
+		.empty-tip {
+			position: absolute;
+			inset: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #cbd5e1;
+			font-size: 12px;
+		}
+		.popover {
+			position: absolute;
+			right: 270px;
+			top: 404px;
+			width: 338px;
+			padding: 12px;
+			border: 1px solid #c7d7f4;
+			border-radius: 8px;
+			background: #fff;
+			box-shadow: 0 18px 42px rgba(15, 23, 42, 0.18);
+			z-index: 20;
+		}
+		.popover::before {
+			content: "";
+			position: absolute;
+			top: -7px;
+			right: 54px;
+			width: 12px;
+			height: 12px;
+			border-left: 1px solid #c7d7f4;
+			border-top: 1px solid #c7d7f4;
+			background: #fff;
+			transform: rotate(45deg);
+		}
+		.pop-title {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 10px;
+			font-size: 14px;
+			font-weight: 800;
+		}
+		.pop-sub {
+			color: #94a3b8;
+			font-size: 12px;
+			font-weight: 500;
+		}
+		.search {
+			height: 30px;
+			padding: 0 10px;
+			margin-bottom: 8px;
+			border: 1px solid #dfe6f1;
+			border-radius: 5px;
+			color: #94a3b8;
+			font-size: 12px;
+			line-height: 28px;
+		}
+		.room-option {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			gap: 10px;
+			padding: 9px 8px;
+			border-radius: 6px;
+			border: 1px solid transparent;
+		}
+		.room-option.active {
+			border-color: #93c5fd;
+			background: #eff6ff;
+		}
+		.room-option.disabled {
+			background: #f8fafc;
+			color: #94a3b8;
+		}
+		.room-name {
+			font-size: 13px;
+			font-weight: 800;
+		}
+		.room-meta {
+			margin-top: 3px;
+			color: #64748b;
+			font-size: 12px;
+		}
+		.status {
+			align-self: start;
+			padding: 2px 7px;
+			border-radius: 999px;
+			font-size: 11px;
+			font-weight: 800;
+		}
+		.status.ok {
+			background: #dcfce7;
+			color: #15803d;
+		}
+		.status.warn {
+			background: #fef3c7;
+			color: #b45309;
+		}
+		.status.no {
+			background: #fee2e2;
+			color: #b91c1c;
+		}
+		.callout {
+			position: absolute;
+			padding: 9px 12px;
+			border-radius: 7px;
+			background: #172554;
+			color: #fff;
+			font-size: 12px;
+			font-weight: 700;
+			box-shadow: 0 10px 24px rgba(15, 23, 42, 0.22);
+			white-space: nowrap;
+		}
+		.callout::after {
+			content: "";
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			background: inherit;
+			transform: rotate(45deg);
+		}
+		.callout.default {
+			right: 308px;
+			top: 238px;
+		}
+		.callout.default::after {
+			left: 34px;
+			bottom: -5px;
+		}
+		.callout.card {
+			right: 558px;
+			top: 516px;
+		}
+		.callout.card::after {
+			right: 34px;
+			top: -5px;
+		}
+		.legend {
+			position: absolute;
+			left: 332px;
+			bottom: 28px;
+			display: flex;
+			gap: 10px;
+			padding: 8px 10px;
+			border: 1px solid #dbe3f0;
+			border-radius: 999px;
+			background: rgba(255,255,255,0.92);
+			color: #64748b;
+			font-size: 12px;
+			box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+		}
+		.legend span {
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+		}
+		.legend i {
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			border-radius: 999px;
+		}
+		.l-green {
+			background: var(--green);
+		}
+		.l-amber {
+			background: var(--amber);
+		}
+		.l-red {
+			background: var(--red);
+		}
+	</style>
+</head>
+<body>
+	<div class="canvas">
+		<section class="section">
+			<div class="section-title">基本信息</div>
+			<div class="basic-grid">
+				<div class="field">
+					<div class="label required">关联培训计划</div>
+					<div class="input">2026上饶市安泰职业技能培训学校主要负责人金属冶炼复训2期次</div>
+				</div>
+				<div class="field">
+					<div class="label">培训班名称</div>
+					<div class="input">2026上饶市安泰职业技能培训学校主要负责人金属冶炼复训2期次</div>
+				</div>
+				<div class="field">
+					<div class="label">培训类型</div>
+					<div class="input">复训</div>
+				</div>
+				<div class="field">
+					<div class="label">培训方式</div>
+					<div class="input">面授和网络</div>
+				</div>
+				<div class="field">
+					<div class="label required">培训人数</div>
+					<div class="input" style="background:#fff;color:#334155;">11</div>
+				</div>
+				<div class="field">
+					<div class="label">班主任</div>
+					<div class="input">请选择班主任</div>
+				</div>
+				<div class="field">
+					<div class="label required">报名开始日期</div>
+					<div class="input">请选择报名开始日期</div>
+				</div>
+				<div class="field">
+					<div class="label required">报名结束日期</div>
+					<div class="input">2026-06-28</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section schedule">
+			<div class="section-title">课程排期</div>
+			<div class="schedule-layout">
+				<aside class="left">
+					<div class="left-title">可选课程</div>
+					<div class="course-group">
+						<div class="group-title">安全技术理论</div>
+						<div class="course-item">
+							<span class="dot"></span>
+							<span class="course-name">有关安全生产新的法律法规...</span>
+							<span class="hours">2 / 3 学时</span>
+							<span class="type">理论</span>
+						</div>
+						<div class="course-item">
+							<span class="dot"></span>
+							<span class="course-name">冶金、有色、金属铸造安全管理...</span>
+							<span class="hours">1 / 3 学时</span>
+							<span class="type">理论</span>
+						</div>
+						<div class="course-item">
+							<span class="dot"></span>
+							<span class="course-name">国内外安全生产管理先进经验...</span>
+							<span class="hours">0 / 3 学时</span>
+							<span class="type">理论</span>
+						</div>
+						<div class="course-item">
+							<span class="dot" style="background:#16a34a"></span>
+							<span class="course-name">金属冶炼实操复盘与风险辨识</span>
+							<span class="hours">0 / 4 学时</span>
+							<span class="type" style="background:#f0fdf4;color:#15803d;">实操</span>
+						</div>
+					</div>
+				</aside>
+
+				<main class="board">
+					<div class="board-toolbar">
+						<div class="top-row">
+							<div class="week-tabs">
+								<div class="week-tab active">第1周 06/29-07/05</div>
+								<div class="week-tab">第2周 07/06-07/12</div>
+								<div class="week-tab">第3周 07/13-07/19</div>
+								<div class="week-tab">第4周 07/20-07/26</div>
+								<div class="week-tab">第5周 07/27-07/30</div>
+							</div>
+							<span style="color:#94a3b8;font-size:12px;">共 32 天</span>
+						</div>
+						<div class="summary">
+							<div class="progress-item">已排 <span class="progress-value">3 / 16h</span><div class="progress-bar"><span style="width:18%"></span></div>18%</div>
+							<div class="progress-item">理论 <span class="progress-value" style="color:#dc2626;">3 / 10h</span><div class="progress-bar"><span style="width:30%;background:#dc2626;"></span></div>30%</div>
+							<div class="progress-item">实操 <span class="progress-value" style="color:#16a34a;">0 / 6h</span><div class="progress-bar"><span style="width:0"></span></div>0%</div>
+							<div class="default-room">
+								<label>默认教室</label>
+								<div class="select">A101 理论教室 · 48人 <span class="chevron"></span></div>
+								<div class="btn">应用到未设置课节</div>
+							</div>
+							<div class="btn">排课策略</div>
+							<div class="btn">课程汇总</div>
+						</div>
+					</div>
+
+					<div class="grid-wrap">
+						<div class="grid">
+							<div class="header-cell" style="display:flex;align-items:center;justify-content:center;">节次<br />按天设置课程时间</div>
+							<div class="header-cell">
+								<div class="header-main"><div class="weekday">星期一<small>06-29</small></div><span class="gear">⚙</span></div>
+								<div class="header-pills"><span class="header-pill">上午 08:30</span><span class="header-pill">下午 14:00</span><span class="header-pill">晚上 18:45</span></div>
+							</div>
+							<div class="header-cell">
+								<div class="header-main"><div class="weekday">星期二<small>06-30</small></div><span class="gear">⚙</span></div>
+								<div class="header-pills"><span class="header-pill">上午 08:30</span><span class="header-pill">下午 14:00</span><span class="header-pill">晚上 18:45</span></div>
+							</div>
+							<div class="header-cell">
+								<div class="header-main"><div class="weekday">星期三<small>07-01</small></div><span class="gear">⚙</span></div>
+								<div class="header-pills"><span class="header-pill">上午 08:30</span><span class="header-pill">下午 14:00</span><span class="header-pill">晚上 18:45</span></div>
+							</div>
+							<div class="header-cell">
+								<div class="header-main"><div class="weekday">星期四<small>07-02</small></div><span class="gear">⚙</span></div>
+								<div class="header-pills"><span class="header-pill">上午 08:30</span><span class="header-pill">下午 14:00</span><span class="header-pill">晚上 18:45</span></div>
+							</div>
+							<div class="header-cell">
+								<div class="header-main"><div class="weekday">星期五<small>07-03</small></div><span class="gear">⚙</span></div>
+								<div class="header-pills"><span class="header-pill">上午 08:30</span><span class="header-pill">下午 14:00</span><span class="header-pill">晚上 18:45</span></div>
+							</div>
+							<div class="header-cell">
+								<div class="header-main"><div class="weekday" style="color:#4f46e5;">星期六<small>07-04</small></div><span class="gear">⚙</span></div>
+								<div class="header-pills"><span class="header-pill">上午 08:30</span><span class="header-pill">下午 14:00</span><span class="header-pill">晚上 18:45</span></div>
+							</div>
+							<div class="header-cell">
+								<div class="header-main"><div class="weekday" style="color:#dc2626;">星期日<small>07-05</small></div><span class="gear">⚙</span></div>
+								<div class="header-pills"><span class="header-pill">上午 08:30</span><span class="header-pill">下午 14:00</span><span class="header-pill">晚上 18:45</span></div>
+							</div>
+
+							<div class="time-cell">上午第1节<small>第1节</small></div>
+							<div class="day-cell">
+								<div class="slot-card highlight">
+									<div class="slot-time">08:30 - 09:15</div>
+									<div class="slot-title">有关安全生产新的法律法规</div>
+									<div class="slot-meta">
+										<div class="meta-left"><span class="meta-pill">李老师</span><span class="meta-pill room-pill">A101</span></div>
+										<span class="course-type">理论</span>
+									</div>
+								</div>
+							</div>
+							<div class="day-cell">
+								<div class="slot-card">
+									<div class="slot-time">08:30 - 09:15</div>
+									<div class="slot-title">冶金安全管理重点</div>
+									<div class="slot-meta">
+										<div class="meta-left"><span class="meta-pill">王老师</span><span class="meta-pill room-pill empty">选教室</span></div>
+										<span class="course-type">理论</span>
+									</div>
+								</div>
+							</div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell">
+								<div class="slot-card">
+									<div class="slot-time">08:30 - 09:15</div>
+									<div class="slot-title">复习</div>
+									<div class="slot-meta">
+										<div class="meta-left"><span class="meta-pill">陈老师</span><span class="meta-pill room-pill">A101</span></div>
+										<span class="course-type">理论</span>
+									</div>
+								</div>
+							</div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+
+							<div class="time-cell">上午第2节<small>第2节</small></div>
+							<div class="day-cell"><div class="empty-tip">默认教室 A101</div></div>
+							<div class="day-cell"><div class="empty-tip">默认教室 A101</div></div>
+							<div class="day-cell">
+								<div class="slot-card">
+									<div class="slot-time">09:25 - 10:10</div>
+									<div class="slot-title">金属冶炼安全生产形势</div>
+									<div class="slot-meta">
+										<div class="meta-left"><span class="meta-pill">周老师</span><span class="meta-pill room-pill">B203</span></div>
+										<span class="course-type">理论</span>
+									</div>
+								</div>
+							</div>
+							<div class="day-cell"><div class="empty-tip">默认教室 A101</div></div>
+							<div class="day-cell"><div class="empty-tip">默认教室 A101</div></div>
+							<div class="day-cell"><div class="empty-tip">默认教室 A101</div></div>
+							<div class="day-cell"><div class="empty-tip">默认教室 A101</div></div>
+
+							<div class="time-cell">上午第3节<small>第3节</small></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell">
+								<div class="slot-card" style="border-color:#fed7aa;background:#fffbeb;">
+									<div class="slot-time">10:20 - 11:05</div>
+									<div class="slot-title">实操复盘与风险辨识</div>
+									<div class="slot-meta">
+										<div class="meta-left"><span class="meta-pill">赵老师</span><span class="meta-pill room-pill empty">实操教室</span></div>
+										<span class="course-type" style="background:#f0fdf4;color:#15803d;">实操</span>
+									</div>
+								</div>
+							</div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+
+							<div class="time-cell">下午第1节<small>第5节</small></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+							<div class="day-cell"><div class="empty-tip">拖拽课程到此</div></div>
+						</div>
+					</div>
+
+					<div class="popover">
+						<div class="pop-title">
+							<span>选择本节教室</span>
+							<span class="pop-sub">07-01 09:25-10:10</span>
+						</div>
+						<div class="search">搜索教室名称 / 地址</div>
+						<div class="room-option active">
+							<div>
+								<div class="room-name">A101 理论教室</div>
+								<div class="room-meta">容量 48人 · 一楼东侧 · 当前可用</div>
+							</div>
+							<span class="status ok">可用</span>
+						</div>
+						<div class="room-option">
+							<div>
+								<div class="room-name">B203 理论教室</div>
+								<div class="room-meta">容量 32人 · 二楼西侧 · 当前可用</div>
+							</div>
+							<span class="status ok">可用</span>
+						</div>
+						<div class="room-option disabled">
+							<div>
+								<div class="room-name">S101 实操教室</div>
+								<div class="room-meta">容量 20人 · 同时间段已占用</div>
+							</div>
+							<span class="status no">冲突</span>
+						</div>
+						<div class="room-option disabled">
+							<div>
+								<div class="room-name">A203 小教室</div>
+								<div class="room-meta">容量 8人 · 小于培训人数 11人</div>
+							</div>
+							<span class="status warn">容量不足</span>
+						</div>
+					</div>
+
+					<div class="callout default">顶部默认教室：新拖入课程自动带入，可批量补齐未设置课节</div>
+					<div class="callout card">课节卡片：教师旁边显示教室，点击可单独调整</div>
+					<div class="legend">
+						<span><i class="l-green"></i> 可用教室</span>
+						<span><i class="l-amber"></i> 容量不足</span>
+						<span><i class="l-red"></i> 时间冲突</span>
+					</div>
+				</main>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

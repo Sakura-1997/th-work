@@ -1,0 +1,1557 @@
+{
+  "version": "2.13",
+  "children": [
+    {
+      "type": "frame",
+      "id": "G3c7n",
+      "x": 1080,
+      "y": 0,
+      "name": "系统设置-新增开班人数提醒阈值",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#f5f5f5",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "VbhoR",
+          "x": 0,
+          "y": 0,
+          "name": "左侧导航",
+          "width": 200,
+          "height": 1080,
+          "fill": "#001a2d",
+          "layout": "vertical",
+          "padding": [
+            10,
+            0
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "cLW9H",
+              "name": "导航-考务人员管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "f5bIX",
+                  "name": "导航文字-考务人员管理",
+                  "fill": "#cfe6ff",
+                  "content": "考务人员管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KVJda",
+              "name": "导航-建议意见反馈",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "M03ynO",
+                  "name": "导航文字-建议意见反馈",
+                  "fill": "#cfe6ff",
+                  "content": "建议意见反馈",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "z2gchc",
+              "name": "导航-考试计划管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "bpr7Z",
+                  "name": "导航文字-考试计划管理",
+                  "fill": "#cfe6ff",
+                  "content": "考试计划管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "UJ20O",
+              "name": "导航-实操考试管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hpyaI",
+                  "name": "导航文字-实操考试管理",
+                  "fill": "#cfe6ff",
+                  "content": "实操考试管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Nwx3a",
+              "name": "导航-系统管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "my0XC",
+                  "name": "导航文字-系统管理",
+                  "fill": "#cfe6ff",
+                  "content": "系统管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ajnJL",
+              "name": "导航-机构映射管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "VY0nf",
+                  "name": "导航文字-机构映射管理",
+                  "fill": "#cfe6ff",
+                  "content": "  机构映射管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "PyZ8g",
+              "name": "导航-机构管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "H9qFkj",
+                  "name": "导航文字-机构管理",
+                  "fill": "#cfe6ff",
+                  "content": "  机构管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "hsiRC",
+              "name": "导航-培训机构用户管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Jt7E7",
+                  "name": "导航文字-培训机构用户管理",
+                  "fill": "#cfe6ff",
+                  "content": "  培训机构用户管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "LywjN",
+              "name": "导航-监管机构用户管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "w4s2f",
+                  "name": "导航文字-监管机构用户管理",
+                  "fill": "#cfe6ff",
+                  "content": "  监管机构用户管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "kladB",
+              "name": "导航-用户管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "D2KeSp",
+                  "name": "导航文字-用户管理",
+                  "fill": "#cfe6ff",
+                  "content": "  用户管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "hnica",
+              "name": "导航-角色管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "PiOGq",
+                  "name": "导航文字-角色管理",
+                  "fill": "#cfe6ff",
+                  "content": "  角色管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vaqGa",
+              "name": "导航-菜单管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "vxuh2",
+                  "name": "导航文字-菜单管理",
+                  "fill": "#cfe6ff",
+                  "content": "  菜单管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ckTKM",
+              "name": "导航-日志管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "I5JbCp",
+                  "name": "导航文字-日志管理",
+                  "fill": "#cfe6ff",
+                  "content": "  日志管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jxWjk",
+              "name": "导航-通知公告",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "s2brx",
+                  "name": "导航文字-通知公告",
+                  "fill": "#cfe6ff",
+                  "content": "  通知公告",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sOdwc",
+              "name": "导航-短信记录",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GPOU2",
+                  "name": "导航文字-短信记录",
+                  "fill": "#cfe6ff",
+                  "content": "  短信记录",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "JSYKT",
+              "name": "导航-系统设置",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#1f7af2",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "gCV3u",
+                  "name": "导航文字-系统设置",
+                  "fill": "#ffffff",
+                  "content": "  系统设置",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xhLMc",
+              "name": "导航-字典管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qHlAE",
+                  "name": "导航文字-字典管理",
+                  "fill": "#cfe6ff",
+                  "content": "  字典管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DDwqk",
+              "name": "导航-支付对账中心",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Xr2VQ",
+                  "name": "导航文字-支付对账中心",
+                  "fill": "#cfe6ff",
+                  "content": "  支付对账中心",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bdlTn",
+              "name": "导航-网络培训机构管理",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "#001a2d",
+              "padding": [
+                0,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "x7DkPb",
+                  "name": "导航文字-网络培训机构管理",
+                  "fill": "#cfe6ff",
+                  "content": "  网络培训机构管理",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "u52DO",
+          "x": 200,
+          "y": 0,
+          "name": "顶部栏",
+          "width": 1720,
+          "height": 50,
+          "fill": "#ffffff",
+          "padding": [
+            0,
+            28
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "O5Yu8",
+              "name": "面包屑",
+              "fill": "#4b5563",
+              "content": "首页 / 系统管理 / 系统设置",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "xmJL1",
+              "name": "管理员",
+              "fill": "#333333",
+              "content": "管理员⌄",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "MTp4D",
+          "x": 216,
+          "y": 66,
+          "name": "主内容区",
+          "width": 1678,
+          "height": 1014,
+          "fill": "#ffffff",
+          "layout": "vertical",
+          "gap": 6,
+          "children": [
+            {
+              "type": "frame",
+              "id": "uPhDy",
+              "name": "开班人数设置",
+              "width": "fill_container",
+              "fill": "#ffffff",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                18,
+                24,
+                12,
+                24
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "z94xm",
+                  "name": "开班人数设置标题组",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "BW0Ib",
+                      "name": "开班人数设置标题行",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 3,
+                          "id": "MvmDR",
+                          "name": "开班人数设置蓝色标记",
+                          "fill": "#2d7df6",
+                          "width": 6,
+                          "height": 24
+                        },
+                        {
+                          "type": "text",
+                          "id": "lwVCR",
+                          "name": "开班人数设置标题",
+                          "fill": "#243044",
+                          "content": "开班人数设置",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 20,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "S74bvI",
+                      "name": "开班人数设置说明",
+                      "fill": "#34445c",
+                      "content": "配置开班人数提醒与人数上限，帮助机构按报名规模安排开班。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "o6OvkU",
+                  "name": "开班人数提醒阈值",
+                  "width": "fill_container",
+                  "height": 80,
+                  "fill": "#f8f9fb",
+                  "cornerRadius": 6,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#e5e7eb66",
+                    "offset": {
+                      "x": 0,
+                      "y": 4
+                    },
+                    "blur": 12
+                  },
+                  "padding": [
+                    0,
+                    16
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "W8WMQ",
+                      "name": "开班人数提醒阈值左侧",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "h5rXk",
+                          "name": "开班人数提醒阈值图标底",
+                          "width": 48,
+                          "height": 48,
+                          "fill": "#dcebff",
+                          "cornerRadius": 4,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "dv3Gp",
+                              "x": 12,
+                              "y": 12,
+                              "name": "开班人数提醒阈值图标",
+                              "width": 24,
+                              "height": 24,
+                              "icon": "users",
+                              "library": "lucide",
+                              "fill": "#2f7df6"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "USHjI",
+                          "name": "开班人数提醒阈值文案",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "qkGRf",
+                              "name": "开班人数提醒阈值名称与开关",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "xUO4g",
+                                  "name": "开班人数提醒阈值名称",
+                                  "fill": "#243044",
+                                  "content": "开班人数提醒阈值",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 18,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "oJmV1",
+                                  "name": "开班人数提醒阈值开关",
+                                  "width": 28,
+                                  "height": 16,
+                                  "fill": "#1677ff",
+                                  "cornerRadius": 8,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "WxTfq",
+                                      "x": 14,
+                                      "y": 2,
+                                      "name": "开班人数提醒阈值开关圆点",
+                                      "fill": "#ffffff",
+                                      "width": 12,
+                                      "height": 12
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "iIBkY",
+                              "name": "开班人数提醒阈值描述",
+                              "fill": "#34445c",
+                              "content": "当报名人数达到设定人数时，系统提醒机构可安排开班。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "x6lYN",
+                      "name": "开班人数提醒阈值输入区",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "j2zPGy",
+                          "name": "开班人数提醒阈值输入框",
+                          "width": 80,
+                          "height": 32,
+                          "fill": "#ffffff",
+                          "cornerRadius": 4,
+                          "stroke": "#d7dbe2",
+                          "strokeWidth": 1,
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "snMUO",
+                              "name": "开班人数提醒阈值输入值",
+                              "fill": "#374151",
+                              "content": "30",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "W0389n",
+                          "name": "开班人数提醒阈值单位",
+                          "fill": "#374151",
+                          "content": "人",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "o81ZHz",
+                  "name": "开班人数阈值上限",
+                  "width": "fill_container",
+                  "height": 80,
+                  "fill": "#f8f9fb",
+                  "cornerRadius": 6,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#e5e7eb66",
+                    "offset": {
+                      "x": 0,
+                      "y": 4
+                    },
+                    "blur": 12
+                  },
+                  "padding": [
+                    0,
+                    16
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "PAhk8",
+                      "name": "开班人数阈值上限左侧",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "XYAKf",
+                          "name": "开班人数阈值上限图标底",
+                          "width": 48,
+                          "height": 48,
+                          "fill": "#dcebff",
+                          "cornerRadius": 4,
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "i7uG5p",
+                              "x": 12,
+                              "y": 12,
+                              "name": "开班人数阈值上限图标",
+                              "width": 24,
+                              "height": 24,
+                              "icon": "user-check",
+                              "library": "lucide",
+                              "fill": "#2f7df6"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ps1zV",
+                          "name": "开班人数阈值上限文案",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "iHFdx",
+                              "name": "开班人数阈值上限名称与开关",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "qRQp1",
+                                  "name": "开班人数阈值上限名称",
+                                  "fill": "#243044",
+                                  "content": "开班人数阈值上限",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 18,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "usgxo",
+                                  "name": "开班人数阈值上限开关",
+                                  "width": 28,
+                                  "height": 16,
+                                  "fill": "#1677ff",
+                                  "cornerRadius": 8,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "rzmfq",
+                                      "x": 14,
+                                      "y": 2,
+                                      "name": "开班人数阈值上限开关圆点",
+                                      "fill": "#ffffff",
+                                      "width": 12,
+                                      "height": 12
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "LBP04",
+                              "name": "开班人数阈值上限描述",
+                              "fill": "#34445c",
+                              "content": "当报名人数达到上限后，系统限制继续报名或提示调整班级容量。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fpMqD",
+                      "name": "开班人数阈值上限输入区",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "kvpRd",
+                          "name": "开班人数阈值上限输入框",
+                          "width": 80,
+                          "height": 32,
+                          "fill": "#ffffff",
+                          "cornerRadius": 4,
+                          "stroke": "#d7dbe2",
+                          "strokeWidth": 1,
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "a2UXR",
+                              "name": "开班人数阈值上限输入值",
+                              "fill": "#374151",
+                              "content": "50",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "avvbH",
+                          "name": "开班人数阈值上限单位",
+                          "fill": "#374151",
+                          "content": "人",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "NLpeC",
+          "x": 955,
+          "y": 1018,
+          "name": "底部操作栏",
+          "width": 200,
+          "height": 34,
+          "gap": 8,
+          "children": [
+            {
+              "type": "frame",
+              "id": "R68hr",
+              "name": "刷新按钮",
+              "width": 82,
+              "height": 32,
+              "fill": "#ffffff",
+              "cornerRadius": 4,
+              "stroke": "#d9d9d9",
+              "strokeWidth": 1,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "X0zDqF",
+                  "name": "刷新图标",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "refresh-cw",
+                  "library": "lucide",
+                  "fill": "#4b5563"
+                },
+                {
+                  "type": "text",
+                  "id": "e0ksPv",
+                  "name": "刷新文字",
+                  "fill": "#333333",
+                  "content": "刷新",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DFiHx",
+              "name": "保存配置按钮",
+              "width": 110,
+              "height": 32,
+              "fill": "#1677ff",
+              "cornerRadius": 4,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "KgtHa",
+                  "name": "保存图标",
+                  "width": 15,
+                  "height": 15,
+                  "icon": "save",
+                  "library": "lucide",
+                  "fill": "#ffffff"
+                },
+                {
+                  "type": "text",
+                  "id": "D25cLo",
+                  "name": "保存配置文字",
+                  "fill": "#ffffff",
+                  "content": "保存配置",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "themes": {
+    "Mode": [
+      "Light",
+      "Dark"
+    ]
+  },
+  "variables": {
+    "--sidebar": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E7E8E5"
+        },
+        {
+          "value": "#18181b",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#18181b"
+        },
+        {
+          "value": "#18181b",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-primary-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#fafafa"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#ffffff1a",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-accent": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2a2a30",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-accent-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#18181b"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-ring": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#71717a"
+        },
+        {
+          "value": "#71717a",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--background": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#111111",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--card": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFF"
+        },
+        {
+          "value": "#1A1A1A",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--card-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--popover": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFF"
+        },
+        {
+          "value": "#1A1A1A",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--popover-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FF8400"
+        },
+        {
+          "value": "#FF8400",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--primary-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#111111",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--secondary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E7E8E5"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--secondary-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--muted": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--muted-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#B8B9B6",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--accent": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#111111",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--accent-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#F2F3F0",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--destructive": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#D93C15"
+        },
+        {
+          "value": "#FF5C33",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--input": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--ring": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#666666",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "--black": {
+      "type": "color",
+      "value": "#000000"
+    },
+    "--font-primary": {
+      "type": "string",
+      "value": "JetBrains Mono"
+    },
+    "--font-secondary": {
+      "type": "string",
+      "value": "Geist"
+    },
+    "--radius-none": {
+      "type": "number",
+      "value": 0
+    },
+    "--radius-pill": {
+      "type": "number",
+      "value": 999
+    },
+    "--color-success": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#DFE6E1"
+        },
+        {
+          "value": "#222924",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-success-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#004D1A"
+        },
+        {
+          "value": "#B6FFCE",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-warning": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E9E3D8"
+        },
+        {
+          "value": "#291C0F",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-warning-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#804200"
+        },
+        {
+          "value": "#FF8400",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-error": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E5DCDA"
+        },
+        {
+          "value": "#24100B",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-error-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#8C1C00"
+        },
+        {
+          "value": "#FF5C33",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-info": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#DFDFE6"
+        },
+        {
+          "value": "#222229",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-info-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#000066"
+        },
+        {
+          "value": "#B2B2FF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--radius-m": {
+      "type": "number",
+      "value": 16
+    }
+  }
+}

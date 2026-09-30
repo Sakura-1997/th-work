@@ -1,0 +1,4 @@
+公司手机号：15507919294
+江河正式环境： 万学/13006206641  Wx81902510@WX  https://auth.yjglt.jx.cegn
+江西政务五福管理门户：JXSYJGLXCJYZX   AI@Tellhow2026  http://10.5.18.47:8088/api-gateway/common-ucenter-server/oauth2/ssologin
+pigx仓库：2515122558@qq.com   tellhow2026

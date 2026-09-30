@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>考试计划卡片 · 优化设计稿</title>
+<style>
+  /* ============ 设计 Token（与端上实现共用） ============ */
+  :root{
+    --brand:#1677FF;      --brand-weak:#E8F1FF;   --brand-weak-2:#F5F9FF;
+    --price:#FA6400;      --price-weak:#FFF3EA;
+    --ok:#00A870;         --ok-weak:#E8F8F1;
+    --warn:#FF8F1F;       --warn-weak:#FFF6EC;
+    --full:#8C96A3;       --full-weak:#F1F3F5;
+    --ink-1:#101828;  --ink-2:#4A5568;  --ink-3:#98A2B3;
+    --line:#EDF0F4;   --line-2:#E3E8EF;
+    --page:#F2F4F7;   --card:#FFFFFF;
+    --r-card:16px; --r-btn:12px; --r-pill:999px;
+    --sp-14:14px; --sp-12:12px; --sp-8:8px;
+    --tap:44px;                 /* 最小可点击高度 */
+    --font:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box; -webkit-font-smoothing:antialiased;}
+  html,body{margin:0;}
+  body{
+    background:#F6F7F9; color:var(--ink-1); font-family:var(--font);
+    font-size:14px; line-height:1.5; padding:36px 0 64px;
+  }
+  .sheet{width:1180px; margin:0 auto;}
+
+  /* ---------- 文档外层样式 ---------- */
+  .doc-title{font-size:26px; font-weight:800; letter-spacing:-.3px; margin:0 0 6px;}
+  .doc-sub{color:var(--ink-2); font-size:13.5px; margin:0 0 26px;}
+  .h2{font-size:17px; font-weight:750; margin:34px 0 14px; display:flex; align-items:center; gap:10px;}
+  .h2::before{content:""; width:4px; height:16px; border-radius:2px; background:var(--brand);}
+  .h2 .en{font-size:12px; font-weight:500; color:var(--ink-3); letter-spacing:.4px;}
+
+  table.map{width:100%; border-collapse:separate; border-spacing:0; background:#fff;
+    border:1px solid var(--line-2); border-radius:14px; overflow:hidden; font-size:13px;}
+  table.map th{background:#F8FAFC; color:var(--ink-2); font-weight:650; text-align:left;
+    padding:11px 14px; border-bottom:1px solid var(--line-2); white-space:nowrap;}
+  table.map td{padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.6;}
+  table.map tr:last-child td{border-bottom:0;}
+  table.map td.prob{color:#C4320A;}
+  table.map td.fix{color:#0A6B4A;}
+  .tag{display:inline-block; padding:1px 7px; border-radius:6px; font-size:11.5px; font-weight:650;
+    background:var(--full-weak); color:var(--ink-2); margin-right:6px;}
+  .tag.red{background:#FFF1EC; color:#C4320A;}
+  .tag.blue{background:var(--brand-weak); color:#0B5CD5;}
+
+  /* ---------- 手机框 ---------- */
+  .phones{display:flex; gap:26px; align-items:flex-start; margin-top:6px;}
+  .phone-col{flex:1;}
+  .phone-cap{display:flex; align-items:center; gap:8px; margin:0 0 10px; font-size:13.5px; font-weight:700;}
+  .phone-cap .idx{width:20px; height:20px; border-radius:6px; display:grid; place-items:center;
+    font-size:11.5px; color:#fff; background:var(--full);}
+  .phone-cap .idx.new{background:var(--brand);}
+  .phone-cap .note{font-weight:500; color:var(--ink-3); font-size:12px;}
+  .phone{width:375px; height:762px; background:var(--page); border:1px solid #DDE2E9;
+    border-radius:26px; overflow:hidden; display:flex; flex-direction:column;
+    box-shadow:0 8px 24px rgba(16,24,40,.07);}
+  .statusbar{height:26px; flex:0 0 26px; background:#fff; display:flex; align-items:center;
+    justify-content:space-between; padding:0 14px; font-size:11px; font-weight:650; color:#101828;}
+  .statusbar .right{display:flex; gap:4px; align-items:center; color:#101828; font-size:10px;}
+
+  /* 导航栏 */
+  .navbar{background:#fff; border-bottom:1px solid var(--line); flex:0 0 auto;}
+  .navbar .up{height:34px; display:flex; align-items:center; padding:0 10px; gap:6px;
+    font-size:12.5px; color:var(--ink-2);}
+  .navbar .up .ell{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .navbar .bar{height:42px; display:grid; grid-template-columns:56px 1fr 56px; align-items:center; padding:0 6px;}
+  .navbar .bar .t{text-align:center; font-size:16px; font-weight:700;}
+  .navbar .bar .l,.navbar .bar .r{font-size:16px; color:var(--ink-1); text-align:center;}
+  .filter-btn{display:inline-flex; align-items:center; gap:3px; font-size:13px; color:var(--ink-2);
+    background:transparent; border:0; font-family:inherit; padding:6px 2px; margin-left:auto;}
+  .filter-btn.on{color:var(--brand); font-weight:650;}
+
+  /* 列表区 */
+  .list{flex:1; overflow:hidden; position:relative;}
+  .list.old{padding:12px 12px 0;}
+  .list.new{padding:14px 12px 0;}
+
+  /* ================= 旧卡片（现状还原） ================= */
+  .card-old{background:#fff; border-radius:10px; padding:12px 12px 12px; margin-bottom:12px;
+    box-shadow:0 1px 2px rgba(16,24,40,.04);}
+  .card-old .t{font-size:13.5px; font-weight:600; line-height:1.45; padding-right:4px;}
+  .card-old .tagnew{display:inline-block; vertical-align:top; margin-left:6px; font-size:9.5px;
+    font-weight:700; color:#C77A00; background:#FFF6E5; border:1px solid #FFE2AE;
+    border-radius:3px; padding:0 3px; line-height:14px;}
+  .card-old dl{margin:8px 0 0; font-size:11.5px; color:#6B7280; line-height:1.85;}
+  .card-old dl div{display:flex; padding-left:1.6em;}
+  .card-old dl dt{width:3.6em; flex:0 0 3.6em; color:#9AA3AF; margin:0;}
+  .card-old dl dd{margin:0; flex:1; color:#4B5563;}
+  .card-old .foot{display:flex; align-items:baseline; justify-content:space-between;
+    margin-top:8px; padding-top:8px; border-top:1px dashed #EDEFF2;}
+  .card-old .price{font-size:11.5px; color:#6B7280;}
+  .card-old .price b{color:var(--price); font-size:14px; font-weight:700;}
+  .card-old .left{font-size:11.5px; color:#B6BCC6;}
+  .card-old .btn{margin-top:9px; height:34px; border-radius:6px; background:var(--brand); color:#fff;
+    font-size:13px; font-weight:600; display:grid; place-items:center;}
+  .card-old .btn.dead{background:#F4F5F7; color:#B9BFC9; font-weight:600;}
+  .card-old.dim .t{color:#3D4653;}
+
+  /* ================= 新卡片 ================= */
+  .card{position:relative; background:var(--card); border-radius:var(--r-card);
+    padding:16px 16px 0; margin-bottom:12px; overflow:hidden;
+    border:1px solid transparent;
+    box-shadow:0 1px 2px rgba(16,24,40,.05), 0 2px 8px rgba(16,24,40,.04);}
+  .card::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--brand);}
+  .card.is-full::before{background:#D5DAE1;}
+  .card.is-full{box-shadow:0 1px 2px rgba(16,24,40,.04);}
+
+  /* 头部：时间锚点 + 考点 */
+  .card .head{display:grid; grid-template-columns:1fr auto; gap:4px 10px; align-items:start;}
+  .when{display:flex; align-items:center; gap:7px; font-size:18px; font-weight:750;
+    letter-spacing:-.2px; line-height:1.2;}
+  .when .half{display:inline-flex; align-items:center; gap:3px; font-size:12px; font-weight:650;
+    color:#0B5CD5; background:var(--brand-weak); border-radius:6px; padding:2px 6px 2px 4px;
+    position:relative; top:1px;}
+  .card.is-full .when{color:#5B6472;}
+  .card.is-full .when .half{color:#6B7480; background:var(--full-weak);}
+  .tagline{display:flex; align-items:center; gap:6px; margin-top:7px; font-size:13.5px;
+    color:var(--ink-2); font-weight:600; line-height:1.35;}
+  .tagline .name{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .badge{flex:0 0 auto; align-self:start; font-size:11.5px; font-weight:650; line-height:18px;
+    height:20px; padding:0 7px; border-radius:6px; color:#A85B00; background:#FFF6E5;
+    border:1px solid #FFE2AE; white-space:nowrap;}
+
+  /* 结构化信息：统一左对齐，键值对齐，一眼可扫 */
+  .meta{margin-top:12px; padding:10px 12px; background:#FAFBFC; border-radius:10px;
+    display:grid; gap:6px; font-size:12.5px;}
+  .meta .row{display:flex; gap:8px; align-items:flex-start; color:var(--ink-2); line-height:1.45;}
+  .meta .k{flex:0 0 54px; color:var(--ink-3);}
+  .meta .v{flex:1; min-width:0;}
+  .meta .v.strong{color:#344054; font-weight:600;}
+  .timeicon{width:13px; height:13px; flex:0 0 13px; margin-top:2px; color:#98A2B3;}
+
+  /* 底部决策条 */
+  .foot{display:flex; align-items:center; gap:10px; margin-top:12px; padding:12px 0 14px;
+    border-top:1px solid var(--line);}
+  .fee{flex:0 0 auto;}
+  .fee .lb{font-size:11px; color:var(--ink-3); line-height:1.2; margin-bottom:1px;}
+  .fee .amt{font-size:17px; font-weight:750; color:var(--price); letter-spacing:-.2px; line-height:1.15;}
+  .fee .amt i{font-style:normal; font-size:12px; font-weight:700; margin-right:1px;}
+  .quota{margin-left:auto; flex:0 0 auto; display:inline-flex; align-items:center; gap:5px;
+    height:26px; padding:0 10px; border-radius:var(--r-pill); font-size:12px; font-weight:700;}
+  .quota.ok{background:var(--ok-weak); color:#00794E;}
+  .quota.warn{background:var(--warn-weak); color:#B75E00;}
+  .quota.full{background:var(--full-weak); color:#616B78;}
+  .quota .dot{width:6px; height:6px; border-radius:50%; background:currentColor;}
+  .quota em{font-style:normal; font-weight:600; opacity:.72; font-size:11.5px;}
+
+  .btn{width:100%; height:var(--tap); border-radius:var(--r-btn); border:0; font-family:inherit;
+    font-size:15px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:6px;}
+  .btn.primary{background:var(--brand); color:#fff; box-shadow:0 2px 8px rgba(22,119,255,.22);}
+  .btn.primary.urgent{background:#F53F3F; box-shadow:0 2px 8px rgba(245,63,63,.22);}
+  .btn.disabled{background:#EFF1F4; color:#A7AEBA; box-shadow:none; cursor:not-allowed; font-weight:650;}
+  .hint{display:flex; align-items:center; justify-content:center; gap:5px; width:100%;
+    height:var(--tap); border-radius:var(--r-btn); color:#98A2B3; font-size:13px; font-weight:600;}
+
+  /* 底部 Tab */
+  .tabbar{flex:0 0 58px; height:58px; background:#fff; border-top:1px solid var(--line);
+    display:flex; align-items:center; padding:0 12px; gap:10px;}
+  .tab{flex:0 0 62px; display:grid; justify-items:center; gap:2px; font-size:10.5px; color:var(--ink-3);
+    font-weight:600;}
+  .tab.on{color:var(--brand); font-weight:750;}
+  .tab .ic{width:22px; height:22px;}
+  .cta-mini{margin-left:auto; height:40px; padding:0 22px; border-radius:var(--r-btn); background:var(--brand);
+    color:#fff; font-size:14.5px; font-weight:700; display:grid; place-items:center;
+    box-shadow:0 2px 8px rgba(22,119,255,.22);}
+  .cta-mini.off{background:#EFF1F4; color:#A7AEBA; box-shadow:none; font-weight:650;}
+
+  /* 列表上方筛选/结果条 */
+  .filterbar{display:flex; align-items:center; gap:8px; padding:0 2px 10px; font-size:12px; color:var(--ink-3);}
+  .chip{height:26px; padding:0 10px; border-radius:var(--r-pill); background:#fff; border:1px solid var(--line-2);
+    display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:var(--ink-2);}
+  .chip.act{background:var(--brand-weak); border-color:#BBD6FF; color:#0B5CD5;}
+  .count{margin-left:auto;}
+
+  /* 设计规范卡片 */
+  .specs{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  .spec{background:#fff; border:1px solid var(--line-2); border-radius:14px; padding:14px 16px;}
+  .spec .k{font-size:12px; color:var(--ink-3); margin-bottom:4px;}
+  .spec .v{font-size:19px; font-weight:800; letter-spacing:-.3px;}
+  .spec .d{font-size:12px; color:var(--ink-2); margin-top:5px; line-height:1.5;}
+  .rules{background:#fff; border:1px solid var(--line-2); border-radius:14px; padding:6px 18px; margin-top:14px;}
+  .rules li{font-size:13px; color:var(--ink-2); line-height:1.85; margin:10px 0;}
+  .rules b{color:var(--ink-1);}
+  code{background:#F4F6F8; border:1px solid var(--line-2); border-radius:5px; padding:1px 5px;
+    font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#334155;}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <h1 class="doc-title">考试计划卡片 · 优化设计稿</h1>
+  <p class="doc-sub">场景：特种作业人员职业资格 · 预约考试列表　|　目标：更简洁、更直观、更具辨识度、不易误操作</p>
+
+  <div class="phones">
+    <!-- ============== 现状 ============== -->
+    <div class="phone-col">
+      <div class="phone-cap"><span class="idx">1</span>现状还原<span class="note">信息平铺，层级弱，满额态几乎不可见</span></div>
+      <div class="phone">
+        <div class="statusbar"><span>14:26</span><span class="right">▮▮▮ ᯤ 48</span></div>
+        <div class="navbar">
+          <div class="up"><span>‹</span><span class="ell">特种作业人员职业资格…</span><span>☆</span><span>⋯</span><span>⊗</span></div>
+          <div class="bar">
+            <div class="l">‹</div><div class="t">预约考试</div>
+            <div class="r" style="font-size:12px;color:#6B7280;display:flex;align-items:center;justify-content:center;gap:3px;">▽ 筛选</div>
+          </div>
+        </div>
+        <div class="list old">
+          <!-- 卡片 1 -->
+          <div class="card-old dim">
+            <div class="t">2026年9月24日上饶市安全生产考试中心直属考试点特种作业理论考试上午场第516批次<span class="tagnew">初考</span></div>
+            <dl>
+              <div><dt>考试项目</dt><dd>特种作业人员</dd></div>
+              <div><dt>考试地址</dt><dd>上饶市广信区罗桥街道旭日北大道358号</dd></div>
+              <div><dt>考点</dt><dd>上饶市安全生产考试中心直属考试点</dd></div>
+              <div><dt>考场</dt><dd>理论考试机房</dd></div>
+              <div><dt>考试时间</dt><dd>2026-09-24 08:00:00–2026-09-24 12:00:00</dd></div>
+            </dl>
+            <div class="foot">
+              <span class="price">实操考试费：<b>¥56.00</b></span>
+              <span class="left">剩余名额 0/200</span>
+            </div>
+            <div class="btn dead">立即预约考试</div>
+          </div>
+          <!-- 卡片 2 -->
+          <div class="card-old">
+            <div class="t">2026年9月24日上饶市安全生产考试中心直属考试点特种作业理论考试下午场第517批次<span class="tagnew">初考</span></div>
+            <dl>
+              <div><dt>考试项目</dt><dd>特种作业人员</dd></div>
+              <div><dt>考试地址</dt><dd>上饶市广信区罗桥街道旭日北大道358号</dd></div>
+              <div><dt>考点</dt><dd>上饶市安全生产考试中心直属考试点</dd></div>
+              <div><dt>考场</dt><dd>理论考试机房</dd></div>
+              <div><dt>考试时间</dt><dd>2026-09-24 13:00:00–2026-09-24 18:00:00</dd></div>
+            </dl>
+            <div class="foot">
+              <span class="price">实操考试费：<b>¥56.00</b></span>
+              <span class="left">剩余名额 0/200</span>
+            </div>
+            <div class="btn">立即预约考试</div>
+          </div>
+          <div class="card-old" style="opacity:.55">
+            <div class="t">2026年9月25日上饶市安全生产考试中心直属考试点特种作业理论考试上午场第518批次<span class="tagnew">初考</span></div>
+            <dl>
+              <div><dt>考试项目</dt><dd>特种作业人员</dd></div>
+              <div><dt>考试地址</dt><dd>上饶市广信区罗桥街道旭日北大道358号</dd></div>
+              <div><dt>考点</dt><dd>上饶市安全生产考试中心直属考试点</dd></div>
+              <div><dt>考场</dt><dd>理论考试机房</dd></div>
+              <div><dt>考试时间</dt><dd>2026-09-25 08:00:00–2026-09-25 12:00:00</dd></div>
+            </dl>
+            <div class="foot">
+              <span class="price">实操考试费：<b>¥56.00</b></span>
+              <span class="left">剩余名额 0/200</span>
+            </div>
+            <div class="btn dead">立即预约考试</div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <div class="tab on">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            预约中
+          </div>
+          <div class="tab">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            已预约
+          </div>
+          <div class="cta-mini off">立即预约考试</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============== 新稿 ============== -->
+    <div class="phone-col">
+      <div class="phone-cap"><span class="idx new">2</span>优化后<span class="note">时间做主标题，名额进决策区，满额=只读</span></div>
+      <div class="phone">
+        <div class="statusbar"><span>14:26</span><span class="right">▮▮▮ ᯤ 48</span></div>
+        <div class="navbar">
+          <div class="bar" style="grid-template-columns:40px 1fr auto;">
+            <div class="l">‹</div><div class="t">预约考试</div>
+            <button class="filter-btn on">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18l-7 8v6l-4 2v-8L3 5z"/></svg>
+              筛选<span style="background:#1677FF;color:#fff;border-radius:999px;font-size:10px;font-weight:700;padding:0 5px;line-height:15px;">1</span>
+            </button>
+          </div>
+        </div>
+        <div class="list new">
+          <div class="filterbar">
+            <span class="chip act">9月24日 ✕</span>
+            <span class="chip">余票优先</span>
+            <span class="count">共 6 场</span>
+          </div>
+
+          <!-- 新卡片 A：有名额 -->
+          <div class="card">
+            <div class="head">
+              <div class="when">9月24日 · 周四
+                <span class="half">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"/></svg>
+                  上午场
+                </span>
+              </div>
+              <span class="badge">初考</span>
+            </div>
+            <div class="tagline">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2" style="flex:0 0 14px"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+              <span class="name">上饶市安全生产考试中心直属考试点</span>
+            </div>
+            <div class="meta">
+              <div class="row">
+                <svg class="timeicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3.2 2"/></svg>
+                <span class="v strong" style="color:#344054;">08:00 – 12:00</span>
+                <span style="color:#C3C9D2;">|</span>
+                <span style="color:#667085;">第 516 批次</span>
+              </div>
+              <div class="row"><span class="k">考场</span><span class="v">理论考试机房</span></div>
+              <div class="row"><span class="k">地址</span><span class="v">上饶市广信区罗桥街道旭日北大道 358 号</span></div>
+            </div>
+            <div class="foot">
+              <div class="fee"><div class="lb">实操考试费</div><div class="amt"><i>¥</i>56.00</div></div>
+              <span class="quota ok"><span class="dot"></span>余 12 <em>/ 200</em></span>
+            </div>
+            <button class="btn primary">预约考试</button>
+            <div style="height:16px"></div>
+          </div>
+
+          <!-- 新卡片 B：已满（只读） -->
+          <div class="card is-full">
+            <div class="head">
+              <div class="when">9月24日 · 周四
+                <span class="half">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+                  下午场
+                </span>
+              </div>
+              <span class="badge">初考</span>
+            </div>
+            <div class="tagline">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2" style="flex:0 0 14px"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+              <span class="name">上饶市安全生产考试中心直属考试点</span>
+            </div>
+            <div class="meta">
+              <div class="row">
+                <svg class="timeicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3.2 2"/></svg>
+                <span class="v strong" style="color:#5B6472;">13:00 – 18:00</span>
+                <span style="color:#C3C9D2;">|</span>
+                <span style="color:#667085;">第 517 批次</span>
+              </div>
+              <div class="row"><span class="k">考场</span><span class="v">理论考试机房</span></div>
+              <div class="row"><span class="k">地址</span><span class="v">上饶市广信区罗桥街道旭日北大道 358 号</span></div>
+            </div>
+            <div class="foot">
+              <div class="fee"><div class="lb">实操考试费</div><div class="amt" style="color:#98A2B3;"><i>¥</i>56.00</div></div>
+              <span class="quota full"><span class="dot"></span>已满 <em>0 / 200</em></span>
+            </div>
+            <div class="hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>
+              本场已约满，暂不可预约
+            </div>
+            <div style="height:16px"></div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <div class="tab on">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            预约中
+          </div>
+          <div class="tab">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            已预约
+          </div>
+          <div class="cta-mini">预约考试</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== 问题 → 对策 ============== -->
+  <h2 class="h2">问题定位与调整对策 <span class="en">problem → fix</span></h2>
+  <table class="map">
+    <thead>
+      <tr><th style="width:16%">维度</th><th style="width:34%">现状问题</th><th style="width:50%">调整对策</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag red">辨识度</span>标题</td>
+        <td class="prob">130+ 字长句承担标题职责，"2026年9月24日+考点全称+考试类型+场次"全部堆在首行，两行折行后仍读不出重点；"上午场/第516批次"这类关键筛选维度被埋在句中。</td>
+        <td class="fix">标题重构为 <b>「9月24日 · 周四」+ 时段徽章「上午场」</b>，把用户真正用来挑场次的三个维度（日期/时段/考点）前置；考点从长句里拆出来独立成行，超出省略号截断。</td>
+      </tr>
+      <tr>
+        <td><span class="tag red">辨识度</span>名额</td>
+        <td class="prob">"剩余名额 0/200" 用 11.5px 浅灰置于右下角，紧贴费用且被按钮挤压，是全卡最弱的一处视觉，却是决定"能不能约"的唯一信息；"0/200" 缺少语义，需自行推断是"剩余"还是"已用"。</td>
+        <td class="fix">名额升为 <b>决策色胶囊</b>：<b>余 12/200</b>（绿）/ <b>余 8/200</b>（橙，≤10% 时）/ <b>已满 0/200</b>（灰）。颜色 + 文案双重编码，扫一眼即可分流。</td>
+      </tr>
+      <tr>
+        <td><span class="tag red">误操作</span>按钮</td>
+        <td class="prob">满额卡片仍给出与可约卡片<b>完全相同的实心蓝主按钮</b>"立即预约考试"，只有极淡的灰底做区分；用户按下去才发现约不了，是最大的误操作来源。列表底部 Tab 栏还挂了一个同文案的蓝色按钮，形成第二个误触点。</td>
+        <td class="fix">满额时<b>不再渲染按钮</b>，替换为无点击样式的说明行"本场已约满，暂不可预约"，从结构上消除误触；可约态文案收敛为 <b>「预约考试」</b>，与底部 Tab 栏 CTA 语义区分。</td>
+      </tr>
+      <tr>
+        <td><span class="tag red">误操作</span>状态反馈</td>
+        <td class="prob">整卡无状态标识，满额与否只能逐字读小字；点击后无中间态，重复点击容易产生重复预约。</td>
+        <td class="fix">卡片左侧 <b>3px 状态竖条</b>（蓝=可约 / 灰=已满）+ 名额胶囊共两处冗余编码；点击后按钮切换为"提交中…"并 1.5s 内禁用，避免重复提交。</td>
+      </tr>
+      <tr>
+        <td><span class="tag blue">简洁</span>信息结构</td>
+        <td class="prob">5 行"标签：值"平铺，字段左边界随标签宽度浮动（"考试地址"4 字与"考点"2 字不对齐），视线需来回跳跃；"考试时间"重复书写两遍日期；"考试项目：特种作业人员"与页面标题完全重复。</td>
+        <td class="fix">时间归并为 <b>08:00 – 12:00</b>（日期已在标题）；删去重复的"考试项目"；三项元信息收进浅灰信息块，键固定 54px 宽左对齐，值统一起点，可纵向扫读。</td>
+      </tr>
+      <tr>
+        <td><span class="tag blue">简洁</span>费用</td>
+        <td class="prob">"实操考试费：¥56.00" 与名额挤在同一行，两种无关信息互相争夺注意力，价格与名额都读不快。</td>
+        <td class="fix">费用独立成"标签 + 金额"两行块（¥56.00 用 17px 价格色），与右侧名额胶囊左右分立，底部形成清晰的 <b>费用 — 名额 — 按钮</b> 决策区。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ============== 规范 ============== -->
+  <h2 class="h2">设计规范 <span class="en">tokens &amp; rules</span></h2>
+  <div class="specs">
+    <div class="spec"><div class="k">圆角 / 阴影</div><div class="v">16px</div><div class="d">卡片 16px、信息块与按钮 12px；阴影两级 <code>0 1 2</code> + <code>0 2 8</code>，满额卡降一级。</div></div>
+    <div class="spec"><div class="k">内边距 / 间距</div><div class="v">16 / 12</div><div class="d">卡片内边距 16px，块间距 12px，卡片间距 12px，底部按钮上下留白 12/16px。</div></div>
+    <div class="spec"><div class="k">主按钮点击区</div><div class="v">44px</div><div class="d">按钮高度由 34px 提升到 ≥44px，满足可点击热区下限，降低误触与漏触。</div></div>
+    <div class="spec"><div class="k">名额阈值</div><div class="v">10%</div><div class="d">余量 ≤ 总名额 10% 转橙色"仅剩 N 位"，=0 转灰色已满；状态仅由数据驱动，不手工标注。</div></div>
+  </div>
+  <div class="rules">
+    <ul style="margin:0; padding-left:18px;">
+      <li><b>字号与字重</b>：日期 18/750 · 考点 13.5/600 · 元信息 12.5/400 · 名额 12/700 · 金额 17/750。全卡仅 3 级字重，避免"处处加粗等于没有重点"。</li>
+      <li><b>色彩语义</b>：蓝 <code>#1677FF</code> = 可操作/时间信息 · 橙 <code>#FA6400</code> = 费用 · 绿 <code>#00A870</code> = 余量充足 · 橙 <code>#FF8F1F</code> = 余量紧张 · 灰 <code>#8C96A3</code> = 不可操作。同一颜色不在卡内承担两种语义。</li>
+      <li><b>禁用态可读性</b>：满额卡正文不再整体降透明度（会造成"这张卡坏了"的错觉），改用<b>状态竖条 + 灰色名额胶囊 + 说明行</b>表达不可用，考点、时间等决策信息保持正常对比度。</li>
+      <li><b>触控隔离</b>：卡片主体不可点击（仅按钮可点），避免"点卡片任意处即预约"；满额卡与相邻可约卡的按钮纵向间距 ≥16px，防止连击穿透。</li>
+      <li><b>无障碍</b>：名额胶囊与费用金额对比度 ≥4.5:1；状态不只靠颜色（附"已满/仅剩 N 位"文案）；时段徽章附带图标，"上午场/下午场"不依赖颜色区分。</li>
+      <li><b>兜底文案</b>：满额 → "本场已约满，暂不可预约"；未开放 → "9月20日 08:00 开放预约"；已约 → "已预约 · 查看凭证"。三种不可用原因分开表达，用户知道下一步该做什么。</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
