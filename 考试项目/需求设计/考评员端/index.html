@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>考务人员端 · 移动端原型</title>
+<style>
+:root {
+  --primary: #16355f;
+  --primary-deep: #0e2547;
+  --primary-soft: #e8eef8;
+  --accent: #e8a13c;
+  --accent-deep: #c77f1a;
+  --accent-soft: #fdf3e1;
+  --bg: #eef2f8;
+  --card: #ffffff;
+  --text: #22314d;
+  --text-secondary: #71809c;
+  --text-faint: #9aa7bd;
+  --line: #e3e9f2;
+  --green: #2f9e63;
+  --green-soft: #e4f5ec;
+  --gray: #8a94a6;
+  --gray-soft: #eef0f4;
+  --blue: #2f6fd0;
+  --blue-soft: #e7effc;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  background: #dfe6ef;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+button { font-family: inherit; border: none; background: none; cursor: pointer; color: inherit; }
+ul, ol { list-style: none; }
+
+/* ---------- 手机外框 ---------- */
+.stage { width: 100%; display: flex; justify-content: center; padding: 28px 12px; }
+.phone {
+  width: 393px;
+  height: 852px;
+  max-height: calc(100vh - 56px);
+  background: var(--bg);
+  border-radius: 42px;
+  border: 10px solid #111a2c;
+  box-shadow: 0 30px 70px rgba(14, 28, 51, 0.35);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  position: relative;
+}
+.role-chip {
+  font-size: 11px;
+  background: rgba(232, 161, 60, 0.18);
+  color: #ffd9a0;
+  border: 1px solid rgba(232, 161, 60, 0.55);
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+.page { flex: 1; overflow-y: auto; padding: 16px 16px 24px; min-height: 0; }
+.page::-webkit-scrollbar { width: 0; }
+
+.page-title { font-size: 19px; font-weight: 700; }
+.page-desc { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+/* ---------- 底部导航 ---------- */
+.bottom-nav {
+  flex: none;
+  display: flex;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  padding: 6px 4px calc(10px + env(safe-area-inset-bottom, 0px));
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 0 2px;
+  color: var(--text-faint);
+  font-size: 11px;
+  position: relative;
+  transition: color 0.15s;
+}
+.nav-item svg { width: 23px; height: 23px; }
+.nav-item.active { color: var(--primary); font-weight: 600; }
+
+/* ---------- 通用组件 ---------- */
+.section { margin-top: 18px; }
+.section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.section-title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.tab-badge {
+  position: absolute;
+  top: -5px;
+  right: 6px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #e6ebf3;
+  box-sizing: content-box;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(22, 53, 95, 0.06);
+}
+.task-card { padding: 14px 15px; margin-bottom: 10px; }
+.task-card:active { background: #f6f8fc; }
+.task-card .tc-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.task-card .tc-title { font-size: 15px; font-weight: 700; line-height: 1.35; flex: 1; }
+.status-tag { flex: none; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.status-tag.pending   { background: var(--accent-soft); color: var(--accent-deep); }
+.status-tag.accepted  { background: var(--green-soft); color: var(--green); }
+.status-tag.rejected  { background: var(--gray-soft); color: var(--gray); }
+.status-tag.completed { background: var(--blue-soft); color: var(--blue); }
+.task-card .tc-meta { margin-top: 8px; display: flex; flex-direction: column; gap: 5px; }
+.task-card .tc-meta .row { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text-secondary); }
+.task-card .tc-meta .row svg { width: 14px; height: 14px; flex: none; color: var(--text-faint); }
+.task-card .tc-meta .row strong { color: var(--text); font-weight: 600; }
+
+.empty-box { padding: 26px 16px; text-align: center; color: var(--text-faint); font-size: 13px; background: var(--card); border-radius: 14px; }
+
+.btn-row { display: flex; gap: 10px; margin-top: 16px; }
+.btn {
+  flex: 1;
+  padding: 13px 0;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.btn:active { opacity: 0.85; transform: scale(0.98); }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-warn { background: var(--accent); color: #fff; }
+.btn-outline { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
+.btn-outline-danger { background: #fff; color: #c0504d; border: 1.5px solid #d98f8d; }
+.btn-plain { background: var(--gray-soft); color: var(--text-secondary); }
+.btn[disabled] { opacity: 0.45; pointer-events: none; }
+.btn-block { width: 100%; }
+
+.link-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background: var(--card);
+  border-radius: 14px;
+  margin-top: 18px;
+  box-shadow: 0 2px 8px rgba(22, 53, 95, 0.06);
+}
+.link-card:active { background: #f6f8fc; }
+.link-card .lc-left { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
+.link-card .lc-left svg { width: 20px; height: 20px; color: var(--primary); }
+.link-card .lc-arrow { color: var(--text-faint); font-size: 18px; }
+
+/* ---------- 筛选标签（分段控件） ---------- */
+.filter-tabs {
+  display: flex;
+  margin-top: 2px;
+  padding: 3px;
+  background: #e6ebf3;
+  border-radius: 10px;
+}
+.filter-tab {
+  flex: 1;
+  position: relative;
+  padding: 7px 0;
+  border-radius: 8px;
+  font-size: 13px;
+  text-align: center;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.filter-tab.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(14, 37, 71, 0.25);
+}
+.filter-tab .ft-count { margin-left: 3px; font-size: 11px; font-weight: 400; color: var(--text-faint); }
+.filter-tab.active .ft-count { color: #ffd9a0; }
+
+/* ---------- 详情/弹层 ---------- */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 25, 43, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 60;
+}
+.overlay[hidden] { display: none; }
+.sheet {
+  width: 100%;
+  max-height: 86%;
+  background: var(--bg);
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.sheet-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 12px;
+  background: var(--bg);
+}
+.sheet-head .sh-title { font-size: 17px; font-weight: 700; }
+.sheet-close {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--text-secondary);
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 1px 4px rgba(22, 53, 95, 0.1);
+}
+.sheet-body { flex: 1; overflow-y: auto; padding: 0 16px 20px; min-height: 0; }
+.sheet-foot { flex: none; padding: 12px 16px calc(14px + env(safe-area-inset-bottom, 0px)); background: #fff; border-top: 1px solid var(--line); }
+
+.info-card { background: #fff; border-radius: 14px; padding: 15px; margin-bottom: 12px; }
+.info-card .ic-title { font-size: 16px; font-weight: 700; line-height: 1.4; margin-bottom: 10px; }
+.info-row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; font-size: 13.5px; }
+.info-row + .info-row { border-top: 1px dashed var(--line); }
+.info-row .k { color: var(--text-secondary); flex: none; }
+.info-row .v { font-weight: 600; text-align: right; word-break: break-all; }
+
+.lock-tip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent-soft);
+  border: 1px dashed rgba(199, 127, 26, 0.5);
+  color: var(--accent-deep);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.lock-tip svg { width: 18px; height: 18px; flex: none; }
+
+.log-list { margin-top: 6px; }
+.log-item { display: flex; gap: 10px; padding: 8px 0; font-size: 12.5px; }
+.log-item + .log-item { border-top: 1px dashed var(--line); }
+.log-item .dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: 6px; }
+.log-item .log-main { flex: 1; }
+.log-item .log-text { font-weight: 600; }
+.log-item .log-reason { color: var(--text-secondary); margin-top: 2px; }
+.log-item .log-time { flex: none; color: var(--text-faint); font-size: 11.5px; }
+
+/* 原因选择 */
+.reason-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.reason-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 15px;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.reason-item .radio {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid #c4cddd;
+  flex: none;
+  display: flex; align-items: center; justify-content: center;
+}
+.reason-item.selected { border-color: var(--primary); background: var(--primary-soft); }
+.reason-item.selected .radio { border-color: var(--primary); }
+.reason-item.selected .radio::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--primary); }
+
+/* 考生名单 */
+.candidate-card { background: #fff; border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.candidate-card .cc-top { display: flex; align-items: center; justify-content: space-between; }
+.candidate-card .cc-name { font-size: 15px; font-weight: 700; }
+.sign-tag { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+.sign-tag.signed { background: var(--green-soft); color: var(--green); }
+.sign-tag.unsigned { background: var(--gray-soft); color: var(--gray); }
+.candidate-card .cc-meta { margin-top: 6px; font-size: 12.5px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 3px; }
+
+/* ---------- 分析页 ---------- */
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.stat-card { background: #fff; border-radius: 14px; padding: 14px 15px; }
+.stat-card .sc-label { font-size: 12px; color: var(--text-secondary); }
+.stat-card .sc-value { font-size: 22px; font-weight: 800; color: var(--primary); margin-top: 5px; }
+.stat-card .sc-value small { font-size: 12px; font-weight: 600; color: var(--text-faint); margin-left: 2px; }
+.stat-card.highlight { background: linear-gradient(140deg, var(--primary), var(--primary-deep)); }
+.stat-card.highlight .sc-label { color: rgba(255, 255, 255, 0.75); }
+.stat-card.highlight .sc-value { color: #ffd9a0; }
+
+.chart-card { background: #fff; border-radius: 14px; padding: 15px; margin-top: 12px; }
+.chart-card .ch-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+.bar-chart { display: flex; align-items: flex-end; gap: 6px; height: 130px; }
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+.bar-col .bar-val { font-size: 10px; color: var(--text-secondary); font-weight: 600; }
+.bar-col .bar { width: 100%; max-width: 26px; border-radius: 5px 5px 2px 2px; background: linear-gradient(180deg, #3d6db5, var(--primary)); }
+.bar-col.current .bar { background: linear-gradient(180deg, #f2b968, var(--accent)); }
+.bar-col .bar-label { font-size: 10px; color: var(--text-faint); }
+
+.record-card { background: #fff; border-radius: 14px; padding: 13px 15px; margin-bottom: 10px; }
+.record-card .rc-title { font-size: 14px; font-weight: 700; line-height: 1.35; }
+.record-card .rc-sub { font-size: 12px; color: var(--text-secondary); margin-top: 5px; }
+.record-card .rc-stats { display: flex; margin-top: 10px; border-top: 1px dashed var(--line); padding-top: 10px; }
+.record-card .rc-stat { flex: 1; text-align: center; }
+.record-card .rc-stat + .rc-stat { border-left: 1px solid var(--line); }
+.record-card .rc-stat .n { font-size: 15px; font-weight: 800; color: var(--primary); }
+.record-card .rc-stat .t { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+
+/* ---------- 我的 ---------- */
+.profile-hero { background: #fff; border-radius: 14px; padding: 18px 15px; display: flex; align-items: center; gap: 14px; margin-top: 2px; }
+.avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(140deg, var(--primary), #3d6db5);
+  color: #fff; font-size: 21px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex: none;
+}
+.profile-hero .ph-name { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.profile-hero .ph-sub { font-size: 12.5px; color: var(--text-secondary); margin-top: 4px; }
+
+/* ---------- 历史考评记录列表页 ---------- */
+.back-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+.back-btn {
+  display: flex; align-items: center; gap: 2px;
+  color: var(--primary); font-size: 14px; font-weight: 600;
+  padding: 6px 12px 6px 0;
+}
+.back-btn svg { width: 18px; height: 18px; }
+.more-btn { font-size: 12.5px; color: var(--primary); font-weight: 600; padding: 4px 0 4px 10px; }
+.filter-bar { background: #fff; border-radius: 14px; padding: 12px; margin-top: 12px; }
+.fb-search { display: flex; align-items: center; gap: 8px; background: var(--bg); border-radius: 10px; padding: 9px 12px; }
+.fb-search svg { width: 16px; height: 16px; color: var(--text-faint); flex: none; }
+.fb-search input { border: none; background: none; outline: none; flex: 1; font-size: 14px; color: var(--text); font-family: inherit; min-width: 0; }
+.fb-row { display: flex; gap: 8px; margin-top: 10px; }
+.fb-date { flex: 1; display: flex; align-items: center; gap: 8px; background: var(--bg); border-radius: 10px; padding: 9px 12px; min-width: 0; }
+.fb-date svg { width: 16px; height: 16px; color: var(--text-faint); flex: none; }
+.fb-date input { border: none; background: none; outline: none; flex: 1; font-size: 13px; color: var(--text); font-family: inherit; min-width: 0; }
+.fb-reset { flex: none; padding: 0 16px; border-radius: 10px; background: var(--gray-soft); color: var(--text-secondary); font-size: 13px; font-weight: 600; }
+.fb-reset:active { background: #e2e6ee; }
+.result-count { font-size: 12px; color: var(--text-faint); margin: 12px 2px 10px; }
+
+/* ---------- Toast ---------- */
+.toast-wrap { position: absolute; left: 0; right: 0; bottom: 96px; display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 90; pointer-events: none; }
+.toast {
+  background: rgba(20, 30, 50, 0.88);
+  color: #fff;
+  font-size: 13px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  max-width: 82%;
+  animation: toast-in 0.2s ease-out;
+}
+@keyframes toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ---------- 窄屏：去掉外框 ---------- */
+@media (max-width: 540px) {
+  body { background: var(--bg); }
+  .stage { padding: 0; }
+  .phone {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="phone">
+    <div class="app" id="app">
+      <main class="page" id="page"></main>
+
+      <nav class="bottom-nav" id="bottomNav"></nav>
+
+      <div class="overlay" id="overlay" hidden>
+        <div class="sheet" id="sheet"></div>
+      </div>
+
+      <div class="toast-wrap" id="toastWrap"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* ================= 固定演示时间 ================= */
+const demoNow = new Date('2026-09-30T14:00:00');
+
+/* ================= 演示数据 ================= */
+const currentUser = {
+  name: '李卫平',
+  role: '考评员',
+  phone: '138****2671',
+  examPoint: '南昌一中考点',
+  totalAssignments: 36,
+  dutyScore: 4.8
+};
+
+const STATUS_TEXT = { pending: '待响应', accepted: '已接受', rejected: '已拒绝', completed: '已完成' };
+
+const tasks = [
+  {
+    id: 'T2026093001',
+    title: '2026年9月职业技能等级认定考试',
+    examDate: '2026年9月30日',
+    startAt: '2026-09-30T18:00:00',
+    timeText: '18:00 - 20:00',
+    examPoint: '南昌一中考点',
+    subject: '电工（四级）实操',
+    status: 'pending',
+    candidates: null,
+    rejectReason: null,
+    cancelReason: null,
+    eventLog: [{ time: '09-29 10:20', text: '任务分派' }]
+  },
+  {
+    id: 'T2026100501',
+    title: '2026年10月职业技能等级认定考试',
+    examDate: '2026年10月5日',
+    startAt: '2026-10-05T09:00:00',
+    timeText: '09:00 - 11:30',
+    examPoint: '南昌一中考点',
+    subject: '焊工（四级）实操',
+    status: 'pending',
+    candidates: null,
+    rejectReason: null,
+    cancelReason: null,
+    eventLog: [{ time: '09-29 16:05', text: '任务分派' }]
+  },
+  {
+    id: 'T2026093002',
+    title: '2026年9月专项能力考核',
+    examDate: '2026年9月30日',
+    startAt: '2026-09-30T13:30:00',
+    timeText: '13:30 - 15:30',
+    examPoint: '南昌一中考点',
+    subject: '汽车维修工（四级）实操',
+    status: 'accepted',
+    candidates: [
+      { name: '王建国', idMasked: '3601**********1234', subject: '汽车维修工（四级）实操', signIn: 'signed' },
+      { name: '刘志强', idMasked: '3601**********5678', subject: '汽车维修工（四级）实操', signIn: 'signed' },
+      { name: '陈晓明', idMasked: '3622**********9012', subject: '汽车维修工（四级）实操', signIn: 'unsigned' }
+    ],
+    rejectReason: null,
+    cancelReason: null,
+    eventLog: [
+      { time: '09-28 09:12', text: '任务分派' },
+      { time: '09-28 15:40', text: '已接受任务' }
+    ]
+  },
+  {
+    id: 'T2026093003',
+    title: '2026年9月职业技能等级认定考试（晚场）',
+    examDate: '2026年9月30日',
+    startAt: '2026-09-30T18:00:00',
+    timeText: '18:00 - 20:00',
+    examPoint: '南昌一中考点',
+    subject: '电工（三级）实操',
+    status: 'accepted',
+    candidates: [
+      { name: '赵春华', idMasked: '3601**********3321', subject: '电工（三级）实操', signIn: 'unsigned' },
+      { name: '孙立新', idMasked: '3601**********8876', subject: '电工（三级）实操', signIn: 'unsigned' },
+      { name: '周文斌', idMasked: '3608**********2209', subject: '电工（三级）实操', signIn: 'unsigned' },
+      { name: '吴海燕', idMasked: '3601**********6543', subject: '电工（三级）实操', signIn: 'unsigned' }
+    ],
+    rejectReason: null,
+    cancelReason: null,
+    eventLog: [
+      { time: '09-27 11:00', text: '任务分派' },
+      { time: '09-27 14:22', text: '已接受任务' }
+    ]
+  },
+  {
+    id: 'T2026100801',
+    title: '2026年10月职业技能等级认定考试',
+    examDate: '2026年10月8日',
+    startAt: '2026-10-08T14:00:00',
+    timeText: '14:00 - 16:00',
+    examPoint: '南昌一中考点',
+    subject: '钳工（四级）实操',
+    status: 'accepted',
+    candidates: [
+      { name: '郑国庆', idMasked: '3601**********7788', subject: '钳工（四级）实操', signIn: 'unsigned' },
+      { name: '何丽华', idMasked: '3607**********1133', subject: '钳工（四级）实操', signIn: 'unsigned' }
+    ],
+    rejectReason: null,
+    cancelReason: null,
+    eventLog: [
+      { time: '09-26 10:30', text: '任务分派' },
+      { time: '09-26 18:47', text: '已接受任务' }
+    ]
+  },
+  {
+    id: 'T2026092501',
+    title: '2026年9月专项能力考核',
+    examDate: '2026年9月25日',
+    startAt: '2026-09-25T09:00:00',
+    timeText: '09:00 - 11:00',
+    examPoint: '南昌一中考点',
+    subject: '电工（四级）实操',
+    status: 'rejected',
+    candidates: null,
+    rejectReason: '时间冲突',
+    cancelReason: null,
+    eventLog: [
+      { time: '09-22 09:15', text: '任务分派' },
+      { time: '09-22 20:03', text: '已拒绝任务', reason: '时间冲突' }
+    ]
+  },
+  {
+    id: 'T2026092001',
+    title: '2026年9月职业技能等级认定考试',
+    examDate: '2026年9月20日',
+    startAt: '2026-09-20T09:00:00',
+    timeText: '09:00 - 11:30',
+    examPoint: '南昌一中考点',
+    subject: '焊工（三级）实操',
+    status: 'completed',
+    candidates: null,
+    rejectReason: null,
+    cancelReason: null,
+    eventLog: [
+      { time: '09-17 10:00', text: '任务分派' },
+      { time: '09-17 13:26', text: '已接受任务' },
+      { time: '09-20 11:30', text: '任务完成' }
+    ]
+  }
+];
+
+const REJECT_REASONS = ['时间冲突', '地点不便', '临时有事', '其他原因'];
+const CANCEL_REASONS = ['临时有事', '时间冲突', '其他原因'];
+
+const historyRecords = [
+  { title: '2026年9月职业技能等级认定考试', examPoint: '南昌一中考点', date: '2026-09-20', candidates: 40, avgScore: 78.5, maxScore: 96, minScore: 42, passCount: 34, failCount: 6, passRate: '85.0%' },
+  { title: '2026年8月专项能力考核', examPoint: '南昌一中考点', date: '2026-08-16', candidates: 32, avgScore: 74.2, maxScore: 93, minScore: 38, passCount: 26, failCount: 6, passRate: '81.3%' },
+  { title: '2026年8月职业技能等级认定考试', examPoint: '南昌一中考点', date: '2026-08-05', candidates: 36, avgScore: 80.1, maxScore: 97, minScore: 51, passCount: 32, failCount: 4, passRate: '88.9%' },
+  { title: '2026年7月职业技能等级认定考试', examPoint: '南昌一中考点', date: '2026-07-12', candidates: 45, avgScore: 76.8, maxScore: 95, minScore: 47, passCount: 38, failCount: 7, passRate: '84.4%' },
+  { title: '2026年6月专项能力考核', examPoint: '南昌一中考点', date: '2026-06-21', candidates: 28, avgScore: 75.6, maxScore: 92, minScore: 44, passCount: 23, failCount: 5, passRate: '82.1%' },
+  { title: '2026年6月职业技能等级认定考试', examPoint: '南昌一中考点', date: '2026-06-07', candidates: 38, avgScore: 79.3, maxScore: 95, minScore: 50, passCount: 33, failCount: 5, passRate: '86.8%' },
+  { title: '2026年5月职业技能等级认定考试', examPoint: '南昌一中考点', date: '2026-05-17', candidates: 42, avgScore: 77.9, maxScore: 94, minScore: 46, passCount: 36, failCount: 6, passRate: '85.7%' },
+  { title: '2026年4月专项能力考核', examPoint: '南昌一中考点', date: '2026-04-19', candidates: 30, avgScore: 73.8, maxScore: 91, minScore: 40, passCount: 24, failCount: 6, passRate: '80.0%' },
+  { title: '2026年4月职业技能等级认定考试', examPoint: '南昌一中考点', date: '2026-04-12', candidates: 35, avgScore: 78.9, maxScore: 96, minScore: 52, passCount: 30, failCount: 5, passRate: '85.7%' },
+  { title: '2026年3月职业技能等级认定考试', examPoint: '南昌一中考点', date: '2026-03-15', candidates: 33, avgScore: 76.2, maxScore: 93, minScore: 45, passCount: 27, failCount: 6, passRate: '81.8%' }
+];
+
+const analysisStats = {
+  totalAssignments: 36,
+  monthAssignments: 4,
+  avgScore: 77.4,
+  passRate: '84.6%',
+  dutyScore: 4.8,
+  maxScore: 97,
+  minScore: 38,
+  passCount: 130,
+  failCount: 23
+};
+
+const monthlyTrend = [
+  { label: '4月', value: 4 },
+  { label: '5月', value: 5 },
+  { label: '6月', value: 3 },
+  { label: '7月', value: 6 },
+  { label: '8月', value: 5 },
+  { label: '9月', value: 4, current: true }
+];
+
+/* ================= 状态计算 ================= */
+function isBeforeExamStart(task, now) {
+  return new Date(task.startAt).getTime() > now.getTime();
+}
+
+function getTodoBuckets(taskList, now) {
+  return {
+    upcoming: taskList.filter(t => t.status === 'accepted' && isBeforeExamStart(t, now)),
+    pending: taskList.filter(t => t.status === 'pending')
+  };
+}
+
+function getTaskBuckets(taskList) {
+  return {
+    pending: taskList.filter(t => t.status === 'pending'),
+    accepted: taskList.filter(t => t.status === 'accepted'),
+    rejected: taskList.filter(t => t.status === 'rejected'),
+    completed: taskList.filter(t => t.status === 'completed')
+  };
+}
+
+/* ================= 视图状态 ================= */
+let currentPage = 'todo';
+let taskFilter = 'all';
+let todoTab = 'upcoming';
+
+const NAV_ITEMS = [
+  { key: 'todo', label: '待办', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>' },
+  { key: 'tasks', label: '任务', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></svg>' },
+  { key: 'analysis', label: '分析', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M21 20H3"/></svg>' },
+  { key: 'profile', label: '我的', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.4-3.6 4.3-5.5 7.5-5.5s6.1 1.9 7.5 5.5"/></svg>' }
+];
+
+const ICONS = {
+  calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
+  clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
+  location: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 21s-6.5-5.4-6.5-10.5a6.5 6.5 0 1 1 13 0C18.5 15.6 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>',
+  subject: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 1 6.5 18H19v3H6.5A1.5 1.5 0 0 1 5 19.5z"/></svg>',
+  lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>',
+  users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c.8-3.2 3.1-5 6-5s5.2 1.8 6 5"/><path d="M16 5.2a3.5 3.5 0 0 1 0 5.6M18.5 15.4c1.5.7 2.4 2.1 2.8 4.1"/></svg>'
+};
+
+/* ================= 渲染 ================= */
+const pageEl = document.getElementById('page');
+const navEl = document.getElementById('bottomNav');
+
+function fmtDateCN(dateStr) {
+  const d = new Date(dateStr);
+  return (d.getMonth() + 1) + '月' + d.getDate() + '日';
+}
+
+function statusTag(status) {
+  return '<span class="status-tag ' + status + '">' + STATUS_TEXT[status] + '</span>';
+}
+
+function taskCardHTML(task) {
+  return '' +
+    '<div class="card task-card" data-task-id="' + task.id + '" role="button">' +
+      '<div class="tc-top">' +
+        '<div class="tc-title">' + task.title + '</div>' +
+        statusTag(task.status) +
+      '</div>' +
+      '<div class="tc-meta">' +
+        '<div class="row">' + ICONS.calendar + '<strong>' + task.examDate + '</strong><span>（' + fmtDateCN(task.startAt) + ' ' + task.timeText + '）</span></div>' +
+        '<div class="row">' + ICONS.location + '<span>' + task.examPoint + '</span></div>' +
+        '<div class="row">' + ICONS.subject + '<span>' + task.subject + '</span></div>' +
+      '</div>' +
+    '</div>';
+}
+
+function emptyBoxHTML(text) {
+  return '<div class="empty-box">' + text + '</div>';
+}
+
+function renderTodoPage() {
+  const buckets = getTodoBuckets(tasks, demoNow);
+  const tabs = [
+    { key: 'upcoming', label: '待考试任务', count: buckets.upcoming.length },
+    { key: 'pending', label: '待处理考试', count: buckets.pending.length }
+  ];
+  const list = todoTab === 'upcoming' ? buckets.upcoming : buckets.pending;
+  const emptyText = todoTab === 'upcoming' ? '暂时没有待参加的考试任务' : '暂时没有待响应的考试任务';
+  const listHTML = list.length ? list.map(taskCardHTML).join('') : emptyBoxHTML(emptyText);
+
+  pageEl.innerHTML = '' +
+    '<div class="filter-tabs">' +
+      tabs.map(t =>
+        '<button class="filter-tab' + (todoTab === t.key ? ' active' : '') + '" data-todo-tab="' + t.key + '">' +
+          t.label +
+          (t.count > 0 ? '<span class="tab-badge">' + t.count + '</span>' : '') +
+        '</button>'
+      ).join('') +
+    '</div>' +
+    '<div class="section" style="margin-top:14px">' + listHTML + '</div>';
+
+  pageEl.querySelectorAll('[data-todo-tab]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      todoTab = tab.getAttribute('data-todo-tab');
+      renderTodoPage();
+      bindTaskCards();
+    });
+  });
+}
+
+function renderTasksPage() {
+  const buckets = getTaskBuckets(tasks);
+  const total = tasks.length;
+  const filters = [
+    { key: 'all', label: '全部', count: total },
+    { key: 'pending', label: '待响应', count: buckets.pending.length },
+    { key: 'accepted', label: '已接受', count: buckets.accepted.length },
+    { key: 'rejected', label: '已拒绝', count: buckets.rejected.length },
+    { key: 'completed', label: '已完成', count: buckets.completed.length }
+  ];
+  const list = taskFilter === 'all' ? tasks : buckets[taskFilter];
+  const listHTML = list.length ? list.map(taskCardHTML).join('') : emptyBoxHTML('该状态下暂无任务');
+
+  pageEl.innerHTML = '' +
+    '<div class="filter-tabs">' +
+      filters.map(f =>
+        '<button class="filter-tab' + (taskFilter === f.key ? ' active' : '') + '" data-filter="' + f.key + '">' +
+          f.label + '<span class="ft-count">' + f.count + '</span>' +
+        '</button>'
+      ).join('') +
+    '</div>' +
+    '<div class="section" style="margin-top:14px">' + listHTML + '</div>';
+
+  pageEl.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      taskFilter = tab.getAttribute('data-filter');
+      renderTasksPage();
+      bindTaskCards();
+    });
+  });
+}
+
+function recordCardHTML(r) {
+  return '<div class="record-card">' +
+    '<div class="rc-title">' + r.title + '</div>' +
+    '<div class="rc-sub">' + r.examPoint + ' · ' + r.date + '</div>' +
+    '<div class="rc-stats">' +
+      '<div class="rc-stat"><div class="n">' + r.candidates + '</div><div class="t">考生人数</div></div>' +
+      '<div class="rc-stat"><div class="n">' + r.avgScore + '</div><div class="t">平均分</div></div>' +
+      '<div class="rc-stat"><div class="n">' + r.passRate + '</div><div class="t">通过率</div></div>' +
+    '</div>' +
+  '</div>';
+}
+
+function renderAnalysisPage() {
+  const maxTrend = Math.max(...monthlyTrend.map(m => m.value));
+  const barsHTML = monthlyTrend.map(m => {
+    const h = Math.round((m.value / maxTrend) * 88) + 8;
+    return '<div class="bar-col' + (m.current ? ' current' : '') + '">' +
+      '<div class="bar-val">' + m.value + '</div>' +
+      '<div class="bar" style="height:' + h + 'px"></div>' +
+      '<div class="bar-label">' + m.label + '</div>' +
+    '</div>';
+  }).join('');
+
+  const recordsHTML = historyRecords.slice(0, 3).map(recordCardHTML).join('');
+
+  pageEl.innerHTML = '' +
+    '<div class="stat-grid" style="margin-top:2px">' +
+      '<div class="stat-card highlight"><div class="sc-label">履职评分</div><div class="sc-value">' + analysisStats.dutyScore + '<small>分</small></div></div>' +
+      '<div class="stat-card"><div class="sc-label">累计考评次数</div><div class="sc-value">' + analysisStats.totalAssignments + '<small>次</small></div></div>' +
+      '<div class="stat-card"><div class="sc-label">本月考评次数</div><div class="sc-value">' + analysisStats.monthAssignments + '<small>次</small></div></div>' +
+      '<div class="stat-card"><div class="sc-label">平均分</div><div class="sc-value">' + analysisStats.avgScore + '<small>分</small></div></div>' +
+      '<div class="stat-card"><div class="sc-label">通过率</div><div class="sc-value">' + analysisStats.passRate + '</div></div>' +
+      '<div class="stat-card"><div class="sc-label">分数区间</div><div class="sc-value">' + analysisStats.minScore + ' - ' + analysisStats.maxScore + '<small>分</small></div></div>' +
+      '<div class="stat-card"><div class="sc-label">合格人数</div><div class="sc-value">' + analysisStats.passCount + '<small>人</small></div></div>' +
+      '<div class="stat-card"><div class="sc-label">不合格人数</div><div class="sc-value">' + analysisStats.failCount + '<small>人</small></div></div>' +
+    '</div>' +
+    '<div class="chart-card">' +
+      '<div class="ch-title">月度考评趋势（次数）</div>' +
+      '<div class="bar-chart">' + barsHTML + '</div>' +
+    '</div>' +
+    '<div class="section">' +
+      '<div class="section-head">' +
+        '<div class="section-title">历史考评记录</div>' +
+        '<button class="more-btn" id="goRecords">更多 &rsaquo;</button>' +
+      '</div>' +
+      recordsHTML +
+    '</div>';
+
+  document.getElementById('goRecords').addEventListener('click', openRecordsPage);
+}
+
+/* ================= 历史考评记录列表页 ================= */
+let recordFilter = { name: '', date: '' };
+
+function openRecordsPage() {
+  recordFilter = { name: '', date: '' };
+  currentPage = 'records';
+  pageEl.scrollTop = 0;
+  renderApp();
+}
+
+function getFilteredRecords() {
+  const kw = recordFilter.name.trim();
+  return historyRecords.filter(r =>
+    (!kw || r.title.indexOf(kw) !== -1) &&
+    (!recordFilter.date || r.date === recordFilter.date)
+  );
+}
+
+function renderRecordsList() {
+  const list = getFilteredRecords();
+  document.getElementById('recordsCount').textContent = '共 ' + list.length + ' 条记录';
+  document.getElementById('recordsList').innerHTML = list.length
+    ? list.map(recordCardHTML).join('')
+    : emptyBoxHTML('没有符合条件的考评记录');
+}
+
+function renderRecordsPage() {
+  pageEl.innerHTML = '' +
+    '<div class="back-bar">' +
+      '<button class="back-btn" id="backToAnalysis">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>返回' +
+      '</button>' +
+      '<div class="page-title" style="font-size:17px">历史考评记录</div>' +
+    '</div>' +
+    '<div class="filter-bar">' +
+      '<div class="fb-search">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>' +
+        '<input id="recordNameInput" type="text" placeholder="输入考试名称搜索" value="' + recordFilter.name + '">' +
+      '</div>' +
+      '<div class="fb-row">' +
+        '<div class="fb-date">' +
+          ICONS.calendar +
+          '<input id="recordDateInput" type="date" value="' + recordFilter.date + '">' +
+        '</div>' +
+        '<button class="fb-reset" id="recordReset">重置</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="result-count" id="recordsCount"></div>' +
+    '<div id="recordsList"></div>';
+
+  document.getElementById('backToAnalysis').addEventListener('click', () => switchPage('analysis'));
+  document.getElementById('recordNameInput').addEventListener('input', (e) => {
+    recordFilter.name = e.target.value;
+    renderRecordsList();
+  });
+  document.getElementById('recordDateInput').addEventListener('change', (e) => {
+    recordFilter.date = e.target.value;
+    renderRecordsList();
+  });
+  document.getElementById('recordReset').addEventListener('click', () => {
+    recordFilter = { name: '', date: '' };
+    document.getElementById('recordNameInput').value = '';
+    document.getElementById('recordDateInput').value = '';
+    renderRecordsList();
+  });
+  renderRecordsList();
+}
+
+function renderProfilePage() {
+  pageEl.innerHTML = '' +
+    '<div class="profile-hero">' +
+      '<div class="avatar">' + currentUser.name.charAt(0) + '</div>' +
+      '<div><div class="ph-name">' + currentUser.name + '<span class="role-chip" style="color:var(--accent-deep);border-color:rgba(199,127,26,.5);background:var(--accent-soft)">' + currentUser.role + '</span></div>' +
+      '<div class="ph-sub">' + currentUser.examPoint + '</div></div>' +
+    '</div>' +
+    '<div class="section">' +
+      '<div class="info-card">' +
+        '<div class="info-row"><span class="k">姓名</span><span class="v">' + currentUser.name + '</span></div>' +
+        '<div class="info-row"><span class="k">手机号</span><span class="v">' + currentUser.phone + '</span></div>' +
+        '<div class="info-row"><span class="k">所属考点</span><span class="v">' + currentUser.examPoint + '</span></div>' +
+        '<div class="info-row"><span class="k">累计考评次数</span><span class="v">' + currentUser.totalAssignments + ' 次</span></div>' +
+        '<div class="info-row"><span class="k">履职评分</span><span class="v">' + currentUser.dutyScore + ' 分</span></div>' +
+      '</div>' +
+    '</div>';
+}
+
+function renderNav() {
+  const navActiveKey = currentPage === 'records' ? 'analysis' : currentPage;
+  navEl.innerHTML = NAV_ITEMS.map(item =>
+    '<button class="nav-item' + (navActiveKey === item.key ? ' active' : '') + '" data-nav="' + item.key + '">' +
+      item.icon +
+      '<span>' + item.label + '</span>' +
+    '</button>'
+  ).join('');
+  navEl.querySelectorAll('.nav-item').forEach(btn => {
+    btn.addEventListener('click', () => switchPage(btn.getAttribute('data-nav')));
+  });
+}
+
+function switchPage(key) {
+  currentPage = key;
+  pageEl.scrollTop = 0;
+  renderApp();
+}
+
+function bindTaskCards() {
+  pageEl.querySelectorAll('.task-card[data-task-id]').forEach(card => {
+    card.addEventListener('click', () => openTaskDetail(card.getAttribute('data-task-id')));
+  });
+}
+
+function renderApp() {
+  renderNav();
+  if (currentPage === 'todo') renderTodoPage();
+  else if (currentPage === 'tasks') renderTasksPage();
+  else if (currentPage === 'analysis') renderAnalysisPage();
+  else if (currentPage === 'records') renderRecordsPage();
+  else if (currentPage === 'profile') renderProfilePage();
+  bindTaskCards();
+}
+
+/* ================= 轻提示 ================= */
+function showToast(text) {
+  const wrap = document.getElementById('toastWrap');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = text;
+  wrap.appendChild(el);
+  setTimeout(() => { el.remove(); }, 2200);
+}
+
+/* ================= 弹层 ================= */
+const overlayEl = document.getElementById('overlay');
+const sheetEl = document.getElementById('sheet');
+
+function openSheet(html) {
+  sheetEl.innerHTML = html;
+  overlayEl.hidden = false;
+}
+
+function closeSheet() {
+  overlayEl.hidden = true;
+  sheetEl.innerHTML = '';
+}
+
+overlayEl.addEventListener('click', (e) => {
+  if (e.target === overlayEl) closeSheet();
+});
+
+function bindSheetClose() {
+  const btn = sheetEl.querySelector('.sheet-close');
+  if (btn) btn.addEventListener('click', closeSheet);
+}
+
+function sheetHeadHTML(title) {
+  return '<div class="sheet-head"><div class="sh-title">' + title + '</div>' +
+    '<button class="sheet-close" aria-label="关闭">&#10005;</button></div>';
+}
+
+function eventLogHTML(task) {
+  if (!task.eventLog.length) return '';
+  const items = task.eventLog.map(log =>
+    '<div class="log-item"><span class="dot"></span>' +
+      '<div class="log-main"><div class="log-text">' + log.text + '</div>' +
+      (log.reason ? '<div class="log-reason">原因：' + log.reason + '</div>' : '') +
+      '</div><span class="log-time">' + log.time + '</span></div>'
+  ).join('');
+  return '<div class="info-card"><div class="ic-title" style="font-size:14px;margin-bottom:4px">操作记录</div>' +
+    '<div class="log-list">' + items + '</div></div>';
+}
+
+function infoCardHTML(task) {
+  return '<div class="info-card">' +
+    '<div class="ic-title">' + task.title + '</div>' +
+    '<div class="info-row"><span class="k">任务状态</span><span class="v">' + statusTag(task.status) + '</span></div>' +
+    '<div class="info-row"><span class="k">考试日期</span><span class="v">' + task.examDate + '</span></div>' +
+    '<div class="info-row"><span class="k">考试时间</span><span class="v">' + task.timeText + '</span></div>' +
+    '<div class="info-row"><span class="k">考点</span><span class="v">' + task.examPoint + '</span></div>' +
+    '<div class="info-row"><span class="k">考试科目</span><span class="v">' + task.subject + '</span></div>' +
+    (task.rejectReason ? '<div class="info-row"><span class="k">拒绝原因</span><span class="v">' + task.rejectReason + '</span></div>' : '') +
+    (task.cancelReason ? '<div class="info-row"><span class="k">上次撤销原因</span><span class="v">' + task.cancelReason + '</span></div>' : '') +
+  '</div>';
+}
+
+/* ================= 任务详情 ================= */
+function findTask(taskId) {
+  return tasks.find(t => t.id === taskId);
+}
+
+function openTaskDetail(taskId) {
+  const task = findTask(taskId);
+  if (!task) return;
+  const beforeStart = isBeforeExamStart(task, demoNow);
+
+  let candidateArea = '';
+  if (task.status === 'accepted') {
+    const count = task.candidates ? task.candidates.length : 0;
+    candidateArea = '<div class="link-card" id="detailCandidates" role="button" style="margin-top:0">' +
+      '<div class="lc-left">' + ICONS.users + '查看考生名单（' + count + ' 人）</div>' +
+      '<div class="lc-arrow">&rsaquo;</div></div>';
+  } else if (task.status === 'pending') {
+    candidateArea = '<div class="lock-tip">' + ICONS.lock + '接受后可查看考生名单</div>';
+  } else if (task.status === 'rejected') {
+    candidateArea = '<div class="lock-tip">' + ICONS.lock + '任务已拒绝，不能查看考生名单</div>';
+  }
+
+  let actions = '';
+  if (task.status === 'pending') {
+    actions = '<div class="btn-row">' +
+      '<button class="btn btn-outline-danger" id="btnReject">拒绝任务</button>' +
+      '<button class="btn btn-primary" id="btnAccept">接受任务</button>' +
+    '</div>';
+  } else if (task.status === 'accepted' && beforeStart) {
+    actions = '<div class="btn-row"><button class="btn btn-plain btn-block" id="btnCancel">撤销接受</button></div>';
+  }
+
+  openSheet(
+    sheetHeadHTML('任务详情') +
+    '<div class="sheet-body">' +
+      infoCardHTML(task) +
+      candidateArea +
+      eventLogHTML(task) +
+    '</div>' +
+    (actions ? '<div class="sheet-foot">' + actions + '</div>' : '')
+  );
+  bindSheetClose();
+
+  const btnAccept = document.getElementById('btnAccept');
+  if (btnAccept) btnAccept.addEventListener('click', () => acceptTask(taskId));
+  const btnReject = document.getElementById('btnReject');
+  if (btnReject) btnReject.addEventListener('click', () => openRejectSheet(taskId));
+  const btnCancel = document.getElementById('btnCancel');
+  if (btnCancel) btnCancel.addEventListener('click', () => openCancelSheet(taskId));
+  const detailCandidates = document.getElementById('detailCandidates');
+  if (detailCandidates) detailCandidates.addEventListener('click', () => openCandidateList(taskId));
+}
+
+/* ================= 接受 ================= */
+function logTimeNow() {
+  return '09-30 14:00';
+}
+
+function acceptTask(taskId) {
+  const task = findTask(taskId);
+  if (!task || task.status !== 'pending') return;
+  task.status = 'accepted';
+  if (!task.candidates) {
+    task.candidates = [
+      { name: '刘志远', idMasked: '3601**********4412', subject: task.subject, signIn: 'unsigned' },
+      { name: '杨秀兰', idMasked: '3601**********9907', subject: task.subject, signIn: 'unsigned' },
+      { name: '黄志明', idMasked: '3603**********2255', subject: task.subject, signIn: 'unsigned' }
+    ];
+  }
+  task.eventLog.push({ time: logTimeNow(), text: '已接受任务' });
+  closeSheet();
+  renderApp();
+  showToast('已接受任务，考生名单已解锁');
+}
+
+/* ================= 拒绝 ================= */
+let pendingReason = null;
+
+function openRejectSheet(taskId) {
+  pendingReason = null;
+  openSheet(
+    sheetHeadHTML('拒绝任务') +
+    '<div class="sheet-body">' +
+      '<div class="page-desc" style="margin-bottom:10px">请选择拒绝原因，确认后任务将进入已拒绝列表，且不能查看考生名单。</div>' +
+      '<div class="reason-list">' +
+        REJECT_REASONS.map(r => '<button class="reason-item" data-reason="' + r + '"><span class="radio"></span>' + r + '</button>').join('') +
+      '</div>' +
+    '</div>' +
+    '<div class="sheet-foot"><div class="btn-row">' +
+      '<button class="btn btn-plain" id="btnReasonBack">返回</button>' +
+      '<button class="btn btn-warn" id="btnReasonConfirm" disabled>确认拒绝</button>' +
+    '</div></div>'
+  );
+  bindSheetClose();
+
+  sheetEl.querySelectorAll('.reason-item').forEach(item => {
+    item.addEventListener('click', () => {
+      sheetEl.querySelectorAll('.reason-item').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      pendingReason = item.getAttribute('data-reason');
+      document.getElementById('btnReasonConfirm').disabled = false;
+    });
+  });
+  document.getElementById('btnReasonBack').addEventListener('click', () => openTaskDetail(taskId));
+  document.getElementById('btnReasonConfirm').addEventListener('click', () => confirmReject(taskId, pendingReason));
+}
+
+function confirmReject(taskId, reason) {
+  const task = findTask(taskId);
+  if (!task || task.status !== 'pending' || !reason) return;
+  task.status = 'rejected';
+  task.rejectReason = reason;
+  task.eventLog.push({ time: logTimeNow(), text: '已拒绝任务', reason: reason });
+  closeSheet();
+  renderApp();
+  showToast('已拒绝任务');
+}
+
+/* ================= 撤销接受 ================= */
+function openCancelSheet(taskId) {
+  const task = findTask(taskId);
+  if (!task || task.status !== 'accepted' || !isBeforeExamStart(task, demoNow)) return;
+  pendingReason = null;
+  openSheet(
+    sheetHeadHTML('撤销接受') +
+    '<div class="sheet-body">' +
+      '<div class="page-desc" style="margin-bottom:10px">请选择撤销原因，确认后任务将回到待响应，可重新接受；撤销记录会保留在操作记录中。</div>' +
+      '<div class="reason-list">' +
+        CANCEL_REASONS.map(r => '<button class="reason-item" data-reason="' + r + '"><span class="radio"></span>' + r + '</button>').join('') +
+      '</div>' +
+    '</div>' +
+    '<div class="sheet-foot"><div class="btn-row">' +
+      '<button class="btn btn-plain" id="btnReasonBack">返回</button>' +
+      '<button class="btn btn-warn" id="btnReasonConfirm" disabled>确认撤销</button>' +
+    '</div></div>'
+  );
+  bindSheetClose();
+
+  sheetEl.querySelectorAll('.reason-item').forEach(item => {
+    item.addEventListener('click', () => {
+      sheetEl.querySelectorAll('.reason-item').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      pendingReason = item.getAttribute('data-reason');
+      document.getElementById('btnReasonConfirm').disabled = false;
+    });
+  });
+  document.getElementById('btnReasonBack').addEventListener('click', () => openTaskDetail(taskId));
+  document.getElementById('btnReasonConfirm').addEventListener('click', () => confirmCancel(taskId, pendingReason));
+}
+
+function confirmCancel(taskId, reason) {
+  const task = findTask(taskId);
+  if (!task || task.status !== 'accepted' || !reason || !isBeforeExamStart(task, demoNow)) return;
+  task.status = 'pending';
+  task.cancelReason = reason;
+  task.eventLog.push({ time: logTimeNow(), text: '已接受后撤销', reason: reason });
+  closeSheet();
+  renderApp();
+  showToast('已撤销接受，任务回到待处理考试');
+}
+
+/* ================= 考生名单 ================= */
+function openCandidateList(taskId) {
+  const task = findTask(taskId);
+  if (!task || task.status !== 'accepted' || !task.candidates) {
+    showToast('接受任务后才能查看考生名单');
+    return;
+  }
+  const listHTML = task.candidates.map(c =>
+    '<div class="candidate-card">' +
+      '<div class="cc-top"><span class="cc-name">' + c.name + '</span>' +
+      '<span class="sign-tag ' + c.signIn + '">' + (c.signIn === 'signed' ? '已签到' : '未签到') + '</span></div>' +
+      '<div class="cc-meta"><span>证件号：' + c.idMasked + '</span><span>考试科目：' + c.subject + '</span></div>' +
+    '</div>'
+  ).join('');
+
+  openSheet(
+    sheetHeadHTML('考生名单（' + task.candidates.length + ' 人）') +
+    '<div class="sheet-body">' + listHTML + '</div>' +
+    '<div class="sheet-foot"><button class="btn btn-outline btn-block" id="btnBackDetail">返回任务详情</button></div>'
+  );
+  bindSheetClose();
+  document.getElementById('btnBackDetail').addEventListener('click', () => openTaskDetail(taskId));
+}
+
+renderApp();
+</script>
+</body>
+</html>
